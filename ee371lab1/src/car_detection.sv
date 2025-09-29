@@ -12,22 +12,21 @@ module car_detection (clk, reset, inner_sw, outer_sw, enter, exit);
 
     always_comb begin
         // implementing mealy machine: outputs depend on ps and inputs
+
+        //default outputs
+        enter = 0;
+        exit = 0;
+
         case (ps)
             s0: begin
                 if (outer_sw && ~inner_sw) begin
                     ns = s2;
-                    enter = 0;
-                    exit = 0;
                 end
                 else if (~outer_sw && inner_sw) begin
                     ns = s1;
-                    enter = 0;
-                    exit = 0;
                 end
                 else begin
                     ns = s0;
-                    enter = 0;
-                    exit = 0;
                 end
             end
 
@@ -35,53 +34,37 @@ module car_detection (clk, reset, inner_sw, outer_sw, enter, exit);
                 if (~outer_sw && ~inner_sw) begin
                     ns = s0;
                     enter = 1;
-                    exit = 0;
                 end
                 else if (outer_sw && inner_sw) begin
                     ns = s3;
-                    enter = 0;
-                    exit = 0;
                 end
                 else begin
                     ns = s0;
-                    enter = 0;
-                    exit = 0;
                 end
             end
 
             s2: begin
                 if (~outer_sw && ~inner_sw) begin
                     ns = s0;
-                    enter = 0;
                     exit = 1;
                 end
                 else if (outer_sw && inner_sw) begin
                     ns = s3;
-                    enter = 0;
-                    exit = 0;
                 end
                 else begin
                     ns = s0;
-                    enter = 0;
-                    exit = 0;
                 end
             end
 
             s3: begin
                 if (outer_sw && ~inner_sw) begin
                     ns = s2;
-                    enter = 0;
-                    exit = 0;
                 end
                 else if (~outer_sw && inner_sw) begin
                     ns = s1;
-                    enter = 0;
-                    exit = 0;
                 end
                 else begin
                     ns = s0;
-                    enter = 0;
-                    exit = 0;
                 end
             end
         endcase
