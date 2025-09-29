@@ -15,13 +15,13 @@ module car_detection (clk, reset, inner_sw, outer_sw, inner_led, outer_led, ente
         // implementing mealy machine: outputs depend on ps and inputs
         case (ps)
             s0: begin
-                if (outer_sw & ~inner_sw) begin
+                if (outer_sw && ~inner_sw) begin
                     ns = s2;
                     {outer_led, inner_led} = 2'b10; // DOES THIS WORK?? or set each output on separate lines
                     enter = 0;
                     exit = 0;
                 end
-                else if (~outer_sw & inner_sw) begin
+                else if (~outer_sw && inner_sw) begin
                     ns = s1;
                     {outer_led, inner_led} = 2'b01;
                     enter = 0;
@@ -36,13 +36,13 @@ module car_detection (clk, reset, inner_sw, outer_sw, inner_led, outer_led, ente
             end
 
             s1: begin
-                if (~outer_sw & ~inner_sw) begin
+                if (~outer_sw && ~inner_sw) begin
                     ns = s0;
                     {outer_led, inner_led} = 2'b00;
                     enter = 1;
                     exit = 0;
                 end
-                else if (outer_sw & inner_sw) begin
+                else if (outer_sw && inner_sw) begin
                     ns = s3;
                     {outer_led, inner_led} = 2'b11;
                     enter = 0;
@@ -57,13 +57,13 @@ module car_detection (clk, reset, inner_sw, outer_sw, inner_led, outer_led, ente
             end
 
             s2: begin
-                if (~outer_sw & ~inner_sw) begin
+                if (~outer_sw && ~inner_sw) begin
                     ns = s0;
                     {outer_led, inner_led} = 2'b00;
                     enter = 0;
                     exit = 1;
                 end
-                else if (outer_sw & inner_sw) begin
+                else if (outer_sw && inner_sw) begin
                     ns = s3;
                     {outer_led, inner_led} = 2'b11;
                     enter = 0;
@@ -78,13 +78,13 @@ module car_detection (clk, reset, inner_sw, outer_sw, inner_led, outer_led, ente
             end
 
             s3: begin
-                if (outer_sw & ~inner_sw) begin
+                if (outer_sw && ~inner_sw) begin
                     ns = s2;
                     {outer_led, inner_led} = 2'b10;
                     enter = 0;
                     exit = 0;
                 end
-                else if (~outer_sw & inner_sw) begin
+                else if (~outer_sw && inner_sw) begin
                     ns = s1;
                     {outer_led, inner_led} = 2'b01;
                     enter = 0;

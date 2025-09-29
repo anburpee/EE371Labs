@@ -4,7 +4,7 @@
 
 
 module car_counter (clk, reset, incr, decr, count);
-    output logic count;
+    output logic [4:0] count;
     input logic clk, reset, incr, decr;
 
     // states representing the parking lot occupancy at a given time
@@ -17,11 +17,11 @@ module car_counter (clk, reset, incr, decr, count);
     // next state logic
     always_comb begin
         ns = ps; //default
-        if (ps > 0 && decr)
+        if (ps > 5'b0 && decr)
             ns = ps - 1;
-        else if (ps < sixteen && incr)
+        else if (ps < 5'b16 && incr)
             ns = ps + 1;
-        // else: ns = ps;
+        // else: ns = ps; // NO NEED FOR DEFAULT/ELSE CASE?
     end
 
 
