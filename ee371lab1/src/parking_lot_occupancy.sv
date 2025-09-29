@@ -1,8 +1,9 @@
 // parking_lot_occupancy.sv displays the number of cars in the lot on the 7-seg displays
 // inputs are from car_counter.sv, output is to HEX displays
 
-module parking_lot_occupancy (HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, num_cars);
+module parking_lot_occupancy (clk, reset, HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, num_cars);
     output logic [6:0] HEX0, HEX1, HEX2, HEX3, HEX4, HEX5;
+    input logic clk, reset;
     input logic [4:0] num_cars; // input is "count" variable from car_counter.sv
     
     // case statement (fully combinational logic) that displays a certain HEX based on value of num_cars
