@@ -2,6 +2,9 @@
 // DE1_SoC testbench also given in Lab1 specs
 // left name as is (_tb) in case it's referred to in runlab files or something idk
 
+// DE1_SoC.sv is only for calling modules and connecting fw to board
+// all actual logic should be in other modules/files
+
 module DE1_SoC (CLOCK_50, HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, LEDR, V_GPIO);
 
         input  logic             CLOCK_50;      // 50MHz clock
