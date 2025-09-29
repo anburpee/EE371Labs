@@ -12,15 +12,46 @@ module DE1_SoC (CLOCK_50, HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, LEDR, V_GPIO);
         output logic [9:0] LEDR;
         inout  logic [35:0] V_GPIO;     // expansion header 0 (LabsLand board)
 
-    // Turn off all 7-seg displays (active low: 1 = off, 0 = on)
-        assign HEX0 = 7'b1111111;
-        assign HEX1 = 7'b1111111;
-        assign HEX2 = 7'b1111111;
-        assign HEX3 = 7'b1111111;
-        assign HEX4 = 7'b1111111;
-        assign HEX5 = 7'b1111111;
+//     // Turn off all 7-seg displays (active low: 1 = off, 0 = on)
+//         assign HEX0 = 7'b1111111;
+//         assign HEX1 = 7'b1111111;
+//         assign HEX2 = 7'b1111111;
+//         assign HEX3 = 7'b1111111;
+//         assign HEX4 = 7'b1111111;
+//         assign HEX5 = 7'b1111111;
+
+
+        // set up reset signal and clock
+        logic reset, clk;
+        assign reset = V_GPIO[30]
+        assign clk = CLOCK_50;
+
+        // set up sensors to be represented by switch inputs on breadboard
+        logic inner_sensor, outer_sensor;
+        assign inner_sensor = V_GPIO[24]; // switch 1 (inner)
+        assign outer_sensor = V_GPIO[28]; // switch 2 (outer)
+
+        // have 2 leds on breadboard to light up when the inner and outer sensors
+        // are activited respectively
+        logic inner_led, outer_led;
+        assign inner_led = inner_sensor;
+        assign outer_led = outer_sensor;
+
+
+        // instantiate car_detection module
+        car_detection cd (.clk(clk), .reset(reset),
+                          .inner_sw(inner_sensor), .outer_sw(outer_sensor),
+                          .inner_led, .outer_led, .enter, .exit);
+ 
 
 endmodule  // DE1_SoC
+
+
+
+
+
+
+
 
 module DE1_SoC_tb();
 
