@@ -61,21 +61,13 @@ module car_counter_testbench();
     initial begin
                                                     @(posedge clk);
         reset <= 1; incr <= 0; decr <= 0; repeat(4) @(posedge clk);
-        reset <= 0; 
-        
-        // currently at state 0
+        reset <= 0; // currently at state 0
 
         // test all transitions
-        for (i = 0; i < (2**4 + 1); i++) begin // increment 17 times
-            incr <= 1; @(posedge clk); 
-        end // for loop
-
-        // currently at state 16
-
-        for (i = 0; i < (2**4 + 1); i++) begin // decrement 17 times
-            decr <= 1; @(posedge clk); 
-        end // for loop
-    
+                    incr <= 1;            repeat(17) @(posedge clk); 
+                    incr <= 0;   // currently at state 16
+                                decr <= 1 repeat(17) @(posedge clk);
+                    
         $stop; // end simulation
     end // initial signals
 
