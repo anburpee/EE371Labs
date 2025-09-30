@@ -16,30 +16,46 @@ module car_counter (clk, reset, incr, decr, count);
 
     // next state logic
     always_comb begin
-        ns = ps; //default
         if (ps > 5'b0 && decr)
             ns = ps - 1;
         else if (ps < 5'b16 && incr)
             ns = ps + 1;
-        // else: ns = ps; // NO NEED FOR DEFAULT/ELSE CASE?
-    end
+        else
+            ns = ps;
+    end // always_comb
 
 
-    // sequential logic
+    // state update logic
     always_ff @(posedge clk) begin
         if (reset)
             ps <= zero;
         else
             ps <= ns;
-    end
+    end // always_ff
 
 
     // output logic
     always_comb begin
         assign count = ps;
-    end
-
-endmodule
+    end // always_comb
 
 
-module 
+endmodule // car_counter
+
+
+module car_counter_testbench();
+    logic [4:0] count;
+    logic clk, reset, incr, decr;
+
+    car_counter_testbench dut (.*);
+
+    // simulated clock 
+    parameter clk_period = 100;
+    initial begin
+        clk <= 0;
+        forever #(period/2) // forever togle the clock
+            clk <= ~clk;
+    end // simulated clock
+
+
+endmodule // car_counter_testbench
