@@ -57,7 +57,6 @@ module car_counter_testbench();
     end // initial clock
 
     // test the design
-    integer i;
     initial begin
                                                     @(posedge clk);
         reset <= 1; incr <= 0; decr <= 0; repeat(4) @(posedge clk);

@@ -94,4 +94,24 @@ module car_detection_testbech();
 
     parameter clk_period = 100;
 
+    // set up simulation clock
+    initial begin
+        clk <= 0;
+        forever #(clk_period/2) clk <= ~clk;
+    end // initial clock
+
+    // test the design
+    integer i, j;
+    initial begin
+        reset <= 1; enter <= 0; exit <= 0; @(posedge clk);
+        for (i = 0; i < 2**2; i++) begin
+            enter
+            for (j = 0; j < 2**2; j++) begin
+                
+            end
+        end
+
+
+    end // initial signals
+
 endmodule // car_detection_testbench
