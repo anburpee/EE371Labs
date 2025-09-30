@@ -42,11 +42,12 @@ module car_counter (clk, reset, incr, decr, count);
 endmodule // car_counter
 
 
+// testbench for car_counter
 module car_counter_testbench();
     logic [4:0] count;
     logic clk, reset, incr, decr;
 
-    car_counter_testbench dut (.*);
+    car_counter dut (.*);
 
     // set up a simulated clock 
     parameter clk_period = 100;
