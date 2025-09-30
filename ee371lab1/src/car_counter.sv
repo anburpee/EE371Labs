@@ -66,7 +66,7 @@ module car_counter_testbench();
         // test all transitions
                     incr <= 1;            repeat(17) @(posedge clk); 
                     incr <= 0;   // currently at state 16
-                               decr <= 1; repeat(17) @(posedge clk);
+                               decr <= 1; repeat(18) @(posedge clk);
                     
         $stop; // end simulation
     end // initial signals
