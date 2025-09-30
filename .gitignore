@@ -4,3 +4,5 @@ ee371lab1/quartus/
 transcript
 *.wlf
 ee371lab1/modelsim/work/
+*.png
+*.PNG

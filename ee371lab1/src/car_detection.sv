@@ -101,17 +101,18 @@ module car_detection_testbech();
     end // initial clock
 
     // test the design
-    integer i, j;
-    initial begin
-        reset <= 1; enter <= 0; exit <= 0; @(posedge clk);
-        for (i = 0; i < 2**2; i++) begin
-            enter
-            for (j = 0; j < 2**2; j++) begin
-                
-            end
-        end
+   integer i, j;
+   initial begin
+       reset <= 1; inner_sw <= 0; outer_sw <= 0; @(posedge clk);
+       reset <= 0; 
+       for (i = 0; i < 2**2; i++) begin
+           {inner}
+           for (j = 0; j < 2**2; j++) begin
+               
+           end
+       end
 
 
-    end // initial signals
+   end // initial signals
 
 endmodule // car_detection_testbench
