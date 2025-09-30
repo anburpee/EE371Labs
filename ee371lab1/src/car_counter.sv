@@ -16,10 +16,10 @@ module car_counter (clk, reset, incr, decr, count);
 
     // next state logic
     always_comb begin
-        if (ps > 5'b0 && decr)
-            ns = ps - 1;
-        else if (ps < 5'b10000 && incr)
-            ns = ps + 1;
+        if (ps > zero && decr)
+            ns = states'(ps - 1);
+        else if (ps < sixteen && incr)
+            ns = states'(ps + 1);
         else
             ns = ps;
     end // always_comb
