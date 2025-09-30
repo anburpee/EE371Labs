@@ -18,7 +18,7 @@ module car_counter (clk, reset, incr, decr, count);
     always_comb begin
         if (ps > 5'b0 && decr)
             ns = ps - 1;
-        else if (ps < 5'b16 && incr)
+        else if (ps < 5'b10000 && incr)
             ns = ps + 1;
         else
             ns = ps;
@@ -53,7 +53,7 @@ module car_counter_testbench();
     parameter clk_period = 100;
     initial begin
         clk <= 0;
-        forever #(period/2) clk <= ~clk; // forever togle the clock
+        forever #(clk_period/2) clk <= ~clk; // forever togle the clock
     end // initial clock
 
     // test the design

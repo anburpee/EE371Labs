@@ -15,7 +15,7 @@ module DE1_SoC (CLOCK_50, HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, LEDR, V_GPIO);
 
         // Set up reset signal and clock
         logic reset, clk;
-        assign reset = V_GPIO[30]
+        assign reset = V_GPIO[30];
         assign clk = CLOCK_50;
 
         // Set up sensors to be represented by switch inputs on breadboard

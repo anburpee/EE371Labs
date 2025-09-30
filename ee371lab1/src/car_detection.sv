@@ -7,7 +7,7 @@ module car_detection (clk, reset, inner_sw, outer_sw, enter, exit);
     input logic clk, reset; // inputted from DE1_SoC top level module
     input logic inner_sw, outer_sw; // inputted from DE1_SoC top level module
 
-    enum logic [1:0] {s0, s1, s2, s3} states;
+    typedef enum logic [1:0] {s0, s1, s2, s3} states;
     states ps, ns;
 
     always_comb begin
