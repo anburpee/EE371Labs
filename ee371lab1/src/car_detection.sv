@@ -28,7 +28,7 @@ module car_detection (clk, reset, inner_sw, outer_sw, enter, exit);
                 else begin
                     ns = s0;
                 end
-            end
+            end // s0
 
             s1: begin
                 if (~outer_sw && ~inner_sw) begin
@@ -41,7 +41,7 @@ module car_detection (clk, reset, inner_sw, outer_sw, enter, exit);
                 else begin
                     ns = s0;
                 end
-            end
+            end // s1
 
             s2: begin
                 if (~outer_sw && ~inner_sw) begin
@@ -54,7 +54,7 @@ module car_detection (clk, reset, inner_sw, outer_sw, enter, exit);
                 else begin
                     ns = s0;
                 end
-            end
+            end // s2
 
             s3: begin
                 if (outer_sw && ~inner_sw) begin
@@ -66,18 +66,20 @@ module car_detection (clk, reset, inner_sw, outer_sw, enter, exit);
                 else begin
                     ns = s0;
                 end
-            end
-        endcase
+            end // s3
 
-        always_ff @(posedge clk) begin
-            if (reset) begin
-                ps <= s0;
-            end
-            else begin
-                ps <= ns;
-            end
+        endcase // case(ps)
+    end // always_comb
+
+    always_ff @(posedge clk) begin
+        if (reset) begin
+            ps <= s0;
         end
-    end
+        else begin
+            ps <= ns;
+        end
+    end // always_ff
 
 
-endmodule
+
+endmodule // car_detection
