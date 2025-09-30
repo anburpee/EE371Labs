@@ -101,17 +101,33 @@ module car_detection_testbech();
     end // initial clock
 
     // test the design
-   integer i, j;
    initial begin
-       reset <= 1; inner_sw <= 0; outer_sw <= 0; @(posedge clk);
-       reset <= 0; 
-       for (i = 0; i < 2**2; i++) begin
-           {inner}
-           for (j = 0; j < 2**2; j++) begin
-               
-           end
-       end
+       reset <= 1; outer_sw <= 0; inner_sw <= 0; @(posedge clk); 
 
+       // all transitions
+       reset <= 0; outer_sw <= 0; inner_sw <= 0; @(posedge clk); // reset state 00
+                   outer_sw <= 0; inner_sw <= 0; @(posedge clk); // to state 00
+                   outer_sw <= 0; inner_sw <= 1; @(posedge clk); // to state 01 
+                   outer_sw <= 0; inner_sw <= 0; @(posedge clk); // to state 00 --enter = 1
+                   outer_sw <= 1; inner_sw <= 0; @(posedge clk); // to state 10
+                   outer_sw <= 0; inner_sw <= 0; @(posedge clk); // to state 00 --exit = 1
+                   outer_sw <= 0; inner_sw <= 0; @(posedge clk); // to state 11
+                   outer_sw <= 0; inner_sw <= 0; @(posedge clk); // to state 00
+
+                   outer_sw <= 0; inner_sw <= 1; @(posedge clk); // to state 01
+                   outer_sw <= 0; inner_sw <= 1; @(posedge clk); // to state 01
+                   outer_sw <= 1; inner_sw <= 0; @(posedge clk); // to state 10
+                   outer_sw <= 0; inner_sw <= 1; @(posedge clk); // to state 01
+                   outer_sw <= 1; inner_sw <= 1; @(posedge clk); // to state 11
+                   outer_sw <= 0; inner_sw <= 1; @(posedge clk); // to state 01
+
+                   outer_sw <= 1; inner_sw <= 0; @(posedge clk); // to state 10
+                   outer_sw <= 1; inner_sw <= 0; @(posedge clk); // to state 10
+                   outer_sw <= 1; inner_sw <= 1; @(posedge clk); // to state 11
+                   outer_sw <= 1; inner_sw <= 0; @(posedge clk); // to state 10
+
+                   outer_sw <= 1; inner_sw <= 1; @(posedge clk); // to state 11
+                   outer_sw <= 1; inner_sw <= 1; @(posedge clk); // to state 11
 
    end // initial signals
 
