@@ -49,13 +49,34 @@ module car_counter_testbench();
 
     car_counter_testbench dut (.*);
 
-    // simulated clock 
+    // set up a simulated clock 
     parameter clk_period = 100;
     initial begin
         clk <= 0;
-        forever #(period/2) // forever togle the clock
-            clk <= ~clk;
-    end // simulated clock
+        forever #(period/2) clk <= ~clk; // forever togle the clock
+    end // initial clock
 
+    // test the design
+    integer i, j;
+    initial begin
+                                                    @(posedge clk);
+        reset <= 1; incr <= 0; decr <= 0; repeat(4) @(posedge clk);
+        reset <= 0; 
+        
+        // currently at state 0
+
+        // test all transitions
+        for (i = 0; i < (2**4 + 1); i++) begin // increment 17 times
+            incr <= 1; @(posedge clk); 
+        end // for loop
+
+        // currently at state 16
+
+        for (i = 0; i < (2**4 + 1); i++) begin // decrement 17 times
+            decr <= 1; @(posedge clk); 
+        end // for loop
+    
+        $stop; // end simulation
+    end // initial signals
 
 endmodule // car_counter_testbench
