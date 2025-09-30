@@ -35,9 +35,8 @@ module car_counter (clk, reset, incr, decr, count);
 
 
     // output logic
-    always_comb begin
-        assign count = ps;
-    end // always_comb
+    assign count = ps;
+
 
 
 endmodule // car_counter
