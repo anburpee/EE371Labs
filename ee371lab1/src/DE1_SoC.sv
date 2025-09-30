@@ -14,15 +14,25 @@ module DE1_SoC (CLOCK_50, HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, LEDR, V_GPIO);
 
 
         // Set up reset signal and clock
-        logic reset, clk;
-        assign reset = V_GPIO[30];
-        assign clk = CLOCK_50;
+        logic reset;
+		  assign reset = V_GPIO[30];
+		  logic [31:0] div_clock;
+        // comment out one clock based on whether using simulation or pushing to board
+        // assign clk = div_clock[25]; // change clock speed by changing which clock to use on board
+		  assign clk = CLOCK_50; // for simulation
+
+		  
+		  
+		  // set up clock divider
+		  clock_divider divider (.clock(CLOCK_50), .divided_clocks(div_clock));
+		  
 
         // Set up sensors to be represented by switch inputs on breadboard
         logic inner_sensor, outer_sensor;
         assign inner_sensor = V_GPIO[24]; // switch 1 (inner)
         assign outer_sensor = V_GPIO[28]; // switch 2 (outer)
 
+		  
         // Have 2 leds on breadboard to light up when the inner and outer sensors
         // are activited respectively
         // Pin V_GPIO[26] connects to the inner LED
@@ -30,6 +40,7 @@ module DE1_SoC (CLOCK_50, HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, LEDR, V_GPIO);
         assign V_GPIO[26] = inner_sensor;
         assign V_GPIO[34] = outer_sensor;
 
+		  
         // Signals for when a car enters\exits 
         logic entered, exited;
 
@@ -54,7 +65,7 @@ endmodule  // DE1_SoC
 
 
 
-module DE1_SoC_tb();
+module DE1_SoC_testbench();
 
         // define signals
         logic   CLOCK_50;
@@ -98,9 +109,9 @@ module DE1_SoC_tb();
 		  integer j;
         initial begin
                                                                         @(posedge CLOCK_50);
-                V_GPIO[30] <= 1;                                        @(posedge CLOCK_50); // reset
+                V_GPIO_in[30] <= 1;                                        @(posedge CLOCK_50); // reset
 
-                V_GPIO[30] <= 0; 
+                V_GPIO_in[30] <= 0; 
 
                 // enter 17 times
                 for (j = 0; j <= 17; j++) begin 

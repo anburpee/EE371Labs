@@ -7,7 +7,7 @@ add wave -noupdate -label {{outer, inner}} /car_detection_testbench/outer_inner
 add wave -noupdate /car_detection_testbench/enter
 add wave -noupdate /car_detection_testbench/exit
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {2480 ps} 0}
+WaveRestoreCursors {{Cursor 1} {2497 ps} 0}
 quietly wave cursor active 1
 configure wave -namecolwidth 150
 configure wave -valuecolwidth 100

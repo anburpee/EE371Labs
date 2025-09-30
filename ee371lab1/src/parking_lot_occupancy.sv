@@ -145,12 +145,12 @@ module parking_lot_occupancy (HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, num_cars);
             HEX0 = 7'b0000010; // 6
         end
 		  else begin
-            HEX5 = 7'b1;
-            HEX4 = 7'b1;
-            HEX3 = 7'b1;
-            HEX2 = 7'b1;
-            HEX1 = 7'b1;
-            HEX0 = 7'b1;
+            HEX5 = 7'b1111111; // blank
+            HEX4 = 7'b1111111;
+            HEX3 = 7'b1111111;
+            HEX2 = 7'b1111111;
+            HEX1 = 7'b1111111;
+            HEX0 = 7'b1111111;
         end
     end
 endmodule
