@@ -1,0 +1,56 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/ee371labs/ee371/ee371lab1/modelsim
+vcar_counter
+Z1 DXx6 sv_std 3 std 0 22 AD7iAPLo6nTIKk<N0eo=D3
+Z2 !s110 1759200238
+!i10b 1
+!s100 Kg2ORbod=9nJ:zff>iZZo2
+ILoofUR1lK]28PeCf`HPW^3
+Z3 VDg1SIo80bB@j0V0VzS_@n1
+Z4 !s105 car_counter_sv_unit
+S1
+R0
+Z5 w1759199711
+Z6 8../src/car_counter.sv
+Z7 F../src/car_counter.sv
+L0 6
+Z8 OV;L;10.5b;63
+r1
+!s85 0
+31
+Z9 !s108 1759200238.000000
+Z10 !s107 ../src/car_counter.sv|
+Z11 !s90 -reportprogress|300|../src/car_counter.sv|
+!i113 1
+Z12 tCvgOpt 0
+vcar_counter_testbench
+R1
+R2
+!i10b 1
+!s100 MkJRA8<[cXbjZ=HzJjgh22
+IhPLJX?0ZSRdfTGcg5Y<3Q0
+R3
+R4
+S1
+R0
+R5
+R6
+R7
+L0 46
+R8
+r1
+!s85 0
+31
+R9
+R10
+R11
+!i113 1
+R12
