@@ -130,6 +130,7 @@ module car_detection_testbench();
                    outer_sw <= 1; inner_sw <= 1; @(posedge clk); // to state 11
                    outer_sw <= 1; inner_sw <= 1; @(posedge clk); // to state 11
 
+        $stop; // end simulation
    end // initial signals
 
 endmodule // car_detection_testbench
