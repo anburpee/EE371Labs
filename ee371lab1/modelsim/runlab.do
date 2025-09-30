@@ -4,18 +4,21 @@ vlib work
 # Compile Verilog
 #     All Verilog files that are part of this design should have
 #     their own "vlog" line below.
-vlog "../src/parking_lot_occupancy.sv"
+vlog "../src/car_detection.sv"
+# vlog "../src/car_counter.sv"
+# vlog "../src/parking_lot_occupancy.sv"
+# vlog "../src/DE1_SoC.sv"
 
 
 # Call vsim to invoke simulator
 #     Make sure the last item on the line is the name of the
 #     testbench module you want to execute.
-vsim -voptargs="+acc" -t 1ps -lib work parking_lot_occupancy_testbench
+vsim -voptargs="+acc" -t 1ps -lib work car_detection_testbench
 
 # Source the wave do file
 #     This should be the file that sets up the signal window for
 #     the module you are testing.
-do parking_lot_occupancy_wave.do
+do car_detection_wave.do
 
 # Set the window types
 view wave

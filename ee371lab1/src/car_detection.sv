@@ -85,7 +85,7 @@ module car_detection (clk, reset, inner_sw, outer_sw, enter, exit);
 endmodule // car_detection
 
 
-module car_detection_testbech();
+module car_detection_testbench();
     logic enter, exit; // output to car_counter module
     logic clk, reset; // inputted from DE1_SoC top level module
     logic inner_sw, outer_sw; // inputted from DE1_SoC top level module
@@ -102,7 +102,8 @@ module car_detection_testbech();
 
     // test the design
    initial begin
-       reset <= 1; outer_sw <= 0; inner_sw <= 0; @(posedge clk); 
+                                                 @(posedge clk)
+       reset <= 1; outer_sw <= 0; inner_sw <= 0; repeat(4) @(posedge clk); 
 
        // all transitions
        reset <= 0; outer_sw <= 0; inner_sw <= 0; @(posedge clk); // reset state 00
