@@ -83,3 +83,15 @@ module car_detection (clk, reset, inner_sw, outer_sw, enter, exit);
 
 
 endmodule // car_detection
+
+
+module car_detection_testbech();
+    logic enter, exit; // output to car_counter module
+    logic clk, reset; // inputted from DE1_SoC top level module
+    logic inner_sw, outer_sw; // inputted from DE1_SoC top level module
+
+    car_detection dut (.*);
+
+    parameter clk_period = 100;
+
+endmodule // car_detection_testbench
