@@ -45,7 +45,7 @@ module DE1_SoC (CLOCK_50, HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, LEDR, V_GPIO);
                         .incr(entered), .decr(exited), .count(num_cars));
 
         // Instantiate parking_lot_occupancy module
-        parking_lot_occupancy plo (.clk(clk), .reset(reset), .HEX0(HEX0), .HEX1(HEX1),
+        parking_lot_occupancy plo (.HEX0(HEX0), .HEX1(HEX1),
                                .HEX2(HEX2), .HEX3(HEX3), .HEX4(HEX4), .HEX5(HEX5), 
                                .num_cars(num_cars));
 

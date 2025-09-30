@@ -144,43 +144,29 @@ module parking_lot_occupancy (HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, num_cars);
             HEX1 = 7'b1111001; // 1
             HEX0 = 7'b0000010; // 6
         end
+		  else begin
+            HEX5 = 7'b1;
+            HEX4 = 7'b1;
+            HEX3 = 7'b1;
+            HEX2 = 7'b1;
+            HEX1 = 7'b1;
+            HEX0 = 7'b1;
+        end
     end
 endmodule
 
 module parking_lot_occupancy_testbench();
     logic [6:0] HEX0, HEX1, HEX2, HEX3, HEX4, HEX5;
     logic [4:0] num_cars;
-	 logic clk;
 
     parking_lot_occupancy dut (.*);
-
-    // set up simulated clk
-    parameter clk_period = 100;
-    initial begin
-        clk <= 0;
-        forever #(clk_period/2) clk <= ~clk;
-    end
 
     // actual testbench part
     integer i;
     initial begin
-        num_cars <= 0; repeat (10) @(posedge clk);
-        num_cars <= 1; repeat (10) @(posedge clk);
-        num_cars <= 2; repeat (10) @(posedge clk);
-        num_cars <= 3; repeat (10) @(posedge clk);
-        num_cars <= 4; repeat (10) @(posedge clk);
-        num_cars <= 5; repeat (10) @(posedge clk);
-        num_cars <= 6; repeat (10) @(posedge clk);
-        num_cars <= 7; repeat (10) @(posedge clk);
-        num_cars <= 8; repeat (10) @(posedge clk);
-        num_cars <= 9; repeat (10) @(posedge clk);
-        num_cars <= 10; repeat (10) @(posedge clk);
-        num_cars <= 11; repeat (10) @(posedge clk);
-        num_cars <= 12; repeat (10) @(posedge clk);
-        num_cars <= 13; repeat (10) @(posedge clk);
-        num_cars <= 14; repeat (10) @(posedge clk);
-        num_cars <= 15; repeat (10) @(posedge clk);
-        num_cars <= 16; repeat (10) @(posedge clk);
+        for (i = 0; i < 17; i++) begin
+            num_cars <= i; #10;
+        end // for loop
         $stop;
     end
 
