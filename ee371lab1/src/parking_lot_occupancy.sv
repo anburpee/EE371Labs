@@ -8,7 +8,7 @@ module parking_lot_occupancy (HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, num_cars);
     // case statement (fully combinational logic) that displays a certain HEX based on value of num_cars
 
     always_comb begin
-        if (num_cars == 5'b0) begin
+        if (num_cars == 5'd0) begin
             HEX5 = 7'b1000110; // C
             HEX4 = 7'b1000111; // L
             HEX3 = 7'b0000110; // E
@@ -16,7 +16,7 @@ module parking_lot_occupancy (HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, num_cars);
             HEX1 = 7'b1001110; // R
             HEX0 = 7'b1000000; // 0
         end
-        else if (num_cars == 5'b1) begin
+        else if (num_cars == 5'd1) begin
             HEX5 = 7'b1111111; // 
             HEX4 = 7'b1111111; // 
             HEX3 = 7'b1111111; // 
@@ -24,7 +24,7 @@ module parking_lot_occupancy (HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, num_cars);
             HEX1 = 7'b1111111; // 
             HEX0 = 7'b1111001; // 1
         end
-        else if (num_cars == 5'b2) begin
+        else if (num_cars == 5'd2) begin
             HEX5 = 7'b1111111; // 
             HEX4 = 7'b1111111; // 
             HEX3 = 7'b1111111; // 
@@ -32,7 +32,7 @@ module parking_lot_occupancy (HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, num_cars);
             HEX1 = 7'b1111111; // 
             HEX0 = 7'b0100100; // 2
         end
-        else if (num_cars == 5'b3) begin
+        else if (num_cars == 5'd3) begin
             HEX5 = 7'b1111111; // 
             HEX4 = 7'b1111111; // 
             HEX3 = 7'b1111111; // 
@@ -40,7 +40,7 @@ module parking_lot_occupancy (HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, num_cars);
             HEX1 = 7'b1111111; // 
             HEX0 = 7'b0110000; // 3
         end
-        else if (num_cars == 5'b4) begin
+        else if (num_cars == 5'd4) begin
             HEX5 = 7'b1111111; // 
             HEX4 = 7'b1111111; // 
             HEX3 = 7'b1111111; // 
@@ -48,7 +48,7 @@ module parking_lot_occupancy (HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, num_cars);
             HEX1 = 7'b1111111; // 
             HEX0 = 7'b0011001; // 4
         end
-        else if (num_cars == 5'b5) begin
+        else if (num_cars == 5'd5) begin
             HEX5 = 7'b1111111; // 
             HEX4 = 7'b1111111; // 
             HEX3 = 7'b1111111; // 
@@ -56,7 +56,7 @@ module parking_lot_occupancy (HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, num_cars);
             HEX1 = 7'b1111111; // 
             HEX0 = 7'b0010010; // 5
         end
-        else if (num_cars == 5'b6) begin
+        else if (num_cars == 5'd6) begin
             HEX5 = 7'b1111111; // 
             HEX4 = 7'b1111111; // 
             HEX3 = 7'b1111111; // 
@@ -64,7 +64,7 @@ module parking_lot_occupancy (HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, num_cars);
             HEX1 = 7'b1111111; // 
             HEX0 = 7'b0000010; // 6
         end
-        else if (num_cars == 5'b7) begin
+        else if (num_cars == 5'd7) begin
             HEX5 = 7'b1111111; // 
             HEX4 = 7'b1111111; // 
             HEX3 = 7'b1111111; // 
@@ -72,7 +72,7 @@ module parking_lot_occupancy (HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, num_cars);
             HEX1 = 7'b1111111; // 
             HEX0 = 7'b1111000; // 7
         end
-        else if (num_cars == 5'b8) begin
+        else if (num_cars == 5'd8) begin
             HEX5 = 7'b1111111; // 
             HEX4 = 7'b1111111; // 
             HEX3 = 7'b1111111; // 
@@ -80,7 +80,7 @@ module parking_lot_occupancy (HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, num_cars);
             HEX1 = 7'b1111111; // 
             HEX0 = 7'b0000000; // 8
         end
-        else if (num_cars == 5'b9) begin
+        else if (num_cars == 5'd9) begin
             HEX5 = 7'b1111111; // 
             HEX4 = 7'b1111111; // 
             HEX3 = 7'b1111111; // 
@@ -88,7 +88,7 @@ module parking_lot_occupancy (HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, num_cars);
             HEX1 = 7'b1111111; // 
             HEX0 = 7'b0010000; // 9
         end
-        else if (num_cars == 5'b10) begin
+        else if (num_cars == 5'd10) begin
             HEX5 = 7'b1111111; // 
             HEX4 = 7'b1111111; // 
             HEX3 = 7'b1111111; // 
@@ -96,7 +96,7 @@ module parking_lot_occupancy (HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, num_cars);
             HEX1 = 7'b1111001; // 1
             HEX0 = 7'b1000000; // 0
         end
-        else if (num_cars == 5'b11) begin
+        else if (num_cars == 5'd11) begin
             HEX5 = 7'b1111111; // 
             HEX4 = 7'b1111111; // 
             HEX3 = 7'b1111111; // 
@@ -104,7 +104,7 @@ module parking_lot_occupancy (HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, num_cars);
             HEX1 = 7'b1111001; // 1
             HEX0 = 7'b1111001; // 1
         end
-        else if (num_cars == 5'b12) begin
+        else if (num_cars == 5'd12) begin
             HEX5 = 7'b1111111; // 
             HEX4 = 7'b1111111; // 
             HEX3 = 7'b1111111; // 
@@ -112,7 +112,7 @@ module parking_lot_occupancy (HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, num_cars);
             HEX1 = 7'b1111001; // 1
             HEX0 = 7'b0100100; // 2
         end
-        else if (num_cars == 5'b13) begin
+        else if (num_cars == 5'd13) begin
             HEX5 = 7'b1111111; // 
             HEX4 = 7'b1111111; // 
             HEX3 = 7'b1111111; // 
@@ -120,7 +120,7 @@ module parking_lot_occupancy (HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, num_cars);
             HEX1 = 7'b1111001; // 1
             HEX0 = 7'b0110000; // 3
         end
-        else if (num_cars == 5'b14) begin
+        else if (num_cars == 5'd14) begin
             HEX5 = 7'b1111111; // 
             HEX4 = 7'b1111111; // 
             HEX3 = 7'b1111111; // 
@@ -128,7 +128,7 @@ module parking_lot_occupancy (HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, num_cars);
             HEX1 = 7'b1111001; // 1
             HEX0 = 7'b0011001; // 4
         end
-        else if (num_cars == 5'b15) begin
+        else if (num_cars == 5'd15) begin
             HEX5 = 7'b1111111; // 
             HEX4 = 7'b1111111; // 
             HEX3 = 7'b1111111; // 
@@ -136,7 +136,7 @@ module parking_lot_occupancy (HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, num_cars);
             HEX1 = 7'b1111001; // 1
             HEX0 = 7'b0010010; // 5
         end
-        else if (num_cars == 5'b16) begin
+        else if (num_cars == 5'd16) begin
             HEX5 = 7'b1111111; // 
             HEX4 = 7'b1111111; // 
             HEX3 = 7'b1111111; // 
