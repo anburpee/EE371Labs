@@ -1,13 +1,11 @@
 onerror {resume}
-quietly virtual function -install /car_detection_testbench -env /car_detection_testbench/#INITIAL#104 { &{/car_detection_testbench/outer_sw, /car_detection_testbench/inner_sw }} outer_inner
 quietly WaveActivateNextPane {} 0
 add wave -noupdate /car_detection_testbench/clk
 add wave -noupdate /car_detection_testbench/reset
-add wave -noupdate -label {{outer, inner}} /car_detection_testbench/outer_inner
 add wave -noupdate /car_detection_testbench/enter
 add wave -noupdate /car_detection_testbench/exit
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {2497 ps} 0}
+WaveRestoreCursors {{Cursor 1} {981 ps} 0}
 quietly wave cursor active 1
 configure wave -namecolwidth 150
 configure wave -valuecolwidth 100
