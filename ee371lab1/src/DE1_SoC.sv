@@ -134,6 +134,20 @@ module DE1_SoC_testbench();
                         V_GPIO_in[28] <= 0; V_GPIO_in[24] <= 0;      @(posedge CLOCK_50); // 00 --> exit
                 end // for loop
 
+                // now testing random conditions (sensor senses NOT the enter/exit sequence)
+                V_GPIO_in[28] <= 0; V_GPIO_in[24] <= 0;      @(posedge CLOCK_50); // 00
+                V_GPIO_in[28] <= 1; V_GPIO_in[24] <= 1;      @(posedge CLOCK_50); // 11
+                V_GPIO_in[28] <= 0; V_GPIO_in[24] <= 0;      @(posedge CLOCK_50); // 00
+                V_GPIO_in[28] <= 1; V_GPIO_in[24] <= 1;      @(posedge CLOCK_50); // 11
+                V_GPIO_in[28] <= 0; V_GPIO_in[24] <= 0;      @(posedge CLOCK_50); // 00
+                V_GPIO_in[28] <= 1; V_GPIO_in[24] <= 1;      @(posedge CLOCK_50); // 11
+                V_GPIO_in[28] <= 0; V_GPIO_in[24] <= 0;      @(posedge CLOCK_50); // 00
+                V_GPIO_in[28] <= 1; V_GPIO_in[24] <= 0;      @(posedge CLOCK_50); // 10
+                V_GPIO_in[28] <= 0; V_GPIO_in[24] <= 1;      @(posedge CLOCK_50); // 01
+                V_GPIO_in[28] <= 1; V_GPIO_in[24] <= 0;      @(posedge CLOCK_50); // 10
+                V_GPIO_in[28] <= 0; V_GPIO_in[24] <= 1;      @(posedge CLOCK_50); // 01
+                V_GPIO_in[28] <= 1; V_GPIO_in[24] <= 0;      @(posedge CLOCK_50); // 10
+                V_GPIO_in[28] <= 0; V_GPIO_in[24] <= 1;      @(posedge CLOCK_50); // 01
                 // $display ("hello = %s", $time);
 
                 $stop; // stop simulation
