@@ -49,7 +49,7 @@ module DE1_SoC (CLOCK_50, HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, LEDR, V_GPIO);
                           .outer_sw(outer_sensor), .enter(entered), .exit(exited));
 
         // Signal representing parking lot occupancy
-        logic num_cars;
+        logic [4:0] num_cars;
 
         // Instantiate car_counter module
         car_counter cc (.clk(clk), .reset(reset),
@@ -105,8 +105,8 @@ module DE1_SoC_testbench();
         end  // initial clock
 
 		  
-		  // test the design
-		  integer j;
+	// test the design
+	integer j;
         initial begin
                                                                         @(posedge CLOCK_50);
                 V_GPIO_in[30] <= 1;                                        @(posedge CLOCK_50); // reset
@@ -121,6 +121,7 @@ module DE1_SoC_testbench();
                         V_GPIO_in[28] <= 1; V_GPIO_in[24] <= 1;      @(posedge CLOCK_50); // 11
                         V_GPIO_in[28] <= 0; V_GPIO_in[24] <= 1;      @(posedge CLOCK_50); // 01
                         V_GPIO_in[28] <= 0; V_GPIO_in[24] <= 0;      @(posedge CLOCK_50); // 00 --> enter
+                      //  $display ("outer sw value, inner sw value = %b, %b, %0t", V_GPIO_in[28], V_GPIO_in[24], $time);
                 end // for loop
 
                 // exit 17 times
@@ -133,10 +134,12 @@ module DE1_SoC_testbench();
                         V_GPIO_in[28] <= 0; V_GPIO_in[24] <= 0;      @(posedge CLOCK_50); // 00 --> exit
                 end // for loop
 
+                // $display ("hello = %s", $time);
+
                 $stop; // stop simulation
         end // initial signals
 
 
 
 
-endmodule  // DE1_SoC_tb
+endmodule  // DE1_SoC_testbench

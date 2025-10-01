@@ -25,6 +25,9 @@ module car_detection (clk, reset, inner_sw, outer_sw, enter, exit);
                 else if (~outer_sw && inner_sw) begin
                     ns = s1;
                 end
+                else if (~outer_sw && ~inner_sw) begin // self loop
+                    ns = s0;
+                end
                 else begin
                     ns = s0;
                 end
@@ -37,6 +40,9 @@ module car_detection (clk, reset, inner_sw, outer_sw, enter, exit);
                 end
                 else if (outer_sw && inner_sw) begin
                     ns = s3;
+                end
+                else if (~outer_sw && inner_sw) begin // self loop
+                    ns = s1;
                 end
                 else begin
                     ns = s0;
@@ -51,6 +57,9 @@ module car_detection (clk, reset, inner_sw, outer_sw, enter, exit);
                 else if (outer_sw && inner_sw) begin
                     ns = s3;
                 end
+                else if (outer_sw && ~inner_sw) begin // self loop
+                    ns = s2;
+                end
                 else begin
                     ns = s0;
                 end
@@ -62,6 +71,9 @@ module car_detection (clk, reset, inner_sw, outer_sw, enter, exit);
                 end
                 else if (~outer_sw && inner_sw) begin
                     ns = s1;
+                end
+                else if (outer_sw && inner_sw) begin // self loop
+                    ns = s3;
                 end
                 else begin
                     ns = s0;
