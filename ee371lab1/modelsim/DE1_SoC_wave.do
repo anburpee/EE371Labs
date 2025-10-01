@@ -15,7 +15,7 @@ add wave -noupdate /DE1_SoC_testbench/outer_inner_LED
 add wave -noupdate /DE1_SoC_testbench/dut/cd/ps
 add wave -noupdate /DE1_SoC_testbench/dut/plo/num_cars
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {52 ps} 0}
+WaveRestoreCursors {{Cursor 1} {3570 ps} 0}
 quietly wave cursor active 1
 configure wave -namecolwidth 150
 configure wave -valuecolwidth 100
@@ -31,4 +31,4 @@ configure wave -griddelta 2
 configure wave -timeline 0
 configure wave -timelineunits ps
 update
-WaveRestoreZoom {0 ps} {274 ps}
+WaveRestoreZoom {3582 ps} {3906 ps}

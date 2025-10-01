@@ -14,17 +14,18 @@ module DE1_SoC (CLOCK_50, HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, LEDR, V_GPIO);
 
 
         // Set up reset signal and clock
+        // ***commented out clock divider since not needed for Lab1***
         logic reset;
-		  assign reset = V_GPIO[30];
-		  logic [31:0] div_clock;
-        // comment out one clock based on whether using simulation or pushing to board
-        // assign clk = div_clock[25]; // change clock speed by changing which clock to use on board
-		  assign clk = CLOCK_50; // for simulation
+	assign reset = V_GPIO[30];
+	// logic [31:0] div_clock;
+        // // comment out one clock based on whether using simulation or pushing to board
+        // // assign clk = div_clock[25]; // change clock speed by changing which clock to use on board
+	assign clk = CLOCK_50; // for simulation or if using clock_50 in design
 
 		  
 		  
-		  // set up clock divider
-		  clock_divider divider (.clock(CLOCK_50), .divided_clocks(div_clock));
+	// // set up clock divider
+	// clock_divider divider (.clock(CLOCK_50), .divided_clocks(div_clock));
 		  
 
         // Set up sensors to be represented by switch inputs on breadboard
@@ -48,7 +49,7 @@ module DE1_SoC (CLOCK_50, HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, LEDR, V_GPIO);
         car_detection cd (.clk(clk), .reset(reset), .inner_sw(inner_sensor),
                           .outer_sw(outer_sensor), .enter(entered), .exit(exited));
 
-        // Signal representing parking lot occupancy
+        // 5-bit signal representing parking lot occupancy (0-16 cars)
         logic [4:0] num_cars;
 
         // Instantiate car_counter module
@@ -56,9 +57,8 @@ module DE1_SoC (CLOCK_50, HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, LEDR, V_GPIO);
                         .incr(entered), .decr(exited), .count(num_cars));
 
         // Instantiate parking_lot_occupancy module
-        parking_lot_occupancy plo (.HEX0(HEX0), .HEX1(HEX1),
-                               .HEX2(HEX2), .HEX3(HEX3), .HEX4(HEX4), .HEX5(HEX5), 
-                               .num_cars(num_cars));
+        parking_lot_occupancy plo (.HEX0(HEX0), .HEX1(HEX1), .HEX2(HEX2), .HEX3(HEX3),
+                                    .HEX4(HEX4), .HEX5(HEX5), .num_cars(num_cars));
 
 endmodule  // DE1_SoC
 

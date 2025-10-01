@@ -1,5 +1,5 @@
 // parking_lot_occupancy.sv displays the number of cars in the lot on the 7-seg displays
-// inputs are from car_counter.sv, output is to HEX displays
+// the 5-bit input num_cars is from car_counter.sv, 7-bit outputs are to HEX displays
 
 module parking_lot_occupancy (HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, num_cars);
     output logic [6:0] HEX0, HEX1, HEX2, HEX3, HEX4, HEX5;
@@ -152,8 +152,8 @@ module parking_lot_occupancy (HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, num_cars);
             HEX1 = 7'b1111111;
             HEX0 = 7'b1111111;
         end
-    end
-endmodule
+    end // always_comb
+endmodule // parking_lot_occupancy
 
 module parking_lot_occupancy_testbench();
     logic [6:0] HEX0, HEX1, HEX2, HEX3, HEX4, HEX5;
@@ -167,7 +167,7 @@ module parking_lot_occupancy_testbench();
         for (i = 0; i < 17; i++) begin
             num_cars <= i; #10;
         end // for loop
-        $stop;
-    end
+        $stop; // end simulation
+    end // initial signals
 
-endmodule
+endmodule // parking_lot_occupancy_testbench

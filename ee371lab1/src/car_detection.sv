@@ -1,6 +1,7 @@
 // car_detection.sv is for detecting whether the enter/exit sequence has been completed (FSM)
-// its inputs include SW (inner/outer sensor activation)
-// its outputs include 1 bit signals for whether a car has entered/exited and LEDs
+// its inputs include 1 bit SW (inner/outer sensor activation)
+// its outputs include 1 bit signals for whether a car has entered/exited and LEDs.
+// the enter/exit signals will be inputs to the car counter module.
 
 module car_detection (clk, reset, inner_sw, outer_sw, enter, exit);
     output logic enter, exit; // output to car_counter module !!
@@ -83,6 +84,8 @@ module car_detection (clk, reset, inner_sw, outer_sw, enter, exit);
         endcase // case(ps)
     end // always_comb
 
+
+    // state update logic
     always_ff @(posedge clk) begin
         if (reset) begin
             ps <= s0;
@@ -91,8 +94,6 @@ module car_detection (clk, reset, inner_sw, outer_sw, enter, exit);
             ps <= ns;
         end
     end // always_ff
-
-
 
 endmodule // car_detection
 
