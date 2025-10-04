@@ -40,12 +40,31 @@ module task1_testbench();
         // write in all zeros
         for (i = 0; i < 2**5; i++) begin
             address <= i;
-            data_in <= 3'b010;
+            data_in <= 3'b000;
             $display("Value of i: %d. Value of data_in: %d, %b. Value of data_out: %d, %b.",
                      i, data_in, data_in, data_out, data_out);
             @(posedge clk);
         end // for loop
+        // now write something different in a few of the addresses
+        // just to see something interesting lol
+        for (i = 0; i < 2**5; i+=4) begin
+            address <= i;
+            data_in <= (3'b000 * i);
+            $display("Value of i: %d. Value of data_in: %d, %b. Value of data_out: %d, %b.",
+                     i, data_in, data_in, data_out, data_out);
+            @(posedge clk);
+        end // for loop
+
+        // write enable is off
+        // so writing anything to the addresses shouldn't do anything
         wren <= 1'b0; 
+        for (i = 0; i < 2**5; i++) begin
+            address <= i;
+            data_in <= 3'b000;
+            $display("Value of i: %d. Value of data_in: %d, %b. Value of data_out: %d, %b.",
+                     i, data_in, data_in, data_out, data_out);
+            @(posedge clk);
+        end // for loop
 
         
         $stop;
