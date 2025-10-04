@@ -1,0 +1,76 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/ee371labs/ee371/ee371lab2/modelsim
+vram32x3
+Z1 !s110 1759537849
+!i10b 1
+!s100 >i_=LX@Q5h;U6@m4D`gHo2
+IC<Vjo:4obZ6;z>1F5T>ZC1
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+R0
+w1759532225
+8../src/ram32x3.v
+F../src/ram32x3.v
+L0 40
+Z3 OV;L;10.5b;63
+r1
+!s85 0
+31
+Z4 !s108 1759537849.000000
+!s107 ../src/ram32x3.v|
+!s90 -reportprogress|300|../src/ram32x3.v|
+!i113 1
+Z5 tCvgOpt 0
+vtask1
+Z6 DXx6 sv_std 3 std 0 22 AD7iAPLo6nTIKk<N0eo=D3
+R1
+!i10b 1
+!s100 >V1eaRzz84FTXVo`?1]U;0
+IcbfKSbJ9cgGZVYfRih1[30
+R2
+Z7 !s105 task1_sv_unit
+S1
+R0
+Z8 w1759537833
+Z9 8../src/task1.sv
+Z10 F../src/task1.sv
+L0 3
+R3
+r1
+!s85 0
+31
+R4
+Z11 !s107 ../src/task1.sv|
+Z12 !s90 -reportprogress|300|../src/task1.sv|
+!i113 1
+R5
+vtask1_testbench
+R6
+R1
+!i10b 1
+!s100 gTTF_Z27OdfkfeELh23lK3
+IdRmnZ[f4YX8V6`l44g0NB3
+R2
+R7
+S1
+R0
+R8
+R9
+R10
+L0 20
+R3
+r1
+!s85 0
+31
+R4
+R11
+R12
+!i113 1
+R5
