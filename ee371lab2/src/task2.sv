@@ -1,7 +1,8 @@
 // this module implements a 32x3 RAM block using a multidimentional array
-module task2 (clk, address, data_in, wren, data_out);
+module task2 (clk, address_in, address_out1, address_out0, data_in, data_out, wren);
     input logic clk, wren;
-    input logic [4:0] address;
+    input logic [4:0] address_in;
+    output logic [4:0] address_out1, address_out0;
     input logic [2:0] data_in;
     output logic [2:0] data_out;
 
