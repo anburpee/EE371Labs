@@ -1,20 +1,16 @@
 // this module implements a 32x3 RAM block using a multidimentional array
-module task2 (clk, address_in, address_out1, address_out0, data_in, data_out, wren);
+module task2 (clk, address, data_in, data_out, wren);
     input logic clk, wren;
-    input logic [4:0] address_in;
-    output logic [4:0] address_out1, address_out0;
+    input logic [4:0] address;
     input logic [2:0] data_in;
     output logic [2:0] data_out;
 
     logic [2:0] memory_array [31:0];
 
     always_ff @(posedge clk) begin
-
         if (wren) 
             memory_array[address] <= data_in;
-
         data_out <= data_in;
-        
     end //always_ff
 
 endmodule // task2

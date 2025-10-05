@@ -5,9 +5,10 @@
 // DE1_SoC.sv is only for calling modules and connecting fw to board
 // all actual logic should be in other modules/files
 
-module DE1_SoC (CLOCK_50, HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, SW, LEDR);
+module DE1_SoC (CLOCK_50, KEY, HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, SW, LEDR);
         input logic CLOCK_50;
         input logic [9:0] SW;
+        input logic [3:0] KEY;
         output logic [6:0] HEX0, HEX1, HEX2, HEX3, HEX4, HEX5;
         output logic [9:0] LEDR;
 
@@ -24,7 +25,9 @@ module DE1_SoC (CLOCK_50, HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, SW, LEDR);
 	// clock_divider divider (.clock(CLOCK_50), .divided_clocks(div_clock));
 
         // call task2 module
-        task2 dut2 (.clk(clk), .address_in(SW[8:4]), .address_out1(HEX5), .data_in(SW[3:1]), .wren(SW[0]), .data_out())  
+        // need HEX[5:4] to follow address, HEX[1] to follow data_in, HEX0 to follow data_out
+        logic data_out;
+        task2 dut2 (.clk(KEY[0]), .address(SW[8:4]), .data_in(SW[3:1]), .wren(SW[0]), .data_out(data_out));
 
 endmodule  // DE1_SoC
 
