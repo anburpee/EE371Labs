@@ -10,7 +10,7 @@ cModel Technology
 Z0 dC:/ee371labs/ee371/ee371lab2/modelsim
 vDE1_SoC
 Z1 DXx6 sv_std 3 std 0 22 AD7iAPLo6nTIKk<N0eo=D3
-Z2 !s110 1759716404
+Z2 !s110 1759717984
 !i10b 1
 !s100 @b9e8UZJ2YI4n4anQ<7<32
 IJVedi31AHz;H<hELEN^GU2
@@ -18,7 +18,7 @@ Z3 VDg1SIo80bB@j0V0VzS_@n1
 Z4 !s105 DE1_SoC_sv_unit
 S1
 R0
-Z5 w1759716294
+Z5 w1759717962
 Z6 8../src/DE1_SoC.sv
 Z7 F../src/DE1_SoC.sv
 L0 8
@@ -26,7 +26,7 @@ Z8 OV;L;10.5b;63
 r1
 !s85 0
 31
-Z9 !s108 1759716404.000000
+Z9 !s108 1759717984.000000
 Z10 !s107 ../src/DE1_SoC.sv|
 Z11 !s90 -reportprogress|300|../src/DE1_SoC.sv|
 !i113 1
@@ -36,8 +36,8 @@ vDE1_SoC_testbench
 R1
 R2
 !i10b 1
-!s100 Va5ZYFG>hBcV^9jk;lMGQ0
-ITagES=Xkd@IlelzaDm[Pb3
+!s100 CD=hAk41gk2DQ6][K5jc41
+I^AKZO3YhgfKDH_<3cVGDV3
 R3
 R4
 S1
@@ -78,7 +78,7 @@ R9
 R12
 vseg7
 R1
-R2
+!s110 1759717985
 !i10b 1
 !s100 ShCBWl[2gd9G<>]KKN1?g3
 Ieolf4]bLJQFDIo::=Ma4A0
@@ -94,7 +94,7 @@ R8
 r1
 !s85 0
 31
-R9
+!s108 1759717985.000000
 !s107 ../src/seg7.sv|
 !s90 -reportprogress|300|../src/seg7.sv|
 !i113 1
