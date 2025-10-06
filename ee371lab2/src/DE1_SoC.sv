@@ -42,7 +42,7 @@ endmodule  // DE1_SoC
 
 
 
-
+`timescale 1 ps / 1 ps
 module DE1_SoC_testbench();
         // define signals
         logic   CLOCK_50;
@@ -50,7 +50,6 @@ module DE1_SoC_testbench();
         logic [3:0] KEY;
         logic [6:0] HEX0, HEX1, HEX2, HEX3, HEX4, HEX5;
         logic [9:0] LEDR;
-        logic clk;
 
         // instantiate the dut
         DE1_SoC dut (.*);
@@ -59,22 +58,33 @@ module DE1_SoC_testbench();
         parameter period = 100;
 
         initial begin
-                clk <= 0;
-                forever #(period/2) clk <= ~clk;
+                KEY[0] <= 0;
+                forever #(period/2) KEY[0] <= ~KEY[0];
         end
 
         // test the design
         integer i;
         initial begin
-                SW[0] <= 1'b1; @(posedge clk); // write-enabled
+                SW[0] <= 1'b1; @(posedge ~KEY[0]); // write-enabled
+                
+                for (i = 0; i < 2**5; i++) begin
+                        SW[8:4] <= i;
+                        SW[3:1] <= 3'b000; // repeats values 0-7 since values are truncated to 3 bits
+                        @(posedge ~KEY[0]);
+                        $display("Value of i: %d. Value of address: %d, %b. Value of data_in: %d, %b. Value of data_out: %d, %b.",
+                                  i, SW[8:4], SW[8:4], SW[3:1], SW[3:1], dut.data_out, dut.data_out);
+                end // for loop
+                
                 // write in data (cycles through 0-7)
                 for (i = 0; i < 2**5; i++) begin
                         SW[8:4] <= i;
                         SW[3:1] <= i; // repeats values 0-7 since values are truncated to 3 bits
-                        @(posedge clk);
-                        $display("Value of i: %d. Value of address: %d, %b. Value of data_in: %d, %b.",
-                                 i, SW[8:4], SW[8:4], SW[3:1], SW[3:1]);
+                        @(posedge ~KEY[0]);
+                        $display("Value of i: %d. Value of address: %d, %b. Value of data_in: %d, %b. Value of data_out: %d, %b.",
+                                  i, SW[8:4], SW[8:4], SW[3:1], SW[3:1], dut.data_out, dut.data_out);
                 end // for loop
+
+                $display ("----------------- turn write enable OFF -------------------");
 
                 // write enable is off
                 // so writing anything to the addresses shouldn't do anything
@@ -82,17 +92,15 @@ module DE1_SoC_testbench();
                 for (i = 0; i < 2**5; i++) begin
                         SW[8:4] <= i;
                         SW[3:1] <= 3'b000;
-                        @(posedge clk);
-                        $display("Value of i: %d. Value of address: %d, %b. Value of data_in: %d, %b.",
-                                 i, SW[8:4], SW[8:4], SW[3:1], SW[3:1]);
+                        @(posedge ~KEY[0]);
+                        $display("Value of i: %d. Value of address: %d, %b. Value of data_in: %d, %b. Value of data_out: %d, %b.",
+                                 i, SW[8:4], SW[8:4], SW[3:1], SW[3:1], dut.data_out, dut.data_out);
                 end // for loop
                 // one additional clock edge to see the read of the 31st word line because 
                 // the read happens one clock cycle after the write
-                @(posedge clk);
-                $display("Value of i: %d. Value of address: %d, %b. Value of data_in: %d, %b.",
-                         i, SW[8:4], SW[8:4], SW[3:1], SW[3:1]);
-                // $display("Value of i: %d. Value of address: %d, %b. Value of data_in: %d, %b. Value of data_out: %d, %b.",
-                //          i, SW[8:4], SW[8:4], SW[3:1], SW[3:1], data_out, data_out);
+                @(posedge ~KEY[0]);
+                $display("Value of i: %d. Value of address: %d, %b. Value of data_in: %d, %b. Value of data_out: %d, %b.",
+                         i, SW[8:4], SW[8:4], SW[3:1], SW[3:1], dut.data_out, dut.data_out);
 
                 $stop; // end simulation
         end // initial signals

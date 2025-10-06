@@ -10,7 +10,7 @@ cModel Technology
 Z0 dC:/ee371labs/ee371/ee371lab2/modelsim
 vDE1_SoC
 Z1 DXx6 sv_std 3 std 0 22 AD7iAPLo6nTIKk<N0eo=D3
-Z2 !s110 1759713893
+Z2 !s110 1759716404
 !i10b 1
 !s100 @b9e8UZJ2YI4n4anQ<7<32
 IJVedi31AHz;H<hELEN^GU2
@@ -18,7 +18,7 @@ Z3 VDg1SIo80bB@j0V0VzS_@n1
 Z4 !s105 DE1_SoC_sv_unit
 S1
 R0
-Z5 w1759713662
+Z5 w1759716294
 Z6 8../src/DE1_SoC.sv
 Z7 F../src/DE1_SoC.sv
 L0 8
@@ -26,7 +26,7 @@ Z8 OV;L;10.5b;63
 r1
 !s85 0
 31
-Z9 !s108 1759713893.000000
+Z9 !s108 1759716404.000000
 Z10 !s107 ../src/DE1_SoC.sv|
 Z11 !s90 -reportprogress|300|../src/DE1_SoC.sv|
 !i113 1
@@ -36,8 +36,8 @@ vDE1_SoC_testbench
 R1
 R2
 !i10b 1
-!s100 h5NTV2S0oHaC:lzEP^e[b0
-IYOVaEF5RCY3i[XUNPEPTh1
+!s100 Va5ZYFG>hBcV^9jk;lMGQ0
+ITagES=Xkd@IlelzaDm[Pb3
 R3
 R4
 S1
@@ -57,7 +57,7 @@ R11
 R12
 n@d@e1_@so@c_testbench
 vram32x3
-!s110 1759566705
+R2
 !i10b 1
 !s100 >i_=LX@Q5h;U6@m4D`gHo2
 IC<Vjo:4obZ6;z>1F5T>ZC1
@@ -71,7 +71,7 @@ R8
 r1
 !s85 0
 31
-Z13 !s108 1759566704.000000
+R9
 !s107 ../src/ram32x3.v|
 !s90 -reportprogress|300|../src/ram32x3.v|
 !i113 1
@@ -101,93 +101,93 @@ R9
 R12
 vtask1
 R1
-Z14 !s110 1759566704
+R2
 !i10b 1
 !s100 >V1eaRzz84FTXVo`?1]U;0
 IcbfKSbJ9cgGZVYfRih1[30
 R3
-Z15 !s105 task1_sv_unit
+Z13 !s105 task1_sv_unit
 S1
 R0
-Z16 w1759566673
-Z17 8../src/task1.sv
-Z18 F../src/task1.sv
+Z14 w1759715093
+Z15 8../src/task1.sv
+Z16 F../src/task1.sv
 L0 3
 R8
 r1
 !s85 0
 31
-R13
-Z19 !s107 ../src/task1.sv|
-Z20 !s90 -reportprogress|300|../src/task1.sv|
+R9
+Z17 !s107 ../src/task1.sv|
+Z18 !s90 -reportprogress|300|../src/task1.sv|
 !i113 1
 R12
 vtask1_testbench
 R1
-R14
+R2
 !i10b 1
 !s100 IESB54KO7TJ:UdlMH7dz[3
 IBBhDRKRl=i3_^O:MY]>0C3
 R3
-R15
+R13
 S1
 R0
+R14
+R15
 R16
-R17
-R18
 L0 20
 R8
 r1
 !s85 0
 31
-R13
-R19
-R20
+R9
+R17
+R18
 !i113 1
 R12
 vtask2
 R1
 R2
 !i10b 1
-!s100 cSEAgafG;D@am[[WO9`l_2
-IBU21aIl:[XKKEQ2N94WnT2
+!s100 gOn393:QbW4g?EaYlCgTP1
+I:361i3L`h8`dF8^I60hmV1
 R3
-Z21 !s105 task2_sv_unit
+Z19 !s105 task2_sv_unit
 S1
 R0
-Z22 w1759706200
-Z23 8../src/task2.sv
-Z24 F../src/task2.sv
+Z20 w1759716129
+Z21 8../src/task2.sv
+Z22 F../src/task2.sv
 L0 2
 R8
 r1
 !s85 0
 31
 R9
-Z25 !s107 ../src/task2.sv|
-Z26 !s90 -reportprogress|300|../src/task2.sv|
+Z23 !s107 ../src/task2.sv|
+Z24 !s90 -reportprogress|300|../src/task2.sv|
 !i113 1
 R12
 vtask2_testbench
 R1
 R2
 !i10b 1
-!s100 fXLUFS8=FJ=RfnW<3LTb70
-IXG7;=oLNm:;[fFGh^d;9o3
+!s100 ?Pz0dhlW6D[40nkQSaFVK0
+IA`SXicbn``G1Af5DRV3A<3
 R3
-R21
+R19
 S1
 R0
+R20
+R21
 R22
-R23
-R24
-L0 21
+L0 22
 R8
 r1
 !s85 0
 31
 R9
-R25
-R26
+R23
+R24
 !i113 1
 R12

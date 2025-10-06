@@ -8,8 +8,9 @@ module task2 (clk, address, data_in, data_out, wren);
     logic [2:0] memory_array [31:0];
 
     always_ff @(posedge clk) begin
-        if (wren) 
+        if (wren) begin
             memory_array[address] <= data_in;
+        end
         data_out <= memory_array[address];
     end //always_ff
 
