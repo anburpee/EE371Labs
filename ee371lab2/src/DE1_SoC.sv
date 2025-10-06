@@ -20,7 +20,7 @@ module DE1_SoC (CLOCK_50, KEY, HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, SW, LEDR);
 	// logic [31:0] div_clock;
         // // comment out one clock based on whether using simulation or pushing to board
         // // assign clk = div_clock[25]; // change clock speed by changing which clock to use on board
-	// assign clk = CLOCK_50; // for simulation or if using clock_50 in design
+	assign clk = ~KEY[0]; // for simulation or if using clock_50 in design
   
 	// set up clock divider
 	// clock_divider divider (.clock(CLOCK_50), .divided_clocks(div_clock));
@@ -30,7 +30,7 @@ module DE1_SoC (CLOCK_50, KEY, HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, SW, LEDR);
         // call task2 module
         // need HEX[5:4] to follow address, HEX[1] to follow data_in, HEX0 to follow data_out
         logic data_out;
-        task2 dut2 (.clk(KEY[0]), .address(SW[8:4]), .data_in(SW[3:1]), .wren(SW[0]), .data_out(data_out));
+        task2 dut2 (.clk(clk), .address(SW[8:4]), .data_in(SW[3:1]), .wren(SW[0]), .data_out(data_out));
 
         // set up displays on 7 segment displays
         seg7 addr_display (.hex(SW[8:4]), .leds1(HEX5), .leds0(HEX4));
@@ -58,8 +58,8 @@ module DE1_SoC_testbench();
         parameter period = 100;
 
         initial begin
-                KEY[0] <= 0;
-                forever #(period/2) KEY[0] <= ~KEY[0];
+                clk <= 0;
+                forever #(period/2) clk <= ~clk;
         end
 
         // test the design
