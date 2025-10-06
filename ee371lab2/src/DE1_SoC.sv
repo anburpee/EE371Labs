@@ -15,7 +15,7 @@ module DE1_SoC (CLOCK_50, KEY, HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, SW, LEDR);
 
 //     // Set up reset signal and clock
 //     // ***commented out clock divider since not needed for Lab1***
-//         logic reset;
+//      logic reset;
 // 	assign reset = V_GPIO[30];
 	// logic [31:0] div_clock;
         // // comment out one clock based on whether using simulation or pushing to board
@@ -74,8 +74,10 @@ module DE1_SoC_testbench();
                         @(posedge CLOCK_50);
                         @(posedge CLOCK_50);
                         @(posedge CLOCK_50);
-                        $display("Value of i: %d. Value of address: %d, %b. Value of data_in: %d, %b. Value of data_out: %d, %b.",
-                                  i, SW[8:4], SW[8:4], SW[3:1], SW[3:1], dut.dut2.data_out, dut.dut2.data_out);
+                        // $display("Value of i: %d. Value of address: %d, %b. Value of data_in: %d, %b. Value of data_out: %d, %b.",
+                        //           i, SW[8:4], SW[8:4], SW[3:1], SW[3:1], dut.dut2.data_out, dut.dut2.data_out);
+                        $display("Value of i: %d. Value of address: %d, %b. Value of data_in: %d, %b.",
+                         i, SW[8:4], SW[8:4], SW[3:1], SW[3:1]);
                 end // for loop
                 
                 // write in data (cycles through 0-7)
@@ -85,8 +87,10 @@ module DE1_SoC_testbench();
                         @(posedge CLOCK_50);
                         @(posedge CLOCK_50);
                         @(posedge CLOCK_50);
-                        $display("Value of i: %d. Value of address: %d, %b. Value of data_in: %d, %b. Value of data_out: %d, %b.",
-                                  i, SW[8:4], SW[8:4], SW[3:1], SW[3:1], dut.dut2.data_out, dut.dut2.data_out);
+                        // $display("Value of i: %d. Value of address: %d, %b. Value of data_in: %d, %b. Value of data_out: %d, %b.",
+                        //           i, SW[8:4], SW[8:4], SW[3:1], SW[3:1], dut.dut2.data_out, dut.dut2.data_out);
+                        $display("Value of i: %d. Value of address: %d, %b. Value of data_in: %d, %b.",
+                         i, SW[8:4], SW[8:4], SW[3:1], SW[3:1]);
                 end // for loop
 
                 $display ("----------------- turn write enable OFF -------------------");
@@ -100,14 +104,18 @@ module DE1_SoC_testbench();
                         @(posedge CLOCK_50);
                         @(posedge CLOCK_50);
                         @(posedge CLOCK_50);
-                        $display("Value of i: %d. Value of address: %d, %b. Value of data_in: %d, %b. Value of data_out: %d, %b.",
-                                 i, SW[8:4], SW[8:4], SW[3:1], SW[3:1], dut.dut2.data_out, dut.dut2.data_out);
+                        // $display("Value of i: %d. Value of address: %d, %b. Value of data_in: %d, %b. Value of data_out: %d, %b.",
+                        //          i, SW[8:4], SW[8:4], SW[3:1], SW[3:1], dut.dut2.data_out, dut.dut2.data_out);
+                        $display("Value of i: %d. Value of address: %d, %b. Value of data_in: %d, %b.",
+                         i, SW[8:4], SW[8:4], SW[3:1], SW[3:1]);
                 end // for loop
                 // one additional clock edge to see the read of the 31st word line because 
                 // the read happens one clock cycle after the write
                 @(posedge CLOCK_50);
-                $display("Value of i: %d. Value of address: %d, %b. Value of data_in: %d, %b. Value of data_out: %d, %b.",
-                         i, SW[8:4], SW[8:4], SW[3:1], SW[3:1], dut.dut2.data_out, dut.dut2.data_out);
+                // $display("Value of i: %d. Value of address: %d, %b. Value of data_in: %d, %b. Value of data_out: %d, %b.",
+                        //  i, SW[8:4], SW[8:4], SW[3:1], SW[3:1], dut.dut2.data_out, dut.dut2.data_out);
+                $display("Value of i: %d. Value of address: %d, %b. Value of data_in: %d, %b.",
+                         i, SW[8:4], SW[8:4], SW[3:1], SW[3:1]);
 
                 $stop; // end simulation
         end // initial signals
