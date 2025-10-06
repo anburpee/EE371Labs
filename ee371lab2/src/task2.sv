@@ -10,7 +10,7 @@ module task2 (clk, address, data_in, data_out, wren);
     always_ff @(posedge clk) begin
         if (wren) 
             memory_array[address] <= data_in;
-        data_out <= data_in;
+        data_out <= memory_array[address];
     end //always_ff
 
 endmodule // task2
