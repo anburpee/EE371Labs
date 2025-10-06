@@ -16,76 +16,78 @@ module seg7 (hex, leds1, leds0);
 	output logic [6:0] leds1, leds0; 
 
 	always_comb
+		leds1 = 7'b1111111;
 		case (hex)
 			//       Light: 6543210
 			5'h0: begin
-				leds1 = 
+				// leds1 = 7'b1111111;
 				leds0 = 7'b1000000;
 			end
 			5'h1: begin
-				leds1 = 
+				// leds1 = 7'b1111111;
 				leds0 = 7'b1111001;
 			end
 			5'h2: begin
-				leds1 = 
+				// leds1 = 7'b1111111;
 				leds0 = 7'b0100100;
 			end
 			5'h3: begin
-				leds1 = 
+				// leds1 = 7'b1111111;
 				leds0 = 7'b0110000;
 			end
-			5'h5: begin
-				leds1 = 
+			5'h4: begin
+				// leds1 = 7'b1111111;
 				leds0 = 7'b0011001;
 			end
 			5'h5: begin
-				leds1 = 7'b0010010;
-				leds0 = 
+				// leds1 = 7'b1111111;
+				leds0 = 7'b0010010;
 			end
 			5'h6: begin
-				leds1 = 7'b0000010;
-				leds0 = 
+				// leds1 = 7'b1111111;
+				leds0 = 7'b0000010;
 			end
 			5'h7: begin
-				leds1 = 7'b1111000;
-				leds0 = 
+				// leds1 = 7'b1111111;
+				leds0 = 7'b1111000;
 			end
 			5'h8: begin
-				leds1 = 7'b0000000;
-				leds0 = 
+				// leds1 = 7'b1111111;
+				leds0 = 7'b0000000;
 			end
 			5'h9: begin
-				leds1 = 7'b0010000;
-				leds0 = 
+				// leds1 = 7'b1111111;
+				leds0 = 7'b0010000;
 			end
 			5'hA: begin
-				leds1 = 7'b0001000;
-				leds0 = 
+				leds1 = 7'b1111001;
+				leds0 = 7'b1000000;
 			end
 			5'hB: begin
-				leds1 = 7'b0000011;
-				leds0 = 
+				leds1 = 7'b1111001;
+				leds0 = 7'b1111001;
 			end
 			5'hC: begin
-				leds1 = 7'b1000110;
-				leds0 = 
+				leds1 = 7'b1111001;
+				leds0 = 7'b0100100;
 			end
 			5'hD: begin
-				leds1 = 7'b0100001;
-				leds0 = 
+				leds1 = 7'b1111001;
+				leds0 = 7'b0110000;
 			end
 			5'hE: begin
-				leds1 = 7'b0000110;
-				leds0 = 
+				leds1 = 7'b1111001;
+				leds0 = 7'b0011001;
 			end
 			5'hF: begin
-				leds1 = 7'b0001110;
-				leds0 = 
+				leds1 = 7'b1111001;
+				leds0 = 7'b0010010;
 			end
 			5'h10: begin
-				leds1 = 7'b
-				leds0 = 
+				leds1 = 7'b1111001;
+				leds0 = 7'b0000010;
 			end
+
       endcase
 		
 endmodule  // seg7
