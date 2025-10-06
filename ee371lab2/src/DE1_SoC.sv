@@ -29,6 +29,16 @@ module DE1_SoC (CLOCK_50, KEY, HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, SW, LEDR);
         logic data_out;
         task2 dut2 (.clk(KEY[0]), .address(SW[8:4]), .data_in(SW[3:1]), .wren(SW[0]), .data_out(data_out));
 
+        logic address_tens_pl;
+        logic address_ones_pl;
+
+        assign address_tens_pl = 
+        assign address_ones_pl = 
+
+        seg7 addr_tens (.hex(address_tens_pl), .leds(HEX5));
+        seg7 addr_ones (.hex(address_ones_pl), .leds(HEX4));
+
+
 endmodule  // DE1_SoC
 
 

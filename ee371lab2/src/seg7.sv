@@ -7,29 +7,85 @@
  *   4   2
  *    -3-
  */
-module seg7 (hex, leds);
-	input  logic [3:0] hex;
-	output logic [6:0] leds;
+module seg7 (hex, leds1, leds0);
+	input  logic [4:0] hex; // changed input from 4 bits to 5 bits
+	// changed output to two 7-bit numbers to represent the tens place 
+	// and the ones place
+	// leds1 = tens place
+	// leds0 = ones place 
+	output logic [6:0] leds1, leds0; 
 
 	always_comb
 		case (hex)
 			//       Light: 6543210
-			4'h0: leds = 7'b1000000;
-			4'h1: leds = 7'b1111001;
-			4'h2: leds = 7'b0100100;
-			4'h3: leds = 7'b0110000;
-			4'h4: leds = 7'b0011001;
-			4'h5: leds = 7'b0010010;
-			4'h6: leds = 7'b0000010;
-			4'h7: leds = 7'b1111000;
-			4'h8: leds = 7'b0000000;
-			4'h9: leds = 7'b0010000;
-			4'hA: leds = 7'b0001000;
-			4'hB: leds = 7'b0000011;
-			4'hC: leds = 7'b1000110;
-			4'hD: leds = 7'b0100001;
-			4'hE: leds = 7'b0000110;
-			4'hF: leds = 7'b0001110;
+			5'h0: begin
+				leds1 = 
+				leds0 = 7'b1000000;
+			end
+			5'h1: begin
+				leds1 = 
+				leds0 = 7'b1111001;
+			end
+			5'h2: begin
+				leds1 = 
+				leds0 = 7'b0100100;
+			end
+			5'h3: begin
+				leds1 = 
+				leds0 = 7'b0110000;
+			end
+			5'h5: begin
+				leds1 = 
+				leds0 = 7'b0011001;
+			end
+			5'h5: begin
+				leds1 = 7'b0010010;
+				leds0 = 
+			end
+			5'h6: begin
+				leds1 = 7'b0000010;
+				leds0 = 
+			end
+			5'h7: begin
+				leds1 = 7'b1111000;
+				leds0 = 
+			end
+			5'h8: begin
+				leds1 = 7'b0000000;
+				leds0 = 
+			end
+			5'h9: begin
+				leds1 = 7'b0010000;
+				leds0 = 
+			end
+			5'hA: begin
+				leds1 = 7'b0001000;
+				leds0 = 
+			end
+			5'hB: begin
+				leds1 = 7'b0000011;
+				leds0 = 
+			end
+			5'hC: begin
+				leds1 = 7'b1000110;
+				leds0 = 
+			end
+			5'hD: begin
+				leds1 = 7'b0100001;
+				leds0 = 
+			end
+			5'hE: begin
+				leds1 = 7'b0000110;
+				leds0 = 
+			end
+			5'hF: begin
+				leds1 = 7'b0001110;
+				leds0 = 
+			end
+			5'h10: begin
+				leds1 = 7'b
+				leds0 = 
+			end
       endcase
 		
 endmodule  // seg7
