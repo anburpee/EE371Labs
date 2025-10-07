@@ -10,15 +10,15 @@ cModel Technology
 Z0 dC:/ee371labs/ee371/ee371lab2/modelsim
 vDE1_SoC
 Z1 DXx6 sv_std 3 std 0 22 AD7iAPLo6nTIKk<N0eo=D3
-Z2 !s110 1759717984
+Z2 !s110 1759797039
 !i10b 1
-!s100 @b9e8UZJ2YI4n4anQ<7<32
-IJVedi31AHz;H<hELEN^GU2
+!s100 LINCFZAK1NM7z;=c90e8Z0
+IGZGd_@nKQJ9`1oA=4TVIb3
 Z3 VDg1SIo80bB@j0V0VzS_@n1
 Z4 !s105 DE1_SoC_sv_unit
 S1
 R0
-Z5 w1759717962
+Z5 w1759797035
 Z6 8../src/DE1_SoC.sv
 Z7 F../src/DE1_SoC.sv
 L0 8
@@ -26,7 +26,7 @@ Z8 OV;L;10.5b;63
 r1
 !s85 0
 31
-Z9 !s108 1759717984.000000
+Z9 !s108 1759797039.000000
 Z10 !s107 ../src/DE1_SoC.sv|
 Z11 !s90 -reportprogress|300|../src/DE1_SoC.sv|
 !i113 1
@@ -36,8 +36,8 @@ vDE1_SoC_testbench
 R1
 R2
 !i10b 1
-!s100 CD=hAk41gk2DQ6][K5jc41
-I^AKZO3YhgfKDH_<3cVGDV3
+!s100 ImZF<[UaJVdIX>SQT?KVn3
+I7oXnN8F@cdGMhHQEH4Y:l0
 R3
 R4
 S1
@@ -45,7 +45,7 @@ R0
 R5
 R6
 R7
-L0 46
+L0 47
 R8
 r1
 !s85 0
@@ -78,7 +78,7 @@ R9
 R12
 vseg7
 R1
-!s110 1759717985
+R2
 !i10b 1
 !s100 ShCBWl[2gd9G<>]KKN1?g3
 Ieolf4]bLJQFDIo::=Ma4A0
@@ -94,7 +94,7 @@ R8
 r1
 !s85 0
 31
-!s108 1759717985.000000
+R9
 !s107 ../src/seg7.sv|
 !s90 -reportprogress|300|../src/seg7.sv|
 !i113 1
@@ -149,13 +149,13 @@ vtask2
 R1
 R2
 !i10b 1
-!s100 gOn393:QbW4g?EaYlCgTP1
-I:361i3L`h8`dF8^I60hmV1
+!s100 T^J1RZWBz2LVlCn2Z4Emi0
+IMZ:E[UWBdVRN;m9RDjG2g0
 R3
 Z19 !s105 task2_sv_unit
 S1
 R0
-Z20 w1759716129
+Z20 w1759796360
 Z21 8../src/task2.sv
 Z22 F../src/task2.sv
 L0 2
@@ -172,8 +172,8 @@ vtask2_testbench
 R1
 R2
 !i10b 1
-!s100 ?Pz0dhlW6D[40nkQSaFVK0
-IA`SXicbn``G1Af5DRV3A<3
+!s100 3IGog5;9Mbj2lzi9MRG?T0
+ISc@h<F8QCJd;Y_G75iOk:0
 R3
 R19
 S1
@@ -181,7 +181,7 @@ R0
 R20
 R21
 R22
-L0 22
+L0 26
 R8
 r1
 !s85 0

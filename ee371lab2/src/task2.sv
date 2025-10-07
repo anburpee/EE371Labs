@@ -5,14 +5,18 @@ module task2 (clk, address, data_in, data_out, wren);
     input logic [2:0] data_in;
     output logic [2:0] data_out;
 
-    logic [2:0] memory_array [31:0];
+    logic [2:0] memory_array [0:31];
 
     always_ff @(posedge clk) begin
         if (wren) begin
             memory_array[address] <= data_in;
+            data_out <= data_in; // reads the new value
         end
-        data_out <= memory_array[address];
+        else begin
+        data_out <= memory_array[address]; // reads the old value
+        end
     end //always_ff
+
 
 endmodule // task2
 
@@ -25,7 +29,7 @@ module task2_testbench();
     logic [2:0] data_in;
     logic [2:0] data_out;
 
-    task1 dut (.*);
+    task2 dut (.*);
 
     parameter period = 100;
 
@@ -46,7 +50,6 @@ module task2_testbench();
             @(posedge clk);
             $display("Value of i: %d. Value of address: %d, %b. Value of data_in: %d, %b. Value of data_out: %d, %b.",
                      i, address, address, data_in, data_in, data_out, data_out);
-            // @(posedge clk);
         end // for loop
 
         // now write something different in a few of the addresses
@@ -57,7 +60,6 @@ module task2_testbench();
             @(posedge clk);
             $display("Value of i: %d. Value of address: %d, %b. Value of data_in: %d, %b. Value of data_out: %d, %b.",
                      i, address, address, data_in, data_in, data_out, data_out);
-            // @(posedge clk);
         end // for loop
 
         // write enable is off
@@ -69,7 +71,6 @@ module task2_testbench();
             @(posedge clk);
             $display("Value of i: %d. Value of address: %d, %b. Value of data_in: %d, %b. Value of data_out: %d, %b.",
                      i, address, address, data_in, data_in, data_out, data_out);
-            // @(posedge clk);
         end // for loop
         // one additional clock edge to see the read of the 31st word line because 
         // the read happens one clock cycle after the write

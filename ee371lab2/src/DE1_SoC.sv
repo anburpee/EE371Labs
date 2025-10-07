@@ -18,6 +18,7 @@ module DE1_SoC (CLOCK_50, KEY, HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, SW, LEDR);
 //         logic reset;
 // 	assign reset = V_GPIO[30];
 	// logic [31:0] div_clock;
+        logic clk;
         // // comment out one clock based on whether using simulation or pushing to board
         // // assign clk = div_clock[25]; // change clock speed by changing which clock to use on board
 	assign clk = ~KEY[0]; // for simulation or if using clock_50 in design
@@ -55,12 +56,12 @@ module DE1_SoC_testbench();
         DE1_SoC dut (.*);
 
         // set up simulation clock
-        assign CLOCK_50 = ~KEY[0];
+        //assign CLOCK_50 = ~KEY[0];
         parameter period = 100;
 
         initial begin
-                KEY[0] <= 1;
-                forever #(period/2) KEY[0] <= ~KEY[0];
+                CLOCK_50 <= 1;
+                forever #(period/2) CLOCK_50 <= ~CLOCK_50;
         end
 
         // test the design
@@ -72,10 +73,8 @@ module DE1_SoC_testbench();
                         SW[8:4] <= i;
                         SW[3:1] <= 3'b000; // repeats values 0-7 since values are truncated to 3 bits
                         @(posedge CLOCK_50);
-                        @(posedge CLOCK_50);
-                        @(posedge CLOCK_50);
                         $display("Value of i: %d. Value of address: %d, %b. Value of data_in: %d, %b. Value of data_out: %d, %b.",
-                                  i, SW[8:4], SW[8:4], SW[3:1], SW[3:1], dut.dut2.data_out, dut.dut2.data_out);
+                                  i, SW[8:4], SW[8:4], SW[3:1], SW[3:1], dut.data_out, dut.data_out);
                 end // for loop
                 
                 // write in data (cycles through 0-7)
@@ -83,10 +82,8 @@ module DE1_SoC_testbench();
                         SW[8:4] <= i;
                         SW[3:1] <= i; // repeats values 0-7 since values are truncated to 3 bits
                         @(posedge CLOCK_50);
-                        @(posedge CLOCK_50);
-                        @(posedge CLOCK_50);
                         $display("Value of i: %d. Value of address: %d, %b. Value of data_in: %d, %b. Value of data_out: %d, %b.",
-                                  i, SW[8:4], SW[8:4], SW[3:1], SW[3:1], dut.dut2.data_out, dut.dut2.data_out);
+                                  i, SW[8:4], SW[8:4], SW[3:1], SW[3:1], dut.data_out, dut.data_out);
                 end // for loop
 
                 $display ("----------------- turn write enable OFF -------------------");
@@ -98,16 +95,14 @@ module DE1_SoC_testbench();
                         SW[8:4] <= i;
                         SW[3:1] <= 3'b000;
                         @(posedge CLOCK_50);
-                        @(posedge CLOCK_50);
-                        @(posedge CLOCK_50);
                         $display("Value of i: %d. Value of address: %d, %b. Value of data_in: %d, %b. Value of data_out: %d, %b.",
-                                 i, SW[8:4], SW[8:4], SW[3:1], SW[3:1], dut.dut2.data_out, dut.dut2.data_out);
+                                 i, SW[8:4], SW[8:4], SW[3:1], SW[3:1], dut.data_out, dut.data_out);
                 end // for loop
                 // one additional clock edge to see the read of the 31st word line because 
                 // the read happens one clock cycle after the write
                 @(posedge CLOCK_50);
                 $display("Value of i: %d. Value of address: %d, %b. Value of data_in: %d, %b. Value of data_out: %d, %b.",
-                         i, SW[8:4], SW[8:4], SW[3:1], SW[3:1], dut.dut2.data_out, dut.dut2.data_out);
+                         i, SW[8:4], SW[8:4], SW[3:1], SW[3:1], dut.data_out, dut.data_out);
 
                 $stop; // end simulation
         end // initial signals
