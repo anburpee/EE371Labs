@@ -15,7 +15,7 @@ module DE1_SoC (CLOCK_50, KEY, HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, SW, LEDR);
 
 //     // Set up reset signal and clock
 //     // ***commented out clock divider since not needed for Lab1***
-//         logic reset;
+//      logic reset;
 // 	assign reset = V_GPIO[30];
 	// logic [31:0] div_clock;
         logic clk;
