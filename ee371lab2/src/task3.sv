@@ -42,20 +42,23 @@ module task3_testbench();
     // test task1 module
     initial begin
         wren <= 1'b1; @(posedge clk); // write-enabled
-        // write in all zeros
+        // write to and read from the same address
         for (i = 0; i < 2**5; i++) begin
-            address <= i;
-            data_in <= 3'b000;
+            w_address <= i;
+            r_address <= i;
+            data_in <= i; // repeats values 0-7 since values are truncated to 3 bits
             @(posedge clk);
             $display("Value of i: %d. Value of address: %d, %b. Value of data_in: %d, %b. Value of data_out: %d, %b.",
                      i, address, address, data_in, data_in, data_out, data_out);
         end // for loop
 
-        // now write something different in a few of the addresses
-        // just to see something interesting lol
+        // write to and read from different addresses
         for (i = 0; i < 2**5; i++) begin
-            address <= i;
-            data_in <= i; // repeats values 0-7 since values are truncated to 3 bits
+            w_address <= i;
+            r_address <= i + 1; // since r_address is t 1+w_address, data_out 
+                                // will start at 1 and cycle through 0-7 until
+                                // last iteration (even thoug data_in = 0)
+            data_in <= 3'b000; 
             @(posedge clk);
             $display("Value of i: %d. Value of address: %d, %b. Value of data_in: %d, %b. Value of data_out: %d, %b.",
                      i, address, address, data_in, data_in, data_out, data_out);
@@ -63,10 +66,12 @@ module task3_testbench();
 
         // write enable is off
         // so writing anything to the addresses shouldn't do anything
+        // data_out should read all zeros
         wren <= 1'b0; 
         for (i = 0; i < 2**5; i++) begin
-            address <= i;
-            data_in <= 3'b000;
+            w_address <= i;
+            r_address <= i;
+            data_in <= i;
             @(posedge clk);
             $display("Value of i: %d. Value of address: %d, %b. Value of data_in: %d, %b. Value of data_out: %d, %b.",
                      i, address, address, data_in, data_in, data_out, data_out);
