@@ -1,6 +1,22 @@
 // 32x3 RAM implementation using dual read/write addresses
 
-module task3 ();
+module task3 (clk, wren, w_address, r_address, data_in, data_out);
+    input logic clk, wren;
+    input logic [4:0] w_address, r_address;
+    input logic [2:0] data_in;
+    output logic [2:0] data_out;
+
+    logic [2:0] memory_array [0:31];
+
+    always_ff @(posedge clk) begin
+        if (wren) begin
+            memory_array[w_address] <= data_in;
+            data_out <= data_in; // reads the new value
+        end
+        else begin
+        data_out <= memory_array[r_address]; // reads the old value
+        end
+    end //always_ff
 
 endmodule // task3
 
@@ -8,7 +24,7 @@ endmodule // task3
 `timescale 1 ps / 1 ps
 module task3_testbench(); 
     logic clk, wren;
-    logic [4:0] address;
+    logic [4:0] w_address, r_address;
     logic [2:0] data_in;
     logic [2:0] data_out;
 
