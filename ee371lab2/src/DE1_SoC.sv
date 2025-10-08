@@ -15,28 +15,58 @@ module DE1_SoC (CLOCK_50, KEY, HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, SW, LEDR);
 
 //     // Set up reset signal and clock
 //     // ***commented out clock divider since not needed for Lab1***
-//      logic reset;
-// 	assign reset = V_GPIO[30];
-	// logic [31:0] div_clock;
+        logic reset;
+ 	assign reset = KEY[3];
         logic clk;
+        assign clk = CLOCK_50; // changed from ~KEY[0] from Part 2
+
+        // logic [31:0] div_clock;
         // // comment out one clock based on whether using simulation or pushing to board
         // // assign clk = div_clock[25]; // change clock speed by changing which clock to use on board
-	assign clk = ~KEY[0]; // for simulation or if using clock_50 in design
+	//assign clk = CLOCK_50; // for simulation or if using clock_50 in design
   
 	// set up clock divider
 	// clock_divider divider (.clock(CLOCK_50), .divided_clocks(div_clock));
 
 
+        logic w_address;
+        assign w_address = SW[8:4];
 
-        // call task2 module
-        // need HEX[5:4] to follow address, HEX[1] to follow data_in, HEX0 to follow data_out
-        logic [2:0] data_out;
-        task2 dut2 (.clk(clk), .address(SW[8:4]), .data_in(SW[3:1]), .wren(SW[0]), .data_out(data_out));
+        logic data_in;
+        assign data_in = SW[3:1];
+
+        logic wren, wren_tsk2, wren_tsk3;
+        assign wren_tsk2 = SW[0];
+        assign wren_tsk3 = SW[0];
+        // wren is specified for task2 only when SW[9] == 0
+        // wren is specified for task3 only when SW[9] == 1
+        assign wren = SW[9] ? wren_tsk3 : wren_tsk2;
+
+        // instantiate module that cycles through read addresses
+        enabled_counter r_addresses #(.num_bits(5)) (.clk(clk), .reset(reset), .count(r_address));
+
+        // instantiate task2 and task3 modules
+        logic [2:0] data_out, data_out_tsk2, data_out_tsk3;
+
+
+        task2 task_2 (.clk(clk), .address(w_address), .data_in(data_in),
+                      .wren(wren), .data_out(data_out_tsk2));
+
+        task3 task_3 (.clk(clk), .wren(wren), .w_address(w_address),
+                      .r_address(r_address), .data_in(data_in), .data_out(data_out_tsk3));
+
+        // if SW[9] == 1, output data is from task3 memory
+        // if SW[9] == 0, output data is from task2 memory
+        assign data_out = SW[9] ? data_out_tsk3 : data_out_tsk2;
+
 
         // set up displays on 7 segment displays
-        seg7 addr_display (.hex(SW[8:4]), .leds1(HEX5), .leds0(HEX4));
-        seg7 data_in_display (.hex({2'b00, SW[3:1]}), .leds1(HEX3), .leds0(HEX1));
-        seg7 data_out_display (.hex({2'b00, data_out}), .leds1(HEX2), .leds0(HEX0));
+        // HEX[5:4] displays write address, HEX[3:2] displays read address
+        // HEX[1] displays data_in, HEX0 displays data_out
+        seg7_two_outputs w_addr_display (.hex(w_address), .leds1(HEX5), .leds0(HEX4));
+        seg7_two_outputs r_addr_display (.hex(r_address), .leds1(HEX3), .leds0(HEX2)); 
+        seg7_one_output data_in_display (.hex({1'b0, data_in}), .leds(HEX1));
+        seg7_one_output data_out_display (.hex({1'b0, data_out}), .leds(HEX0));
 
 
 endmodule  // DE1_SoC

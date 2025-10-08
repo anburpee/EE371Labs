@@ -1,5 +1,5 @@
 /* Basic 7-segment display driver for hex digits 0-F.
- * Takes 4-bit input hex and outputs 7-bit leds.
+ * Takes 5-bit input hex and outputs two 7-bit leds.
  * LED segments are active low:
  *    -0-
  *   5   1
@@ -7,7 +7,7 @@
  *   4   2
  *    -3-
  */
-module seg7 (hex, leds1, leds0);
+module seg7_two_outputs (hex, leds1, leds0);
 	input  logic [4:0] hex; // changed input from 4 bits to 5 bits
 	// changed output to two 7-bit numbers to represent the tens place 
 	// and the ones place
@@ -148,4 +148,4 @@ module seg7 (hex, leds1, leds0);
 			end
       endcase
 		
-endmodule  // seg7
+endmodule  // seg7_two_outputs

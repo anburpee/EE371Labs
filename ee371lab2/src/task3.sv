@@ -6,17 +6,21 @@ module task3 (clk, wren, w_address, r_address, data_in, data_out);
     input logic [2:0] data_in;
     output logic [2:0] data_out;
 
-    logic [2:0] memory_array [0:31];
+    // logic [2:0] memory_array [0:31];
 
-    always_ff @(posedge clk) begin
-        if (wren) begin
-            memory_array[w_address] <= data_in;
-            data_out <= data_in; // reads the new value
-        end
-        else begin
-        data_out <= memory_array[r_address]; // reads the old value
-        end
-    end //always_ff
+    // always_ff @(posedge clk) begin
+    //     if (wren) begin
+    //         memory_array[w_address] <= data_in;
+    //         data_out <= data_in; // reads the new value
+    //     end
+    //     else begin
+    //     data_out <= memory_array[r_address]; // reads the old value
+    //     end
+    // end //always_ff
+
+    // instantiate ram32x3port2
+    ram32x3port2 ram (.clock(clk), .data(data_in), .rdaddress(r_address),
+                      .wraddress(w_address), .wren(wren), .q(data_out));
 
 endmodule // task3
 
