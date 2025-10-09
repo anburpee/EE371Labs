@@ -1,3 +1,4 @@
+// takes a given signal through 2 D-FFs to prevent metastability
 module anti_metastability (clk, in, out);
 	output logic out;
 	input logic clk, in;

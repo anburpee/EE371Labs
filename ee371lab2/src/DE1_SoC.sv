@@ -13,13 +13,33 @@ module DE1_SoC (CLOCK_50, KEY, HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, SW, LEDR);
         output logic [9:0] LEDR;
 
 
+        // system clock
+        logic clk;
+        assign clk = CLOCK_50;
+
+        // put inputs through anti-metastability modules
+        anti_metastability stable_reset (.clk(clk), .in(KEY[3]), .out(key3));
+        anti_metastability stable_clk2 (.clk(clk), .in(KEY[0]), .out(key0));
+        anti_metastability stable_sw0 (.clk(clk), .in(SW[0]), .out(sw0));
+        anti_metastability stable_sw1 (.clk(clk), .in(SW[1]), .out(sw1));
+        anti_metastability stable_sw2 (.clk(clk), .in(SW[2]), .out(sw2));
+        anti_metastability stable_sw3 (.clk(clk), .in(SW[3]), .out(sw3));
+        anti_metastability stable_sw4 (.clk(clk), .in(SW[4]), .out(sw4));
+        anti_metastability stable_sw5 (.clk(clk), .in(SW[5]), .out(sw5));
+        anti_metastability stable_sw6 (.clk(clk), .in(SW[6]), .out(sw6));
+        anti_metastability stable_sw7 (.clk(clk), .in(SW[7]), .out(sw7));
+        anti_metastability stable_sw8 (.clk(clk), .in(SW[8]), .out(sw8));
+        anti_metastability stable_sw9 (.clk(clk), .in(SW[9]), .out(sw9));
+
 //     // Set up reset signal and clock
 //     // ***commented out clock divider since not needed for Lab1***
         logic reset;
- 	assign reset = ~KEY[3];
-        logic clk_tsk2, clk;
-        assign clk_tsk2 = ~KEY[0]; 
-        assign clk = CLOCK_50; // changed from ~KEY[0] from Part 2
+ 	assign reset = ~key3;
+
+        // task 2 clock
+        logic clk_tsk2;
+        assign clk_tsk2 = ~key0; 
+
 
         // logic [31:0] div_clock;
         // // comment out one clock based on whether using simulation or pushing to board
@@ -31,22 +51,23 @@ module DE1_SoC (CLOCK_50, KEY, HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, SW, LEDR);
 
 
         logic [4:0] w_address;
-        assign w_address = SW[8:4];
+        assign w_address = {sw8, sw7, sw6, sw5, sw4};
 
         logic [2:0] data_in;
-        assign data_in = SW[3:1];
+        assign data_in = {sw3, sw2, sw1};
 
         logic wren_tsk2, wren_tsk3;
+
 
         // wren is specified for task2 only when SW[9] == 0
         // wren is specified for task3 only when SW[9] == 1
         always_comb begin
-                if (SW[9]) begin
+                if (sw9) begin
                         wren_tsk2 = 1'b0;
-                        wren_tsk3 = SW[0];
+                        wren_tsk3 = sw0;
                 end
                 else begin
-                        wren_tsk2 = SW[0];
+                        wren_tsk2 = sw0;
                         wren_tsk3 = 1'b0;
                 end
         end // always_comb
