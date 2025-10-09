@@ -36,7 +36,7 @@ module task3_testbench();
     initial begin
         wren <= 1'b1; @(posedge clk); // write-enabled
         // write to and read from the same address
-        // should display 0s since mif file contains all 0s
+        // should display 0s since mif file contains all 0s???
         for (i = 0; i < 2**5; i++) begin
             w_address <= i;
             r_address <= i;
@@ -46,14 +46,24 @@ module task3_testbench();
                      i, w_address, r_address, data_in, data_in, data_out, data_out);
         end // for loop
 
-        $display ("----------------- read from 1 address after the write address -------------------");
-
-        // write to and read from different addresses
+        $display ("----------------- wren off -------------------");
+        
+        wren <= 1'b0; @(posedge clk); // write-enabled
         for (i = 0; i < 2**5; i++) begin
             w_address <= i;
-            r_address <= i + 1; // since r_address is t 1+w_address, data_out 
-                                // will start at 1 and cycle through 0-7 until
-                                // last iteration (even thoug data_in = 0)
+            r_address <= i;
+            data_in <= i; // repeats values 0-7 since values are truncated to 3 bits
+            @(posedge clk);
+            $display("Value of i: %d. Value of address (w & r): %b, %b. Value of data_in: %d, %b. Value of data_out: %d, %b.",
+                     i, w_address, r_address, data_in, data_in, data_out, data_out);
+        end // for loop
+
+        $display ("----------------- read from 1 address before the write address (reads the value that was just written in) -------------------");
+        wren <= 1'b1; @(posedge clk); // write-enabled
+        // write to and read from different addresses
+        for (i = 0; i < 2**5; i++) begin
+            w_address <= i + 1;
+            r_address <= i; 
             data_in <= 3'b000; 
             @(posedge clk);
             $display("Value of i: %d. Value of address (w & r): %b, %b. Value of data_in: %d, %b. Value of data_out: %d, %b.",

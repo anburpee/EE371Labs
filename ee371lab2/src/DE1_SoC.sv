@@ -136,18 +136,15 @@ module DE1_SoC_testbench();
                 // don't need task1 testbench since we don't instantiate task2 in top level
                 $display ("----------------- WE STILL NEED TO DISPLAY TESTBENCH STUFF FOR TASK 1 !!!! -------------------");
 
-
-
                 KEY[3] <= 1'b0;
                 @(posedge CLOCK_50);
                 KEY[3] <= 1'b1;
                 @(posedge CLOCK_50);
 
-
                 $display ("----------------- TESTBENCH TASK 2 -------------------");
                 $display ("----------------- turn write enable ON -------------------");
 
-
+                // data_out should show data_in value after 1 clock cycle--all zeros
                 SW[0] <= 1'b1; @(posedge ~KEY[0]); // write-enabled
                 SW[9] <= 1'b0; // write to task2
                 for (i = 0; i < 2**5; i++) begin
@@ -159,6 +156,7 @@ module DE1_SoC_testbench();
                 end // for loop
                 
                 // write in data (cycles through 0-7)
+                // data_out should show data_in value after 1 clock cycle--cycles through 0-7
                 for (i = 0; i < 2**5; i++) begin
                         SW[8:4] <= i;
                         SW[3:1] <= i; // repeats values 0-7 since values are truncated to 3 bits
@@ -170,6 +168,7 @@ module DE1_SoC_testbench();
                 $display ("----------------- turn write enable OFF -------------------");
 
                 // so writing anything to the addresses shouldn't do anything
+                // data_out still cycles through 0-7
                 SW[0] <= 1'b0; // write enable off
                 for (i = 0; i < 2**5; i++) begin
                         SW[8:4] <= i;
@@ -181,15 +180,20 @@ module DE1_SoC_testbench();
 
 
                 $display ("----------------- NOW TESTBENCH TASK 3 -------------------");
-                $display ("----------------- turn write enable ON -------------------");
+                $display ("----------------- turn write enable OFF to see .mif output -------------------");
 
                 KEY[3] <= 1'b0;
                 @(posedge CLOCK_50);
                 KEY[3] <= 1'b1;
                 @(posedge CLOCK_50);
 
-                SW[0] <= 1'b1; @(posedge CLOCK_50); // write-enabled
+                // data_out should show the same value for 6 cycles at a time because
+                // the read address only changes every 6 clock cycles
+                
+                SW[0] <= 1'b0; @(posedge CLOCK_50); // write-DISabled
                 SW[9] <= 1'b1; // write to task3
+
+                // read-only --- should display all zeros-- loaded from .mif file
                 for (i = 0; i < 2**5; i++) begin
                         SW[8:4] <= i;
                         SW[3:1] <= 3'b000; // repeats values 0-7 since values are truncated to 3 bits
@@ -197,8 +201,12 @@ module DE1_SoC_testbench();
                         $display("Value of i: %d. Value of address: %d, %b. Value of data_in: %d, %b. Value of data_out: %d, %b.",
                                   i, SW[8:4], SW[8:4], dut.data_in, dut.data_in, dut.data_out, dut.data_out);
                 end // for loop
-                
-                // write in data (cycles through 0-7)
+
+                $display ("----------------- turn write enable ON -------------------");
+                $display ("----------------- dual-port so still cycles outputs old data -------------------");
+
+                SW[0] <= 1'b1; @(posedge CLOCK_50); // write-enabled
+                SW[9] <= 1'b1; // write to task3
                 for (i = 0; i < 2**5; i++) begin
                         SW[8:4] <= i;
                         SW[3:1] <= i; // repeats values 0-7 since values are truncated to 3 bits
@@ -206,8 +214,10 @@ module DE1_SoC_testbench();
                         $display("Value of i: %d. Value of address: %d, %b. Value of data_in: %d, %b. Value of data_out: %d, %b.",
                                   i, SW[8:4], SW[8:4], dut.data_in, dut.data_in, dut.data_out, dut.data_out);
                 end // for loop
+                
 
                 $display ("----------------- turn write enable OFF -------------------");
+                $display ("----------------- outputs data written in in the past for-loop -------------------");
 
                 // so writing anything to the addresses shouldn't do anything
                 SW[0] <= 1'b0; // write enable off

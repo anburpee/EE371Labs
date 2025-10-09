@@ -18,12 +18,12 @@ vlog "../src/ram32x3port2.v"
 # Call vsim to invoke simulator
 #     Make sure the last item on the line is the name of the
 #     testbench module you want to execute.
-vsim -voptargs="+acc" -t 1ps -lib work enabled_counter_testbench -Lf altera_mf_ver
+vsim -voptargs="+acc" -t 1ps -lib work task3_testbench -Lf altera_mf_ver
 
 # Source the wave do file
 #     This should be the file that sets up the signal window for
 #     the module you are testing.
-do enabled_counter_wave.do
+do task3_wave.do
 
 # Set the window types
 view wave

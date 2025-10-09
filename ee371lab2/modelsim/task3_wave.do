@@ -2,10 +2,10 @@ onerror {resume}
 quietly WaveActivateNextPane {} 0
 add wave -noupdate /task3_testbench/clk
 add wave -noupdate /task3_testbench/wren
-add wave -noupdate /task3_testbench/w_address
-add wave -noupdate /task3_testbench/r_address
-add wave -noupdate /task3_testbench/data_in
-add wave -noupdate /task3_testbench/data_out
+add wave -noupdate -radix unsigned /task3_testbench/w_address
+add wave -noupdate -radix unsigned /task3_testbench/r_address
+add wave -noupdate -radix unsigned /task3_testbench/data_in
+add wave -noupdate -radix unsigned /task3_testbench/data_out
 TreeUpdate [SetDefaultTree]
 WaveRestoreCursors {{Cursor 1} {0 ps} 0}
 quietly wave cursor active 0
@@ -23,4 +23,4 @@ configure wave -griddelta 2
 configure wave -timeline 0
 configure wave -timelineunits ps
 update
-WaveRestoreZoom {11900 ps} {12900 ps}
+WaveRestoreZoom {0 ps} {1 ns}
