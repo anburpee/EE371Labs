@@ -10,7 +10,7 @@ cModel Technology
 Z0 dC:/ee371labs/ee371/ee371lab2/modelsim
 vDE1_SoC
 Z1 DXx6 sv_std 3 std 0 22 AD7iAPLo6nTIKk<N0eo=D3
-Z2 !s110 1759969546
+Z2 !s110 1760031036
 !i10b 1
 !s100 W[QNzf;O@JcXiVe53h0dP1
 IOJ4l@<D17B87Dc6Yz23=93
@@ -26,7 +26,7 @@ Z8 OV;L;10.5b;63
 r1
 !s85 0
 31
-Z9 !s108 1759969546.000000
+Z9 !s108 1760031036.000000
 Z10 !s107 ../src/DE1_SoC.sv|
 Z11 !s90 -reportprogress|300|../src/DE1_SoC.sv|
 !i113 1
@@ -58,7 +58,7 @@ R12
 n@d@e1_@so@c_testbench
 venabled_counter
 R1
-R2
+Z13 !s110 1760031037
 !i10b 1
 !s100 45MY8D>]1G:Lf<STjDR<30
 I[nFL>SMP3gO?OW7MaiBDH0
@@ -74,13 +74,13 @@ R8
 r1
 !s85 0
 31
-R9
+Z14 !s108 1760031037.000000
 !s107 ../src/enabled_counter.sv|
 !s90 -reportprogress|300|../src/enabled_counter.sv|
 !i113 1
 R12
 vram32x3
-Z13 !s110 1759969545
+R2
 !i10b 1
 !s100 >i_=LX@Q5h;U6@m4D`gHo2
 IC<Vjo:4obZ6;z>1F5T>ZC1
@@ -89,18 +89,18 @@ R0
 w1759532225
 8../src/ram32x3.v
 F../src/ram32x3.v
-Z14 L0 40
+Z15 L0 40
 R8
 r1
 !s85 0
 31
-Z15 !s108 1759969545.000000
+R9
 !s107 ../src/ram32x3.v|
 !s90 -reportprogress|300|../src/ram32x3.v|
 !i113 1
 R12
 vram32x3port2
-R2
+R13
 !i10b 1
 !s100 DJF=moLPRDj4YQPiEC59Q0
 I>Rh<m6=>AgS_g<2Z;N4oC1
@@ -109,12 +109,12 @@ R0
 w1759798808
 8../src/ram32x3port2.v
 F../src/ram32x3port2.v
-R14
+R15
 R8
 r1
 !s85 0
 31
-R9
+R14
 !s107 ../src/ram32x3port2.v|
 !s90 -reportprogress|300|../src/ram32x3port2.v|
 !i113 1
@@ -144,7 +144,7 @@ r1
 R12
 vseg7_one_output
 R1
-R2
+R13
 !i10b 1
 !s100 R4G1bEzZlLiBgcI<99nV]2
 ICBJ<h3JYfN=;bS:TfGlZL2
@@ -160,14 +160,14 @@ R8
 r1
 !s85 0
 31
-R9
+R14
 !s107 ../src/seg7_one_output.sv|
 !s90 -reportprogress|300|../src/seg7_one_output.sv|
 !i113 1
 R12
 vseg7_two_outputs
 R1
-R2
+R13
 !i10b 1
 !s100 7kLBDNgR<i0CRSG[RfI^g0
 ImNR@=oK8QaM2fIngjn2ae0
@@ -183,14 +183,14 @@ R8
 r1
 !s85 0
 31
-R9
+R14
 !s107 ../src/seg7_two_outputs.sv|
 !s90 -reportprogress|300|../src/seg7_two_outputs.sv|
 !i113 1
 R12
 vtask1
 R1
-R13
+R2
 !i10b 1
 !s100 >V1eaRzz84FTXVo`?1]U;0
 IcbfKSbJ9cgGZVYfRih1[30
@@ -206,14 +206,14 @@ R8
 r1
 !s85 0
 31
-R15
+R9
 Z21 !s107 ../src/task1.sv|
 Z22 !s90 -reportprogress|300|../src/task1.sv|
 !i113 1
 R12
 vtask1_testbench
 R1
-R13
+R2
 !i10b 1
 !s100 IESB54KO7TJ:UdlMH7dz[3
 IBBhDRKRl=i3_^O:MY]>0C3
@@ -229,7 +229,7 @@ R8
 r1
 !s85 0
 31
-R15
+R9
 R21
 R22
 !i113 1
@@ -282,7 +282,7 @@ R28
 R12
 vtask3
 R1
-R2
+R13
 !i10b 1
 !s100 ii[bkY2U1c<]9o<lo2eI20
 I2Flh_PkGlZ^0HOF87472O2
@@ -290,7 +290,7 @@ R3
 Z29 !s105 task3_sv_unit
 S1
 R0
-Z30 w1759969485
+Z30 w1759970729
 Z31 8../src/task3.sv
 Z32 F../src/task3.sv
 L0 3
@@ -298,17 +298,17 @@ R8
 r1
 !s85 0
 31
-R9
+R14
 Z33 !s107 ../src/task3.sv|
 Z34 !s90 -reportprogress|300|../src/task3.sv|
 !i113 1
 R12
 vtask3_testbench
 R1
-R2
+R13
 !i10b 1
-!s100 FCf_9`L3O`G[HJ@bLl2jf1
-I@LblmIJo:ekfJM[<WlPki0
+!s100 kH5X3=BELZzbJz:XQf>3J2
+IGZSi:WDPC[zSQe;l=X09z3
 R3
 R29
 S1
@@ -321,7 +321,7 @@ R8
 r1
 !s85 0
 31
-R9
+R14
 R33
 R34
 !i113 1
