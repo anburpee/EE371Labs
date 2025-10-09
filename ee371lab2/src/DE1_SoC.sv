@@ -133,6 +133,7 @@ module DE1_SoC_testbench();
         // test the design
         integer i;
         initial begin
+                // don't need task1 testbench since we don't instantiate task2 in top level
                 $display ("----------------- WE STILL NEED TO DISPLAY TESTBENCH STUFF FOR TASK 1 !!!! -------------------");
 
 

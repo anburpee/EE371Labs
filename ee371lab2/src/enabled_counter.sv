@@ -11,6 +11,9 @@ module enabled_counter (clk, reset, count);
     logic count_enable = 1'b0;
     logic [26:0] clk_cycles = 26'd0; // need 26 bits to make 50 million
 
+    logic num_cycles_threshold;
+    assign num_cycles_threshold = 50000000; // for board
+    // assign num_cycles_threshold = 5; // for simulation
 
     // logic for driving cout_enable
     always_ff @(posedge clk or posedge reset) begin // asynchronous reset
@@ -19,7 +22,7 @@ module enabled_counter (clk, reset, count);
             clk_cycles <= 26'b0;
         end // if
         else begin
-            if (clk_cycles >= 50000000) begin 
+            if (clk_cycles >= num_cycles_threshold) begin 
                 count_enable <= 1'b1;
                 clk_cycles <= 26'b0;
             end
@@ -39,4 +42,33 @@ module enabled_counter (clk, reset, count);
             count <= count + 1;
     end // always_ff
 
+endmodule
+
+
+
+// testbench
+`timescale 1 ps / 1 ps
+module enabled_counter_testbench(); 
+    logic clk, reset;
+    logic [4:0] count;
+
+    enabled_counter dut (.*);
+
+    parameter period = 100;
+
+    // simulation clock
+    initial begin
+        clk <= 0;
+        forever #(period/2) clk <= ~clk;
+    end // initial clock
+
+    integer i;
+    // test task1 module
+    initial begin
+        reset <= 1'b1;             @(posedge clk);
+        reset <= 1'b0;             @(posedge clk);
+                        repeat(30) @(posedge clk);
+
+        $stop; // end simulation
+    end // initial signals
 endmodule

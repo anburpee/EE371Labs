@@ -6,17 +6,6 @@ module task3 (clk, wren, w_address, r_address, data_in, data_out);
     input logic [2:0] data_in;
     output logic [2:0] data_out;
 
-    // logic [2:0] memory_array [0:31];
-
-    // always_ff @(posedge clk) begin
-    //     if (wren) begin
-    //         memory_array[w_address] <= data_in;
-    //         data_out <= data_in; // reads the new value
-    //     end
-    //     else begin
-    //     data_out <= memory_array[r_address]; // reads the old value
-    //     end
-    // end //always_ff
 
     // instantiate ram32x3port2
     ram32x3port2 ram (.clock(clk), .data(data_in), .rdaddress(r_address),
@@ -57,7 +46,7 @@ module task3_testbench();
                      i, w_address, r_address, data_in, data_in, data_out, data_out);
         end // for loop
 
-        $display ("----------------- read from one address after the write address -------------------");
+        $display ("----------------- read from 1 address after the write address -------------------");
 
         // write to and read from different addresses
         for (i = 0; i < 2**5; i++) begin
@@ -71,6 +60,7 @@ module task3_testbench();
                      i, w_address, r_address, data_in, data_in, data_out, data_out);
         end // for loop
 
+        $display ("----------------- wren off, same write and read address -------------------");
         // write enable is off
         // so writing anything to the addresses shouldn't do anything
         // data_out should read all zeros
@@ -83,11 +73,17 @@ module task3_testbench();
             $display("Value of i: %d. Value of address (w & r): %b, %b. Value of data_in: %d, %b. Value of data_out: %d, %b.",
                      i, w_address, r_address, data_in, data_in, data_out, data_out);
         end // for loop
-        // one additional clock edge to see the read of the 31st word line because 
-        // the read happens one clock cycle after the write
-        @(posedge clk);
-        $display("Value of i: %d. Value of address (w & r): %b, %b. Value of data_in: %d, %b. Value of data_out: %d, %b.",
+        
+        $display ("----------------- wren off, check that nothing from previous loop got written in -------------------");
+        // one for for-loop to check that no data was written in from previous for-loop
+        for (i = 0; i < 2**5; i++) begin
+            w_address <= i;
+            r_address <= i;
+            data_in <= i;
+            @(posedge clk);
+            $display("Value of i: %d. Value of address (w & r): %b, %b. Value of data_in: %d, %b. Value of data_out: %d, %b.",
                      i, w_address, r_address, data_in, data_in, data_out, data_out);
+        end // for loop
 
         $stop; // stop simulation
     end //initial signals 
