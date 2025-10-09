@@ -10,7 +10,7 @@ cModel Technology
 Z0 dC:/ee371labs/ee371/ee371lab2/modelsim
 vDE1_SoC
 Z1 DXx6 sv_std 3 std 0 22 AD7iAPLo6nTIKk<N0eo=D3
-Z2 !s110 1760034827
+Z2 !s110 1760041742
 !i10b 1
 !s100 n7cQ8DozL76g2?K2e=kbV2
 IG7cZQMQUjInDMgnRM[VOJ2
@@ -26,7 +26,7 @@ Z8 OV;L;10.5b;63
 r1
 !s85 0
 31
-Z9 !s108 1760034827.000000
+Z9 !s108 1760041742.000000
 Z10 !s107 ../src/DE1_SoC.sv|
 Z11 !s90 -reportprogress|300|../src/DE1_SoC.sv|
 !i113 1
@@ -58,25 +58,48 @@ R12
 n@d@e1_@so@c_testbench
 venabled_counter
 R1
-Z13 !s110 1760034828
+R2
 !i10b 1
-!s100 45MY8D>]1G:Lf<STjDR<30
-I[nFL>SMP3gO?OW7MaiBDH0
+!s100 :`2mIIe4GU:5VdD75EdTX0
+IH59PJicojo@1gHzf4<KaF1
 R3
-!s105 enabled_counter_sv_unit
+Z13 !s105 enabled_counter_sv_unit
 S1
 R0
-w1759965288
-8../src/enabled_counter.sv
-F../src/enabled_counter.sv
+Z14 w1760041734
+Z15 8../src/enabled_counter.sv
+Z16 F../src/enabled_counter.sv
 L0 7
 R8
 r1
 !s85 0
 31
-Z14 !s108 1760034828.000000
-!s107 ../src/enabled_counter.sv|
-!s90 -reportprogress|300|../src/enabled_counter.sv|
+R9
+Z17 !s107 ../src/enabled_counter.sv|
+Z18 !s90 -reportprogress|300|../src/enabled_counter.sv|
+!i113 1
+R12
+venabled_counter_testbench
+R1
+R2
+!i10b 1
+!s100 E^nbQiYS4_GV[EN_PaEF^2
+IGKI5HCX<n9ha=id6N3cNU1
+R3
+R13
+S1
+R0
+R14
+R15
+R16
+L0 51
+R8
+r1
+!s85 0
+31
+R9
+R17
+R18
 !i113 1
 R12
 vram32x3
@@ -89,7 +112,7 @@ R0
 w1759532225
 8../src/ram32x3.v
 F../src/ram32x3.v
-Z15 L0 40
+Z19 L0 40
 R8
 r1
 !s85 0
@@ -100,7 +123,7 @@ R9
 !i113 1
 R12
 vram32x3port2
-R13
+R2
 !i10b 1
 !s100 DJF=moLPRDj4YQPiEC59Q0
 I>Rh<m6=>AgS_g<2Z;N4oC1
@@ -109,12 +132,12 @@ R0
 w1759798808
 8../src/ram32x3port2.v
 F../src/ram32x3port2.v
-R15
+R19
 R8
 r1
 !s85 0
 31
-R14
+R9
 !s107 ../src/ram32x3port2.v|
 !s90 -reportprogress|300|../src/ram32x3port2.v|
 !i113 1
@@ -132,7 +155,7 @@ R0
 w1759712164
 8../src/seg7.sv
 F../src/seg7.sv
-Z16 L0 10
+Z20 L0 10
 R8
 r1
 !s85 0
@@ -144,7 +167,7 @@ r1
 R12
 vseg7_one_output
 R1
-R13
+R2
 !i10b 1
 !s100 R4G1bEzZlLiBgcI<99nV]2
 ICBJ<h3JYfN=;bS:TfGlZL2
@@ -155,7 +178,7 @@ R0
 w1759891307
 8../src/seg7_one_output.sv
 F../src/seg7_one_output.sv
-R16
+R20
 R8
 r1
 !s85 0
@@ -167,7 +190,7 @@ R9
 R12
 vseg7_two_outputs
 R1
-R13
+R2
 !i10b 1
 !s100 7kLBDNgR<i0CRSG[RfI^g0
 ImNR@=oK8QaM2fIngjn2ae0
@@ -178,12 +201,12 @@ R0
 w1759891328
 8../src/seg7_two_outputs.sv
 F../src/seg7_two_outputs.sv
-R16
+R20
 R8
 r1
 !s85 0
 31
-R14
+R9
 !s107 ../src/seg7_two_outputs.sv|
 !s90 -reportprogress|300|../src/seg7_two_outputs.sv|
 !i113 1
@@ -195,20 +218,20 @@ R2
 !s100 >V1eaRzz84FTXVo`?1]U;0
 IcbfKSbJ9cgGZVYfRih1[30
 R3
-Z17 !s105 task1_sv_unit
+Z21 !s105 task1_sv_unit
 S1
 R0
-Z18 w1759715093
-Z19 8../src/task1.sv
-Z20 F../src/task1.sv
+Z22 w1759715093
+Z23 8../src/task1.sv
+Z24 F../src/task1.sv
 L0 3
 R8
 r1
 !s85 0
 31
 R9
-Z21 !s107 ../src/task1.sv|
-Z22 !s90 -reportprogress|300|../src/task1.sv|
+Z25 !s107 ../src/task1.sv|
+Z26 !s90 -reportprogress|300|../src/task1.sv|
 !i113 1
 R12
 vtask1_testbench
@@ -218,20 +241,20 @@ R2
 !s100 IESB54KO7TJ:UdlMH7dz[3
 IBBhDRKRl=i3_^O:MY]>0C3
 R3
-R17
+R21
 S1
 R0
-R18
-R19
-R20
+R22
+R23
+R24
 L0 20
 R8
 r1
 !s85 0
 31
 R9
-R21
-R22
+R25
+R26
 !i113 1
 R12
 vtask2
@@ -241,20 +264,20 @@ R2
 !s100 T^J1RZWBz2LVlCn2Z4Emi0
 IMZ:E[UWBdVRN;m9RDjG2g0
 R3
-Z23 !s105 task2_sv_unit
+Z27 !s105 task2_sv_unit
 S1
 R0
-Z24 w1759796360
-Z25 8../src/task2.sv
-Z26 F../src/task2.sv
+Z28 w1760040896
+Z29 8../src/task2.sv
+Z30 F../src/task2.sv
 L0 2
 R8
 r1
 !s85 0
 31
 R9
-Z27 !s107 ../src/task2.sv|
-Z28 !s90 -reportprogress|300|../src/task2.sv|
+Z31 !s107 ../src/task2.sv|
+Z32 !s90 -reportprogress|300|../src/task2.sv|
 !i113 1
 R12
 vtask2_testbench
@@ -264,65 +287,65 @@ R2
 !s100 3IGog5;9Mbj2lzi9MRG?T0
 ISc@h<F8QCJd;Y_G75iOk:0
 R3
-R23
+R27
 S1
 R0
-R24
-R25
-R26
+R28
+R29
+R30
 L0 26
 R8
 r1
 !s85 0
 31
 R9
-R27
-R28
+R31
+R32
 !i113 1
 R12
 vtask3
 R1
-R13
+R2
 !i10b 1
-!s100 ii[bkY2U1c<]9o<lo2eI20
-I2Flh_PkGlZ^0HOF87472O2
+!s100 H31AP^l?aSGWd^?jdk52z1
+IkcI?h7k`mV4ed;nDfH0a93
 R3
-Z29 !s105 task3_sv_unit
+Z33 !s105 task3_sv_unit
 S1
 R0
-Z30 w1760034797
-Z31 8../src/task3.sv
-Z32 F../src/task3.sv
+Z34 w1760040882
+Z35 8../src/task3.sv
+Z36 F../src/task3.sv
 L0 3
 R8
 r1
 !s85 0
 31
-R14
-Z33 !s107 ../src/task3.sv|
-Z34 !s90 -reportprogress|300|../src/task3.sv|
+R9
+Z37 !s107 ../src/task3.sv|
+Z38 !s90 -reportprogress|300|../src/task3.sv|
 !i113 1
 R12
 vtask3_testbench
 R1
-R13
+R2
 !i10b 1
-!s100 1BG:FV43J]I9llD160<MF1
-IbzK:gPcIfMb8ncDR9n04S0
+!s100 DefS>gm^dO:bA=8aZG3<g2
+IN:6J?GXSYVVc<T@^kR0GN0
 R3
-R29
+R33
 S1
 R0
-R30
-R31
-R32
-L0 29
+R34
+R35
+R36
+L0 18
 R8
 r1
 !s85 0
 31
-R14
-R33
-R34
+R9
+R37
+R38
 !i113 1
 R12

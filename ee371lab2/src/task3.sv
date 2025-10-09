@@ -32,7 +32,7 @@ module task3_testbench();
     end // initial clock
 
     integer i;
-    // test task1 module
+    // test task3 module
     initial begin
         wren <= 1'b1; @(posedge clk); // write-enabled
         // write to and read from the same address

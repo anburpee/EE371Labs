@@ -1,4 +1,4 @@
-// this is a generalized counter module that cycles through 0 to 31
+// this is a counter module that cycles through 0 to 31
 // counter increments every 50,000,000 clock cycles
 // (if 50MHZ clk is passed in, count increments every second)
 // outputs the count, which is put in as the signal for the read address
@@ -11,9 +11,9 @@ module enabled_counter (clk, reset, count);
     logic count_enable = 1'b0;
     logic [26:0] clk_cycles = 26'd0; // need 26 bits to make 50 million
 
-    logic num_cycles_threshold;
-    assign num_cycles_threshold = 50000000; // for board
-    // assign num_cycles_threshold = 5; // for simulation
+    logic [26:0] num_cycles_threshold;
+    // assign num_cycles_threshold = 50000000; // for board
+    assign num_cycles_threshold = 5; // for simulation
 
     // logic for driving cout_enable
     always_ff @(posedge clk or posedge reset) begin // asynchronous reset
@@ -63,11 +63,11 @@ module enabled_counter_testbench();
     end // initial clock
 
     integer i;
-    // test task1 module
+    // test module
     initial begin
         reset <= 1'b1;             @(posedge clk);
         reset <= 1'b0;             @(posedge clk);
-                        repeat(30) @(posedge clk);
+                        repeat(20) @(posedge clk);
 
         $stop; // end simulation
     end // initial signals

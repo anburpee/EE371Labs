@@ -40,7 +40,7 @@ module task2_testbench();
     end // initial clock
 
     integer i;
-    // test task1 module
+    // test task2 module
     initial begin
         wren <= 1'b1; @(posedge clk); // write-enabled
         // write in all zeros
