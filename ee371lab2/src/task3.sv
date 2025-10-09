@@ -47,6 +47,7 @@ module task3_testbench();
     initial begin
         wren <= 1'b1; @(posedge clk); // write-enabled
         // write to and read from the same address
+        // should display 0s since mif file contains all 0s
         for (i = 0; i < 2**5; i++) begin
             w_address <= i;
             r_address <= i;
