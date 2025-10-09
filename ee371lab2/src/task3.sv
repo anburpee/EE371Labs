@@ -52,9 +52,11 @@ module task3_testbench();
             r_address <= i;
             data_in <= i; // repeats values 0-7 since values are truncated to 3 bits
             @(posedge clk);
-            $display("Value of i: %d. Value of address: %d, %b. Value of data_in: %d, %b. Value of data_out: %d, %b.",
-                     i, address, address, data_in, data_in, data_out, data_out);
+            $display("Value of i: %d. Value of address (w & r): %b, %b. Value of data_in: %d, %b. Value of data_out: %d, %b.",
+                     i, w_address, r_address, data_in, data_in, data_out, data_out);
         end // for loop
+
+        $display ("----------------- read from one address after the write address -------------------");
 
         // write to and read from different addresses
         for (i = 0; i < 2**5; i++) begin
@@ -64,8 +66,8 @@ module task3_testbench();
                                 // last iteration (even thoug data_in = 0)
             data_in <= 3'b000; 
             @(posedge clk);
-            $display("Value of i: %d. Value of address: %d, %b. Value of data_in: %d, %b. Value of data_out: %d, %b.",
-                     i, address, address, data_in, data_in, data_out, data_out);
+            $display("Value of i: %d. Value of address (w & r): %b, %b. Value of data_in: %d, %b. Value of data_out: %d, %b.",
+                     i, w_address, r_address, data_in, data_in, data_out, data_out);
         end // for loop
 
         // write enable is off
@@ -77,14 +79,14 @@ module task3_testbench();
             r_address <= i;
             data_in <= i;
             @(posedge clk);
-            $display("Value of i: %d. Value of address: %d, %b. Value of data_in: %d, %b. Value of data_out: %d, %b.",
-                     i, address, address, data_in, data_in, data_out, data_out);
+            $display("Value of i: %d. Value of address (w & r): %b, %b. Value of data_in: %d, %b. Value of data_out: %d, %b.",
+                     i, w_address, r_address, data_in, data_in, data_out, data_out);
         end // for loop
         // one additional clock edge to see the read of the 31st word line because 
         // the read happens one clock cycle after the write
         @(posedge clk);
-        $display("Value of i: %d. Value of address: %d, %b. Value of data_in: %d, %b. Value of data_out: %d, %b.",
-                 i, address, address, data_in, data_in, data_out, data_out);
+        $display("Value of i: %d. Value of address (w & r): %b, %b. Value of data_in: %d, %b. Value of data_out: %d, %b.",
+                     i, w_address, r_address, data_in, data_in, data_out, data_out);
 
         $stop; // stop simulation
     end //initial signals 
