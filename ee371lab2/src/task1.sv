@@ -37,6 +37,8 @@ module task1_testbench();
     // test task1 module
     initial begin
         wren <= 1'b1; @(posedge clk); // write-enabled
+        $display ("----------------- write enable ON -------------------");
+        $display ("----------------- write in all zeros -------------------");
         // write in all zeros
         for (i = 0; i < 2**5; i++) begin
             address <= i;
@@ -47,8 +49,8 @@ module task1_testbench();
             // @(posedge clk);
         end // for loop
 
+        $display ("----------------- write in numbers 0-7 -------------------");
         // now write something different in a few of the addresses
-        // just to see something interesting lol
         for (i = 0; i < 2**5; i++) begin
             address <= i;
             data_in <= i; // repeats values 0-7 since values are truncated to 3 bits
@@ -60,7 +62,11 @@ module task1_testbench();
 
         // write enable is off
         // so writing anything to the addresses shouldn't do anything
+
         wren <= 1'b0; 
+
+        $display ("----------------- write enable OFF -------------------");
+
         for (i = 0; i < 2**5; i++) begin
             address <= i;
             data_in <= 3'b000;

@@ -10,7 +10,7 @@ cModel Technology
 Z0 dC:/ee371labs/ee371/ee371lab2/modelsim
 vanti_metastability
 Z1 DXx6 sv_std 3 std 0 22 AD7iAPLo6nTIKk<N0eo=D3
-Z2 !s110 1760061976
+Z2 !s110 1760070122
 !i10b 1
 !s100 ;^d<;Na@[`YdhaP1BI[Ho3
 I16M610nd=Y<z7oE4VdcHI3
@@ -26,22 +26,22 @@ Z4 OV;L;10.5b;63
 r1
 !s85 0
 31
-Z5 !s108 1760061976.000000
+Z5 !s108 1760070122.000000
 !s107 ../src/anti_metastability.sv|
 !s90 -reportprogress|300|../src/anti_metastability.sv|
 !i113 1
 Z6 tCvgOpt 0
 vDE1_SoC
 R1
-Z7 !s110 1760061975
+Z7 !s110 1760070121
 !i10b 1
-!s100 llnOKCAeESPUOOlJPU[zI2
-IH:j>7][_82nB0YfU9DQ4K1
+!s100 X;5F:@5H99Z4f2o2k`Y<20
+IE?l>?[o]C2V30_ZZVL`mz0
 R3
 Z8 !s105 DE1_SoC_sv_unit
 S1
 R0
-Z9 w1760061477
+Z9 w1760065442
 Z10 8../src/DE1_SoC.sv
 Z11 F../src/DE1_SoC.sv
 L0 8
@@ -49,7 +49,7 @@ R4
 r1
 !s85 0
 31
-Z12 !s108 1760061975.000000
+Z12 !s108 1760070121.000000
 Z13 !s107 ../src/DE1_SoC.sv|
 Z14 !s90 -reportprogress|300|../src/DE1_SoC.sv|
 !i113 1
@@ -59,8 +59,8 @@ vDE1_SoC_testbench
 R1
 R7
 !i10b 1
-!s100 ]FKYUEc`hMgS?`TmP[AOg2
-IDgo^Pz1SZEHlM6dL4E<XX2
+!s100 88PO<jBQ7O^TdSM?15R172
+INl2KFU;LIKhm[e9XfKn4:3
 R3
 R8
 S1
@@ -68,7 +68,7 @@ R0
 R9
 R10
 R11
-L0 127
+L0 128
 R4
 r1
 !s85 0
@@ -83,13 +83,13 @@ venabled_counter
 R1
 R2
 !i10b 1
-!s100 :`2mIIe4GU:5VdD75EdTX0
-IH59PJicojo@1gHzf4<KaF1
+!s100 YXBcW7lEBo^HPjBnn^2CS3
+IQWUAGnP`7O:bh]Y`a;mQB1
 R3
 Z15 !s105 enabled_counter_sv_unit
 S1
 R0
-Z16 w1760041734
+Z16 w1760065448
 Z17 8../src/enabled_counter.sv
 Z18 F../src/enabled_counter.sv
 L0 7
@@ -229,7 +229,7 @@ R4
 r1
 !s85 0
 31
-R12
+R5
 !s107 ../src/seg7_two_outputs.sv|
 !s90 -reportprogress|300|../src/seg7_two_outputs.sv|
 !i113 1
@@ -244,7 +244,7 @@ R3
 Z23 !s105 task1_sv_unit
 S1
 R0
-Z24 w1759715093
+Z24 w1760068127
 Z25 8../src/task1.sv
 Z26 F../src/task1.sv
 L0 3
@@ -261,8 +261,8 @@ vtask1_testbench
 R1
 R7
 !i10b 1
-!s100 IESB54KO7TJ:UdlMH7dz[3
-IBBhDRKRl=i3_^O:MY]>0C3
+!s100 @173G?n:ETWDc2D;BRhPE1
+I=TjXNQNL_fc>XMdGe:D>^1
 R3
 R23
 S1
@@ -290,7 +290,7 @@ R3
 Z29 !s105 task2_sv_unit
 S1
 R0
-Z30 w1760040896
+Z30 w1760070117
 Z31 8../src/task2.sv
 Z32 F../src/task2.sv
 L0 2
@@ -307,8 +307,8 @@ vtask2_testbench
 R1
 R7
 !i10b 1
-!s100 3IGog5;9Mbj2lzi9MRG?T0
-ISc@h<F8QCJd;Y_G75iOk:0
+!s100 Y]bRO2K3hOV7>ZB25=^jo1
+IHX@N7[03dnYzFn;JORkbY0
 R3
 R29
 S1

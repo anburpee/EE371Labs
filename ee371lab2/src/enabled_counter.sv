@@ -12,8 +12,8 @@ module enabled_counter (clk, reset, count);
     logic [26:0] clk_cycles = 26'd0; // need 26 bits to make 50 million
 
     logic [26:0] num_cycles_threshold;
-    // assign num_cycles_threshold = 50000000; // for board
-    assign num_cycles_threshold = 5; // for simulation
+    assign num_cycles_threshold = 50000000; // for board
+    //assign num_cycles_threshold = 5; // for simulation
 
     // logic for driving cout_enable
     always_ff @(posedge clk or posedge reset) begin // asynchronous reset

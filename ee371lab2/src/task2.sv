@@ -43,6 +43,9 @@ module task2_testbench();
     // test task2 module
     initial begin
         wren <= 1'b1; @(posedge clk); // write-enabled
+
+        $display ("----------------- write enable ON -------------------");
+        $display ("----------------- write in all zeros -------------------");
         // write in all zeros
         for (i = 0; i < 2**5; i++) begin
             address <= i;
@@ -52,8 +55,8 @@ module task2_testbench();
                      i, address, address, data_in, data_in, data_out, data_out);
         end // for loop
 
+        $display ("----------------- write in numbers 0-7 -------------------");
         // now write something different in a few of the addresses
-        // just to see something interesting lol
         for (i = 0; i < 2**5; i++) begin
             address <= i;
             data_in <= i; // repeats values 0-7 since values are truncated to 3 bits
@@ -65,6 +68,7 @@ module task2_testbench();
         // write enable is off
         // so writing anything to the addresses shouldn't do anything
         wren <= 1'b0; 
+        $display ("----------------- write enable OFF -------------------");
         for (i = 0; i < 2**5; i++) begin
             address <= i;
             data_in <= 3'b000;
@@ -72,11 +76,6 @@ module task2_testbench();
             $display("Value of i: %d. Value of address: %d, %b. Value of data_in: %d, %b. Value of data_out: %d, %b.",
                      i, address, address, data_in, data_in, data_out, data_out);
         end // for loop
-        // one additional clock edge to see the read of the 31st word line because 
-        // the read happens one clock cycle after the write
-        @(posedge clk);
-        $display("Value of i: %d. Value of address: %d, %b. Value of data_in: %d, %b. Value of data_out: %d, %b.",
-                 i, address, address, data_in, data_in, data_out, data_out);
 
         $stop; // stop simulation
     end //initial signals 

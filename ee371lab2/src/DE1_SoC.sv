@@ -42,7 +42,8 @@ module DE1_SoC (CLOCK_50, KEY, HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, SW, LEDR);
 
         // task 2 clock
         logic clk_tsk2;
-        assign clk_tsk2 = ~key0; 
+        assign clk_tsk2 = ~key0; // for board
+        //assign clk_tsk2 = ~KEY[0]; // for simulation
 
 
         // logic [31:0] div_clock;
@@ -106,7 +107,7 @@ module DE1_SoC (CLOCK_50, KEY, HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, SW, LEDR);
 
         // if SW[9] == 1, output data is from task3 memory
         // if SW[9] == 0, output data is from task2 memory
-        assign data_out = SW[9] ? data_out_tsk3 : data_out_tsk2;
+        assign data_out = sw9 ? data_out_tsk3 : data_out_tsk2;
 
 
 
@@ -152,9 +153,6 @@ module DE1_SoC_testbench();
         // test the design
         integer i;
         initial begin
-                // don't need task1 testbench since we don't instantiate task2 in top level
-                $display ("----------------- WE STILL NEED TO DISPLAY TESTBENCH STUFF FOR TASK 1 !!!! -------------------");
-
                 // reset
                 KEY[3] <= 1'b0;         @(posedge CLOCK_50);
                 KEY[3] <= 1'b1;         @(posedge CLOCK_50);
@@ -215,10 +213,10 @@ module DE1_SoC_testbench();
                 // read-only --- should display all zeros-- loaded from .mif file
                 for (i = 0; i < 2**5; i++) begin
                         SW[8:4] <= i;
-                        SW[3:1] <= i; // repeats values 0-7 since values are truncated to 3 bits
+                        SW[3:1] <= 3'b000;
                         @(posedge CLOCK_50);
-                        $display("Value of i: %d. Value of address: %d, %b. Value of data_in: %d, %b. Value of data_out: %d, %b.",
-                                  i, SW[8:4], SW[8:4], dut.data_in, dut.data_in, dut.data_out, dut.data_out);
+                        $display("Value of i: %d. Value of address (w & r): %d, %d. Value of data_in: %d, %b. Value of data_out: %d, %b.",
+                                  i, SW[8:4], dut.r_address, dut.data_in, dut.data_in, dut.data_out, dut.data_out);
                 end // for loop
 
                 $display ("----------------- turn write enable ON -------------------");
@@ -234,8 +232,8 @@ module DE1_SoC_testbench();
                         SW[8:4] <= i;
                         SW[3:1] <= i; // repeats values 0-7 since values are truncated to 3 bits
                         @(posedge CLOCK_50);
-                        $display("Value of i: %d. Value of address: %d, %b. Value of data_in: %d, %b. Value of data_out: %d, %b.",
-                                  i, SW[8:4], SW[8:4], dut.data_in, dut.data_in, dut.data_out, dut.data_out);
+                        $display("Value of i: %d. Value of address (w & r): %d, %d. Value of data_in: %d, %b. Value of data_out: %d, %b.",
+                                  i, SW[8:4], dut.r_address, dut.data_in, dut.data_in, dut.data_out, dut.data_out);
                 end // for loop
                 
 
@@ -248,8 +246,8 @@ module DE1_SoC_testbench();
                         SW[8:4] <= i;
                         SW[3:1] <= 3'b000;
                         @(posedge CLOCK_50);
-                        $display("Value of i: %d. Value of address: %d, %b. Value of data_in: %d, %b. Value of data_out: %d, %b.",
-                                 i, SW[8:4], SW[8:4], dut.data_in, dut.data_in, dut.data_out, dut.data_out);
+                        $display("Value of i: %d. Value of address (w & r): %d, %d. Value of data_in: %d, %b. Value of data_out: %d, %b.",
+                                  i, SW[8:4], dut.r_address, dut.data_in, dut.data_in, dut.data_out, dut.data_out);
                 end // for loop
 
 
