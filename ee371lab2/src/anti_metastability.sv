@@ -12,4 +12,4 @@ module anti_metastability (clk, in, out);
 			out <= ff1_out;
 			
 	end
-endmodule
+endmodule 

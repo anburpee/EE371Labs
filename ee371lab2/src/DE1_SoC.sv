@@ -11,6 +11,8 @@ module DE1_SoC (CLOCK_50, KEY, HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, SW, LEDR);
         input logic [3:0] KEY;
         output logic [6:0] HEX0, HEX1, HEX2, HEX3, HEX4, HEX5;
         output logic [9:0] LEDR;
+		  
+	assign LEDR = 10'b0000000000;
 
 
         // system clock
@@ -18,6 +20,8 @@ module DE1_SoC (CLOCK_50, KEY, HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, SW, LEDR);
         assign clk = CLOCK_50;
 
         // put inputs through anti-metastability modules
+        logic key3, key0, sw0, sw1, sw2, sw3, sw4, sw5, sw6, sw7, sw8, sw9;
+
         anti_metastability stable_reset (.clk(clk), .in(KEY[3]), .out(key3));
         anti_metastability stable_clk2 (.clk(clk), .in(KEY[0]), .out(key0));
         anti_metastability stable_sw0 (.clk(clk), .in(SW[0]), .out(sw0));
@@ -74,7 +78,21 @@ module DE1_SoC (CLOCK_50, KEY, HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, SW, LEDR);
 
 
         // instantiate module that cycles through read addresses
-        enabled_counter r_addresses (.clk(clk), .reset(reset), .count(r_address));
+        logic [4:0] counter_out;
+        enabled_counter counter (.clk(clk), .reset(reset), .count(counter_out));
+
+        // if SW[9] == 1: assign r_address to the output to the counter module (for task3)
+        // if SW[9] == 1: assign r_address to be the same as w_address (for task2)
+        logic [4:0] r_address;
+        always_comb begin
+                if (sw9) begin // task3
+                        r_address = counter_out;
+                end
+                else begin // task2
+                        r_address = w_address;
+                end
+        end // always_comb
+
 
         // instantiate task2 and task3 modules
         logic [2:0] data_out, data_out_tsk2, data_out_tsk3;
@@ -89,6 +107,7 @@ module DE1_SoC (CLOCK_50, KEY, HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, SW, LEDR);
         // if SW[9] == 1, output data is from task3 memory
         // if SW[9] == 0, output data is from task2 memory
         assign data_out = SW[9] ? data_out_tsk3 : data_out_tsk2;
+
 
 
         // set up displays on 7 segment displays
@@ -136,21 +155,20 @@ module DE1_SoC_testbench();
                 // don't need task1 testbench since we don't instantiate task2 in top level
                 $display ("----------------- WE STILL NEED TO DISPLAY TESTBENCH STUFF FOR TASK 1 !!!! -------------------");
 
-                KEY[3] <= 1'b0;
-                @(posedge CLOCK_50);
-                KEY[3] <= 1'b1;
-                @(posedge CLOCK_50);
+                // reset
+                KEY[3] <= 1'b0;         @(posedge CLOCK_50);
+                KEY[3] <= 1'b1;         @(posedge CLOCK_50);
 
                 $display ("----------------- TESTBENCH TASK 2 -------------------");
                 $display ("----------------- turn write enable ON -------------------");
 
                 // data_out should show data_in value after 1 clock cycle--all zeros
-                SW[0] <= 1'b1; @(posedge ~KEY[0]); // write-enabled
-                SW[9] <= 1'b0; // write to task2
+                SW[0] <= 1'b1; // write-enabled
+                SW[9] <= 1'b0; @(negedge KEY[0]); // write to task2
                 for (i = 0; i < 2**5; i++) begin
                         SW[8:4] <= i;
-                        SW[3:1] <= 3'b000; // repeats values 0-7 since values are truncated to 3 bits
-                        @(posedge ~KEY[0]);
+                        SW[3:1] <= 3'b000; 
+                        @(negedge KEY[0]);
                         $display("Value of i: %d. Value of address: %d, %b. Value of data_in: %d, %b. Value of data_out: %d, %b.",
                                   i, SW[8:4], SW[8:4], dut.data_in, dut.data_in, dut.data_out, dut.data_out);
                 end // for loop
@@ -160,7 +178,7 @@ module DE1_SoC_testbench();
                 for (i = 0; i < 2**5; i++) begin
                         SW[8:4] <= i;
                         SW[3:1] <= i; // repeats values 0-7 since values are truncated to 3 bits
-                        @(posedge ~KEY[0]);
+                        @(negedge KEY[0]);
                         $display("Value of i: %d. Value of address: %d, %b. Value of data_in: %d, %b. Value of data_out: %d, %b.",
                                   i, SW[8:4], SW[8:4], dut.data_in, dut.data_in, dut.data_out, dut.data_out);
                 end // for loop
@@ -169,41 +187,46 @@ module DE1_SoC_testbench();
 
                 // so writing anything to the addresses shouldn't do anything
                 // data_out still cycles through 0-7
-                SW[0] <= 1'b0; // write enable off
+                SW[0] <= 1'b0; @(negedge KEY[0]); // write enable off
                 for (i = 0; i < 2**5; i++) begin
                         SW[8:4] <= i;
                         SW[3:1] <= 3'b000;
-                        @(posedge ~KEY[0]);
+                        @(negedge KEY[0]);
                         $display("Value of i: %d. Value of address: %d, %b. Value of data_in: %d, %b. Value of data_out: %d, %b.",
                                  i, SW[8:4], SW[8:4], dut.data_in, dut.data_in, dut.data_out, dut.data_out);
                 end // for loop
 
 
                 $display ("----------------- NOW TESTBENCH TASK 3 -------------------");
+                $display ("----------------- data_out should show the same value for 6 cycles at a time -------------------");
                 $display ("----------------- turn write enable OFF to see .mif output -------------------");
-
-                KEY[3] <= 1'b0;
-                @(posedge CLOCK_50);
-                KEY[3] <= 1'b1;
-                @(posedge CLOCK_50);
 
                 // data_out should show the same value for 6 cycles at a time because
                 // the read address only changes every 6 clock cycles
+
+                // reset
+                KEY[3] <= 1'b0;         @(posedge CLOCK_50);
+                KEY[3] <= 1'b1;         @(posedge CLOCK_50);
                 
-                SW[0] <= 1'b0; @(posedge CLOCK_50); // write-DISabled
+                SW[0] <= 1'b0;          @(posedge CLOCK_50); // write-DISabled
                 SW[9] <= 1'b1; // write to task3
+
 
                 // read-only --- should display all zeros-- loaded from .mif file
                 for (i = 0; i < 2**5; i++) begin
                         SW[8:4] <= i;
-                        SW[3:1] <= 3'b000; // repeats values 0-7 since values are truncated to 3 bits
+                        SW[3:1] <= i; // repeats values 0-7 since values are truncated to 3 bits
                         @(posedge CLOCK_50);
                         $display("Value of i: %d. Value of address: %d, %b. Value of data_in: %d, %b. Value of data_out: %d, %b.",
                                   i, SW[8:4], SW[8:4], dut.data_in, dut.data_in, dut.data_out, dut.data_out);
                 end // for loop
 
                 $display ("----------------- turn write enable ON -------------------");
-                $display ("----------------- dual-port so still cycles outputs old data -------------------");
+                $display ("----------------- dual-port so still outputs old data (zeros) -------------------");
+
+                // reset
+                KEY[3] <= 1'b0;         @(posedge CLOCK_50);
+                KEY[3] <= 1'b1;         @(posedge CLOCK_50);
 
                 SW[0] <= 1'b1; @(posedge CLOCK_50); // write-enabled
                 SW[9] <= 1'b1; // write to task3
