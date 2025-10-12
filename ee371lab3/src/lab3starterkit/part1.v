@@ -20,6 +20,18 @@ module part1 (CLOCK_50, CLOCK2_50, KEY, FPGA_I2C_SCLK, FPGA_I2C_SDAT, AUD_XCK,
 
 	/////////////////////////////////
 	// Your code goes here 
+	always_ff @(posedge CLOCK_50) begin
+		if (read_ready && write_ready) begin
+			read <= 1'b1;	// tell CODEC interface to provide new input data to circuit
+			write <= 1'b1;  // tell CODEC interface to store aduio data from writedata signals to output buffer
+			writedata_left <= readdata_left;
+			writedata_right <= readdata_right;
+		end
+		else begin
+			read <= 1'b0;
+			write <= 1'b0;
+		end
+	end // always_ff
 	/////////////////////////////////
 	
 	assign writedata_left = ... not shown
