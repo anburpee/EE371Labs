@@ -19,7 +19,7 @@ module part1 (CLOCK_50, CLOCK2_50, KEY, FPGA_I2C_SCLK, FPGA_I2C_SDAT, AUD_XCK,
 	wire reset = ~KEY[0];
 
 	/////////////////////////////////
-	// Your code goes here 
+	// Your code goes here (BM - nick said not for task1 tho)
 	always_ff @(posedge CLOCK_50) begin
 		if (read_ready && write_ready) begin
 			read <= 1'b1;	// tell CODEC interface to provide new input data to circuit
@@ -34,10 +34,11 @@ module part1 (CLOCK_50, CLOCK2_50, KEY, FPGA_I2C_SCLK, FPGA_I2C_SDAT, AUD_XCK,
 	end // always_ff
 	/////////////////////////////////
 	
-	assign writedata_left = ... not shown
-	assign writedata_right = ... not shown
-	assign read = ... not shown
-	assign write = ... not shown
+	// BM according to nick the only lines to modify for task1 are these 4 (alr modified)
+	assign writedata_left = readdata_right;
+	assign writedata_right = readdata_left;
+	assign read = read_ready;
+	assign write = write_ready;
 	
 /////////////////////////////////////////////////////////////////////////////////
 // Audio CODEC interface. 
