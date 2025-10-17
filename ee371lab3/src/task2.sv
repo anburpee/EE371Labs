@@ -11,22 +11,22 @@
 module task2 (CLOCK_50, CLOCK2_50, KEY, FPGA_I2C_SCLK, FPGA_I2C_SDAT, AUD_XCK, 
 		        AUD_DACLRCK, AUD_ADCLRCK, AUD_BCLK, AUD_ADCDAT, AUD_DACDAT);
 
-	input CLOCK_50, CLOCK2_50;
-	input [0:0] KEY;
+	input logic CLOCK_50, CLOCK2_50;
+	input logic [0:0] KEY;
 	// I2C Audio/Video config interface
-	output FPGA_I2C_SCLK;
-	inout FPGA_I2C_SDAT;
+	output logic FPGA_I2C_SCLK;
+	inout logic FPGA_I2C_SDAT;
 	// Audio CODEC
-	output AUD_XCK;
-	input AUD_DACLRCK, AUD_ADCLRCK, AUD_BCLK;
-	input AUD_ADCDAT;
-	output AUD_DACDAT;
+	output logic AUD_XCK;
+	input logic AUD_DACLRCK, AUD_ADCLRCK, AUD_BCLK;
+	input logic AUD_ADCDAT;
+	output logic AUD_DACDAT;
 	
-	// Local wires.
-	wire read_ready, write_ready, read, write;
-	wire [23:0] readdata_left, readdata_right;
-	wire [23:0] writedata_left, writedata_right;
-	wire reset = ~KEY[0];
+	// Logic -- changed from wire
+	logic read_ready, write_ready, read, write;
+	logic [23:0] readdata_left, readdata_right;
+	logic [23:0] writedata_left, writedata_right;
+	logic reset = ~KEY[0];
 
 	/////////////////////////////////
 	// aya --- control circuit logic
@@ -51,13 +51,16 @@ module task2 (CLOCK_50, CLOCK2_50, KEY, FPGA_I2C_SCLK, FPGA_I2C_SDAT, AUD_XCK,
 
     // aya - output of rom should be played from both channels, left and right
     // (no difference between what's played from either speaker)
-    assign readdata_left = d_out;
-    assign readdata_right = d_out;
-    // aya - does this need to be synchronous? is our ROM read from synchronously?
-    assign writedata_left = readdata_left;
-    assign writedata_right = readdata_right;
-    assign read = read_ready;
-    assign write = write_ready;
+    // assign readdata_left = ; // don't need since not reading in data from microphone
+    // assign readdata_right = ; // don't need since not reading in data from microphone
+
+    // aya - does this need to be synchronous?
+	// or can we just connect them by wires since the ROM is reading data
+	// synchronously already?
+    assign writedata_left = d_out;
+    assign writedata_right = d_out;
+    assign read = 1'b0;
+    assign write = write_ready; // write_ready & ~reset?
 
 	
 /////////////////////////////////////////////////////////////////////////////////
