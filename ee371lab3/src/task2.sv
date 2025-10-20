@@ -15,7 +15,7 @@ module task2 (CLOCK_50, CLOCK2_50, KEY, FPGA_I2C_SCLK, FPGA_I2C_SDAT, AUD_XCK,
 	input logic [0:0] KEY;
 	// I2C Audio/Video config interface
 	output logic FPGA_I2C_SCLK;
-	inout logic FPGA_I2C_SDAT;
+	inout wire FPGA_I2C_SDAT;
 	// Audio CODEC
 	output logic AUD_XCK;
 	input logic AUD_DACLRCK, AUD_ADCLRCK, AUD_BCLK;
@@ -26,7 +26,8 @@ module task2 (CLOCK_50, CLOCK2_50, KEY, FPGA_I2C_SCLK, FPGA_I2C_SDAT, AUD_XCK,
 	logic read_ready, write_ready, read, write;
 	logic [23:0] readdata_left, readdata_right;
 	logic [23:0] writedata_left, writedata_right;
-	logic reset = ~KEY[0];
+	logic reset;
+	assign reset = ~KEY[0];
 
 	/////////////////////////////////
 	// aya --- control circuit logic
@@ -59,8 +60,8 @@ module task2 (CLOCK_50, CLOCK2_50, KEY, FPGA_I2C_SCLK, FPGA_I2C_SDAT, AUD_XCK,
 	// synchronously already?
     assign writedata_left = d_out;
     assign writedata_right = d_out;
-    assign read = 1'b0;
-    assign write = write_ready; // write_ready & ~reset?
+    assign read = read_ready && write_ready; // = 1'b0?
+	assign write = write_ready && read_ready;
 
 	
 /////////////////////////////////////////////////////////////////////////////////
