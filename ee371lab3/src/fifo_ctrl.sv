@@ -28,8 +28,6 @@ module fifo_ctrl #(parameter ADDR_WIDTH=4)
 				rd_ptr <= 0;
 				full   <= 0;
 				empty  <= 1;
-				// full   <= 1; WHY
-				// empty  <= 0;
 			end
 		else
 			begin
