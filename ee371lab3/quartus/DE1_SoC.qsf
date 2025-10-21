@@ -296,24 +296,6 @@ set_global_assignment -name EDA_TIME_SCALE "1 ps" -section_id eda_simulation
 set_global_assignment -name EDA_OUTPUT_DATA_FORMAT "SYSTEMVERILOG HDL" -section_id eda_simulation
 set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
 set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
-set_global_assignment -name VERILOG_FILE ../src/rom_1port.v
-set_global_assignment -name SYSTEMVERILOG_FILE ../src/DE1_SoC.sv
-set_global_assignment -name VERILOG_FILE ../src/clock_generator.v
-set_global_assignment -name VERILOG_FILE ../src/audio_codec.v
-set_global_assignment -name VERILOG_FILE ../src/audio_and_video_config.v
-set_global_assignment -name VERILOG_FILE ../src/Altera_UP_SYNC_FIFO.v
-set_global_assignment -name VERILOG_FILE ../src/Altera_UP_Slow_Clock_Generator.v
-set_global_assignment -name VERILOG_FILE ../src/Altera_UP_I2C_LCM_Auto_Initialize.v
-set_global_assignment -name VERILOG_FILE ../src/Altera_UP_I2C_DC_Auto_Initialize.v
-set_global_assignment -name VERILOG_FILE ../src/Altera_UP_I2C_AV_Auto_Initialize.v
-set_global_assignment -name VERILOG_FILE ../src/Altera_UP_I2C.v
-set_global_assignment -name VERILOG_FILE ../src/Altera_UP_Clock_Edge.v
-set_global_assignment -name VERILOG_FILE ../src/Altera_UP_Audio_Out_Serializer.v
-set_global_assignment -name VERILOG_FILE ../src/Altera_UP_Audio_In_Deserializer.v
-set_global_assignment -name VERILOG_FILE ../src/Altera_UP_Audio_Bit_Counter.v
-set_global_assignment -name SYSTEMVERILOG_FILE ../src/task2.sv
-set_global_assignment -name VERILOG_FILE ../src/part1.v
-set_global_assignment -name VERILOG_FILE ../src/DE1_SOC_golden_top.v
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
@@ -685,4 +667,28 @@ set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGA_R[6]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGA_R[7]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGA_SYNC_N
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGA_VS
+set_global_assignment -name SYSTEMVERILOG_FILE ../src/reg_file.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ../src/circuit2.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ../src/fir.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ../src/fifo_tb.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ../src/fifo_ctrl.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ../src/fifo.sv
+set_global_assignment -name VERILOG_FILE ../src/rom_1port.v
+set_global_assignment -name SYSTEMVERILOG_FILE ../src/DE1_SoC.sv
+set_global_assignment -name VERILOG_FILE ../src/clock_generator.v
+set_global_assignment -name VERILOG_FILE ../src/audio_codec.v
+set_global_assignment -name VERILOG_FILE ../src/audio_and_video_config.v
+set_global_assignment -name VERILOG_FILE ../src/Altera_UP_SYNC_FIFO.v
+set_global_assignment -name VERILOG_FILE ../src/Altera_UP_Slow_Clock_Generator.v
+set_global_assignment -name VERILOG_FILE ../src/Altera_UP_I2C_LCM_Auto_Initialize.v
+set_global_assignment -name VERILOG_FILE ../src/Altera_UP_I2C_DC_Auto_Initialize.v
+set_global_assignment -name VERILOG_FILE ../src/Altera_UP_I2C_AV_Auto_Initialize.v
+set_global_assignment -name VERILOG_FILE ../src/Altera_UP_I2C.v
+set_global_assignment -name VERILOG_FILE ../src/Altera_UP_Clock_Edge.v
+set_global_assignment -name VERILOG_FILE ../src/Altera_UP_Audio_Out_Serializer.v
+set_global_assignment -name VERILOG_FILE ../src/Altera_UP_Audio_In_Deserializer.v
+set_global_assignment -name VERILOG_FILE ../src/Altera_UP_Audio_Bit_Counter.v
+set_global_assignment -name SYSTEMVERILOG_FILE ../src/task2.sv
+set_global_assignment -name VERILOG_FILE ../src/part1.v
+set_global_assignment -name VERILOG_FILE ../src/DE1_SOC_golden_top.v
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

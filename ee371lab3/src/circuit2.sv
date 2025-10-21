@@ -1,9 +1,9 @@
 // just the circuit portion of task2
 // plays audio from mif file
 // instantiate in task 
-module circuit2 (clk, reset, d_out);
+module circuit2 (clk, reset, read_ready, d_out);
 
-    input logic clk, reset;
+    input logic clk, reset, read_ready;
     output logic [23:0] d_out;
 
     logic [15:0] addr; // 16 address bits needed for mif file
@@ -20,5 +20,6 @@ module circuit2 (clk, reset, d_out);
 	end // always_ff
 
     rom_1port rom (.address(addr), .clock(clk), .q(d_out));
+    //assign d_out = '0; // for testing
 
 endmodule // circuit 2

@@ -33,22 +33,10 @@ module task2 (CLOCK_50, CLOCK2_50, KEY, FPGA_I2C_SCLK, FPGA_I2C_SDAT, AUD_XCK,
 	// aya --- control circuit logic
 	/////////////////////////////////
 
-    // instantiate rom
-    logic [15:0] addr;
-    logic [23:0] d_out;
+	logic [23:0] d_out;
 
-    // need logic to loop through all addresses
-	always_ff @(posedge CLOCK_50) begin
-		if (reset) begin
-			addr <= 0;
-		end
-		else if (read_ready) begin
-			addr <= addr + 1; // if at max value, tosses MSB and loops back to 0
+	circuit2 rom_data (.clk(CLOCK_50), .reset(reset), .read_ready(read_ready), .d_out(d_out));
 
-		end
-	end // always_ff
-
-    rom_1port rom (.address(addr), .clock(CLOCK_50), .q(d_out));
 
     // aya - output of rom should be played from both channels, left and right
     // (no difference between what's played from either speaker)

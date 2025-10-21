@@ -1,32 +1,42 @@
-module fir #(parameter W=24, N=4) (clk, reset, rd, wr, data_in, data_out);
+// FIR for task 3
+// N = size of fifo buffer
+// W = width of data_in, data_out
+// leonard an an enable -- why??
+// rd and wr signals should be connected to the read and write signals in top level?
+// or both should be assigned to read_ready && write_ready (which is what the 
+// read and write signals that go from the circuit to the codec are assigned to)
+// probably shouldn't have a continuous assignment of 1'b1
+module fir #(parameter D_WIDTH=24, N=4) (clk, reset, rd, wr, data_in, data_out);
 
     input logic clk, reset, rd, wr;
-    input logic [W-1:0] data_in;
-    output logic [W-1:0] data_out;
+    input logic [D_WIDTH-1:0] data_in;
+    output logic [D_WIDTH-1:0] data_out;
 
-    logic [W-1:0] divided;
-    assign divided = {{$clog2(N){data_in[W-1]}}, data_in[W-1:$clog2(N)]};
+    logic [D_WIDTH-1:0] divided;
+    assign divided = {{$clog2(N){data_in[D_WIDTH-1]}}, data_in[D_WIDTH-1:$clog2(N)]};
 
     logic unused_empty, unused_full;
+    logic [D_WIDTH-1:0] fifo_out;
 
-    fifo buffer #(.DATA_WIDTH(W), .ADDR_WIDTH($clog2(N)))
-                    (.clk(clk), .reset(reset), .rd(rd), .wr(wr),
-                     .empty(unused_empty), .full(unused_full), 
-                     .w_data(divided), .r_data(fifo_out));
+    fifo #(.DATA_WIDTH(D_WIDTH), .ADDR_WIDTH($clog2(N))) buffer
+                 (.clk(clk), .reset(reset), .rd(rd), .wr(wr), 
+                  .empty(unused_empty), .full(unused_full), 
+                  .w_data(divided), .r_data(fifo_out));
     
-    logic [W-1:0] subtracted;
+    logic [D_WIDTH-1:0] subtracted;
     assign subtracted = divided + (-fifo_out);
-
-    logic [W-1:0] accum_out;
 
     // accumulator
     always_ff @(posedge clk) begin
         if (reset) begin
-            accum_out <= '0;
+            data_out <= '0;
         end
-        else begin
-            accum_out <= subtracted + accum_out;
+        // rd must be high because fifo only outputs a value on rd
+        // and you only want the register to update when there's a new
+        // fifo_out value
+        else if (rd) begin  
+            data_out <= subtracted + data_out;
         end
-    end
+    end // always_ff
 
-endmodule
+endmodule // fir

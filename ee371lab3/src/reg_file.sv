@@ -12,7 +12,7 @@ module reg_file #(parameter DATA_WIDTH=8, ADDR_WIDTH=4)
 	
 	// array declaration (registers)
 	// initialize array with zeros
-	logic [DATA_WIDTH-1:0] array_reg [0:2**ADDR_WIDTH-1] = '{default: '0};
+	logic [DATA_WIDTH-1:0] array_reg [0:2**ADDR_WIDTH-1] = '{default: '0}; // CHANGED FROM ORIGINAL -- SET INITIAL VALUES TO 0
 	
 	// write operation (synchronous)
 	always_ff @(posedge clk)

@@ -1,7 +1,7 @@
 // Top level module for tasks 1 & 2
 // specify inputs and outputs (including bit widths)
 
-module part1 (CLOCK_50, CLOCK2_50, KEY, SW, FPGA_I2C_SCLK, FPGA_I2C_SDAT, AUD_XCK, 
+module DE1_SoC (CLOCK_50, CLOCK2_50, KEY, SW, FPGA_I2C_SCLK, FPGA_I2C_SDAT, AUD_XCK, 
 		        AUD_DACLRCK, AUD_ADCLRCK, AUD_BCLK, AUD_ADCDAT, AUD_DACDAT);
 
 	input CLOCK_50, CLOCK2_50;
@@ -24,7 +24,7 @@ module part1 (CLOCK_50, CLOCK2_50, KEY, SW, FPGA_I2C_SCLK, FPGA_I2C_SDAT, AUD_XC
 
 	/////////////////////////////////
 	// task2
-	logic d_out;
+	logic [23:0] d_out;
 
 	circuit2 rom_data (.clk(CLOCK_50), .reset(reset), .d_out(d_out));
 	/////////////////////////////////

@@ -1,7 +1,7 @@
 |task2
 CLOCK_50 => CLOCK_50.IN3
 CLOCK2_50 => CLOCK2_50.IN1
-KEY[0] => reset.IN3
+KEY[0] => reset.IN4
 FPGA_I2C_SCLK <= audio_and_video_config:cfg.port3
 FPGA_I2C_SDAT <> audio_and_video_config:cfg.port2
 AUD_XCK <= clock_generator:my_clock_gen.port2
@@ -12,7 +12,67 @@ AUD_ADCDAT => AUD_ADCDAT.IN1
 AUD_DACDAT <= audio_codec:codec.port14
 
 
-|task2|rom_1port:rom
+|task2|circuit2:rom_data
+clk => clk.IN1
+reset => addr.OUTPUTSELECT
+reset => addr.OUTPUTSELECT
+reset => addr.OUTPUTSELECT
+reset => addr.OUTPUTSELECT
+reset => addr.OUTPUTSELECT
+reset => addr.OUTPUTSELECT
+reset => addr.OUTPUTSELECT
+reset => addr.OUTPUTSELECT
+reset => addr.OUTPUTSELECT
+reset => addr.OUTPUTSELECT
+reset => addr.OUTPUTSELECT
+reset => addr.OUTPUTSELECT
+reset => addr.OUTPUTSELECT
+reset => addr.OUTPUTSELECT
+reset => addr.OUTPUTSELECT
+reset => addr.OUTPUTSELECT
+read_ready => addr.OUTPUTSELECT
+read_ready => addr.OUTPUTSELECT
+read_ready => addr.OUTPUTSELECT
+read_ready => addr.OUTPUTSELECT
+read_ready => addr.OUTPUTSELECT
+read_ready => addr.OUTPUTSELECT
+read_ready => addr.OUTPUTSELECT
+read_ready => addr.OUTPUTSELECT
+read_ready => addr.OUTPUTSELECT
+read_ready => addr.OUTPUTSELECT
+read_ready => addr.OUTPUTSELECT
+read_ready => addr.OUTPUTSELECT
+read_ready => addr.OUTPUTSELECT
+read_ready => addr.OUTPUTSELECT
+read_ready => addr.OUTPUTSELECT
+read_ready => addr.OUTPUTSELECT
+d_out[0] <= rom_1port:rom.q
+d_out[1] <= rom_1port:rom.q
+d_out[2] <= rom_1port:rom.q
+d_out[3] <= rom_1port:rom.q
+d_out[4] <= rom_1port:rom.q
+d_out[5] <= rom_1port:rom.q
+d_out[6] <= rom_1port:rom.q
+d_out[7] <= rom_1port:rom.q
+d_out[8] <= rom_1port:rom.q
+d_out[9] <= rom_1port:rom.q
+d_out[10] <= rom_1port:rom.q
+d_out[11] <= rom_1port:rom.q
+d_out[12] <= rom_1port:rom.q
+d_out[13] <= rom_1port:rom.q
+d_out[14] <= rom_1port:rom.q
+d_out[15] <= rom_1port:rom.q
+d_out[16] <= rom_1port:rom.q
+d_out[17] <= rom_1port:rom.q
+d_out[18] <= rom_1port:rom.q
+d_out[19] <= rom_1port:rom.q
+d_out[20] <= rom_1port:rom.q
+d_out[21] <= rom_1port:rom.q
+d_out[22] <= rom_1port:rom.q
+d_out[23] <= rom_1port:rom.q
+
+
+|task2|circuit2:rom_data|rom_1port:rom
 address[0] => address[0].IN1
 address[1] => address[1].IN1
 address[2] => address[2].IN1
@@ -56,7 +116,7 @@ q[22] <= altsyncram:altsyncram_component.q_a
 q[23] <= altsyncram:altsyncram_component.q_a
 
 
-|task2|rom_1port:rom|altsyncram:altsyncram_component
+|task2|circuit2:rom_data|rom_1port:rom|altsyncram:altsyncram_component
 wren_a => ~NO_FANOUT~
 rden_a => ~NO_FANOUT~
 wren_b => ~NO_FANOUT~
@@ -145,7 +205,7 @@ eccstatus[1] <= <GND>
 eccstatus[2] <= <GND>
 
 
-|task2|rom_1port:rom|altsyncram:altsyncram_component|altsyncram_bvh1:auto_generated
+|task2|circuit2:rom_data|rom_1port:rom|altsyncram:altsyncram_component|altsyncram_bvh1:auto_generated
 address_a[0] => ram_block1a0.PORTAADDR
 address_a[0] => ram_block1a1.PORTAADDR
 address_a[0] => ram_block1a2.PORTAADDR
@@ -2200,7 +2260,7 @@ q_a[22] <= mux_9hb:mux2.result[22]
 q_a[23] <= mux_9hb:mux2.result[23]
 
 
-|task2|rom_1port:rom|altsyncram:altsyncram_component|altsyncram_bvh1:auto_generated|decode_41a:rden_decode
+|task2|circuit2:rom_data|rom_1port:rom|altsyncram:altsyncram_component|altsyncram_bvh1:auto_generated|decode_41a:rden_decode
 data[0] => w_anode594w[1].IN0
 data[0] => w_anode612w[1].IN1
 data[0] => w_anode623w[1].IN0
@@ -2233,7 +2293,7 @@ eq[4] <= w_anode645w[3].DB_MAX_OUTPUT_PORT_TYPE
 eq[5] <= w_anode656w[3].DB_MAX_OUTPUT_PORT_TYPE
 
 
-|task2|rom_1port:rom|altsyncram:altsyncram_component|altsyncram_bvh1:auto_generated|mux_9hb:mux2
+|task2|circuit2:rom_data|rom_1port:rom|altsyncram:altsyncram_component|altsyncram_bvh1:auto_generated|mux_9hb:mux2
 data[0] => l1_w0_n0_mux_dataout.IN1
 data[1] => l1_w1_n0_mux_dataout.IN1
 data[2] => l1_w2_n0_mux_dataout.IN1
