@@ -16,17 +16,19 @@ module DE1_SoC (CLOCK_50, CLOCK2_50, KEY, SW, FPGA_I2C_SCLK, FPGA_I2C_SDAT, AUD_
 	input AUD_ADCDAT;
 	output AUD_DACDAT;
 	
-	// Local wires.
-	wire read_ready, write_ready, read, write;
-	wire [23:0] readdata_left, readdata_right;
-	wire [23:0] writedata_left, writedata_right;
-	wire reset = ~KEY[0];
+	// logic
+	logic read_ready, write_ready, read, write;
+	logic [23:0] readdata_left, readdata_right;
+	logic [23:0] writedata_left, writedata_right;
+	logic reset;
+	assign reset = ~KEY[0];
 
 	/////////////////////////////////
 	// task2
 	logic [23:0] d_out;
 
-	circuit2 rom_data (.clk(CLOCK_50), .reset(reset), .d_out(d_out));
+	circuit2 rom_data (.clk(CLOCK_50), .reset(reset), .read_ready(read_ready), .d_out(d_out));
+
 	/////////////////////////////////
 	
 	
