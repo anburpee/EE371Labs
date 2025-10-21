@@ -34,6 +34,7 @@ module fir #(parameter D_WIDTH=24, N=4) (clk, reset, rd, wr, data_in, data_out);
         // rd must be high because fifo only outputs a value on rd
         // and you only want the register to update when there's a new
         // fifo_out value
+        // rd condition synchronizes fifo buffer and accumulator
         else if (rd) begin  
             data_out <= subtracted + data_out;
         end
