@@ -27,7 +27,9 @@ module DE1_SoC (CLOCK_50, CLOCK2_50, KEY, SW, FPGA_I2C_SCLK, FPGA_I2C_SDAT, AUD_
 	// task2
 	logic [23:0] d_out;
 
-	circuit2 rom_data (.clk(CLOCK_50), .reset(reset), .read_ready(read_ready), .d_out(d_out));
+	circuit2 rom_data (.clk(CLOCK_50), .reset(reset),
+					   .read_ready(read_ready), .write_ready(write_ready), .d_out(d_out));
+
 
 	/////////////////////////////////
 	

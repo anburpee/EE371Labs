@@ -1,5 +1,5 @@
 Analysis & Synthesis report for DE1_SoC
-Mon Oct 20 16:44:12 2025
+Tue Oct 21 16:09:05 2025
 Quartus Prime Version 17.0.0 Build 595 04/25/2017 SJ Lite Edition
 
 
@@ -80,7 +80,7 @@ agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +---------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Mon Oct 20 16:44:12 2025       ;
+; Analysis & Synthesis Status     ; Successful - Tue Oct 21 16:09:05 2025       ;
 ; Quartus Prime Version           ; 17.0.0 Build 595 04/25/2017 SJ Lite Edition ;
 ; Revision Name                   ; DE1_SoC                                     ;
 ; Top-level Entity Name           ; task2                                       ;
@@ -1387,7 +1387,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 17.0.0 Build 595 04/25/2017 SJ Lite Edition
-    Info: Processing started: Mon Oct 20 16:43:55 2025
+    Info: Processing started: Tue Oct 21 16:08:51 2025
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off DE1_SoC -c DE1_SoC
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 6 of the 6 processors detected
@@ -1396,7 +1396,7 @@ Info (12021): Found 1 design units, including 1 entities, in source file /ee371l
 Info (12021): Found 1 design units, including 1 entities, in source file /ee371labs/ee371/ee371lab3/src/circuit2.sv
     Info (12023): Found entity 1: circuit2 File: C:/ee371labs/ee371/ee371lab3/src/circuit2.sv Line: 4
 Info (12021): Found 1 design units, including 1 entities, in source file /ee371labs/ee371/ee371lab3/src/fir.sv
-    Info (12023): Found entity 1: fir File: C:/ee371labs/ee371/ee371lab3/src/fir.sv Line: 4
+    Info (12023): Found entity 1: fir File: C:/ee371labs/ee371/ee371lab3/src/fir.sv Line: 9
 Info (12021): Found 1 design units, including 1 entities, in source file /ee371labs/ee371/ee371lab3/src/fifo_tb.sv
     Info (12023): Found entity 1: fifo_tb File: C:/ee371labs/ee371/ee371lab3/src/fifo_tb.sv Line: 2
 Info (12021): Found 1 design units, including 1 entities, in source file /ee371labs/ee371/ee371lab3/src/fifo_ctrl.sv
@@ -1470,7 +1470,7 @@ Info (12128): Elaborating entity "decode_41a" for hierarchy "circuit2:rom_data|r
 Info (12021): Found 1 design units, including 1 entities, in source file db/mux_9hb.tdf
     Info (12023): Found entity 1: mux_9hb File: C:/ee371labs/ee371/ee371lab3/quartus/db/mux_9hb.tdf Line: 23
 Info (12128): Elaborating entity "mux_9hb" for hierarchy "circuit2:rom_data|rom_1port:rom|altsyncram:altsyncram_component|altsyncram_bvh1:auto_generated|mux_9hb:mux2" File: C:/ee371labs/ee371/ee371lab3/quartus/db/altsyncram_bvh1.tdf Line: 42
-Info (12128): Elaborating entity "clock_generator" for hierarchy "clock_generator:my_clock_gen" File: C:/ee371labs/ee371/ee371lab3/src/task2.sv Line: 75
+Info (12128): Elaborating entity "clock_generator" for hierarchy "clock_generator:my_clock_gen" File: C:/ee371labs/ee371/ee371lab3/src/task2.sv Line: 76
 Info (12128): Elaborating entity "altpll" for hierarchy "clock_generator:my_clock_gen|altpll:DE_Clock_Generator_Audio" File: C:/ee371labs/ee371/ee371lab3/src/clock_generator.v Line: 134
 Info (12130): Elaborated megafunction instantiation "clock_generator:my_clock_gen|altpll:DE_Clock_Generator_Audio" File: C:/ee371labs/ee371/ee371lab3/src/clock_generator.v Line: 134
 Info (12133): Instantiated megafunction "clock_generator:my_clock_gen|altpll:DE_Clock_Generator_Audio" with the following parameter: File: C:/ee371labs/ee371/ee371lab3/src/clock_generator.v Line: 134
@@ -1533,11 +1533,11 @@ Info (12133): Instantiated megafunction "clock_generator:my_clock_gen|altpll:DE_
 Info (12021): Found 1 design units, including 1 entities, in source file db/altpll_1uu1.tdf
     Info (12023): Found entity 1: altpll_1uu1 File: C:/ee371labs/ee371/ee371lab3/quartus/db/altpll_1uu1.tdf Line: 26
 Info (12128): Elaborating entity "altpll_1uu1" for hierarchy "clock_generator:my_clock_gen|altpll:DE_Clock_Generator_Audio|altpll_1uu1:auto_generated" File: c:/intelfpga_lite/17.0/quartus/libraries/megafunctions/altpll.tdf Line: 898
-Info (12128): Elaborating entity "audio_and_video_config" for hierarchy "audio_and_video_config:cfg" File: C:/ee371labs/ee371/ee371lab3/src/task2.sv Line: 85
+Info (12128): Elaborating entity "audio_and_video_config" for hierarchy "audio_and_video_config:cfg" File: C:/ee371labs/ee371/ee371lab3/src/task2.sv Line: 86
 Info (12128): Elaborating entity "Altera_UP_Slow_Clock_Generator" for hierarchy "audio_and_video_config:cfg|Altera_UP_Slow_Clock_Generator:Clock_Generator_400KHz" File: C:/ee371labs/ee371/ee371lab3/src/audio_and_video_config.v Line: 180
 Info (12128): Elaborating entity "Altera_UP_I2C_AV_Auto_Initialize" for hierarchy "audio_and_video_config:cfg|Altera_UP_I2C_AV_Auto_Initialize:Auto_Initialize" File: C:/ee371labs/ee371/ee371lab3/src/audio_and_video_config.v Line: 205
 Info (12128): Elaborating entity "Altera_UP_I2C" for hierarchy "audio_and_video_config:cfg|Altera_UP_I2C:I2C_Controller" File: C:/ee371labs/ee371/ee371lab3/src/audio_and_video_config.v Line: 252
-Info (12128): Elaborating entity "audio_codec" for hierarchy "audio_codec:codec" File: C:/ee371labs/ee371/ee371lab3/src/task2.sv Line: 106
+Info (12128): Elaborating entity "audio_codec" for hierarchy "audio_codec:codec" File: C:/ee371labs/ee371/ee371lab3/src/task2.sv Line: 107
 Info (12128): Elaborating entity "Altera_UP_Clock_Edge" for hierarchy "audio_codec:codec|Altera_UP_Clock_Edge:Bit_Clock_Edges" File: C:/ee371labs/ee371/ee371lab3/src/audio_codec.v Line: 181
 Info (12128): Elaborating entity "Altera_UP_Audio_In_Deserializer" for hierarchy "audio_codec:codec|Altera_UP_Audio_In_Deserializer:Audio_In_Deserializer" File: C:/ee371labs/ee371/ee371lab3/src/audio_codec.v Line: 238
 Info (12128): Elaborating entity "Altera_UP_Audio_Bit_Counter" for hierarchy "audio_codec:codec|Altera_UP_Audio_In_Deserializer:Audio_In_Deserializer|Altera_UP_Audio_Bit_Counter:Audio_Out_Bit_Counter" File: C:/ee371labs/ee371/ee371lab3/src/Altera_UP_Audio_In_Deserializer.v Line: 197
@@ -1645,9 +1645,9 @@ Info (21057): Implemented 616 device resources after synthesis - the final resou
     Info (21064): Implemented 192 RAM segments
     Info (21065): Implemented 1 PLLs
 Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 55 warnings
-    Info: Peak virtual memory: 4884 megabytes
-    Info: Processing ended: Mon Oct 20 16:44:12 2025
-    Info: Elapsed time: 00:00:17
-    Info: Total CPU time (on all processors): 00:00:32
+    Info: Peak virtual memory: 4881 megabytes
+    Info: Processing ended: Tue Oct 21 16:09:05 2025
+    Info: Elapsed time: 00:00:14
+    Info: Total CPU time (on all processors): 00:00:21
 
 

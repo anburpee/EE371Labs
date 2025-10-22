@@ -2,8 +2,7 @@ onerror {resume}
 quietly WaveActivateNextPane {} 0
 add wave -noupdate /fir_tb/clk
 add wave -noupdate /fir_tb/reset
-add wave -noupdate /fir_tb/rd
-add wave -noupdate /fir_tb/wr
+add wave -noupdate /fir_tb/enable
 add wave -noupdate -radix unsigned /fir_tb/data_in
 add wave -noupdate -radix unsigned /fir_tb/dut/divided
 add wave -noupdate -radix unsigned /fir_tb/dut/fifo_out
@@ -26,4 +25,4 @@ configure wave -griddelta 2
 configure wave -timeline 0
 configure wave -timelineunits ps
 update
-WaveRestoreZoom {0 ps} {2236 ps}
+WaveRestoreZoom {0 ps} {1348 ps}

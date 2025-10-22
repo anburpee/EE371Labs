@@ -35,13 +35,12 @@ module task2 (CLOCK_50, CLOCK2_50, KEY, FPGA_I2C_SCLK, FPGA_I2C_SDAT, AUD_XCK,
 
 	logic [23:0] d_out;
 
-	circuit2 rom_data (.clk(CLOCK_50), .reset(reset), .read_ready(read_ready), .d_out(d_out));
+	circuit2 rom_data (.clk(CLOCK_50), .reset(reset),
+					   .read_ready(read_ready), .write_ready(write_ready), .d_out(d_out));
 
+	// circuit2 rom_data (.clk(CLOCK_50), .reset(reset),
+	// 				   .write_ready(write_ready), .d_out(d_out));
 
-    // aya - output of rom should be played from both channels, left and right
-    // (no difference between what's played from either speaker)
-    // assign readdata_left = ; // don't need since not reading in data from microphone
-    // assign readdata_right = ; // don't need since not reading in data from microphone
 
     // aya - does this need to be synchronous?
 	// or can we just connect them by wires since the ROM is reading data
@@ -50,6 +49,10 @@ module task2 (CLOCK_50, CLOCK2_50, KEY, FPGA_I2C_SCLK, FPGA_I2C_SDAT, AUD_XCK,
     assign writedata_right = d_out;
     assign read = read_ready && write_ready; // = 1'b0?
 	assign write = write_ready && read_ready;
+
+	// assign read = 1'b0;
+	// assign write = write_ready;
+
 
 	
 /////////////////////////////////////////////////////////////////////////////////

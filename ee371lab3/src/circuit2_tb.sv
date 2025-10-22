@@ -1,7 +1,7 @@
 // testbench for circuit2.sv
 `timescale 1 ps / 1 ps
 module circuit2_tb();
-    logic clk, reset, read_ready;
+    logic clk, reset, read_ready, write_ready;
     logic [23:0] d_out;
 
     circuit2 dut (.*);
@@ -16,9 +16,9 @@ module circuit2_tb();
 	// test the device
 	initial begin
         reset <= 1'b1;                                  @(posedge clk);
-        reset <= 1'b0;  read_ready <= 1'b0;   repeat(5) @(posedge clk);
+        reset <= 1'b0;  read_ready <= 1'b0;  write_ready <= 1'b0;   repeat(5) @(posedge clk);
 
-        read_ready <= 1'b1;                   repeat(10) @(posedge clk);
+        read_ready <= 1'b1;  write_ready <= 1'b1;                   repeat(10) @(posedge clk);
 
 
         $stop; // stop simulation
