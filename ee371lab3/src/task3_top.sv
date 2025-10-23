@@ -24,10 +24,13 @@ module task3_top (CLOCK_50, CLOCK2_50, KEY, SW, FPGA_I2C_SCLK, FPGA_I2C_SDAT, AU
 
 	/////////////////////////////////
 	// task2
+	logic en_48;
+
+	enable_48khz en (.clk(CLOCK_50), .reset(reset), .enable(en_48));
+
 	logic [23:0] d_out;
 
-	circuit2 rom_data (.clk(CLOCK_50), .reset(reset),
-					   .read_ready(read_ready), .write_ready(write_ready), .d_out(d_out));
+	circuit2 rom_data (.clk(en_48), .reset(reset), .d_out(d_out));
 	/////////////////////////////////
 	
     logic [23:0] unfiltered_left, unfiltered_right, filtered_left, filtered_right;
@@ -35,11 +38,12 @@ module task3_top (CLOCK_50, CLOCK2_50, KEY, SW, FPGA_I2C_SCLK, FPGA_I2C_SDAT, AU
     assign unfiltered_left = SW[9] ? d_out : readdata_left;
 	assign unfiltered_right = SW[9] ? d_out : readdata_right;
 
-    fir #(.D_WIDTH(24), .N(4)) fir_left (.clk(CLOCK_50), .reset(reset),
+    // use status signals as enables for FIR
+    fir #(.D_WIDTH(24), .N(32)) fir_left (.clk(CLOCK_50), .reset(reset),
             .enable(read_ready && write_ready),
             .data_in(unfiltered_left), .data_out(filtered_left));
 
-    fir #(.D_WIDTH(24), .N(4)) fir_right (.clk(CLOCK_50), .reset(reset),
+    fir #(.D_WIDTH(24), .N(32)) fir_right (.clk(CLOCK_50), .reset(reset),
             .enable(read_ready && write_ready),
             .data_in(unfiltered_right), .data_out(filtered_right));
 	
