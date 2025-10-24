@@ -34,6 +34,10 @@ module fir_tb();
                                        data_in <= 24'd512;             @(posedge clk);
                                        data_in <= 24'd1024;            @(posedge clk);
                                        data_in <= 24'd2048;            @(posedge clk);
+                                       data_in <= 24'd2048;            @(posedge clk);
+                                       data_in <= 24'd2048;            @(posedge clk);
+                                       data_in <= 24'd2048;            @(posedge clk);
+                                       data_in <= 24'd2048;            @(posedge clk);
 
 
         enable <= 1'b0;                                      repeat(3) @(posedge clk);

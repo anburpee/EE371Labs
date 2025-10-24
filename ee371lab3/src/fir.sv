@@ -26,7 +26,7 @@ module fir #(parameter D_WIDTH=24, N=4) (clk, reset, enable, data_in, data_out);
                   .w_data(divided), .r_data(fifo_out)); // you still have fifo_out even when you're not reading, so is it pointless to set the decault fifo values to 0?
     
     logic [D_WIDTH-1:0] subtracted;
-    assign subtracted = divided + (-fifo_out);
+    assign subtracted = divided + (-1 * fifo_out);
 
     // accumulator
     always_ff @(posedge clk) begin

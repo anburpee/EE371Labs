@@ -25,19 +25,22 @@ module DE1_SoC (CLOCK_50, CLOCK2_50, KEY, SW, FPGA_I2C_SCLK, FPGA_I2C_SDAT, AUD_
 
 	/////////////////////////////////
 	// task2
-	logic en_48;
+	// logic en_48;
 
-	enable_48khz en (.clk(CLOCK_50), .reset(reset), .enable(en_48));
+	// enable_48khz en (.clk(CLOCK_50), .reset(reset), .enable(en_48));
 
 	logic [23:0] d_out;
 
-	circuit2 rom_data (.clk(en_48), .reset(reset), .d_out(d_out));
+	// circuit2 rom_data (.clk(en_48), .reset(reset), .d_out(d_out));
+
+	circuit2 rom_data (.clk(CLOCK_50), .reset(reset),
+					   .read_ready(read_ready), .write_ready(write_ready), .d_out(d_out));
 
 	/////////////////////////////////
 	
 	
-	assign writedata_left = SW[9] ? d_out: readdata_left;
-	assign writedata_right = SW[9] ? d_out: readdata_right;
+	assign writedata_left = SW[9] ? d_out : readdata_left;
+	assign writedata_right = SW[9] ? d_out : readdata_right;
 	assign read = read_ready && write_ready;
 	assign write = write_ready && read_ready;
 

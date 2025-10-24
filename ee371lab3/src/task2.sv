@@ -33,16 +33,16 @@ module task2 (CLOCK_50, CLOCK2_50, KEY, FPGA_I2C_SCLK, FPGA_I2C_SDAT, AUD_XCK,
 	// aya --- control circuit logic
 	/////////////////////////////////
 
-	logic en_48;
+	// logic en_48;
 
-	enable_48khz en (.clk(CLOCK_50), .reset(reset), .enable(en_48));
+	// enable_48khz en (.clk(CLOCK_50), .reset(reset), .enable(en_48));
 
 	logic [23:0] d_out;
 
-	circuit2 rom_data (.clk(en_48), .reset(reset), .d_out(d_out));
+	// circuit2 rom_data (.clk(en_48), .reset(reset), .d_out(d_out));
 
-	// circuit2 rom_data (.clk(CLOCK_50), .reset(reset),
-	// 				   .read_ready(read_ready), .write_ready(write_ready), .d_out(d_out));
+	circuit2 rom_data (.clk(CLOCK_50), .reset(reset),
+					   .read_ready(read_ready), .write_ready(write_ready), .d_out(d_out));
 
 	// circuit2 rom_data (.clk(CLOCK_50), .reset(reset),
 	// 				   .write_ready(write_ready), .d_out(d_out));
