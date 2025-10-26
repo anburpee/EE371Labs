@@ -2,12 +2,13 @@ onerror {resume}
 quietly WaveActivateNextPane {} 0
 add wave -noupdate /circuit2_tb/clk
 add wave -noupdate /circuit2_tb/reset
-add wave -noupdate /circuit2_tb/write_ready
 add wave -noupdate /circuit2_tb/read_ready
-add wave -noupdate /circuit2_tb/d_out
+add wave -noupdate /circuit2_tb/write_ready
+add wave -noupdate /circuit2_tb/dut/incr_condition
 add wave -noupdate -radix unsigned /circuit2_tb/dut/addr
+add wave -noupdate -radix unsigned /circuit2_tb/d_out
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {2582 ps} 0}
+WaveRestoreCursors {{Cursor 1} {9604831 ps} 0}
 quietly wave cursor active 1
 configure wave -namecolwidth 150
 configure wave -valuecolwidth 100
@@ -23,4 +24,4 @@ configure wave -griddelta 2
 configure wave -timeline 0
 configure wave -timelineunits ps
 update
-WaveRestoreZoom {2364 ps} {3354 ps}
+WaveRestoreZoom {9603610 ps} {9605126 ps}

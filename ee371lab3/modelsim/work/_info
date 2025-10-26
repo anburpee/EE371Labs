@@ -10,23 +10,23 @@ cModel Technology
 Z0 dC:/ee371labs/ee371/ee371lab3/modelsim
 vcircuit2
 Z1 DXx6 sv_std 3 std 0 22 AD7iAPLo6nTIKk<N0eo=D3
-Z2 !s110 1761345026
+Z2 !s110 1761460847
 !i10b 1
-!s100 @cVX<66fW>[4e]gQo45P>0
-I:M:3[ei[kDGN2jg11J^jJ0
+!s100 V_nEPnQHzVh42GMP6I4>b3
+IJ3N^R2W`4S^ZVHhzRfH?21
 Z3 VDg1SIo80bB@j0V0VzS_@n1
 !s105 circuit2_sv_unit
 S1
 R0
-w1761345022
+w1761459915
 8../src/circuit2.sv
 F../src/circuit2.sv
-L0 33
+L0 7
 Z4 OV;L;10.5b;63
 r1
 !s85 0
 31
-Z5 !s108 1761345026.000000
+Z5 !s108 1761460847.000000
 !s107 ../src/circuit2.sv|
 !s90 -reportprogress|300|../src/circuit2.sv|
 !i113 1
@@ -35,16 +35,16 @@ vcircuit2_tb
 R1
 R2
 !i10b 1
-!s100 f]TM5N7E=F_A5h:JfRILa0
-I[kUT@lBN5>4CO5eL@JfZM1
+!s100 i]_H>S_T@QGI9X=Co4jRB1
+IIz1?W:J0WN?>hf8OLVmV<0
 R3
 !s105 circuit2_tb_sv_unit
 S1
 R0
-w1761343204
+w1761457601
 8../src/circuit2_tb.sv
 F../src/circuit2_tb.sv
-L0 3
+L0 7
 R4
 r1
 !s85 0
@@ -56,7 +56,7 @@ R5
 R6
 vfifo
 R1
-Z7 !s110 1761345025
+Z7 !s110 1761460846
 !i10b 1
 !s100 WN8B@WmkXW0LHK:UCBzlP1
 II=i6JHNiFUDgodjlbe5>T1
@@ -72,14 +72,14 @@ R4
 r1
 !s85 0
 31
-Z8 !s108 1761345025.000000
+Z8 !s108 1761460846.000000
 !s107 ../src/fifo.sv|
 !s90 -reportprogress|300|../src/fifo.sv|
 !i113 1
 R6
 vfifo_ctrl
 R1
-R2
+R7
 !i10b 1
 !s100 a5P[kPn97<TFYBTk`3D;Q2
 IdOnIEz[TiQ0R9NIWmfd:c1
@@ -125,53 +125,53 @@ R8
 R6
 vfir
 R1
-R2
+R7
 !i10b 1
-!s100 G<mF1e^]@TO4kJUTEZzEi2
-I4OH8RRY8BfH7[59CIg3Qf1
+!s100 n]:E879CUL[D:TA31Y1dz2
+I5Jgk;Hm^OLWIjlYiQPjMO3
 R3
 !s105 fir_sv_unit
 S1
 R0
-w1761261922
+w1761363802
 8../src/fir.sv
 F../src/fir.sv
-Z9 L0 11
+L0 11
 R4
 r1
 !s85 0
 31
-R5
+R8
 !s107 ../src/fir.sv|
 !s90 -reportprogress|300|../src/fir.sv|
 !i113 1
 R6
 vfir_tb
 R1
-R2
+R7
 !i10b 1
-!s100 DG=miF>EY41eBaXSF?Q172
-IjI=J4k8@V:Tjb10kJW4^^0
+!s100 >A850kIO:LSWb9d[cMKKJ0
+I5_C`0e8>9W6VlWMB3Y2cS2
 R3
 !s105 fir_tb_sv_unit
 S1
 R0
-w1761249888
+w1761460843
 8../src/fir_tb.sv
 F../src/fir_tb.sv
-L0 3
+L0 4
 R4
 r1
 !s85 0
 31
-R5
+R8
 !s107 ../src/fir_tb.sv|
 !s90 -reportprogress|300|../src/fir_tb.sv|
 !i113 1
 R6
 vreg_file
 R1
-R2
+R7
 !i10b 1
 !s100 mnQlm<h_V>iQMSTj=3KJm2
 I@g`96;cQnc0FBj3QeME2M1
@@ -187,13 +187,13 @@ R4
 r1
 !s85 0
 31
-R5
+R8
 !s107 ../src/reg_file.sv|
 !s90 -reportprogress|300|../src/reg_file.sv|
 !i113 1
 R6
 vrom_1port
-!s110 1761013469
+R2
 !i10b 1
 !s100 g;T=fDV_5Ek9CeGAgJPPW3
 IRI3B=<Co2Fc;BgchIA<Zm1
@@ -207,31 +207,8 @@ R4
 r1
 !s85 0
 31
-!s108 1761013469.000000
+R5
 !s107 ../src/rom_1port.v|
 !s90 -reportprogress|300|../src/rom_1port.v|
-!i113 1
-R6
-vtask2
-R1
-R2
-!i10b 1
-!s100 NPk9_FO9L5_WjPD1ne=5f0
-Ih6On@6BR_LzLAX@CCCB2;2
-R3
-!s105 task2_sv_unit
-S1
-R0
-w1761173092
-8../src/task2.sv
-F../src/task2.sv
-R9
-R4
-r1
-!s85 0
-31
-R5
-!s107 ../src/task2.sv|
-!s90 -reportprogress|300|../src/task2.sv|
 !i113 1
 R6

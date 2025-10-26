@@ -1,3 +1,6 @@
+// part 1 top level module for passing on input audio to the speakers
+// includes audio/vidio configuration, clock generator, audio CODEC inteface,
+// and control circuit.
 module part1 (CLOCK_50, CLOCK2_50, KEY, FPGA_I2C_SCLK, FPGA_I2C_SDAT, AUD_XCK, 
 		        AUD_DACLRCK, AUD_ADCLRCK, AUD_BCLK, AUD_ADCDAT, AUD_DACDAT);
 
@@ -19,10 +22,8 @@ module part1 (CLOCK_50, CLOCK2_50, KEY, FPGA_I2C_SCLK, FPGA_I2C_SDAT, AUD_XCK,
 	wire reset = ~KEY[0];
 
 	/////////////////////////////////
-	// Your code goes here (BM - nick said not for task1 tho)
-	/////////////////////////////////
-	
-	// BM according to nick the only lines to modify for task1 are these 4 (alr modified)
+
+	// only pass data when audio input AND audio output are ready for data passing
 	assign writedata_left = readdata_left;
 	assign writedata_right = readdata_right;
 	assign read = read_ready && write_ready;

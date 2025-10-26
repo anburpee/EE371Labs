@@ -1,62 +1,49 @@
-// circuit portion of task2
-// plays audio from mif file
-// instantiated in task2 (top level)
-// clk is set to be the 48kHz enable so that data is read from the ROM at
-// the same rate as the sampling frequency of the audio CODEC
-
-// module circuit2 (clk, reset, d_out);
-
-//     input logic clk, reset;
-//     output logic [23:0] d_out;
-
-//     logic [15:0] addr; // 16 address bits needed for mif file
-
-//     // loop through all addresses
-// 	always_ff @(posedge clk) begin
-// 		if (reset) begin
-// 			addr <= 0;
-// 		end
-// 		else begin
-// 			if (addr < 48000) // lenth of mif file
-// 				addr <= addr + 1; 
-// 			else
-// 				addr <= 0;
-// 		end
-// 	end // always_ff
-
-//     rom_1port rom (.address(addr), .clock(clk), .q(d_out));
-//     //assign d_out = '0; // for testing
-
-// endmodule // circuit 2
-
+// control circuit portion of task2, instantiated in task2.sv (top level for task2)
+// plays audio from memory 
+// 24 bit output d_out from the ROM is used for the write_data assignments in task2.sv
+// 1 bit read_ready and write_ready input signals come from the audio CODEC in task2.sv
 
 module circuit2 (clk, reset, read_ready, write_ready, d_out);
 
     input logic clk, reset, read_ready, write_ready;
     output logic [23:0] d_out;
 
-    logic [15:0] addr; // 16 address bits needed for mif file
+    logic [15:0] addr; // 16 address bits needed for mif file (ROM)
 
 	logic write_ready_prev, read_ready_prev; // signals to help detect positive edges
+
+	logic incr_condition;
+	// both read_ready and write_ready are high and at least one of them has a positive edge
+	assign incr_condition = (read_ready && write_ready) && ((!write_ready_prev) | (!read_ready_prev));
 
     // loop through all addresses
 	always_ff @(posedge clk) begin
 		if (reset) begin
+
 			addr <= 0;
 			write_ready_prev <= 0;
 			read_ready_prev <= 0;
+
 		end
 		else begin
+
 			write_ready_prev <= write_ready;
 			read_ready_prev <= read_ready;
-			if (addr < 48000) begin
-				// if read_ready has a positive edge or write_ready as a positive edge or both
-				if ((read_ready && write_ready) && ((!write_ready_prev) | (!read_ready_prev)))
+
+			// need this condition because won't just overflow back to 0 
+			// since 47999 isn't the largest number you can make with 16 address bits
+			if (addr < 47999) begin 
+				if (incr_condition)
 					addr <= addr + 1; 
+			end
+			else if (addr == 47999) begin
+				if (incr_condition)
+					addr <= 0; 
 			end
 			else begin
 				addr <= 0;
 			end
+
 		end
 	end // always_ff
 
@@ -117,6 +104,33 @@ endmodule // circuit 2
 
 // 			if (write_ready && !write_ready_prev)
 // 				addr <= addr + 1; 
+// 		end
+// 	end // always_ff
+
+//     rom_1port rom (.address(addr), .clock(clk), .q(d_out));
+//     //assign d_out = '0; // for testing
+
+// endmodule // circuit 2
+
+
+
+// module circuit2 (clk, reset, d_out);
+
+//     input logic clk, reset;
+//     output logic [23:0] d_out;
+
+//     logic [15:0] addr; // 16 address bits needed for mif file
+
+//     // loop through all addresses
+// 	always_ff @(posedge clk) begin
+// 		if (reset) begin
+// 			addr <= 0;
+// 		end
+// 		else begin
+// 			if (addr < 48000) // lenth of mif file
+// 				addr <= addr + 1; 
+// 			else
+// 				addr <= 0;
 // 		end
 // 	end // always_ff
 

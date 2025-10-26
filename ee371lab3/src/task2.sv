@@ -1,13 +1,7 @@
-// task2 module 
-// output the values stored in the 1 port ROM sequencially to the Audio CODEC,
-// looping back to the start when you reach the end
+// task2 top level module 
+// outputs the values stored in the 1 port ROM sequencially to the Audio CODEC,
+// looping back to the start when you the end of the ROM is reached
 // increment the address only once each time you write
-
-// aya -IDK WHAT THE FUCK I'M DOING 
-// aya - i started with a blank task2 file and just copied
-// & pasted everything fomr part1.v -- i think we just need to
-// change the control circuit portion
-
 module task2 (CLOCK_50, CLOCK2_50, KEY, FPGA_I2C_SCLK, FPGA_I2C_SDAT, AUD_XCK, 
 		        AUD_DACLRCK, AUD_ADCLRCK, AUD_BCLK, AUD_ADCDAT, AUD_DACDAT);
 
@@ -48,12 +42,9 @@ module task2 (CLOCK_50, CLOCK2_50, KEY, FPGA_I2C_SCLK, FPGA_I2C_SDAT, AUD_XCK,
 	// 				   .write_ready(write_ready), .d_out(d_out));
 
 
-    // aya - does this need to be synchronous?
-	// or can we just connect them by wires since the ROM is reading data
-	// synchronously already?
     assign writedata_left = d_out;
     assign writedata_right = d_out;
-    assign read = read_ready && write_ready; // = 1'b0?
+    assign read = read_ready && write_ready;
 	assign write = write_ready && read_ready;
 
 	// assign read = 1'b0;
@@ -115,4 +106,4 @@ module task2 (CLOCK_50, CLOCK2_50, KEY, FPGA_I2C_SCLK, FPGA_I2C_SDAT, AUD_XCK,
 		AUD_DACDAT
 	);
 
-endmodule // task2
+endmodule // task2_top

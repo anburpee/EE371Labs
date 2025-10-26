@@ -667,6 +667,12 @@ set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGA_R[6]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGA_R[7]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGA_SYNC_N
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGA_VS
+set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
+set_global_assignment -name SYSTEMVERILOG_FILE ../src/task3_top.sv
+set_global_assignment -name QIP_FILE ../src/rom_1port.qip
+set_global_assignment -name SYSTEMVERILOG_FILE ../src/fir_tb.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ../src/enable_48khz.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ../src/circuit2_tb.sv
 set_global_assignment -name SYSTEMVERILOG_FILE ../src/reg_file.sv
 set_global_assignment -name SYSTEMVERILOG_FILE ../src/circuit2.sv
 set_global_assignment -name SYSTEMVERILOG_FILE ../src/fir.sv
@@ -691,4 +697,3 @@ set_global_assignment -name VERILOG_FILE ../src/Altera_UP_Audio_Bit_Counter.v
 set_global_assignment -name SYSTEMVERILOG_FILE ../src/task2.sv
 set_global_assignment -name VERILOG_FILE ../src/part1.v
 set_global_assignment -name VERILOG_FILE ../src/DE1_SOC_golden_top.v
-set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

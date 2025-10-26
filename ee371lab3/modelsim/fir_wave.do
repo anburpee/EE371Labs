@@ -3,14 +3,15 @@ quietly WaveActivateNextPane {} 0
 add wave -noupdate /fir_tb/clk
 add wave -noupdate /fir_tb/reset
 add wave -noupdate /fir_tb/enable
+add wave -noupdate /fir_tb/dut/full
 add wave -noupdate -radix unsigned /fir_tb/data_in
 add wave -noupdate -radix unsigned /fir_tb/dut/divided
 add wave -noupdate -radix unsigned /fir_tb/dut/fifo_out
 add wave -noupdate -radix unsigned /fir_tb/dut/subtracted
 add wave -noupdate -radix unsigned /fir_tb/data_out
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {95 ps} 0}
-quietly wave cursor active 1
+WaveRestoreCursors {{Cursor 1} {0 ps} 0}
+quietly wave cursor active 0
 configure wave -namecolwidth 150
 configure wave -valuecolwidth 100
 configure wave -justifyvalue left
@@ -25,4 +26,4 @@ configure wave -griddelta 2
 configure wave -timeline 0
 configure wave -timelineunits ps
 update
-WaveRestoreZoom {0 ps} {1348 ps}
+WaveRestoreZoom {1554 ps} {2498 ps}
