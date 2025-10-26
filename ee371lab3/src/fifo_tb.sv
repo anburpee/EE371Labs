@@ -1,11 +1,11 @@
-/* Testbench for Homework 3 Problem 1 */
+// testbench for fifo.sv
 module fifo_tb ();
 	logic clk, reset, rd, wr;
 	logic empty, full;
 	logic [8-1:0] w_data; // set DATA_WIDTH to 8 for testbench
 	logic [8-1:0] r_data;
 
-	// instantiace fifo
+	// instantiate fifo
 	// DATA_WIDTH=8, ADDR_WIDTH=4 (16 different addresses) -- default
 	fifo dut (.*);
 

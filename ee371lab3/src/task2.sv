@@ -1,7 +1,7 @@
 // task2 top level module 
 // outputs the values stored in the 1 port ROM sequencially to the Audio CODEC,
 // looping back to the start when you the end of the ROM is reached
-// increment the address only once each time you write
+
 module task2 (CLOCK_50, CLOCK2_50, KEY, FPGA_I2C_SCLK, FPGA_I2C_SDAT, AUD_XCK, 
 		        AUD_DACLRCK, AUD_ADCLRCK, AUD_BCLK, AUD_ADCDAT, AUD_DACDAT);
 

@@ -1,7 +1,9 @@
 // control circuit portion of task2, instantiated in task2.sv (top level for task2)
-// plays audio from memory 
+// plays audio from memory, outputting audio samples from a ROM starting at 
+// address 0 to the last address, and looping back again
 // 24 bit output d_out from the ROM is used for the write_data assignments in task2.sv
 // 1 bit read_ready and write_ready input signals come from the audio CODEC in task2.sv
+// rons on CLOCK_50
 
 module circuit2 (clk, reset, read_ready, write_ready, d_out);
 
@@ -12,8 +14,11 @@ module circuit2 (clk, reset, read_ready, write_ready, d_out);
 
 	logic write_ready_prev, read_ready_prev; // signals to help detect positive edges
 
+	// condition for incrementing the address
+	// both read_ready and write_ready are high AND at least one of them has a positive edge
+	// ~48kHz
 	logic incr_condition;
-	// both read_ready and write_ready are high and at least one of them has a positive edge
+
 	assign incr_condition = (read_ready && write_ready) && ((!write_ready_prev) | (!read_ready_prev));
 
     // loop through all addresses

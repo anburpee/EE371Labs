@@ -10,8 +10,8 @@ add wave -noupdate -radix unsigned /fir_tb/dut/fifo_out
 add wave -noupdate -radix unsigned /fir_tb/dut/subtracted
 add wave -noupdate -radix unsigned /fir_tb/data_out
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {0 ps} 0}
-quietly wave cursor active 0
+WaveRestoreCursors {{Cursor 1} {998 ps} 0}
+quietly wave cursor active 1
 configure wave -namecolwidth 150
 configure wave -valuecolwidth 100
 configure wave -justifyvalue left
@@ -26,4 +26,4 @@ configure wave -griddelta 2
 configure wave -timeline 0
 configure wave -timelineunits ps
 update
-WaveRestoreZoom {1554 ps} {2498 ps}
+WaveRestoreZoom {891 ps} {2427 ps}
