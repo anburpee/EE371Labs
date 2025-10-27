@@ -4,7 +4,7 @@ add wave -noupdate /circuit2_tb/clk
 add wave -noupdate /circuit2_tb/reset
 add wave -noupdate /circuit2_tb/read_ready
 add wave -noupdate /circuit2_tb/write_ready
-add wave -noupdate /circuit2_tb/dut/incr_condition
+add wave -noupdate /circuit2_tb/enable
 add wave -noupdate -radix unsigned /circuit2_tb/dut/addr
 add wave -noupdate -radix unsigned /circuit2_tb/d_out
 TreeUpdate [SetDefaultTree]
@@ -24,4 +24,4 @@ configure wave -griddelta 2
 configure wave -timeline 0
 configure wave -timelineunits ps
 update
-WaveRestoreZoom {9603610 ps} {9605126 ps}
+WaveRestoreZoom {9562610 ps} {9563421 ps}

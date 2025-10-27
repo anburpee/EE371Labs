@@ -1,13 +1,16 @@
-// control circuit portion of task2, instantiated in task2.sv (top level for task2)
-// plays audio from memory, outputting audio samples from a ROM starting at 
+// Control circuit portion of task2, instantiated in task2.sv (top level for task2)
+// Plays audio from memory, outputting audio samples from a ROM starting at 
 // address 0 to the last address, and looping back again
-// 24 bit output d_out from the ROM is used for the write_data assignments in task2.sv
-// 1 bit read_ready and write_ready input signals come from the audio CODEC in task2.sv
-// rons on CLOCK_50
+// 24 bit output d_out from the ROM is used for the write_data assignments in task2.sv and the 
+// unfiltered audio in task3_top
+// 1 bit output enable is used as the enable signal in the FIR filter in task3_top
+// 1 bit read_ready and write_ready input signals come from the audio CODEC in task2.sv or task3
+// Runs on CLOCK_50
 
-module circuit2 (clk, reset, read_ready, write_ready, d_out);
+module circuit2 (clk, reset, read_ready, write_ready, enable, d_out);
 
     input logic clk, reset, read_ready, write_ready;
+	output logic enable;
     output logic [23:0] d_out;
 
     logic [15:0] addr = '{default: '0}; // 16 address bits needed for mif file (ROM)
@@ -15,12 +18,10 @@ module circuit2 (clk, reset, read_ready, write_ready, d_out);
 	// signals to help detect positive edges of read_ready and write_ready
 	logic write_ready_prev, read_ready_prev; 
 
-	// condition for incrementing the address
+	// enabling condition for incrementing the address
 	// both read_ready and write_ready are high AND at least one of them has a positive edge
 	// ~48kHz
-	logic incr_condition;
-
-	assign incr_condition = (read_ready && write_ready) && ((!write_ready_prev) | (!read_ready_prev));
+	assign enable = (read_ready && write_ready) && ((!write_ready_prev) | (!read_ready_prev));
 
     // loop through all addresses
 	always_ff @(posedge clk) begin
@@ -39,11 +40,11 @@ module circuit2 (clk, reset, read_ready, write_ready, d_out);
 			// need this condition because won't just overflow back to 0 
 			// since 47794 isn't the largest number you can make with 16 address bits
 			if (addr < 47794) begin 
-				if (incr_condition)
+				if (enable)
 					addr <= addr + 1; 
 			end
 			else if (addr == 47794) begin
-				if (incr_condition)
+				if (enable)
 					addr <= 0; 
 			end
 			else begin

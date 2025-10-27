@@ -35,11 +35,12 @@ module task2_top (CLOCK_50, CLOCK2_50, KEY, SW, FPGA_I2C_SCLK, FPGA_I2C_SDAT, AU
 	// enable_48khz en (.clk(CLOCK_50), .reset(reset), .enable(en_48)); // for counter implemetation
 
 	logic [23:0] d_out;
+	logic enable;
 
 	// circuit2 rom_data (.clk(en_48), .reset(reset), .d_out(d_out)); // for counter implemetation
 
 	circuit2 rom_data (.clk(CLOCK_50), .reset(reset),
-					   .read_ready(read_ready), .write_ready(write_ready), .d_out(d_out));
+					   .read_ready(read_ready), .write_ready(write_ready), .enable(enable), .d_out(d_out));
 
 	/////////////////////////////////
 	

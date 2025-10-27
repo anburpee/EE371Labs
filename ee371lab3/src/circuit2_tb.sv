@@ -3,7 +3,7 @@
 
 `timescale 1 ps / 1 ps
 module circuit2_tb();
-    logic clk, reset, read_ready, write_ready;
+    logic clk, reset, read_ready, write_ready, enable;
     logic [23:0] d_out;
 
     circuit2 dut (.*);

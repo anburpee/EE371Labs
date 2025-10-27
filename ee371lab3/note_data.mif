@@ -1,5 +1,5 @@
 WIDTH=24;
-DEPTH=48000;
+DEPTH=47795;
 
 ADDRESS_RADIX=UNS;
 DATA_RADIX=UNS;
@@ -47799,6 +47799,5 @@ CONTENT BEGIN
 	47791	:	12544932;
 	47792	:	12135031;
 	47793	:	11740526;
-	47794	:	11362725;		# last address before value went to 0, deleted rest of the addresses
-								# so that audio looped back seamlessly
+	47794	:	11362725;
 END;

@@ -1,19 +1,141 @@
-|task2
-CLOCK_50 => CLOCK_50.IN3
+|task3_top
+CLOCK_50 => CLOCK_50.IN5
 CLOCK2_50 => CLOCK2_50.IN1
-KEY[0] => reset.IN4
-FPGA_I2C_SCLK <= audio_and_video_config:cfg.port3
+KEY[0] => reset.IN6
+SW[0] => ~NO_FANOUT~
+SW[1] => ~NO_FANOUT~
+SW[2] => ~NO_FANOUT~
+SW[3] => ~NO_FANOUT~
+SW[4] => ~NO_FANOUT~
+SW[5] => ~NO_FANOUT~
+SW[6] => ~NO_FANOUT~
+SW[7] => ~NO_FANOUT~
+SW[8] => writedata_left.OUTPUTSELECT
+SW[8] => writedata_left.OUTPUTSELECT
+SW[8] => writedata_left.OUTPUTSELECT
+SW[8] => writedata_left.OUTPUTSELECT
+SW[8] => writedata_left.OUTPUTSELECT
+SW[8] => writedata_left.OUTPUTSELECT
+SW[8] => writedata_left.OUTPUTSELECT
+SW[8] => writedata_left.OUTPUTSELECT
+SW[8] => writedata_left.OUTPUTSELECT
+SW[8] => writedata_left.OUTPUTSELECT
+SW[8] => writedata_left.OUTPUTSELECT
+SW[8] => writedata_left.OUTPUTSELECT
+SW[8] => writedata_left.OUTPUTSELECT
+SW[8] => writedata_left.OUTPUTSELECT
+SW[8] => writedata_left.OUTPUTSELECT
+SW[8] => writedata_left.OUTPUTSELECT
+SW[8] => writedata_left.OUTPUTSELECT
+SW[8] => writedata_left.OUTPUTSELECT
+SW[8] => writedata_left.OUTPUTSELECT
+SW[8] => writedata_left.OUTPUTSELECT
+SW[8] => writedata_left.OUTPUTSELECT
+SW[8] => writedata_left.OUTPUTSELECT
+SW[8] => writedata_left.OUTPUTSELECT
+SW[8] => writedata_left.OUTPUTSELECT
+SW[8] => writedata_right.OUTPUTSELECT
+SW[8] => writedata_right.OUTPUTSELECT
+SW[8] => writedata_right.OUTPUTSELECT
+SW[8] => writedata_right.OUTPUTSELECT
+SW[8] => writedata_right.OUTPUTSELECT
+SW[8] => writedata_right.OUTPUTSELECT
+SW[8] => writedata_right.OUTPUTSELECT
+SW[8] => writedata_right.OUTPUTSELECT
+SW[8] => writedata_right.OUTPUTSELECT
+SW[8] => writedata_right.OUTPUTSELECT
+SW[8] => writedata_right.OUTPUTSELECT
+SW[8] => writedata_right.OUTPUTSELECT
+SW[8] => writedata_right.OUTPUTSELECT
+SW[8] => writedata_right.OUTPUTSELECT
+SW[8] => writedata_right.OUTPUTSELECT
+SW[8] => writedata_right.OUTPUTSELECT
+SW[8] => writedata_right.OUTPUTSELECT
+SW[8] => writedata_right.OUTPUTSELECT
+SW[8] => writedata_right.OUTPUTSELECT
+SW[8] => writedata_right.OUTPUTSELECT
+SW[8] => writedata_right.OUTPUTSELECT
+SW[8] => writedata_right.OUTPUTSELECT
+SW[8] => writedata_right.OUTPUTSELECT
+SW[8] => writedata_right.OUTPUTSELECT
+SW[9] => unfiltered_left.OUTPUTSELECT
+SW[9] => unfiltered_left.OUTPUTSELECT
+SW[9] => unfiltered_left.OUTPUTSELECT
+SW[9] => unfiltered_left.OUTPUTSELECT
+SW[9] => unfiltered_left.OUTPUTSELECT
+SW[9] => unfiltered_left.OUTPUTSELECT
+SW[9] => unfiltered_left.OUTPUTSELECT
+SW[9] => unfiltered_left.OUTPUTSELECT
+SW[9] => unfiltered_left.OUTPUTSELECT
+SW[9] => unfiltered_left.OUTPUTSELECT
+SW[9] => unfiltered_left.OUTPUTSELECT
+SW[9] => unfiltered_left.OUTPUTSELECT
+SW[9] => unfiltered_left.OUTPUTSELECT
+SW[9] => unfiltered_left.OUTPUTSELECT
+SW[9] => unfiltered_left.OUTPUTSELECT
+SW[9] => unfiltered_left.OUTPUTSELECT
+SW[9] => unfiltered_left.OUTPUTSELECT
+SW[9] => unfiltered_left.OUTPUTSELECT
+SW[9] => unfiltered_left.OUTPUTSELECT
+SW[9] => unfiltered_left.OUTPUTSELECT
+SW[9] => unfiltered_left.OUTPUTSELECT
+SW[9] => unfiltered_left.OUTPUTSELECT
+SW[9] => unfiltered_left.OUTPUTSELECT
+SW[9] => unfiltered_left.OUTPUTSELECT
+SW[9] => unfiltered_right.OUTPUTSELECT
+SW[9] => unfiltered_right.OUTPUTSELECT
+SW[9] => unfiltered_right.OUTPUTSELECT
+SW[9] => unfiltered_right.OUTPUTSELECT
+SW[9] => unfiltered_right.OUTPUTSELECT
+SW[9] => unfiltered_right.OUTPUTSELECT
+SW[9] => unfiltered_right.OUTPUTSELECT
+SW[9] => unfiltered_right.OUTPUTSELECT
+SW[9] => unfiltered_right.OUTPUTSELECT
+SW[9] => unfiltered_right.OUTPUTSELECT
+SW[9] => unfiltered_right.OUTPUTSELECT
+SW[9] => unfiltered_right.OUTPUTSELECT
+SW[9] => unfiltered_right.OUTPUTSELECT
+SW[9] => unfiltered_right.OUTPUTSELECT
+SW[9] => unfiltered_right.OUTPUTSELECT
+SW[9] => unfiltered_right.OUTPUTSELECT
+SW[9] => unfiltered_right.OUTPUTSELECT
+SW[9] => unfiltered_right.OUTPUTSELECT
+SW[9] => unfiltered_right.OUTPUTSELECT
+SW[9] => unfiltered_right.OUTPUTSELECT
+SW[9] => unfiltered_right.OUTPUTSELECT
+SW[9] => unfiltered_right.OUTPUTSELECT
+SW[9] => unfiltered_right.OUTPUTSELECT
+SW[9] => unfiltered_right.OUTPUTSELECT
+FPGA_I2C_SCLK << audio_and_video_config:cfg.port3
 FPGA_I2C_SDAT <> audio_and_video_config:cfg.port2
-AUD_XCK <= clock_generator:my_clock_gen.port2
+AUD_XCK << clock_generator:my_clock_gen.port2
 AUD_DACLRCK => AUD_DACLRCK.IN1
 AUD_ADCLRCK => AUD_ADCLRCK.IN1
 AUD_BCLK => AUD_BCLK.IN1
 AUD_ADCDAT => AUD_ADCDAT.IN1
-AUD_DACDAT <= audio_codec:codec.port14
+AUD_DACDAT << audio_codec:codec.port14
 
 
-|task2|circuit2:rom_data
-clk => clk.IN1
+|task3_top|circuit2:rom_data
+clk => rom_1port:rom.clock
+clk => read_ready_prev.CLK
+clk => write_ready_prev.CLK
+clk => addr[0].CLK
+clk => addr[1].CLK
+clk => addr[2].CLK
+clk => addr[3].CLK
+clk => addr[4].CLK
+clk => addr[5].CLK
+clk => addr[6].CLK
+clk => addr[7].CLK
+clk => addr[8].CLK
+clk => addr[9].CLK
+clk => addr[10].CLK
+clk => addr[11].CLK
+clk => addr[12].CLK
+clk => addr[13].CLK
+clk => addr[14].CLK
+clk => addr[15].CLK
 reset => addr.OUTPUTSELECT
 reset => addr.OUTPUTSELECT
 reset => addr.OUTPUTSELECT
@@ -30,49 +152,40 @@ reset => addr.OUTPUTSELECT
 reset => addr.OUTPUTSELECT
 reset => addr.OUTPUTSELECT
 reset => addr.OUTPUTSELECT
-write_ready => addr.OUTPUTSELECT
-write_ready => addr.OUTPUTSELECT
-write_ready => addr.OUTPUTSELECT
-write_ready => addr.OUTPUTSELECT
-write_ready => addr.OUTPUTSELECT
-write_ready => addr.OUTPUTSELECT
-write_ready => addr.OUTPUTSELECT
-write_ready => addr.OUTPUTSELECT
-write_ready => addr.OUTPUTSELECT
-write_ready => addr.OUTPUTSELECT
-write_ready => addr.OUTPUTSELECT
-write_ready => addr.OUTPUTSELECT
-write_ready => addr.OUTPUTSELECT
-write_ready => addr.OUTPUTSELECT
-write_ready => addr.OUTPUTSELECT
-write_ready => addr.OUTPUTSELECT
-d_out[0] <= rom_1port:rom.q
-d_out[1] <= rom_1port:rom.q
-d_out[2] <= rom_1port:rom.q
-d_out[3] <= rom_1port:rom.q
-d_out[4] <= rom_1port:rom.q
-d_out[5] <= rom_1port:rom.q
-d_out[6] <= rom_1port:rom.q
-d_out[7] <= rom_1port:rom.q
-d_out[8] <= rom_1port:rom.q
-d_out[9] <= rom_1port:rom.q
-d_out[10] <= rom_1port:rom.q
-d_out[11] <= rom_1port:rom.q
-d_out[12] <= rom_1port:rom.q
-d_out[13] <= rom_1port:rom.q
-d_out[14] <= rom_1port:rom.q
-d_out[15] <= rom_1port:rom.q
-d_out[16] <= rom_1port:rom.q
-d_out[17] <= rom_1port:rom.q
-d_out[18] <= rom_1port:rom.q
-d_out[19] <= rom_1port:rom.q
-d_out[20] <= rom_1port:rom.q
-d_out[21] <= rom_1port:rom.q
-d_out[22] <= rom_1port:rom.q
-d_out[23] <= rom_1port:rom.q
+reset => write_ready_prev.OUTPUTSELECT
+reset => read_ready_prev.OUTPUTSELECT
+read_ready => enable.IN0
+read_ready => read_ready_prev.DATAA
+write_ready => enable.IN1
+write_ready => write_ready_prev.DATAA
+enable <= enable.DB_MAX_OUTPUT_PORT_TYPE
+d_out[0] <= rom_1port:rom.q[0]
+d_out[1] <= rom_1port:rom.q[1]
+d_out[2] <= rom_1port:rom.q[2]
+d_out[3] <= rom_1port:rom.q[3]
+d_out[4] <= rom_1port:rom.q[4]
+d_out[5] <= rom_1port:rom.q[5]
+d_out[6] <= rom_1port:rom.q[6]
+d_out[7] <= rom_1port:rom.q[7]
+d_out[8] <= rom_1port:rom.q[8]
+d_out[9] <= rom_1port:rom.q[9]
+d_out[10] <= rom_1port:rom.q[10]
+d_out[11] <= rom_1port:rom.q[11]
+d_out[12] <= rom_1port:rom.q[12]
+d_out[13] <= rom_1port:rom.q[13]
+d_out[14] <= rom_1port:rom.q[14]
+d_out[15] <= rom_1port:rom.q[15]
+d_out[16] <= rom_1port:rom.q[16]
+d_out[17] <= rom_1port:rom.q[17]
+d_out[18] <= rom_1port:rom.q[18]
+d_out[19] <= rom_1port:rom.q[19]
+d_out[20] <= rom_1port:rom.q[20]
+d_out[21] <= rom_1port:rom.q[21]
+d_out[22] <= rom_1port:rom.q[22]
+d_out[23] <= rom_1port:rom.q[23]
 
 
-|task2|circuit2:rom_data|rom_1port:rom
+|task3_top|circuit2:rom_data|rom_1port:rom
 address[0] => address[0].IN1
 address[1] => address[1].IN1
 address[2] => address[2].IN1
@@ -116,7 +229,7 @@ q[22] <= altsyncram:altsyncram_component.q_a
 q[23] <= altsyncram:altsyncram_component.q_a
 
 
-|task2|circuit2:rom_data|rom_1port:rom|altsyncram:altsyncram_component
+|task3_top|circuit2:rom_data|rom_1port:rom|altsyncram:altsyncram_component
 wren_a => ~NO_FANOUT~
 rden_a => ~NO_FANOUT~
 wren_b => ~NO_FANOUT~
@@ -205,7 +318,7 @@ eccstatus[1] <= <GND>
 eccstatus[2] <= <GND>
 
 
-|task2|circuit2:rom_data|rom_1port:rom|altsyncram:altsyncram_component|altsyncram_bvh1:auto_generated
+|task3_top|circuit2:rom_data|rom_1port:rom|altsyncram:altsyncram_component|altsyncram_bvh1:auto_generated
 address_a[0] => ram_block1a0.PORTAADDR
 address_a[0] => ram_block1a1.PORTAADDR
 address_a[0] => ram_block1a2.PORTAADDR
@@ -2260,7 +2373,7 @@ q_a[22] <= mux_9hb:mux2.result[22]
 q_a[23] <= mux_9hb:mux2.result[23]
 
 
-|task2|circuit2:rom_data|rom_1port:rom|altsyncram:altsyncram_component|altsyncram_bvh1:auto_generated|decode_41a:rden_decode
+|task3_top|circuit2:rom_data|rom_1port:rom|altsyncram:altsyncram_component|altsyncram_bvh1:auto_generated|decode_41a:rden_decode
 data[0] => w_anode594w[1].IN0
 data[0] => w_anode612w[1].IN1
 data[0] => w_anode623w[1].IN0
@@ -2293,7 +2406,7 @@ eq[4] <= w_anode645w[3].DB_MAX_OUTPUT_PORT_TYPE
 eq[5] <= w_anode656w[3].DB_MAX_OUTPUT_PORT_TYPE
 
 
-|task2|circuit2:rom_data|rom_1port:rom|altsyncram:altsyncram_component|altsyncram_bvh1:auto_generated|mux_9hb:mux2
+|task3_top|circuit2:rom_data|rom_1port:rom|altsyncram:altsyncram_component|altsyncram_bvh1:auto_generated|mux_9hb:mux2
 data[0] => l1_w0_n0_mux_dataout.IN1
 data[1] => l1_w1_n0_mux_dataout.IN1
 data[2] => l1_w2_n0_mux_dataout.IN1
@@ -2800,13 +2913,697 @@ sel[2] => l3_w9_n0_mux_dataout.IN0
 sel[2] => _.IN0
 
 
-|task2|clock_generator:my_clock_gen
+|task3_top|fir:fir_left
+clk => clk.IN1
+reset => reset.IN1
+enable => enable.IN2
+data_in[0] => ~NO_FANOUT~
+data_in[1] => ~NO_FANOUT~
+data_in[2] => ~NO_FANOUT~
+data_in[3] => ~NO_FANOUT~
+data_in[4] => ~NO_FANOUT~
+data_in[5] => ~NO_FANOUT~
+data_in[6] => ~NO_FANOUT~
+data_in[7] => ~NO_FANOUT~
+data_in[8] => divided[0].IN1
+data_in[9] => divided[1].IN1
+data_in[10] => divided[2].IN1
+data_in[11] => divided[3].IN1
+data_in[12] => divided[4].IN1
+data_in[13] => divided[5].IN1
+data_in[14] => divided[6].IN1
+data_in[15] => divided[7].IN1
+data_in[16] => divided[8].IN1
+data_in[17] => divided[9].IN1
+data_in[18] => divided[10].IN1
+data_in[19] => divided[11].IN1
+data_in[20] => divided[12].IN1
+data_in[21] => divided[13].IN1
+data_in[22] => divided[14].IN1
+data_in[23] => divided[15].IN9
+data_out[0] <= data_out[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+data_out[1] <= data_out[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+data_out[2] <= data_out[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+data_out[3] <= data_out[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+data_out[4] <= data_out[4]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+data_out[5] <= data_out[5]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+data_out[6] <= data_out[6]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+data_out[7] <= data_out[7]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+data_out[8] <= data_out[8]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+data_out[9] <= data_out[9]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+data_out[10] <= data_out[10]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+data_out[11] <= data_out[11]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+data_out[12] <= data_out[12]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+data_out[13] <= data_out[13]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+data_out[14] <= data_out[14]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+data_out[15] <= data_out[15]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+data_out[16] <= data_out[16]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+data_out[17] <= data_out[17]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+data_out[18] <= data_out[18]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+data_out[19] <= data_out[19]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+data_out[20] <= data_out[20]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+data_out[21] <= data_out[21]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+data_out[22] <= data_out[22]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+data_out[23] <= data_out[23]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|task3_top|fir:fir_left|fifo:buffer
+clk => fifo_ctrl:c_unit.clk
+clk => reg_file:r_unit.clk
+reset => fifo_ctrl:c_unit.reset
+rd => w_en.IN1
+rd => fifo_ctrl:c_unit.rd
+wr => w_en.IN1
+wr => fifo_ctrl:c_unit.wr
+empty <= fifo_ctrl:c_unit.empty
+full <= fifo_ctrl:c_unit.full
+w_data[0] => reg_file:r_unit.w_data[0]
+w_data[1] => reg_file:r_unit.w_data[1]
+w_data[2] => reg_file:r_unit.w_data[2]
+w_data[3] => reg_file:r_unit.w_data[3]
+w_data[4] => reg_file:r_unit.w_data[4]
+w_data[5] => reg_file:r_unit.w_data[5]
+w_data[6] => reg_file:r_unit.w_data[6]
+w_data[7] => reg_file:r_unit.w_data[7]
+w_data[8] => reg_file:r_unit.w_data[8]
+w_data[9] => reg_file:r_unit.w_data[9]
+w_data[10] => reg_file:r_unit.w_data[10]
+w_data[11] => reg_file:r_unit.w_data[11]
+w_data[12] => reg_file:r_unit.w_data[12]
+w_data[13] => reg_file:r_unit.w_data[13]
+w_data[14] => reg_file:r_unit.w_data[14]
+w_data[15] => reg_file:r_unit.w_data[15]
+w_data[16] => reg_file:r_unit.w_data[16]
+w_data[17] => reg_file:r_unit.w_data[17]
+w_data[18] => reg_file:r_unit.w_data[18]
+w_data[19] => reg_file:r_unit.w_data[19]
+w_data[20] => reg_file:r_unit.w_data[20]
+w_data[21] => reg_file:r_unit.w_data[21]
+w_data[22] => reg_file:r_unit.w_data[22]
+w_data[23] => reg_file:r_unit.w_data[23]
+r_data[0] <= reg_file:r_unit.r_data[0]
+r_data[1] <= reg_file:r_unit.r_data[1]
+r_data[2] <= reg_file:r_unit.r_data[2]
+r_data[3] <= reg_file:r_unit.r_data[3]
+r_data[4] <= reg_file:r_unit.r_data[4]
+r_data[5] <= reg_file:r_unit.r_data[5]
+r_data[6] <= reg_file:r_unit.r_data[6]
+r_data[7] <= reg_file:r_unit.r_data[7]
+r_data[8] <= reg_file:r_unit.r_data[8]
+r_data[9] <= reg_file:r_unit.r_data[9]
+r_data[10] <= reg_file:r_unit.r_data[10]
+r_data[11] <= reg_file:r_unit.r_data[11]
+r_data[12] <= reg_file:r_unit.r_data[12]
+r_data[13] <= reg_file:r_unit.r_data[13]
+r_data[14] <= reg_file:r_unit.r_data[14]
+r_data[15] <= reg_file:r_unit.r_data[15]
+r_data[16] <= reg_file:r_unit.r_data[16]
+r_data[17] <= reg_file:r_unit.r_data[17]
+r_data[18] <= reg_file:r_unit.r_data[18]
+r_data[19] <= reg_file:r_unit.r_data[19]
+r_data[20] <= reg_file:r_unit.r_data[20]
+r_data[21] <= reg_file:r_unit.r_data[21]
+r_data[22] <= reg_file:r_unit.r_data[22]
+r_data[23] <= reg_file:r_unit.r_data[23]
+
+
+|task3_top|fir:fir_left|fifo:buffer|fifo_ctrl:c_unit
+clk => empty~reg0.CLK
+clk => full~reg0.CLK
+clk => rd_ptr[0].CLK
+clk => rd_ptr[1].CLK
+clk => rd_ptr[2].CLK
+clk => rd_ptr[3].CLK
+clk => rd_ptr[4].CLK
+clk => rd_ptr[5].CLK
+clk => rd_ptr[6].CLK
+clk => rd_ptr[7].CLK
+clk => wr_ptr[0].CLK
+clk => wr_ptr[1].CLK
+clk => wr_ptr[2].CLK
+clk => wr_ptr[3].CLK
+clk => wr_ptr[4].CLK
+clk => wr_ptr[5].CLK
+clk => wr_ptr[6].CLK
+clk => wr_ptr[7].CLK
+reset => wr_ptr.OUTPUTSELECT
+reset => wr_ptr.OUTPUTSELECT
+reset => wr_ptr.OUTPUTSELECT
+reset => wr_ptr.OUTPUTSELECT
+reset => wr_ptr.OUTPUTSELECT
+reset => wr_ptr.OUTPUTSELECT
+reset => wr_ptr.OUTPUTSELECT
+reset => wr_ptr.OUTPUTSELECT
+reset => rd_ptr.OUTPUTSELECT
+reset => rd_ptr.OUTPUTSELECT
+reset => rd_ptr.OUTPUTSELECT
+reset => rd_ptr.OUTPUTSELECT
+reset => rd_ptr.OUTPUTSELECT
+reset => rd_ptr.OUTPUTSELECT
+reset => rd_ptr.OUTPUTSELECT
+reset => rd_ptr.OUTPUTSELECT
+reset => full.OUTPUTSELECT
+reset => empty.OUTPUTSELECT
+rd => Mux0.IN2
+rd => Mux1.IN2
+rd => Mux2.IN2
+rd => Mux3.IN2
+rd => Mux4.IN2
+rd => Mux5.IN2
+rd => Mux6.IN2
+rd => Mux7.IN2
+rd => Mux8.IN2
+rd => Mux9.IN2
+rd => Mux10.IN2
+rd => Mux11.IN2
+rd => Mux12.IN2
+rd => Mux13.IN2
+rd => Mux14.IN2
+rd => Mux15.IN2
+rd => Mux16.IN2
+rd => Mux17.IN2
+wr => Mux0.IN3
+wr => Mux1.IN3
+wr => Mux2.IN3
+wr => Mux3.IN3
+wr => Mux4.IN3
+wr => Mux5.IN3
+wr => Mux6.IN3
+wr => Mux7.IN3
+wr => Mux8.IN3
+wr => Mux9.IN3
+wr => Mux10.IN3
+wr => Mux11.IN3
+wr => Mux12.IN3
+wr => Mux13.IN3
+wr => Mux14.IN3
+wr => Mux15.IN3
+wr => Mux16.IN3
+wr => Mux17.IN3
+empty <= empty~reg0.DB_MAX_OUTPUT_PORT_TYPE
+full <= full~reg0.DB_MAX_OUTPUT_PORT_TYPE
+w_addr[0] <= wr_ptr[0].DB_MAX_OUTPUT_PORT_TYPE
+w_addr[1] <= wr_ptr[1].DB_MAX_OUTPUT_PORT_TYPE
+w_addr[2] <= wr_ptr[2].DB_MAX_OUTPUT_PORT_TYPE
+w_addr[3] <= wr_ptr[3].DB_MAX_OUTPUT_PORT_TYPE
+w_addr[4] <= wr_ptr[4].DB_MAX_OUTPUT_PORT_TYPE
+w_addr[5] <= wr_ptr[5].DB_MAX_OUTPUT_PORT_TYPE
+w_addr[6] <= wr_ptr[6].DB_MAX_OUTPUT_PORT_TYPE
+w_addr[7] <= wr_ptr[7].DB_MAX_OUTPUT_PORT_TYPE
+r_addr[0] <= rd_ptr[0].DB_MAX_OUTPUT_PORT_TYPE
+r_addr[1] <= rd_ptr[1].DB_MAX_OUTPUT_PORT_TYPE
+r_addr[2] <= rd_ptr[2].DB_MAX_OUTPUT_PORT_TYPE
+r_addr[3] <= rd_ptr[3].DB_MAX_OUTPUT_PORT_TYPE
+r_addr[4] <= rd_ptr[4].DB_MAX_OUTPUT_PORT_TYPE
+r_addr[5] <= rd_ptr[5].DB_MAX_OUTPUT_PORT_TYPE
+r_addr[6] <= rd_ptr[6].DB_MAX_OUTPUT_PORT_TYPE
+r_addr[7] <= rd_ptr[7].DB_MAX_OUTPUT_PORT_TYPE
+
+
+|task3_top|fir:fir_left|fifo:buffer|reg_file:r_unit
+clk => array_reg.we_a.CLK
+clk => array_reg.waddr_a[7].CLK
+clk => array_reg.waddr_a[6].CLK
+clk => array_reg.waddr_a[5].CLK
+clk => array_reg.waddr_a[4].CLK
+clk => array_reg.waddr_a[3].CLK
+clk => array_reg.waddr_a[2].CLK
+clk => array_reg.waddr_a[1].CLK
+clk => array_reg.waddr_a[0].CLK
+clk => array_reg.data_a[23].CLK
+clk => array_reg.data_a[22].CLK
+clk => array_reg.data_a[21].CLK
+clk => array_reg.data_a[20].CLK
+clk => array_reg.data_a[19].CLK
+clk => array_reg.data_a[18].CLK
+clk => array_reg.data_a[17].CLK
+clk => array_reg.data_a[16].CLK
+clk => array_reg.data_a[15].CLK
+clk => array_reg.data_a[14].CLK
+clk => array_reg.data_a[13].CLK
+clk => array_reg.data_a[12].CLK
+clk => array_reg.data_a[11].CLK
+clk => array_reg.data_a[10].CLK
+clk => array_reg.data_a[9].CLK
+clk => array_reg.data_a[8].CLK
+clk => array_reg.data_a[7].CLK
+clk => array_reg.data_a[6].CLK
+clk => array_reg.data_a[5].CLK
+clk => array_reg.data_a[4].CLK
+clk => array_reg.data_a[3].CLK
+clk => array_reg.data_a[2].CLK
+clk => array_reg.data_a[1].CLK
+clk => array_reg.data_a[0].CLK
+clk => array_reg.CLK0
+w_data[0] => array_reg.data_a[0].DATAIN
+w_data[0] => array_reg.DATAIN
+w_data[1] => array_reg.data_a[1].DATAIN
+w_data[1] => array_reg.DATAIN1
+w_data[2] => array_reg.data_a[2].DATAIN
+w_data[2] => array_reg.DATAIN2
+w_data[3] => array_reg.data_a[3].DATAIN
+w_data[3] => array_reg.DATAIN3
+w_data[4] => array_reg.data_a[4].DATAIN
+w_data[4] => array_reg.DATAIN4
+w_data[5] => array_reg.data_a[5].DATAIN
+w_data[5] => array_reg.DATAIN5
+w_data[6] => array_reg.data_a[6].DATAIN
+w_data[6] => array_reg.DATAIN6
+w_data[7] => array_reg.data_a[7].DATAIN
+w_data[7] => array_reg.DATAIN7
+w_data[8] => array_reg.data_a[8].DATAIN
+w_data[8] => array_reg.DATAIN8
+w_data[9] => array_reg.data_a[9].DATAIN
+w_data[9] => array_reg.DATAIN9
+w_data[10] => array_reg.data_a[10].DATAIN
+w_data[10] => array_reg.DATAIN10
+w_data[11] => array_reg.data_a[11].DATAIN
+w_data[11] => array_reg.DATAIN11
+w_data[12] => array_reg.data_a[12].DATAIN
+w_data[12] => array_reg.DATAIN12
+w_data[13] => array_reg.data_a[13].DATAIN
+w_data[13] => array_reg.DATAIN13
+w_data[14] => array_reg.data_a[14].DATAIN
+w_data[14] => array_reg.DATAIN14
+w_data[15] => array_reg.data_a[15].DATAIN
+w_data[15] => array_reg.DATAIN15
+w_data[16] => array_reg.data_a[16].DATAIN
+w_data[16] => array_reg.DATAIN16
+w_data[17] => array_reg.data_a[17].DATAIN
+w_data[17] => array_reg.DATAIN17
+w_data[18] => array_reg.data_a[18].DATAIN
+w_data[18] => array_reg.DATAIN18
+w_data[19] => array_reg.data_a[19].DATAIN
+w_data[19] => array_reg.DATAIN19
+w_data[20] => array_reg.data_a[20].DATAIN
+w_data[20] => array_reg.DATAIN20
+w_data[21] => array_reg.data_a[21].DATAIN
+w_data[21] => array_reg.DATAIN21
+w_data[22] => array_reg.data_a[22].DATAIN
+w_data[22] => array_reg.DATAIN22
+w_data[23] => array_reg.data_a[23].DATAIN
+w_data[23] => array_reg.DATAIN23
+w_en => array_reg.we_a.DATAIN
+w_en => array_reg.WE
+w_addr[0] => array_reg.waddr_a[0].DATAIN
+w_addr[0] => array_reg.WADDR
+w_addr[1] => array_reg.waddr_a[1].DATAIN
+w_addr[1] => array_reg.WADDR1
+w_addr[2] => array_reg.waddr_a[2].DATAIN
+w_addr[2] => array_reg.WADDR2
+w_addr[3] => array_reg.waddr_a[3].DATAIN
+w_addr[3] => array_reg.WADDR3
+w_addr[4] => array_reg.waddr_a[4].DATAIN
+w_addr[4] => array_reg.WADDR4
+w_addr[5] => array_reg.waddr_a[5].DATAIN
+w_addr[5] => array_reg.WADDR5
+w_addr[6] => array_reg.waddr_a[6].DATAIN
+w_addr[6] => array_reg.WADDR6
+w_addr[7] => array_reg.waddr_a[7].DATAIN
+w_addr[7] => array_reg.WADDR7
+r_addr[0] => array_reg.RADDR
+r_addr[1] => array_reg.RADDR1
+r_addr[2] => array_reg.RADDR2
+r_addr[3] => array_reg.RADDR3
+r_addr[4] => array_reg.RADDR4
+r_addr[5] => array_reg.RADDR5
+r_addr[6] => array_reg.RADDR6
+r_addr[7] => array_reg.RADDR7
+r_data[0] <= array_reg.DATAOUT
+r_data[1] <= array_reg.DATAOUT1
+r_data[2] <= array_reg.DATAOUT2
+r_data[3] <= array_reg.DATAOUT3
+r_data[4] <= array_reg.DATAOUT4
+r_data[5] <= array_reg.DATAOUT5
+r_data[6] <= array_reg.DATAOUT6
+r_data[7] <= array_reg.DATAOUT7
+r_data[8] <= array_reg.DATAOUT8
+r_data[9] <= array_reg.DATAOUT9
+r_data[10] <= array_reg.DATAOUT10
+r_data[11] <= array_reg.DATAOUT11
+r_data[12] <= array_reg.DATAOUT12
+r_data[13] <= array_reg.DATAOUT13
+r_data[14] <= array_reg.DATAOUT14
+r_data[15] <= array_reg.DATAOUT15
+r_data[16] <= array_reg.DATAOUT16
+r_data[17] <= array_reg.DATAOUT17
+r_data[18] <= array_reg.DATAOUT18
+r_data[19] <= array_reg.DATAOUT19
+r_data[20] <= array_reg.DATAOUT20
+r_data[21] <= array_reg.DATAOUT21
+r_data[22] <= array_reg.DATAOUT22
+r_data[23] <= array_reg.DATAOUT23
+
+
+|task3_top|fir:fir_right
+clk => clk.IN1
+reset => reset.IN1
+enable => enable.IN2
+data_in[0] => ~NO_FANOUT~
+data_in[1] => ~NO_FANOUT~
+data_in[2] => ~NO_FANOUT~
+data_in[3] => ~NO_FANOUT~
+data_in[4] => ~NO_FANOUT~
+data_in[5] => ~NO_FANOUT~
+data_in[6] => ~NO_FANOUT~
+data_in[7] => ~NO_FANOUT~
+data_in[8] => divided[0].IN1
+data_in[9] => divided[1].IN1
+data_in[10] => divided[2].IN1
+data_in[11] => divided[3].IN1
+data_in[12] => divided[4].IN1
+data_in[13] => divided[5].IN1
+data_in[14] => divided[6].IN1
+data_in[15] => divided[7].IN1
+data_in[16] => divided[8].IN1
+data_in[17] => divided[9].IN1
+data_in[18] => divided[10].IN1
+data_in[19] => divided[11].IN1
+data_in[20] => divided[12].IN1
+data_in[21] => divided[13].IN1
+data_in[22] => divided[14].IN1
+data_in[23] => divided[15].IN9
+data_out[0] <= data_out[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+data_out[1] <= data_out[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+data_out[2] <= data_out[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+data_out[3] <= data_out[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+data_out[4] <= data_out[4]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+data_out[5] <= data_out[5]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+data_out[6] <= data_out[6]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+data_out[7] <= data_out[7]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+data_out[8] <= data_out[8]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+data_out[9] <= data_out[9]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+data_out[10] <= data_out[10]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+data_out[11] <= data_out[11]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+data_out[12] <= data_out[12]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+data_out[13] <= data_out[13]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+data_out[14] <= data_out[14]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+data_out[15] <= data_out[15]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+data_out[16] <= data_out[16]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+data_out[17] <= data_out[17]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+data_out[18] <= data_out[18]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+data_out[19] <= data_out[19]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+data_out[20] <= data_out[20]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+data_out[21] <= data_out[21]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+data_out[22] <= data_out[22]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+data_out[23] <= data_out[23]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|task3_top|fir:fir_right|fifo:buffer
+clk => fifo_ctrl:c_unit.clk
+clk => reg_file:r_unit.clk
+reset => fifo_ctrl:c_unit.reset
+rd => w_en.IN1
+rd => fifo_ctrl:c_unit.rd
+wr => w_en.IN1
+wr => fifo_ctrl:c_unit.wr
+empty <= fifo_ctrl:c_unit.empty
+full <= fifo_ctrl:c_unit.full
+w_data[0] => reg_file:r_unit.w_data[0]
+w_data[1] => reg_file:r_unit.w_data[1]
+w_data[2] => reg_file:r_unit.w_data[2]
+w_data[3] => reg_file:r_unit.w_data[3]
+w_data[4] => reg_file:r_unit.w_data[4]
+w_data[5] => reg_file:r_unit.w_data[5]
+w_data[6] => reg_file:r_unit.w_data[6]
+w_data[7] => reg_file:r_unit.w_data[7]
+w_data[8] => reg_file:r_unit.w_data[8]
+w_data[9] => reg_file:r_unit.w_data[9]
+w_data[10] => reg_file:r_unit.w_data[10]
+w_data[11] => reg_file:r_unit.w_data[11]
+w_data[12] => reg_file:r_unit.w_data[12]
+w_data[13] => reg_file:r_unit.w_data[13]
+w_data[14] => reg_file:r_unit.w_data[14]
+w_data[15] => reg_file:r_unit.w_data[15]
+w_data[16] => reg_file:r_unit.w_data[16]
+w_data[17] => reg_file:r_unit.w_data[17]
+w_data[18] => reg_file:r_unit.w_data[18]
+w_data[19] => reg_file:r_unit.w_data[19]
+w_data[20] => reg_file:r_unit.w_data[20]
+w_data[21] => reg_file:r_unit.w_data[21]
+w_data[22] => reg_file:r_unit.w_data[22]
+w_data[23] => reg_file:r_unit.w_data[23]
+r_data[0] <= reg_file:r_unit.r_data[0]
+r_data[1] <= reg_file:r_unit.r_data[1]
+r_data[2] <= reg_file:r_unit.r_data[2]
+r_data[3] <= reg_file:r_unit.r_data[3]
+r_data[4] <= reg_file:r_unit.r_data[4]
+r_data[5] <= reg_file:r_unit.r_data[5]
+r_data[6] <= reg_file:r_unit.r_data[6]
+r_data[7] <= reg_file:r_unit.r_data[7]
+r_data[8] <= reg_file:r_unit.r_data[8]
+r_data[9] <= reg_file:r_unit.r_data[9]
+r_data[10] <= reg_file:r_unit.r_data[10]
+r_data[11] <= reg_file:r_unit.r_data[11]
+r_data[12] <= reg_file:r_unit.r_data[12]
+r_data[13] <= reg_file:r_unit.r_data[13]
+r_data[14] <= reg_file:r_unit.r_data[14]
+r_data[15] <= reg_file:r_unit.r_data[15]
+r_data[16] <= reg_file:r_unit.r_data[16]
+r_data[17] <= reg_file:r_unit.r_data[17]
+r_data[18] <= reg_file:r_unit.r_data[18]
+r_data[19] <= reg_file:r_unit.r_data[19]
+r_data[20] <= reg_file:r_unit.r_data[20]
+r_data[21] <= reg_file:r_unit.r_data[21]
+r_data[22] <= reg_file:r_unit.r_data[22]
+r_data[23] <= reg_file:r_unit.r_data[23]
+
+
+|task3_top|fir:fir_right|fifo:buffer|fifo_ctrl:c_unit
+clk => empty~reg0.CLK
+clk => full~reg0.CLK
+clk => rd_ptr[0].CLK
+clk => rd_ptr[1].CLK
+clk => rd_ptr[2].CLK
+clk => rd_ptr[3].CLK
+clk => rd_ptr[4].CLK
+clk => rd_ptr[5].CLK
+clk => rd_ptr[6].CLK
+clk => rd_ptr[7].CLK
+clk => wr_ptr[0].CLK
+clk => wr_ptr[1].CLK
+clk => wr_ptr[2].CLK
+clk => wr_ptr[3].CLK
+clk => wr_ptr[4].CLK
+clk => wr_ptr[5].CLK
+clk => wr_ptr[6].CLK
+clk => wr_ptr[7].CLK
+reset => wr_ptr.OUTPUTSELECT
+reset => wr_ptr.OUTPUTSELECT
+reset => wr_ptr.OUTPUTSELECT
+reset => wr_ptr.OUTPUTSELECT
+reset => wr_ptr.OUTPUTSELECT
+reset => wr_ptr.OUTPUTSELECT
+reset => wr_ptr.OUTPUTSELECT
+reset => wr_ptr.OUTPUTSELECT
+reset => rd_ptr.OUTPUTSELECT
+reset => rd_ptr.OUTPUTSELECT
+reset => rd_ptr.OUTPUTSELECT
+reset => rd_ptr.OUTPUTSELECT
+reset => rd_ptr.OUTPUTSELECT
+reset => rd_ptr.OUTPUTSELECT
+reset => rd_ptr.OUTPUTSELECT
+reset => rd_ptr.OUTPUTSELECT
+reset => full.OUTPUTSELECT
+reset => empty.OUTPUTSELECT
+rd => Mux0.IN2
+rd => Mux1.IN2
+rd => Mux2.IN2
+rd => Mux3.IN2
+rd => Mux4.IN2
+rd => Mux5.IN2
+rd => Mux6.IN2
+rd => Mux7.IN2
+rd => Mux8.IN2
+rd => Mux9.IN2
+rd => Mux10.IN2
+rd => Mux11.IN2
+rd => Mux12.IN2
+rd => Mux13.IN2
+rd => Mux14.IN2
+rd => Mux15.IN2
+rd => Mux16.IN2
+rd => Mux17.IN2
+wr => Mux0.IN3
+wr => Mux1.IN3
+wr => Mux2.IN3
+wr => Mux3.IN3
+wr => Mux4.IN3
+wr => Mux5.IN3
+wr => Mux6.IN3
+wr => Mux7.IN3
+wr => Mux8.IN3
+wr => Mux9.IN3
+wr => Mux10.IN3
+wr => Mux11.IN3
+wr => Mux12.IN3
+wr => Mux13.IN3
+wr => Mux14.IN3
+wr => Mux15.IN3
+wr => Mux16.IN3
+wr => Mux17.IN3
+empty <= empty~reg0.DB_MAX_OUTPUT_PORT_TYPE
+full <= full~reg0.DB_MAX_OUTPUT_PORT_TYPE
+w_addr[0] <= wr_ptr[0].DB_MAX_OUTPUT_PORT_TYPE
+w_addr[1] <= wr_ptr[1].DB_MAX_OUTPUT_PORT_TYPE
+w_addr[2] <= wr_ptr[2].DB_MAX_OUTPUT_PORT_TYPE
+w_addr[3] <= wr_ptr[3].DB_MAX_OUTPUT_PORT_TYPE
+w_addr[4] <= wr_ptr[4].DB_MAX_OUTPUT_PORT_TYPE
+w_addr[5] <= wr_ptr[5].DB_MAX_OUTPUT_PORT_TYPE
+w_addr[6] <= wr_ptr[6].DB_MAX_OUTPUT_PORT_TYPE
+w_addr[7] <= wr_ptr[7].DB_MAX_OUTPUT_PORT_TYPE
+r_addr[0] <= rd_ptr[0].DB_MAX_OUTPUT_PORT_TYPE
+r_addr[1] <= rd_ptr[1].DB_MAX_OUTPUT_PORT_TYPE
+r_addr[2] <= rd_ptr[2].DB_MAX_OUTPUT_PORT_TYPE
+r_addr[3] <= rd_ptr[3].DB_MAX_OUTPUT_PORT_TYPE
+r_addr[4] <= rd_ptr[4].DB_MAX_OUTPUT_PORT_TYPE
+r_addr[5] <= rd_ptr[5].DB_MAX_OUTPUT_PORT_TYPE
+r_addr[6] <= rd_ptr[6].DB_MAX_OUTPUT_PORT_TYPE
+r_addr[7] <= rd_ptr[7].DB_MAX_OUTPUT_PORT_TYPE
+
+
+|task3_top|fir:fir_right|fifo:buffer|reg_file:r_unit
+clk => array_reg.we_a.CLK
+clk => array_reg.waddr_a[7].CLK
+clk => array_reg.waddr_a[6].CLK
+clk => array_reg.waddr_a[5].CLK
+clk => array_reg.waddr_a[4].CLK
+clk => array_reg.waddr_a[3].CLK
+clk => array_reg.waddr_a[2].CLK
+clk => array_reg.waddr_a[1].CLK
+clk => array_reg.waddr_a[0].CLK
+clk => array_reg.data_a[23].CLK
+clk => array_reg.data_a[22].CLK
+clk => array_reg.data_a[21].CLK
+clk => array_reg.data_a[20].CLK
+clk => array_reg.data_a[19].CLK
+clk => array_reg.data_a[18].CLK
+clk => array_reg.data_a[17].CLK
+clk => array_reg.data_a[16].CLK
+clk => array_reg.data_a[15].CLK
+clk => array_reg.data_a[14].CLK
+clk => array_reg.data_a[13].CLK
+clk => array_reg.data_a[12].CLK
+clk => array_reg.data_a[11].CLK
+clk => array_reg.data_a[10].CLK
+clk => array_reg.data_a[9].CLK
+clk => array_reg.data_a[8].CLK
+clk => array_reg.data_a[7].CLK
+clk => array_reg.data_a[6].CLK
+clk => array_reg.data_a[5].CLK
+clk => array_reg.data_a[4].CLK
+clk => array_reg.data_a[3].CLK
+clk => array_reg.data_a[2].CLK
+clk => array_reg.data_a[1].CLK
+clk => array_reg.data_a[0].CLK
+clk => array_reg.CLK0
+w_data[0] => array_reg.data_a[0].DATAIN
+w_data[0] => array_reg.DATAIN
+w_data[1] => array_reg.data_a[1].DATAIN
+w_data[1] => array_reg.DATAIN1
+w_data[2] => array_reg.data_a[2].DATAIN
+w_data[2] => array_reg.DATAIN2
+w_data[3] => array_reg.data_a[3].DATAIN
+w_data[3] => array_reg.DATAIN3
+w_data[4] => array_reg.data_a[4].DATAIN
+w_data[4] => array_reg.DATAIN4
+w_data[5] => array_reg.data_a[5].DATAIN
+w_data[5] => array_reg.DATAIN5
+w_data[6] => array_reg.data_a[6].DATAIN
+w_data[6] => array_reg.DATAIN6
+w_data[7] => array_reg.data_a[7].DATAIN
+w_data[7] => array_reg.DATAIN7
+w_data[8] => array_reg.data_a[8].DATAIN
+w_data[8] => array_reg.DATAIN8
+w_data[9] => array_reg.data_a[9].DATAIN
+w_data[9] => array_reg.DATAIN9
+w_data[10] => array_reg.data_a[10].DATAIN
+w_data[10] => array_reg.DATAIN10
+w_data[11] => array_reg.data_a[11].DATAIN
+w_data[11] => array_reg.DATAIN11
+w_data[12] => array_reg.data_a[12].DATAIN
+w_data[12] => array_reg.DATAIN12
+w_data[13] => array_reg.data_a[13].DATAIN
+w_data[13] => array_reg.DATAIN13
+w_data[14] => array_reg.data_a[14].DATAIN
+w_data[14] => array_reg.DATAIN14
+w_data[15] => array_reg.data_a[15].DATAIN
+w_data[15] => array_reg.DATAIN15
+w_data[16] => array_reg.data_a[16].DATAIN
+w_data[16] => array_reg.DATAIN16
+w_data[17] => array_reg.data_a[17].DATAIN
+w_data[17] => array_reg.DATAIN17
+w_data[18] => array_reg.data_a[18].DATAIN
+w_data[18] => array_reg.DATAIN18
+w_data[19] => array_reg.data_a[19].DATAIN
+w_data[19] => array_reg.DATAIN19
+w_data[20] => array_reg.data_a[20].DATAIN
+w_data[20] => array_reg.DATAIN20
+w_data[21] => array_reg.data_a[21].DATAIN
+w_data[21] => array_reg.DATAIN21
+w_data[22] => array_reg.data_a[22].DATAIN
+w_data[22] => array_reg.DATAIN22
+w_data[23] => array_reg.data_a[23].DATAIN
+w_data[23] => array_reg.DATAIN23
+w_en => array_reg.we_a.DATAIN
+w_en => array_reg.WE
+w_addr[0] => array_reg.waddr_a[0].DATAIN
+w_addr[0] => array_reg.WADDR
+w_addr[1] => array_reg.waddr_a[1].DATAIN
+w_addr[1] => array_reg.WADDR1
+w_addr[2] => array_reg.waddr_a[2].DATAIN
+w_addr[2] => array_reg.WADDR2
+w_addr[3] => array_reg.waddr_a[3].DATAIN
+w_addr[3] => array_reg.WADDR3
+w_addr[4] => array_reg.waddr_a[4].DATAIN
+w_addr[4] => array_reg.WADDR4
+w_addr[5] => array_reg.waddr_a[5].DATAIN
+w_addr[5] => array_reg.WADDR5
+w_addr[6] => array_reg.waddr_a[6].DATAIN
+w_addr[6] => array_reg.WADDR6
+w_addr[7] => array_reg.waddr_a[7].DATAIN
+w_addr[7] => array_reg.WADDR7
+r_addr[0] => array_reg.RADDR
+r_addr[1] => array_reg.RADDR1
+r_addr[2] => array_reg.RADDR2
+r_addr[3] => array_reg.RADDR3
+r_addr[4] => array_reg.RADDR4
+r_addr[5] => array_reg.RADDR5
+r_addr[6] => array_reg.RADDR6
+r_addr[7] => array_reg.RADDR7
+r_data[0] <= array_reg.DATAOUT
+r_data[1] <= array_reg.DATAOUT1
+r_data[2] <= array_reg.DATAOUT2
+r_data[3] <= array_reg.DATAOUT3
+r_data[4] <= array_reg.DATAOUT4
+r_data[5] <= array_reg.DATAOUT5
+r_data[6] <= array_reg.DATAOUT6
+r_data[7] <= array_reg.DATAOUT7
+r_data[8] <= array_reg.DATAOUT8
+r_data[9] <= array_reg.DATAOUT9
+r_data[10] <= array_reg.DATAOUT10
+r_data[11] <= array_reg.DATAOUT11
+r_data[12] <= array_reg.DATAOUT12
+r_data[13] <= array_reg.DATAOUT13
+r_data[14] <= array_reg.DATAOUT14
+r_data[15] <= array_reg.DATAOUT15
+r_data[16] <= array_reg.DATAOUT16
+r_data[17] <= array_reg.DATAOUT17
+r_data[18] <= array_reg.DATAOUT18
+r_data[19] <= array_reg.DATAOUT19
+r_data[20] <= array_reg.DATAOUT20
+r_data[21] <= array_reg.DATAOUT21
+r_data[22] <= array_reg.DATAOUT22
+r_data[23] <= array_reg.DATAOUT23
+
+
+|task3_top|clock_generator:my_clock_gen
 CLOCK2_50 => CLOCK2_50.IN1
 reset => reset.IN1
 AUD_XCK <= altpll:DE_Clock_Generator_Audio.clk
 
 
-|task2|clock_generator:my_clock_gen|altpll:DE_Clock_Generator_Audio
+|task3_top|clock_generator:my_clock_gen|altpll:DE_Clock_Generator_Audio
 inclk[0] => altpll_1uu1:auto_generated.inclk[0]
 inclk[1] => altpll_1uu1:auto_generated.inclk[1]
 fbin => ~NO_FANOUT~
@@ -2867,7 +3664,7 @@ fref <= <GND>
 icdrclk <= <GND>
 
 
-|task2|clock_generator:my_clock_gen|altpll:DE_Clock_Generator_Audio|altpll_1uu1:auto_generated
+|task3_top|clock_generator:my_clock_gen|altpll:DE_Clock_Generator_Audio|altpll_1uu1:auto_generated
 areset => generic_pll1.I_RST
 clk[0] <= generic_pll1.O_OUTCLK
 clk[1] <= <GND>
@@ -2881,14 +3678,14 @@ inclk[1] => ~NO_FANOUT~
 locked <= generic_pll1.LOCKED
 
 
-|task2|audio_and_video_config:cfg
+|task3_top|audio_and_video_config:cfg
 clk => clk.IN3
 reset => reset.IN3
 I2C_SDAT <> Altera_UP_I2C:I2C_Controller.i2c_sdata
 I2C_SCLK <= Altera_UP_I2C:I2C_Controller.i2c_sclk
 
 
-|task2|audio_and_video_config:cfg|Altera_UP_Slow_Clock_Generator:Clock_Generator_400KHz
+|task3_top|audio_and_video_config:cfg|Altera_UP_Slow_Clock_Generator:Clock_Generator_400KHz
 clk => middle_of_low_level~reg0.CLK
 clk => middle_of_high_level~reg0.CLK
 clk => falling_edge~reg0.CLK
@@ -2936,7 +3733,7 @@ middle_of_high_level <= middle_of_high_level~reg0.DB_MAX_OUTPUT_PORT_TYPE
 middle_of_low_level <= middle_of_low_level~reg0.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|task2|audio_and_video_config:cfg|Altera_UP_I2C_AV_Auto_Initialize:Auto_Initialize
+|task3_top|audio_and_video_config:cfg|Altera_UP_I2C_AV_Auto_Initialize:Auto_Initialize
 clk => rom_address_counter[0].CLK
 clk => rom_address_counter[1].CLK
 clk => rom_address_counter[2].CLK
@@ -3006,7 +3803,7 @@ auto_init_complete <= auto_init_complete.DB_MAX_OUTPUT_PORT_TYPE
 auto_init_error <= auto_init_error~reg0.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|task2|audio_and_video_config:cfg|Altera_UP_I2C:I2C_Controller
+|task3_top|audio_and_video_config:cfg|Altera_UP_I2C:I2C_Controller
 clk => current_byte[0].CLK
 clk => current_byte[1].CLK
 clk => current_byte[2].CLK
@@ -3117,7 +3914,7 @@ data_from_i2c[7] <= data_from_i2c[7]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 transfer_complete <= transfer_complete.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|task2|audio_codec:codec
+|task3_top|audio_codec:codec
 clk => clk.IN5
 reset => reset.IN5
 read => comb.IN1
@@ -3229,7 +4026,7 @@ readdata_right[23] <= Altera_UP_Audio_In_Deserializer:Audio_In_Deserializer.righ
 AUD_DACDAT <= Altera_UP_Audio_Out_Serializer:Audio_Out_Serializer.serial_audio_out_data
 
 
-|task2|audio_codec:codec|Altera_UP_Clock_Edge:Bit_Clock_Edges
+|task3_top|audio_codec:codec|Altera_UP_Clock_Edge:Bit_Clock_Edges
 clk => last_test_clk.CLK
 clk => cur_test_clk.CLK
 reset => ~NO_FANOUT~
@@ -3238,7 +4035,7 @@ rising_edge <= rising_edge.DB_MAX_OUTPUT_PORT_TYPE
 falling_edge <= falling_edge.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|task2|audio_codec:codec|Altera_UP_Clock_Edge:ADC_Left_Right_Clock_Edges
+|task3_top|audio_codec:codec|Altera_UP_Clock_Edge:ADC_Left_Right_Clock_Edges
 clk => last_test_clk.CLK
 clk => cur_test_clk.CLK
 reset => ~NO_FANOUT~
@@ -3247,7 +4044,7 @@ rising_edge <= rising_edge.DB_MAX_OUTPUT_PORT_TYPE
 falling_edge <= falling_edge.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|task2|audio_codec:codec|Altera_UP_Clock_Edge:DAC_Left_Right_Clock_Edges
+|task3_top|audio_codec:codec|Altera_UP_Clock_Edge:DAC_Left_Right_Clock_Edges
 clk => last_test_clk.CLK
 clk => cur_test_clk.CLK
 reset => ~NO_FANOUT~
@@ -3256,7 +4053,7 @@ rising_edge <= rising_edge.DB_MAX_OUTPUT_PORT_TYPE
 falling_edge <= falling_edge.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|task2|audio_codec:codec|Altera_UP_Audio_In_Deserializer:Audio_In_Deserializer
+|task3_top|audio_codec:codec|Altera_UP_Audio_In_Deserializer:Audio_In_Deserializer
 clk => clk.IN3
 reset => reset.IN3
 bit_clk_rising_edge => bit_clk_rising_edge.IN1
@@ -3334,7 +4131,7 @@ right_channel_data[23] <= Altera_UP_SYNC_FIFO:Audio_In_Right_Channel_FIFO.read_d
 right_channel_data[24] <= Altera_UP_SYNC_FIFO:Audio_In_Right_Channel_FIFO.read_data
 
 
-|task2|audio_codec:codec|Altera_UP_Audio_In_Deserializer:Audio_In_Deserializer|Altera_UP_Audio_Bit_Counter:Audio_Out_Bit_Counter
+|task3_top|audio_codec:codec|Altera_UP_Audio_In_Deserializer:Audio_In_Deserializer|Altera_UP_Audio_Bit_Counter:Audio_Out_Bit_Counter
 clk => counting~reg0.CLK
 clk => bit_counter[0].CLK
 clk => bit_counter[1].CLK
@@ -3355,7 +4152,7 @@ left_right_clk_falling_edge => reset_bit_counter.IN1
 counting <= counting~reg0.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|task2|audio_codec:codec|Altera_UP_Audio_In_Deserializer:Audio_In_Deserializer|Altera_UP_SYNC_FIFO:Audio_In_Left_Channel_FIFO
+|task3_top|audio_codec:codec|Altera_UP_Audio_In_Deserializer:Audio_In_Deserializer|Altera_UP_SYNC_FIFO:Audio_In_Left_Channel_FIFO
 clk => clk.IN1
 reset => reset.IN1
 write_en => write_en.IN1
@@ -3419,7 +4216,7 @@ read_data[23] <= scfifo:Sync_FIFO.q
 read_data[24] <= scfifo:Sync_FIFO.q
 
 
-|task2|audio_codec:codec|Altera_UP_Audio_In_Deserializer:Audio_In_Deserializer|Altera_UP_SYNC_FIFO:Audio_In_Left_Channel_FIFO|scfifo:Sync_FIFO
+|task3_top|audio_codec:codec|Altera_UP_Audio_In_Deserializer:Audio_In_Deserializer|Altera_UP_SYNC_FIFO:Audio_In_Left_Channel_FIFO|scfifo:Sync_FIFO
 data[0] => scfifo_8ba1:auto_generated.data[0]
 data[1] => scfifo_8ba1:auto_generated.data[1]
 data[2] => scfifo_8ba1:auto_generated.data[2]
@@ -3488,7 +4285,7 @@ usedw[5] <= scfifo_8ba1:auto_generated.usedw[5]
 usedw[6] <= scfifo_8ba1:auto_generated.usedw[6]
 
 
-|task2|audio_codec:codec|Altera_UP_Audio_In_Deserializer:Audio_In_Deserializer|Altera_UP_SYNC_FIFO:Audio_In_Left_Channel_FIFO|scfifo:Sync_FIFO|scfifo_8ba1:auto_generated
+|task3_top|audio_codec:codec|Altera_UP_Audio_In_Deserializer:Audio_In_Deserializer|Altera_UP_SYNC_FIFO:Audio_In_Left_Channel_FIFO|scfifo:Sync_FIFO|scfifo_8ba1:auto_generated
 clock => a_dpfifo_r2a1:dpfifo.clock
 data[0] => a_dpfifo_r2a1:dpfifo.data[0]
 data[1] => a_dpfifo_r2a1:dpfifo.data[1]
@@ -3552,7 +4349,7 @@ usedw[6] <= a_dpfifo_r2a1:dpfifo.usedw[6]
 wrreq => a_dpfifo_r2a1:dpfifo.wreq
 
 
-|task2|audio_codec:codec|Altera_UP_Audio_In_Deserializer:Audio_In_Deserializer|Altera_UP_SYNC_FIFO:Audio_In_Left_Channel_FIFO|scfifo:Sync_FIFO|scfifo_8ba1:auto_generated|a_dpfifo_r2a1:dpfifo
+|task3_top|audio_codec:codec|Altera_UP_Audio_In_Deserializer:Audio_In_Deserializer|Altera_UP_SYNC_FIFO:Audio_In_Left_Channel_FIFO|scfifo:Sync_FIFO|scfifo_8ba1:auto_generated|a_dpfifo_r2a1:dpfifo
 clock => altsyncram_p3i1:FIFOram.clock0
 clock => cntr_h2b:rd_ptr_msb.clock
 clock => cntr_u27:usedw_counter.clock
@@ -3689,7 +4486,7 @@ wreq => _.IN0
 wreq => wait_state.IN1
 
 
-|task2|audio_codec:codec|Altera_UP_Audio_In_Deserializer:Audio_In_Deserializer|Altera_UP_SYNC_FIFO:Audio_In_Left_Channel_FIFO|scfifo:Sync_FIFO|scfifo_8ba1:auto_generated|a_dpfifo_r2a1:dpfifo|altsyncram_p3i1:FIFOram
+|task3_top|audio_codec:codec|Altera_UP_Audio_In_Deserializer:Audio_In_Deserializer|Altera_UP_SYNC_FIFO:Audio_In_Left_Channel_FIFO|scfifo:Sync_FIFO|scfifo_8ba1:auto_generated|a_dpfifo_r2a1:dpfifo|altsyncram_p3i1:FIFOram
 address_a[0] => ram_block1a0.PORTAADDR
 address_a[0] => ram_block1a1.PORTAADDR
 address_a[0] => ram_block1a2.PORTAADDR
@@ -4172,7 +4969,7 @@ wren_a => ram_block1a23.PORTAWE
 wren_a => ram_block1a23.ENA0
 
 
-|task2|audio_codec:codec|Altera_UP_Audio_In_Deserializer:Audio_In_Deserializer|Altera_UP_SYNC_FIFO:Audio_In_Left_Channel_FIFO|scfifo:Sync_FIFO|scfifo_8ba1:auto_generated|a_dpfifo_r2a1:dpfifo|cmpr_6l8:almost_full_comparer
+|task3_top|audio_codec:codec|Altera_UP_Audio_In_Deserializer:Audio_In_Deserializer|Altera_UP_SYNC_FIFO:Audio_In_Left_Channel_FIFO|scfifo:Sync_FIFO|scfifo_8ba1:auto_generated|a_dpfifo_r2a1:dpfifo|cmpr_6l8:almost_full_comparer
 aeb <= aeb_result_wire[0].DB_MAX_OUTPUT_PORT_TYPE
 dataa[0] => data_wire[0].IN0
 dataa[1] => data_wire[0].IN0
@@ -4190,7 +4987,7 @@ datab[5] => data_wire[2].IN1
 datab[6] => data_wire[3].IN1
 
 
-|task2|audio_codec:codec|Altera_UP_Audio_In_Deserializer:Audio_In_Deserializer|Altera_UP_SYNC_FIFO:Audio_In_Left_Channel_FIFO|scfifo:Sync_FIFO|scfifo_8ba1:auto_generated|a_dpfifo_r2a1:dpfifo|cmpr_6l8:three_comparison
+|task3_top|audio_codec:codec|Altera_UP_Audio_In_Deserializer:Audio_In_Deserializer|Altera_UP_SYNC_FIFO:Audio_In_Left_Channel_FIFO|scfifo:Sync_FIFO|scfifo_8ba1:auto_generated|a_dpfifo_r2a1:dpfifo|cmpr_6l8:three_comparison
 aeb <= aeb_result_wire[0].DB_MAX_OUTPUT_PORT_TYPE
 dataa[0] => data_wire[0].IN0
 dataa[1] => data_wire[0].IN0
@@ -4208,7 +5005,7 @@ datab[5] => data_wire[2].IN1
 datab[6] => data_wire[3].IN1
 
 
-|task2|audio_codec:codec|Altera_UP_Audio_In_Deserializer:Audio_In_Deserializer|Altera_UP_SYNC_FIFO:Audio_In_Left_Channel_FIFO|scfifo:Sync_FIFO|scfifo_8ba1:auto_generated|a_dpfifo_r2a1:dpfifo|cntr_h2b:rd_ptr_msb
+|task3_top|audio_codec:codec|Altera_UP_Audio_In_Deserializer:Audio_In_Deserializer|Altera_UP_SYNC_FIFO:Audio_In_Left_Channel_FIFO|scfifo:Sync_FIFO|scfifo_8ba1:auto_generated|a_dpfifo_r2a1:dpfifo|cntr_h2b:rd_ptr_msb
 clock => counter_reg_bit[5].CLK
 clock => counter_reg_bit[4].CLK
 clock => counter_reg_bit[3].CLK
@@ -4231,7 +5028,7 @@ sclr => counter_reg_bit[1].SCLR
 sclr => counter_reg_bit[0].SCLR
 
 
-|task2|audio_codec:codec|Altera_UP_Audio_In_Deserializer:Audio_In_Deserializer|Altera_UP_SYNC_FIFO:Audio_In_Left_Channel_FIFO|scfifo:Sync_FIFO|scfifo_8ba1:auto_generated|a_dpfifo_r2a1:dpfifo|cntr_u27:usedw_counter
+|task3_top|audio_codec:codec|Altera_UP_Audio_In_Deserializer:Audio_In_Deserializer|Altera_UP_SYNC_FIFO:Audio_In_Left_Channel_FIFO|scfifo:Sync_FIFO|scfifo_8ba1:auto_generated|a_dpfifo_r2a1:dpfifo|cntr_u27:usedw_counter
 clock => counter_reg_bit[6].CLK
 clock => counter_reg_bit[5].CLK
 clock => counter_reg_bit[4].CLK
@@ -4259,7 +5056,7 @@ updown => updown_other_bits.IN1
 updown => counter_comb_bita0.DATAF
 
 
-|task2|audio_codec:codec|Altera_UP_Audio_In_Deserializer:Audio_In_Deserializer|Altera_UP_SYNC_FIFO:Audio_In_Left_Channel_FIFO|scfifo:Sync_FIFO|scfifo_8ba1:auto_generated|a_dpfifo_r2a1:dpfifo|cntr_i2b:wr_ptr
+|task3_top|audio_codec:codec|Altera_UP_Audio_In_Deserializer:Audio_In_Deserializer|Altera_UP_SYNC_FIFO:Audio_In_Left_Channel_FIFO|scfifo:Sync_FIFO|scfifo_8ba1:auto_generated|a_dpfifo_r2a1:dpfifo|cntr_i2b:wr_ptr
 clock => counter_reg_bit[6].CLK
 clock => counter_reg_bit[5].CLK
 clock => counter_reg_bit[4].CLK
@@ -4285,7 +5082,7 @@ sclr => counter_reg_bit[1].SCLR
 sclr => counter_reg_bit[0].SCLR
 
 
-|task2|audio_codec:codec|Altera_UP_Audio_In_Deserializer:Audio_In_Deserializer|Altera_UP_SYNC_FIFO:Audio_In_Right_Channel_FIFO
+|task3_top|audio_codec:codec|Altera_UP_Audio_In_Deserializer:Audio_In_Deserializer|Altera_UP_SYNC_FIFO:Audio_In_Right_Channel_FIFO
 clk => clk.IN1
 reset => reset.IN1
 write_en => write_en.IN1
@@ -4349,7 +5146,7 @@ read_data[23] <= scfifo:Sync_FIFO.q
 read_data[24] <= scfifo:Sync_FIFO.q
 
 
-|task2|audio_codec:codec|Altera_UP_Audio_In_Deserializer:Audio_In_Deserializer|Altera_UP_SYNC_FIFO:Audio_In_Right_Channel_FIFO|scfifo:Sync_FIFO
+|task3_top|audio_codec:codec|Altera_UP_Audio_In_Deserializer:Audio_In_Deserializer|Altera_UP_SYNC_FIFO:Audio_In_Right_Channel_FIFO|scfifo:Sync_FIFO
 data[0] => scfifo_8ba1:auto_generated.data[0]
 data[1] => scfifo_8ba1:auto_generated.data[1]
 data[2] => scfifo_8ba1:auto_generated.data[2]
@@ -4418,7 +5215,7 @@ usedw[5] <= scfifo_8ba1:auto_generated.usedw[5]
 usedw[6] <= scfifo_8ba1:auto_generated.usedw[6]
 
 
-|task2|audio_codec:codec|Altera_UP_Audio_In_Deserializer:Audio_In_Deserializer|Altera_UP_SYNC_FIFO:Audio_In_Right_Channel_FIFO|scfifo:Sync_FIFO|scfifo_8ba1:auto_generated
+|task3_top|audio_codec:codec|Altera_UP_Audio_In_Deserializer:Audio_In_Deserializer|Altera_UP_SYNC_FIFO:Audio_In_Right_Channel_FIFO|scfifo:Sync_FIFO|scfifo_8ba1:auto_generated
 clock => a_dpfifo_r2a1:dpfifo.clock
 data[0] => a_dpfifo_r2a1:dpfifo.data[0]
 data[1] => a_dpfifo_r2a1:dpfifo.data[1]
@@ -4482,7 +5279,7 @@ usedw[6] <= a_dpfifo_r2a1:dpfifo.usedw[6]
 wrreq => a_dpfifo_r2a1:dpfifo.wreq
 
 
-|task2|audio_codec:codec|Altera_UP_Audio_In_Deserializer:Audio_In_Deserializer|Altera_UP_SYNC_FIFO:Audio_In_Right_Channel_FIFO|scfifo:Sync_FIFO|scfifo_8ba1:auto_generated|a_dpfifo_r2a1:dpfifo
+|task3_top|audio_codec:codec|Altera_UP_Audio_In_Deserializer:Audio_In_Deserializer|Altera_UP_SYNC_FIFO:Audio_In_Right_Channel_FIFO|scfifo:Sync_FIFO|scfifo_8ba1:auto_generated|a_dpfifo_r2a1:dpfifo
 clock => altsyncram_p3i1:FIFOram.clock0
 clock => cntr_h2b:rd_ptr_msb.clock
 clock => cntr_u27:usedw_counter.clock
@@ -4619,7 +5416,7 @@ wreq => _.IN0
 wreq => wait_state.IN1
 
 
-|task2|audio_codec:codec|Altera_UP_Audio_In_Deserializer:Audio_In_Deserializer|Altera_UP_SYNC_FIFO:Audio_In_Right_Channel_FIFO|scfifo:Sync_FIFO|scfifo_8ba1:auto_generated|a_dpfifo_r2a1:dpfifo|altsyncram_p3i1:FIFOram
+|task3_top|audio_codec:codec|Altera_UP_Audio_In_Deserializer:Audio_In_Deserializer|Altera_UP_SYNC_FIFO:Audio_In_Right_Channel_FIFO|scfifo:Sync_FIFO|scfifo_8ba1:auto_generated|a_dpfifo_r2a1:dpfifo|altsyncram_p3i1:FIFOram
 address_a[0] => ram_block1a0.PORTAADDR
 address_a[0] => ram_block1a1.PORTAADDR
 address_a[0] => ram_block1a2.PORTAADDR
@@ -5102,7 +5899,7 @@ wren_a => ram_block1a23.PORTAWE
 wren_a => ram_block1a23.ENA0
 
 
-|task2|audio_codec:codec|Altera_UP_Audio_In_Deserializer:Audio_In_Deserializer|Altera_UP_SYNC_FIFO:Audio_In_Right_Channel_FIFO|scfifo:Sync_FIFO|scfifo_8ba1:auto_generated|a_dpfifo_r2a1:dpfifo|cmpr_6l8:almost_full_comparer
+|task3_top|audio_codec:codec|Altera_UP_Audio_In_Deserializer:Audio_In_Deserializer|Altera_UP_SYNC_FIFO:Audio_In_Right_Channel_FIFO|scfifo:Sync_FIFO|scfifo_8ba1:auto_generated|a_dpfifo_r2a1:dpfifo|cmpr_6l8:almost_full_comparer
 aeb <= aeb_result_wire[0].DB_MAX_OUTPUT_PORT_TYPE
 dataa[0] => data_wire[0].IN0
 dataa[1] => data_wire[0].IN0
@@ -5120,7 +5917,7 @@ datab[5] => data_wire[2].IN1
 datab[6] => data_wire[3].IN1
 
 
-|task2|audio_codec:codec|Altera_UP_Audio_In_Deserializer:Audio_In_Deserializer|Altera_UP_SYNC_FIFO:Audio_In_Right_Channel_FIFO|scfifo:Sync_FIFO|scfifo_8ba1:auto_generated|a_dpfifo_r2a1:dpfifo|cmpr_6l8:three_comparison
+|task3_top|audio_codec:codec|Altera_UP_Audio_In_Deserializer:Audio_In_Deserializer|Altera_UP_SYNC_FIFO:Audio_In_Right_Channel_FIFO|scfifo:Sync_FIFO|scfifo_8ba1:auto_generated|a_dpfifo_r2a1:dpfifo|cmpr_6l8:three_comparison
 aeb <= aeb_result_wire[0].DB_MAX_OUTPUT_PORT_TYPE
 dataa[0] => data_wire[0].IN0
 dataa[1] => data_wire[0].IN0
@@ -5138,7 +5935,7 @@ datab[5] => data_wire[2].IN1
 datab[6] => data_wire[3].IN1
 
 
-|task2|audio_codec:codec|Altera_UP_Audio_In_Deserializer:Audio_In_Deserializer|Altera_UP_SYNC_FIFO:Audio_In_Right_Channel_FIFO|scfifo:Sync_FIFO|scfifo_8ba1:auto_generated|a_dpfifo_r2a1:dpfifo|cntr_h2b:rd_ptr_msb
+|task3_top|audio_codec:codec|Altera_UP_Audio_In_Deserializer:Audio_In_Deserializer|Altera_UP_SYNC_FIFO:Audio_In_Right_Channel_FIFO|scfifo:Sync_FIFO|scfifo_8ba1:auto_generated|a_dpfifo_r2a1:dpfifo|cntr_h2b:rd_ptr_msb
 clock => counter_reg_bit[5].CLK
 clock => counter_reg_bit[4].CLK
 clock => counter_reg_bit[3].CLK
@@ -5161,7 +5958,7 @@ sclr => counter_reg_bit[1].SCLR
 sclr => counter_reg_bit[0].SCLR
 
 
-|task2|audio_codec:codec|Altera_UP_Audio_In_Deserializer:Audio_In_Deserializer|Altera_UP_SYNC_FIFO:Audio_In_Right_Channel_FIFO|scfifo:Sync_FIFO|scfifo_8ba1:auto_generated|a_dpfifo_r2a1:dpfifo|cntr_u27:usedw_counter
+|task3_top|audio_codec:codec|Altera_UP_Audio_In_Deserializer:Audio_In_Deserializer|Altera_UP_SYNC_FIFO:Audio_In_Right_Channel_FIFO|scfifo:Sync_FIFO|scfifo_8ba1:auto_generated|a_dpfifo_r2a1:dpfifo|cntr_u27:usedw_counter
 clock => counter_reg_bit[6].CLK
 clock => counter_reg_bit[5].CLK
 clock => counter_reg_bit[4].CLK
@@ -5189,7 +5986,7 @@ updown => updown_other_bits.IN1
 updown => counter_comb_bita0.DATAF
 
 
-|task2|audio_codec:codec|Altera_UP_Audio_In_Deserializer:Audio_In_Deserializer|Altera_UP_SYNC_FIFO:Audio_In_Right_Channel_FIFO|scfifo:Sync_FIFO|scfifo_8ba1:auto_generated|a_dpfifo_r2a1:dpfifo|cntr_i2b:wr_ptr
+|task3_top|audio_codec:codec|Altera_UP_Audio_In_Deserializer:Audio_In_Deserializer|Altera_UP_SYNC_FIFO:Audio_In_Right_Channel_FIFO|scfifo:Sync_FIFO|scfifo_8ba1:auto_generated|a_dpfifo_r2a1:dpfifo|cntr_i2b:wr_ptr
 clock => counter_reg_bit[6].CLK
 clock => counter_reg_bit[5].CLK
 clock => counter_reg_bit[4].CLK
@@ -5215,7 +6012,7 @@ sclr => counter_reg_bit[1].SCLR
 sclr => counter_reg_bit[0].SCLR
 
 
-|task2|audio_codec:codec|Altera_UP_Audio_Out_Serializer:Audio_Out_Serializer
+|task3_top|audio_codec:codec|Altera_UP_Audio_Out_Serializer:Audio_Out_Serializer
 clk => clk.IN2
 reset => reset.IN2
 bit_clk_rising_edge => ~NO_FANOUT~
@@ -5316,7 +6113,7 @@ right_channel_fifo_write_space[7] <= right_channel_fifo_write_space[7]~reg0.DB_M
 serial_audio_out_data <= serial_audio_out_data~reg0.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|task2|audio_codec:codec|Altera_UP_Audio_Out_Serializer:Audio_Out_Serializer|Altera_UP_SYNC_FIFO:Audio_Out_Left_Channel_FIFO
+|task3_top|audio_codec:codec|Altera_UP_Audio_Out_Serializer:Audio_Out_Serializer|Altera_UP_SYNC_FIFO:Audio_Out_Left_Channel_FIFO
 clk => clk.IN1
 reset => reset.IN1
 write_en => write_en.IN1
@@ -5380,7 +6177,7 @@ read_data[23] <= scfifo:Sync_FIFO.q
 read_data[24] <= scfifo:Sync_FIFO.q
 
 
-|task2|audio_codec:codec|Altera_UP_Audio_Out_Serializer:Audio_Out_Serializer|Altera_UP_SYNC_FIFO:Audio_Out_Left_Channel_FIFO|scfifo:Sync_FIFO
+|task3_top|audio_codec:codec|Altera_UP_Audio_Out_Serializer:Audio_Out_Serializer|Altera_UP_SYNC_FIFO:Audio_Out_Left_Channel_FIFO|scfifo:Sync_FIFO
 data[0] => scfifo_8ba1:auto_generated.data[0]
 data[1] => scfifo_8ba1:auto_generated.data[1]
 data[2] => scfifo_8ba1:auto_generated.data[2]
@@ -5449,7 +6246,7 @@ usedw[5] <= scfifo_8ba1:auto_generated.usedw[5]
 usedw[6] <= scfifo_8ba1:auto_generated.usedw[6]
 
 
-|task2|audio_codec:codec|Altera_UP_Audio_Out_Serializer:Audio_Out_Serializer|Altera_UP_SYNC_FIFO:Audio_Out_Left_Channel_FIFO|scfifo:Sync_FIFO|scfifo_8ba1:auto_generated
+|task3_top|audio_codec:codec|Altera_UP_Audio_Out_Serializer:Audio_Out_Serializer|Altera_UP_SYNC_FIFO:Audio_Out_Left_Channel_FIFO|scfifo:Sync_FIFO|scfifo_8ba1:auto_generated
 clock => a_dpfifo_r2a1:dpfifo.clock
 data[0] => a_dpfifo_r2a1:dpfifo.data[0]
 data[1] => a_dpfifo_r2a1:dpfifo.data[1]
@@ -5513,7 +6310,7 @@ usedw[6] <= a_dpfifo_r2a1:dpfifo.usedw[6]
 wrreq => a_dpfifo_r2a1:dpfifo.wreq
 
 
-|task2|audio_codec:codec|Altera_UP_Audio_Out_Serializer:Audio_Out_Serializer|Altera_UP_SYNC_FIFO:Audio_Out_Left_Channel_FIFO|scfifo:Sync_FIFO|scfifo_8ba1:auto_generated|a_dpfifo_r2a1:dpfifo
+|task3_top|audio_codec:codec|Altera_UP_Audio_Out_Serializer:Audio_Out_Serializer|Altera_UP_SYNC_FIFO:Audio_Out_Left_Channel_FIFO|scfifo:Sync_FIFO|scfifo_8ba1:auto_generated|a_dpfifo_r2a1:dpfifo
 clock => altsyncram_p3i1:FIFOram.clock0
 clock => cntr_h2b:rd_ptr_msb.clock
 clock => cntr_u27:usedw_counter.clock
@@ -5650,7 +6447,7 @@ wreq => _.IN0
 wreq => wait_state.IN1
 
 
-|task2|audio_codec:codec|Altera_UP_Audio_Out_Serializer:Audio_Out_Serializer|Altera_UP_SYNC_FIFO:Audio_Out_Left_Channel_FIFO|scfifo:Sync_FIFO|scfifo_8ba1:auto_generated|a_dpfifo_r2a1:dpfifo|altsyncram_p3i1:FIFOram
+|task3_top|audio_codec:codec|Altera_UP_Audio_Out_Serializer:Audio_Out_Serializer|Altera_UP_SYNC_FIFO:Audio_Out_Left_Channel_FIFO|scfifo:Sync_FIFO|scfifo_8ba1:auto_generated|a_dpfifo_r2a1:dpfifo|altsyncram_p3i1:FIFOram
 address_a[0] => ram_block1a0.PORTAADDR
 address_a[0] => ram_block1a1.PORTAADDR
 address_a[0] => ram_block1a2.PORTAADDR
@@ -6133,7 +6930,7 @@ wren_a => ram_block1a23.PORTAWE
 wren_a => ram_block1a23.ENA0
 
 
-|task2|audio_codec:codec|Altera_UP_Audio_Out_Serializer:Audio_Out_Serializer|Altera_UP_SYNC_FIFO:Audio_Out_Left_Channel_FIFO|scfifo:Sync_FIFO|scfifo_8ba1:auto_generated|a_dpfifo_r2a1:dpfifo|cmpr_6l8:almost_full_comparer
+|task3_top|audio_codec:codec|Altera_UP_Audio_Out_Serializer:Audio_Out_Serializer|Altera_UP_SYNC_FIFO:Audio_Out_Left_Channel_FIFO|scfifo:Sync_FIFO|scfifo_8ba1:auto_generated|a_dpfifo_r2a1:dpfifo|cmpr_6l8:almost_full_comparer
 aeb <= aeb_result_wire[0].DB_MAX_OUTPUT_PORT_TYPE
 dataa[0] => data_wire[0].IN0
 dataa[1] => data_wire[0].IN0
@@ -6151,7 +6948,7 @@ datab[5] => data_wire[2].IN1
 datab[6] => data_wire[3].IN1
 
 
-|task2|audio_codec:codec|Altera_UP_Audio_Out_Serializer:Audio_Out_Serializer|Altera_UP_SYNC_FIFO:Audio_Out_Left_Channel_FIFO|scfifo:Sync_FIFO|scfifo_8ba1:auto_generated|a_dpfifo_r2a1:dpfifo|cmpr_6l8:three_comparison
+|task3_top|audio_codec:codec|Altera_UP_Audio_Out_Serializer:Audio_Out_Serializer|Altera_UP_SYNC_FIFO:Audio_Out_Left_Channel_FIFO|scfifo:Sync_FIFO|scfifo_8ba1:auto_generated|a_dpfifo_r2a1:dpfifo|cmpr_6l8:three_comparison
 aeb <= aeb_result_wire[0].DB_MAX_OUTPUT_PORT_TYPE
 dataa[0] => data_wire[0].IN0
 dataa[1] => data_wire[0].IN0
@@ -6169,7 +6966,7 @@ datab[5] => data_wire[2].IN1
 datab[6] => data_wire[3].IN1
 
 
-|task2|audio_codec:codec|Altera_UP_Audio_Out_Serializer:Audio_Out_Serializer|Altera_UP_SYNC_FIFO:Audio_Out_Left_Channel_FIFO|scfifo:Sync_FIFO|scfifo_8ba1:auto_generated|a_dpfifo_r2a1:dpfifo|cntr_h2b:rd_ptr_msb
+|task3_top|audio_codec:codec|Altera_UP_Audio_Out_Serializer:Audio_Out_Serializer|Altera_UP_SYNC_FIFO:Audio_Out_Left_Channel_FIFO|scfifo:Sync_FIFO|scfifo_8ba1:auto_generated|a_dpfifo_r2a1:dpfifo|cntr_h2b:rd_ptr_msb
 clock => counter_reg_bit[5].CLK
 clock => counter_reg_bit[4].CLK
 clock => counter_reg_bit[3].CLK
@@ -6192,7 +6989,7 @@ sclr => counter_reg_bit[1].SCLR
 sclr => counter_reg_bit[0].SCLR
 
 
-|task2|audio_codec:codec|Altera_UP_Audio_Out_Serializer:Audio_Out_Serializer|Altera_UP_SYNC_FIFO:Audio_Out_Left_Channel_FIFO|scfifo:Sync_FIFO|scfifo_8ba1:auto_generated|a_dpfifo_r2a1:dpfifo|cntr_u27:usedw_counter
+|task3_top|audio_codec:codec|Altera_UP_Audio_Out_Serializer:Audio_Out_Serializer|Altera_UP_SYNC_FIFO:Audio_Out_Left_Channel_FIFO|scfifo:Sync_FIFO|scfifo_8ba1:auto_generated|a_dpfifo_r2a1:dpfifo|cntr_u27:usedw_counter
 clock => counter_reg_bit[6].CLK
 clock => counter_reg_bit[5].CLK
 clock => counter_reg_bit[4].CLK
@@ -6220,7 +7017,7 @@ updown => updown_other_bits.IN1
 updown => counter_comb_bita0.DATAF
 
 
-|task2|audio_codec:codec|Altera_UP_Audio_Out_Serializer:Audio_Out_Serializer|Altera_UP_SYNC_FIFO:Audio_Out_Left_Channel_FIFO|scfifo:Sync_FIFO|scfifo_8ba1:auto_generated|a_dpfifo_r2a1:dpfifo|cntr_i2b:wr_ptr
+|task3_top|audio_codec:codec|Altera_UP_Audio_Out_Serializer:Audio_Out_Serializer|Altera_UP_SYNC_FIFO:Audio_Out_Left_Channel_FIFO|scfifo:Sync_FIFO|scfifo_8ba1:auto_generated|a_dpfifo_r2a1:dpfifo|cntr_i2b:wr_ptr
 clock => counter_reg_bit[6].CLK
 clock => counter_reg_bit[5].CLK
 clock => counter_reg_bit[4].CLK
@@ -6246,7 +7043,7 @@ sclr => counter_reg_bit[1].SCLR
 sclr => counter_reg_bit[0].SCLR
 
 
-|task2|audio_codec:codec|Altera_UP_Audio_Out_Serializer:Audio_Out_Serializer|Altera_UP_SYNC_FIFO:Audio_Out_Right_Channel_FIFO
+|task3_top|audio_codec:codec|Altera_UP_Audio_Out_Serializer:Audio_Out_Serializer|Altera_UP_SYNC_FIFO:Audio_Out_Right_Channel_FIFO
 clk => clk.IN1
 reset => reset.IN1
 write_en => write_en.IN1
@@ -6310,7 +7107,7 @@ read_data[23] <= scfifo:Sync_FIFO.q
 read_data[24] <= scfifo:Sync_FIFO.q
 
 
-|task2|audio_codec:codec|Altera_UP_Audio_Out_Serializer:Audio_Out_Serializer|Altera_UP_SYNC_FIFO:Audio_Out_Right_Channel_FIFO|scfifo:Sync_FIFO
+|task3_top|audio_codec:codec|Altera_UP_Audio_Out_Serializer:Audio_Out_Serializer|Altera_UP_SYNC_FIFO:Audio_Out_Right_Channel_FIFO|scfifo:Sync_FIFO
 data[0] => scfifo_8ba1:auto_generated.data[0]
 data[1] => scfifo_8ba1:auto_generated.data[1]
 data[2] => scfifo_8ba1:auto_generated.data[2]
@@ -6379,7 +7176,7 @@ usedw[5] <= scfifo_8ba1:auto_generated.usedw[5]
 usedw[6] <= scfifo_8ba1:auto_generated.usedw[6]
 
 
-|task2|audio_codec:codec|Altera_UP_Audio_Out_Serializer:Audio_Out_Serializer|Altera_UP_SYNC_FIFO:Audio_Out_Right_Channel_FIFO|scfifo:Sync_FIFO|scfifo_8ba1:auto_generated
+|task3_top|audio_codec:codec|Altera_UP_Audio_Out_Serializer:Audio_Out_Serializer|Altera_UP_SYNC_FIFO:Audio_Out_Right_Channel_FIFO|scfifo:Sync_FIFO|scfifo_8ba1:auto_generated
 clock => a_dpfifo_r2a1:dpfifo.clock
 data[0] => a_dpfifo_r2a1:dpfifo.data[0]
 data[1] => a_dpfifo_r2a1:dpfifo.data[1]
@@ -6443,7 +7240,7 @@ usedw[6] <= a_dpfifo_r2a1:dpfifo.usedw[6]
 wrreq => a_dpfifo_r2a1:dpfifo.wreq
 
 
-|task2|audio_codec:codec|Altera_UP_Audio_Out_Serializer:Audio_Out_Serializer|Altera_UP_SYNC_FIFO:Audio_Out_Right_Channel_FIFO|scfifo:Sync_FIFO|scfifo_8ba1:auto_generated|a_dpfifo_r2a1:dpfifo
+|task3_top|audio_codec:codec|Altera_UP_Audio_Out_Serializer:Audio_Out_Serializer|Altera_UP_SYNC_FIFO:Audio_Out_Right_Channel_FIFO|scfifo:Sync_FIFO|scfifo_8ba1:auto_generated|a_dpfifo_r2a1:dpfifo
 clock => altsyncram_p3i1:FIFOram.clock0
 clock => cntr_h2b:rd_ptr_msb.clock
 clock => cntr_u27:usedw_counter.clock
@@ -6580,7 +7377,7 @@ wreq => _.IN0
 wreq => wait_state.IN1
 
 
-|task2|audio_codec:codec|Altera_UP_Audio_Out_Serializer:Audio_Out_Serializer|Altera_UP_SYNC_FIFO:Audio_Out_Right_Channel_FIFO|scfifo:Sync_FIFO|scfifo_8ba1:auto_generated|a_dpfifo_r2a1:dpfifo|altsyncram_p3i1:FIFOram
+|task3_top|audio_codec:codec|Altera_UP_Audio_Out_Serializer:Audio_Out_Serializer|Altera_UP_SYNC_FIFO:Audio_Out_Right_Channel_FIFO|scfifo:Sync_FIFO|scfifo_8ba1:auto_generated|a_dpfifo_r2a1:dpfifo|altsyncram_p3i1:FIFOram
 address_a[0] => ram_block1a0.PORTAADDR
 address_a[0] => ram_block1a1.PORTAADDR
 address_a[0] => ram_block1a2.PORTAADDR
@@ -7063,7 +7860,7 @@ wren_a => ram_block1a23.PORTAWE
 wren_a => ram_block1a23.ENA0
 
 
-|task2|audio_codec:codec|Altera_UP_Audio_Out_Serializer:Audio_Out_Serializer|Altera_UP_SYNC_FIFO:Audio_Out_Right_Channel_FIFO|scfifo:Sync_FIFO|scfifo_8ba1:auto_generated|a_dpfifo_r2a1:dpfifo|cmpr_6l8:almost_full_comparer
+|task3_top|audio_codec:codec|Altera_UP_Audio_Out_Serializer:Audio_Out_Serializer|Altera_UP_SYNC_FIFO:Audio_Out_Right_Channel_FIFO|scfifo:Sync_FIFO|scfifo_8ba1:auto_generated|a_dpfifo_r2a1:dpfifo|cmpr_6l8:almost_full_comparer
 aeb <= aeb_result_wire[0].DB_MAX_OUTPUT_PORT_TYPE
 dataa[0] => data_wire[0].IN0
 dataa[1] => data_wire[0].IN0
@@ -7081,7 +7878,7 @@ datab[5] => data_wire[2].IN1
 datab[6] => data_wire[3].IN1
 
 
-|task2|audio_codec:codec|Altera_UP_Audio_Out_Serializer:Audio_Out_Serializer|Altera_UP_SYNC_FIFO:Audio_Out_Right_Channel_FIFO|scfifo:Sync_FIFO|scfifo_8ba1:auto_generated|a_dpfifo_r2a1:dpfifo|cmpr_6l8:three_comparison
+|task3_top|audio_codec:codec|Altera_UP_Audio_Out_Serializer:Audio_Out_Serializer|Altera_UP_SYNC_FIFO:Audio_Out_Right_Channel_FIFO|scfifo:Sync_FIFO|scfifo_8ba1:auto_generated|a_dpfifo_r2a1:dpfifo|cmpr_6l8:three_comparison
 aeb <= aeb_result_wire[0].DB_MAX_OUTPUT_PORT_TYPE
 dataa[0] => data_wire[0].IN0
 dataa[1] => data_wire[0].IN0
@@ -7099,7 +7896,7 @@ datab[5] => data_wire[2].IN1
 datab[6] => data_wire[3].IN1
 
 
-|task2|audio_codec:codec|Altera_UP_Audio_Out_Serializer:Audio_Out_Serializer|Altera_UP_SYNC_FIFO:Audio_Out_Right_Channel_FIFO|scfifo:Sync_FIFO|scfifo_8ba1:auto_generated|a_dpfifo_r2a1:dpfifo|cntr_h2b:rd_ptr_msb
+|task3_top|audio_codec:codec|Altera_UP_Audio_Out_Serializer:Audio_Out_Serializer|Altera_UP_SYNC_FIFO:Audio_Out_Right_Channel_FIFO|scfifo:Sync_FIFO|scfifo_8ba1:auto_generated|a_dpfifo_r2a1:dpfifo|cntr_h2b:rd_ptr_msb
 clock => counter_reg_bit[5].CLK
 clock => counter_reg_bit[4].CLK
 clock => counter_reg_bit[3].CLK
@@ -7122,7 +7919,7 @@ sclr => counter_reg_bit[1].SCLR
 sclr => counter_reg_bit[0].SCLR
 
 
-|task2|audio_codec:codec|Altera_UP_Audio_Out_Serializer:Audio_Out_Serializer|Altera_UP_SYNC_FIFO:Audio_Out_Right_Channel_FIFO|scfifo:Sync_FIFO|scfifo_8ba1:auto_generated|a_dpfifo_r2a1:dpfifo|cntr_u27:usedw_counter
+|task3_top|audio_codec:codec|Altera_UP_Audio_Out_Serializer:Audio_Out_Serializer|Altera_UP_SYNC_FIFO:Audio_Out_Right_Channel_FIFO|scfifo:Sync_FIFO|scfifo_8ba1:auto_generated|a_dpfifo_r2a1:dpfifo|cntr_u27:usedw_counter
 clock => counter_reg_bit[6].CLK
 clock => counter_reg_bit[5].CLK
 clock => counter_reg_bit[4].CLK
@@ -7150,7 +7947,7 @@ updown => updown_other_bits.IN1
 updown => counter_comb_bita0.DATAF
 
 
-|task2|audio_codec:codec|Altera_UP_Audio_Out_Serializer:Audio_Out_Serializer|Altera_UP_SYNC_FIFO:Audio_Out_Right_Channel_FIFO|scfifo:Sync_FIFO|scfifo_8ba1:auto_generated|a_dpfifo_r2a1:dpfifo|cntr_i2b:wr_ptr
+|task3_top|audio_codec:codec|Altera_UP_Audio_Out_Serializer:Audio_Out_Serializer|Altera_UP_SYNC_FIFO:Audio_Out_Right_Channel_FIFO|scfifo:Sync_FIFO|scfifo_8ba1:auto_generated|a_dpfifo_r2a1:dpfifo|cntr_i2b:wr_ptr
 clock => counter_reg_bit[6].CLK
 clock => counter_reg_bit[5].CLK
 clock => counter_reg_bit[4].CLK
