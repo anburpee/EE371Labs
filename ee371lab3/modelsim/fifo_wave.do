@@ -8,9 +8,9 @@ add wave -noupdate /fifo_tb/empty
 add wave -noupdate /fifo_tb/full
 add wave -noupdate /fifo_tb/w_data
 add wave -noupdate /fifo_tb/r_data
-add wave -noupdate /fifo_tb/dut/r_unit/array_reg
+add wave -noupdate -expand /fifo_tb/dut/r_unit/array_reg
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {38 ps} 0}
+WaveRestoreCursors {{Cursor 1} {4745 ps} 0}
 quietly wave cursor active 1
 configure wave -namecolwidth 150
 configure wave -valuecolwidth 100

@@ -20,12 +20,14 @@ vlog "../src/circuit2.sv"
 # Call vsim to invoke simulator
 #     Make sure the last item on the line is the name of the
 #     testbench module you want to execute.
-vsim -voptargs="+acc" -t 1ps -lib work fifo_tb
+#     if you need the altera_mf_ver library, add "-Lf altera_mf_ver"
+#     at the end of the vsim command
+vsim -voptargs="+acc" -t 1ps -lib work circuit2_tb -Lf altera_mf_ver
 
 # Source the wave do file
 #     This should be the file that sets up the signal window for
 #     the module you are testing.
-do fifo_wave.do
+do circuit2_wave.do
 
 # Set the window types
 view wave

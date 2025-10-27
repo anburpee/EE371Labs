@@ -1,7 +1,12 @@
 // Top level module for tasks 1 & 2
-// specify inputs and outputs (including bit widths)
+// Audio system that can record and play back audio from the DE1_SoC board.
+// Includes audio/vidio configuration, clock generator, audio CODEC inteface,
+// and control circuit.
+// Can toggle between task1(playing back input audio) and task2(playing a tone
+// from memory) using SW[9]. Setting SW[9] to 0 outputs audio from task1, and
+// setting it to 1 outputs audio from task2.
 
-module DE1_SoC (CLOCK_50, CLOCK2_50, KEY, SW, FPGA_I2C_SCLK, FPGA_I2C_SDAT, AUD_XCK, 
+module task2_top (CLOCK_50, CLOCK2_50, KEY, SW, FPGA_I2C_SCLK, FPGA_I2C_SDAT, AUD_XCK, 
 		        AUD_DACLRCK, AUD_ADCLRCK, AUD_BCLK, AUD_ADCDAT, AUD_DACDAT);
 
 	input CLOCK_50, CLOCK2_50;
@@ -25,13 +30,13 @@ module DE1_SoC (CLOCK_50, CLOCK2_50, KEY, SW, FPGA_I2C_SCLK, FPGA_I2C_SDAT, AUD_
 
 	/////////////////////////////////
 	// task2
-	// logic en_48;
+	// logic en_48; // for counter implemetation
 
-	// enable_48khz en (.clk(CLOCK_50), .reset(reset), .enable(en_48));
+	// enable_48khz en (.clk(CLOCK_50), .reset(reset), .enable(en_48)); // for counter implemetation
 
 	logic [23:0] d_out;
 
-	// circuit2 rom_data (.clk(en_48), .reset(reset), .d_out(d_out));
+	// circuit2 rom_data (.clk(en_48), .reset(reset), .d_out(d_out)); // for counter implemetation
 
 	circuit2 rom_data (.clk(CLOCK_50), .reset(reset),
 					   .read_ready(read_ready), .write_ready(write_ready), .d_out(d_out));
@@ -99,42 +104,4 @@ module DE1_SoC (CLOCK_50, CLOCK2_50, KEY, SW, FPGA_I2C_SCLK, FPGA_I2C_SDAT, AUD_
 		AUD_DACDAT
 	);
 
-endmodule // DE1_SoC
-
-
-
-
-
-
-// module DE1_SoC (CLOCK_50, CLOCK2_50, KEY, SW, FPGA_I2C_SCLK, FPGA_I2C_SDAT, AUD_XCK, 
-// 		        AUD_DACLRCK, AUD_ADCLRCK, AUD_BCLK, AUD_ADCDAT, AUD_DACDAT);
-
-// 	input logic CLOCK_50, CLOCK2_50;
-// 	input logic [0:0] KEY;
-//     input logic [9:0] SW; // new
-// 	// I2C Audio/Video config interface
-// 	output logic FPGA_I2C_SCLK;
-// 	inout logic FPGA_I2C_SDAT;
-// 	// Audio CODEC
-// 	output logic AUD_XCK;
-// 	input logic AUD_DACLRCK, AUD_ADCLRCK, AUD_BCLK;
-// 	input logic AUD_ADCDAT;
-// 	output logic AUD_DACDAT;
-	
-// 	// Logic
-// 	logic task_toggle;
-//     assign task_toggle = SW[9];
-// 	logic reset;
-//     assign reset = ~KEY[0];
-
-// 	logic task1_output, task2_output;
-
-//     // instantiate task1 and task2 modules
-// 	part1 task_1 (.CLOCK_50, .CLOCK2_50, .KEY, .FPGA_I2C_SCLK, .FPGA_I2C_SDAT, .AUD_XCK, 
-// 		          .AUD_DACLRCK, .AUD_ADCLRCK, .AUD_BCLK, .AUD_ADCDAT, .AUD_DACDAT(task1_output));
-//     task2 task_2 (.CLOCK_50, .CLOCK2_50, .KEY, .FPGA_I2C_SCLK, .FPGA_I2C_SDAT, .AUD_XCK, 
-// 		          .AUD_DACLRCK, .AUD_ADCLRCK, .AUD_BCLK, .AUD_ADCDAT, .AUD_DACDAT(task2_output));
-
-// 	assign AUD_DACDAT = task_toggle ? task2_output : task1_output;
-  
-// endmodule // DE1_SoC
+endmodule // task2_top

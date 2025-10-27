@@ -10,9 +10,10 @@ module circuit2 (clk, reset, read_ready, write_ready, d_out);
     input logic clk, reset, read_ready, write_ready;
     output logic [23:0] d_out;
 
-    logic [15:0] addr; // 16 address bits needed for mif file (ROM)
+    logic [15:0] addr = '{default: '0}; // 16 address bits needed for mif file (ROM)
 
-	logic write_ready_prev, read_ready_prev; // signals to help detect positive edges
+	// signals to help detect positive edges of read_ready and write_ready
+	logic write_ready_prev, read_ready_prev; 
 
 	// condition for incrementing the address
 	// both read_ready and write_ready are high AND at least one of them has a positive edge
@@ -36,12 +37,12 @@ module circuit2 (clk, reset, read_ready, write_ready, d_out);
 			read_ready_prev <= read_ready;
 
 			// need this condition because won't just overflow back to 0 
-			// since 47999 isn't the largest number you can make with 16 address bits
-			if (addr < 47999) begin 
+			// since 47794 isn't the largest number you can make with 16 address bits
+			if (addr < 47794) begin 
 				if (incr_condition)
 					addr <= addr + 1; 
 			end
-			else if (addr == 47999) begin
+			else if (addr == 47794) begin
 				if (incr_condition)
 					addr <= 0; 
 			end
@@ -52,13 +53,15 @@ module circuit2 (clk, reset, read_ready, write_ready, d_out);
 		end
 	end // always_ff
 
-    rom_1port rom (.address(addr), .clock(clk), .q(d_out));
-    //assign d_out = '0; // for testing
+	// 1 port rom storing 1 secod worth of A4
+	rom_1port rom (.address(addr), .clock(clk), .q(d_out));
 
 endmodule // circuit 2
 
 
-
+///////////////////////////////////////////////////////////////////////
+// past versions
+///////////////////////////////////////////////////////////////////////
 // module circuit2 (clk, reset, read_ready, write_ready, d_out);
 
 //     input logic clk, reset, read_ready, write_ready;

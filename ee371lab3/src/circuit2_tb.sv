@@ -1,7 +1,5 @@
 // testbench for circuit2.sv
 // primarily for testing our logic for incrementing the ROM address in circuit2
-// set d_out to 0 in circuit2.sv while testing since it's difficult to test
-// quartus IP chips in modelsim
 
 `timescale 1 ps / 1 ps
 module circuit2_tb();
@@ -51,7 +49,7 @@ module circuit2_tb();
         read_ready <= 1'b1;  write_ready <= 1'b1;                   repeat(5) @(posedge clk);
 
 
-        for (i=0; i<48000; i++) begin
+        for (i=0; i<47795; i++) begin
             read_ready <= 1'b1;  write_ready <= 1'b0;                             @(posedge clk);
 
             read_ready <= 1'b1;  write_ready <= 1'b1;                             @(posedge clk);

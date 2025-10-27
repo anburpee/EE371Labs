@@ -31,12 +31,12 @@ module task3_top (CLOCK_50, CLOCK2_50, KEY, SW, FPGA_I2C_SCLK, FPGA_I2C_SDAT, AU
 
 	/////////////////////////////////
 	// task 2
-	// logic en_48;
-	// enable_48khz en (.clk(CLOCK_50), .reset(reset), .enable(en_48));
+	// logic en_48; // for counter implemetation
+	// enable_48khz en (.clk(CLOCK_50), .reset(reset), .enable(en_48)); // for counter implemetation
 
 	logic [23:0] d_out;
 
-	// circuit2 rom_data (.clk(en_48), .reset(reset), .d_out(d_out));
+	// circuit2 rom_data (.clk(en_48), .reset(reset), .d_out(d_out)); // for counter implemetation
 
 	circuit2 rom_data (.clk(CLOCK_50), .reset(reset),
 					   .read_ready(read_ready), .write_ready(write_ready), .d_out(d_out));
@@ -51,11 +51,11 @@ module task3_top (CLOCK_50, CLOCK2_50, KEY, SW, FPGA_I2C_SCLK, FPGA_I2C_SDAT, AU
     // use status signals from the CODEC as enables for FIR
 	// enable signal for FIR filter is set to go high when both read_ready and
 	// write_ready are high and at least one of them has a positive edge (~48khz)
-    fir #(.D_WIDTH(24), .N(128)) fir_left (.clk(CLOCK_50), .reset(reset),
+    fir #(.D_WIDTH(24), .N(256)) fir_left (.clk(CLOCK_50), .reset(reset),
             .enable((read_ready && write_ready) && ((!write_ready_prev) | (!read_ready_prev))),
             .data_in(unfiltered_left), .data_out(filtered_left));
 
-    fir #(.D_WIDTH(24), .N(128)) fir_right (.clk(CLOCK_50), .reset(reset),
+    fir #(.D_WIDTH(24), .N(256)) fir_right (.clk(CLOCK_50), .reset(reset),
             .enable((read_ready && write_ready) && ((!write_ready_prev) | (!read_ready_prev))),
             .data_in(unfiltered_right), .data_out(filtered_right));
 	
