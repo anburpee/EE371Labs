@@ -1,5 +1,5 @@
 Analysis & Synthesis report for DE1_SoC
-Sun Oct 26 19:23:42 2025
+Mon Oct 27 12:37:39 2025
 Quartus Prime Version 17.0.0 Build 595 04/25/2017 SJ Lite Edition
 
 
@@ -93,7 +93,7 @@ agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +---------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Sun Oct 26 19:23:42 2025       ;
+; Analysis & Synthesis Status     ; Successful - Mon Oct 27 12:37:38 2025       ;
 ; Quartus Prime Version           ; 17.0.0 Build 595 04/25/2017 SJ Lite Edition ;
 ; Revision Name                   ; DE1_SoC                                     ;
 ; Top-level Entity Name           ; task3_top                                   ;
@@ -226,6 +226,7 @@ agreement for further details.
 +-------------------------------------------+-----------------+-------------------------------------------------------+--------------------------------------------------------------------------------+---------+
 ; File Name with User-Entered Path          ; Used in Netlist ; File Type                                             ; File Name with Absolute Path                                                   ; Library ;
 +-------------------------------------------+-----------------+-------------------------------------------------------+--------------------------------------------------------------------------------+---------+
+; ../note_data.mif                          ; yes             ; User Memory Initialization File                       ; C:/ee371labs/ee371/ee371lab3/note_data.mif                                     ;         ;
 ; ../src/task3_top.sv                       ; yes             ; User SystemVerilog HDL File                           ; C:/ee371labs/ee371/ee371lab3/src/task3_top.sv                                  ;         ;
 ; ../src/rom_1port.v                        ; yes             ; User Wizard-Generated File                            ; C:/ee371labs/ee371/ee371lab3/src/rom_1port.v                                   ;         ;
 ; ../src/reg_file.sv                        ; yes             ; User SystemVerilog HDL File                           ; C:/ee371labs/ee371/ee371lab3/src/reg_file.sv                                   ;         ;
@@ -254,7 +255,6 @@ agreement for further details.
 ; altram.inc                                ; yes             ; Megafunction                                          ; c:/intelfpga_lite/17.0/quartus/libraries/megafunctions/altram.inc              ;         ;
 ; altdpram.inc                              ; yes             ; Megafunction                                          ; c:/intelfpga_lite/17.0/quartus/libraries/megafunctions/altdpram.inc            ;         ;
 ; db/altsyncram_bvh1.tdf                    ; yes             ; Auto-Generated Megafunction                           ; C:/ee371labs/ee371/ee371lab3/quartus/db/altsyncram_bvh1.tdf                    ;         ;
-; ../note_data.mif                          ; yes             ; Auto-Found Memory Initialization File                 ; C:/ee371labs/ee371/ee371lab3/note_data.mif                                     ;         ;
 ; db/decode_41a.tdf                         ; yes             ; Auto-Generated Megafunction                           ; C:/ee371labs/ee371/ee371lab3/quartus/db/decode_41a.tdf                         ;         ;
 ; db/mux_9hb.tdf                            ; yes             ; Auto-Generated Megafunction                           ; C:/ee371labs/ee371/ee371lab3/quartus/db/mux_9hb.tdf                            ;         ;
 ; altpll.tdf                                ; yes             ; Megafunction                                          ; c:/intelfpga_lite/17.0/quartus/libraries/megafunctions/altpll.tdf              ;         ;
@@ -276,7 +276,7 @@ agreement for further details.
 ; db/cntr_u27.tdf                           ; yes             ; Auto-Generated Megafunction                           ; C:/ee371labs/ee371/ee371lab3/quartus/db/cntr_u27.tdf                           ;         ;
 ; db/cntr_i2b.tdf                           ; yes             ; Auto-Generated Megafunction                           ; C:/ee371labs/ee371/ee371lab3/quartus/db/cntr_i2b.tdf                           ;         ;
 ; db/altsyncram_p9n1.tdf                    ; yes             ; Auto-Generated Megafunction                           ; C:/ee371labs/ee371/ee371lab3/quartus/db/altsyncram_p9n1.tdf                    ;         ;
-; db/DE1_SoC.ram0_reg_file_b8366f48.hdl.mif ; yes             ; Auto-Generated Auto-Found Memory Initialization File  ; C:/ee371labs/ee371/ee371lab3/quartus/db/DE1_SoC.ram0_reg_file_b8366f48.hdl.mif ;         ;
+; db/de1_soc.ram0_reg_file_b8366f48.hdl.mif ; yes             ; Auto-Generated Auto-Found Memory Initialization File  ; C:/ee371labs/ee371/ee371lab3/quartus/db/de1_soc.ram0_reg_file_b8366f48.hdl.mif ;         ;
 +-------------------------------------------+-----------------+-------------------------------------------------------+--------------------------------------------------------------------------------+---------+
 
 
@@ -1876,7 +1876,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 17.0.0 Build 595 04/25/2017 SJ Lite Edition
-    Info: Processing started: Sun Oct 26 19:23:26 2025
+    Info: Processing started: Mon Oct 27 12:37:25 2025
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off DE1_SoC -c DE1_SoC
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 6 of the 6 processors detected
@@ -1962,7 +1962,6 @@ Info (12133): Instantiated megafunction "circuit2:rom_data|rom_1port:rom|altsync
 Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_bvh1.tdf
     Info (12023): Found entity 1: altsyncram_bvh1 File: C:/ee371labs/ee371/ee371lab3/quartus/db/altsyncram_bvh1.tdf Line: 32
 Info (12128): Elaborating entity "altsyncram_bvh1" for hierarchy "circuit2:rom_data|rom_1port:rom|altsyncram:altsyncram_component|altsyncram_bvh1:auto_generated" File: c:/intelfpga_lite/17.0/quartus/libraries/megafunctions/altsyncram.tdf Line: 792
-Critical Warning (127005): Memory depth (48000) in the design file differs from memory depth (47795) in the Memory Initialization File "C:/ee371labs/ee371/ee371lab3/note_data.mif" -- setting initial value for remaining addresses to 0 File: C:/ee371labs/ee371/ee371lab3/src/rom_1port.v Line: 82
 Info (12021): Found 1 design units, including 1 entities, in source file db/decode_41a.tdf
     Info (12023): Found entity 1: decode_41a File: C:/ee371labs/ee371/ee371lab3/quartus/db/decode_41a.tdf Line: 23
 Info (12128): Elaborating entity "decode_41a" for hierarchy "circuit2:rom_data|rom_1port:rom|altsyncram:altsyncram_component|altsyncram_bvh1:auto_generated|decode_41a:rden_decode" File: C:/ee371labs/ee371/ee371lab3/quartus/db/altsyncram_bvh1.tdf Line: 41
@@ -2159,10 +2158,10 @@ Info (21057): Implemented 1223 device resources after synthesis - the final reso
     Info (21061): Implemented 913 logic cells
     Info (21064): Implemented 288 RAM segments
     Info (21065): Implemented 1 PLLs
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 17 warnings
-    Info: Peak virtual memory: 4892 megabytes
-    Info: Processing ended: Sun Oct 26 19:23:42 2025
-    Info: Elapsed time: 00:00:16
-    Info: Total CPU time (on all processors): 00:00:27
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 16 warnings
+    Info: Peak virtual memory: 4885 megabytes
+    Info: Processing ended: Mon Oct 27 12:37:39 2025
+    Info: Elapsed time: 00:00:14
+    Info: Total CPU time (on all processors): 00:00:26
 
 

@@ -2,8 +2,8 @@
 // N = size of fifo buffer
 // D_WIDTH = width of data_in, data_out (audio samples)
 // 1 bit enable signal drives the fifo rd and wr signals simultaneously
-// 24 bit input data_in comes from the unfiltered audio from the task3_top.sv
-// 24 bit output data_out is the filtered_data in task3_top.sv
+// input data_in (width D_WIDTH, 24 bits for audio samples) comes from the unfiltered audio from the task3_top.sv
+// output data_out (width D_WIDTH, 24 bits for audio samples) is the filtered_data in task3_top.sv
 module fir #(parameter D_WIDTH=24, N=4) (clk, reset, enable, data_in, data_out);
 
     input logic clk, reset, enable;
@@ -47,58 +47,3 @@ module fir #(parameter D_WIDTH=24, N=4) (clk, reset, enable, data_in, data_out);
 
 endmodule // fir
 
-
-
-
-
-
-
-
-//     assign subtracted = divided + (-1 * fifo_out);
-
-//     // accumulator
-//     always_ff @(posedge clk) begin
-//         if (reset) begin
-//             data_out <= '0;
-//         end
-//         // enable must be high because fifo only outputs a value on enable
-//         // and you only want the register to update when there's a new
-//         // fifo_out value
-//         // enable condition synchronizes fifo buffer and accumulator
-//         else if (enable) begin  
-//             data_out <= subtracted + data_out;
-//         end
-//     end // always_ff
-
-// endmodule // fir
-
-
-
-
-
-
-
-
-//     assign subtracted = divided + (-1 * fifo_out);
-
-//     logic [D_WIDTH-1:0] accum_out;
-
-//     // accumulator
-//     always_ff @(posedge clk) begin
-//         if (reset) begin
-//             accum_out <= '0;
-//         end
-//         // enable must be high because fifo only outputs a value on enable
-//         // and you only want the register to update when there's a new
-//         // fifo_out value
-//         // enable condition synchronizes fifo buffer and accumulator
-//         else if (enable) begin  
-//             accum_out <= data_out;
-//         end
-//         else 
-//             accum_out <= accum_out;
-//     end // always_ff
-
-//     assign data_out = subtracted + accum_out;
-
-// endmodule // fir
