@@ -27,14 +27,14 @@ module task2 (CLOCK_50, CLOCK2_50, KEY, FPGA_I2C_SCLK, FPGA_I2C_SDAT, AUD_XCK,
 	// aya --- control circuit logic
 	/////////////////////////////////
 
-	// logic en_48; // for counter implemetation
+	// logic en_48; // for counter implemetation, not used
 
-	// enable_48khz en (.clk(CLOCK_50), .reset(reset), .enable(en_48)); // for counter implemetation
+	// enable_48khz en (.clk(CLOCK_50), .reset(reset), .enable(en_48)); // for counter implemetation, not used
 
 	logic [23:0] d_out;
     logic enable;
 
-	// circuit2 rom_data (.clk(en_48), .reset(reset), .d_out(d_out)); // for counter implementation
+	// circuit2 rom_data (.clk(en_48), .reset(reset), .d_out(d_out)); // for counter implementation, not used
 
 	circuit2 rom_data (.clk(CLOCK_50), .reset(reset),
 					   .read_ready(read_ready), .write_ready(write_ready), .enable(enable), .d_out(d_out));
