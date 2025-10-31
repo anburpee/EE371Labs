@@ -8,17 +8,21 @@ vlog "../src/bit_counter.sv"
 vlog "../src/bit_counter_ctrl.sv"
 vlog "../src/bit_counter_reg.sv"
 vlog "../src/bit_counter_tb.sv"
+vlog "../src/task1_top.sv"
+vlog "../src/task1_top_tb.sv"
+vlog "../src/seg7.sv"
+
 
 
 # Call vsim to invoke simulator
 #     Make sure the last item on the line is the name of the
 #     testbench module you want to execute.
-vsim -voptargs="+acc" -t 1ps -lib work bit_counter_tb
+vsim -voptargs="+acc" -t 1ps -lib work task1_top_tb
 
 # Source the wave do file
 #     This should be the file that sets up the signal window for
 #     the module you are testing.
-do bit_counter_wave.do
+do task1_top_wave.do
 
 # Set the window types
 view wave

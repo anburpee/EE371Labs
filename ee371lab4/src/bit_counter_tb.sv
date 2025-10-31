@@ -4,6 +4,7 @@ module bit_counter_tb ();
     logic [3:0] result;
     logic done;
 
+    // instantiate DUT
     bit_counter dut (.*);
 
     // set up clock
