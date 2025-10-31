@@ -22,7 +22,7 @@ module bit_counter_ctrl (clk, reset, s, a_eq_zero, a0,
             s3: ns = s ? s3 : s1;
         endcase
     end // always_comb
-
+    
 
     // state update logic
     always_ff @(posedge clk) begin

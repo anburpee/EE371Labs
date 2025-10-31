@@ -1,6 +1,7 @@
-module binary_search_ctrl (clk, start, found, m_gt_a, initialize, move_up, move_down, loc, done, found);
+module binary_search_ctrl (clk, start, found, m_gt_a, initialize,
+                           move_up, move_down, done);
     input logic clk, start, found, m_gt_a;
-    output logic initialize, move_up, move_down, loc, done, found;
+    output logic initialize, move_up, move_down, done;
 
     enum {s_idle, s_search, s_done} ps, ns;
 

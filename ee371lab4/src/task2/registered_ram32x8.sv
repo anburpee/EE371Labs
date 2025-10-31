@@ -1,12 +1,12 @@
 module registered_ram32x8 (clk, address, data_in, wren, data_out);
     input logic clk, wren;
     input logic [4:0] address;
-    input logic [4:0] data_in;
-    output logic [2:0] data_out;
+    input logic [3:0] data_in;
+    output logic [3:0] data_out;
 
     logic reg_wren;
     logic [4:0] reg_address;
-    logic [4:0] reg_data_in;
+    logic [3:0] reg_data_in;
 
     always_ff @(posedge clk) begin
         reg_wren <= wren;
