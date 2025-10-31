@@ -4,13 +4,13 @@ vlib work
 # Compile Verilog
 #     All Verilog files that are part of this design should have
 #     their own "vlog" line below.
-vlog "../src/bit_counter.sv"
-vlog "../src/bit_counter_ctrl.sv"
-vlog "../src/bit_counter_reg.sv"
-vlog "../src/bit_counter_tb.sv"
-vlog "../src/task1_top.sv"
-vlog "../src/task1_top_tb.sv"
-vlog "../src/seg7.sv"
+vlog "../src/task1/bit_counter.sv"
+vlog "../src/task1/bit_counter_ctrl.sv"
+vlog "../src/task1/bit_counter_reg.sv"
+vlog "../src/task1/bit_counter_tb.sv"
+vlog "../src/task1/task1_top.sv"
+vlog "../src/task1/task1_top_tb.sv"
+vlog "../src/task1/seg7.sv"
 
 
 
