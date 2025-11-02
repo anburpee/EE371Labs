@@ -25,16 +25,15 @@ module task2_top (CLOCK_50, SW, KEY, HEX0, LEDR);
     assign LEDR[9] = done;
     assign LEDR[0] = found;
     logic [7:0] a;
+    logic [4:0] loc;
 
     assign a = {sw7, sw6, sw5, sw4, sw3, sw2, sw1, sw0};
-
-    logic a_input;
 
     binary_search search (.clk(clk), .reset(reset), .start(start),
                           .a(a), .loc(loc), .done(done), .found(found));
     
     
-    seg7_two_outputs hex_1_0 (.hex(loc), .leds1(HEX1), .leds0(HEX0));
+    seg7_two_outputs hex_1_0 (.hex(loc), .found(found), .leds1(HEX1), .leds0(HEX0));
 
 
 

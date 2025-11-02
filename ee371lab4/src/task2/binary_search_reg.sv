@@ -14,8 +14,6 @@ module binary_search_reg (clk, idle, initialize, incr_addr, decr_addr, a, m_gt_a
             l_ptr <= 5'd0;
             r_ptr <= 5'd31;
             loc <= 5'd15; // middle address
-            // found <= 1'b0;
-            // m_gt_a <= 1'b0;
         end
         if (incr_addr) begin
             l_ptr <= loc + 1;
@@ -32,11 +30,6 @@ module binary_search_reg (clk, idle, initialize, incr_addr, decr_addr, a, m_gt_a
     ram32x8 ram (.address(loc), .clock(clk), .data(8'd255),
                  .wren(1'b0), .q(data_out));
 
-
-    // always_ff @(posedge clk) begin
-    //     found <= (data_out == a);
-    //     m_gt_a <= (data_out > a);
-    // end // always_ff
 
     assign found = ((data_out == a) && ~idle);
     assign m_gt_a = (data_out > a);

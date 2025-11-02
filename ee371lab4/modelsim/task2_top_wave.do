@@ -20,6 +20,9 @@ add wave -noupdate -radix unsigned /task2_top_tb/dut/search/datapath/l_ptr
 add wave -noupdate -radix unsigned /task2_top_tb/dut/search/datapath/data_out
 add wave -noupdate -radix unsigned /task2_top_tb/dut/search/ctrl/done
 add wave -noupdate -radix unsigned {/task2_top_tb/LEDR[9]}
+add wave -noupdate /task2_top_tb/dut/hex_1_0/hex
+add wave -noupdate /task2_top_tb/dut/hex_1_0/leds1
+add wave -noupdate /task2_top_tb/dut/hex_1_0/leds0
 TreeUpdate [SetDefaultTree]
 WaveRestoreCursors {{Cursor 1} {3601 ps} 0}
 quietly wave cursor active 1
@@ -37,4 +40,4 @@ configure wave -griddelta 2
 configure wave -timeline 0
 configure wave -timelineunits ps
 update
-WaveRestoreZoom {9196 ps} {10306 ps}
+WaveRestoreZoom {1678 ps} {2788 ps}

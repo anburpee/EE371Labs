@@ -24,10 +24,23 @@ module task1_top_tb ();
         KEY[3] <= 1'b1;      SW[7:0] <= 8'b10101010;     repeat(3)  @(posedge CLOCK_50);
 
         // loads A with a_input
-        KEY[3] <= 1'b0;                                  repeat(12) @(posedge CLOCK_50);
+        KEY[3] <= 1'b0;                                             @(posedge LEDR[9]);
+                                                         repeat(2)  @(posedge CLOCK_50);
 
         // back to s1
-        KEY[3] <= 1'b1;                                  repeat(5) @(posedge CLOCK_50);
+        KEY[3] <= 1'b1;                                  repeat(3)  @(posedge CLOCK_50);
+
+        // different A
+        SW[7:0] <= 8'b11111000;                          repeat(5)  @(posedge CLOCK_50);
+
+        // loads A with a_input
+        KEY[3] <= 1'b0;                                             @(posedge LEDR[9]);
+                                                          repeat(2) @(posedge CLOCK_50);
+
+        // reset
+        KEY[0] <= 1'b0;                                   repeat(2) @(posedge CLOCK_50);
+        KEY[0] <= 1'b1;                                   repeat(3) @(posedge CLOCK_50);
+
 
         $stop; //stop simultaion
     end // initial 

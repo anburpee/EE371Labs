@@ -20,13 +20,25 @@ module bit_counter_tb ();
         reset <= 1'b0; 
         
         // stays in s1
-        s <= 1'b0;      a_input <= 8'b10101010;     repeat(3)  @(posedge clk);
+        s <= 1'b0;      a_input <= 8'b10101010;     repeat(3) @(posedge clk);
 
         // loads A with a_input
-        s <= 1'b1;                                  repeat(12) @(posedge clk);
+        s <= 1'b1;                                            @(posedge done);
+                                                    repeat(2) @(posedge clk);
 
         // back to s1
         s <= 1'b0;                                  repeat(2) @(posedge clk);
+
+        // different a_input
+        a_input <= 8'b11111000;                     repeat(2) @(posedge clk);
+
+        // loads A with a_input
+        s <= 1'b1;                                            @(posedge done);
+                                                    repeat(2) @(posedge clk);
+
+        // reset
+        reset <= 1'b1;                              repeat(2) @(posedge clk);
+        reset <= 1'b0;                              repeat(3) @(posedge clk);
 
         $stop; //stop simultaion
     end // initial 
