@@ -1,0 +1,2 @@
+Info (10281): Verilog HDL Declaration information at task1_top.sv(7): object "HEX0" differs only in case from object "hex0" in the same scope File: C:/ee371labs/ee371/ee371lab4/src/task1/task1_top.sv Line: 7
+Info (10281): Verilog HDL Declaration information at DE1_SoC.sv(5): object "HEX0" differs only in case from object "hex0" in the same scope File: C:/ee371labs/ee371/ee371lab4/src/DE1_SoC.sv Line: 5

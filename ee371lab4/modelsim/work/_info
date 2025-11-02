@@ -10,7 +10,7 @@ cModel Technology
 Z0 dC:/ee371labs/ee371/ee371lab4/modelsim
 vanti_metastability
 Z1 DXx6 sv_std 3 std 0 22 AD7iAPLo6nTIKk<N0eo=D3
-Z2 !s110 1762071939
+Z2 !s110 1762075676
 !i10b 1
 !s100 ;^d<;Na@[`YdhaP1BI[Ho3
 IAV]]3Lj=b0PUFW93QDWAZ2
@@ -26,7 +26,7 @@ Z4 OV;L;10.5b;63
 r1
 !s85 0
 31
-Z5 !s108 1762071939.000000
+Z5 !s108 1762075676.000000
 !s107 ../src/task1/anti_metastability.sv|
 !s90 -reportprogress|300|../src/task1/anti_metastability.sv|
 !i113 1
@@ -56,7 +56,7 @@ Z11 !s90 -reportprogress|300|../src/task2/binary_search.sv|
 R6
 vbinary_search
 R1
-Z12 !s110 1762071940
+Z12 !s110 1762075677
 !i10b 1
 !s100 G:k<H^T;_G^Bg0<?TGPbH3
 IKTOT`hVo7K>XdE5<YfcMm2
@@ -72,7 +72,7 @@ R4
 r1
 !s85 0
 31
-Z13 !s108 1762071940.000000
+Z13 !s108 1762075677.000000
 R10
 R11
 !i113 1
@@ -95,7 +95,7 @@ R4
 r1
 !s85 0
 31
-R5
+R13
 !s107 ../src/task2/binary_search_ctrl.sv|
 !s90 -reportprogress|300|../src/task2/binary_search_ctrl.sv|
 !i113 1
@@ -238,6 +238,54 @@ R5
 !s90 -reportprogress|300|../src/task1/bit_counter_tb.sv|
 !i113 1
 R6
+vDE1_SoC
+R1
+R12
+!i10b 1
+!s100 keC^9kKfnKkiBQkFDO_KC2
+Ie@0LgVWABkDP5PD`ICNTK0
+R3
+!s105 DE1_SoC_sv_unit
+S1
+R0
+w1762074368
+8../src/DE1_SoC.sv
+F../src/DE1_SoC.sv
+L0 1
+R4
+r1
+!s85 0
+31
+R13
+!s107 ../src/DE1_SoC.sv|
+!s90 -reportprogress|300|../src/DE1_SoC.sv|
+!i113 1
+R6
+n@d@e1_@so@c
+vDE1_SoC_tb
+R1
+R12
+!i10b 1
+!s100 e_94llf6GO]4Mn^kl@Pmi2
+IFzKXSA>XPLW[N:ikB2QhZ3
+R3
+!s105 DE1_SoC_tb_sv_unit
+S1
+R0
+w1762075176
+8../src/DE1_SoC_tb.sv
+F../src/DE1_SoC_tb.sv
+L0 2
+R4
+r1
+!s85 0
+31
+R13
+!s107 ../src/DE1_SoC_tb.sv|
+!s90 -reportprogress|300|../src/DE1_SoC_tb.sv|
+!i113 1
+R6
+n@d@e1_@so@c_tb
 vram32x8
 R12
 !i10b 1
@@ -260,7 +308,7 @@ R13
 R6
 vram_tb
 R1
-R2
+R12
 !i10b 1
 !s100 Hf4?a_?<MjAb?ajcXE5;V0
 ITZ8JIEbKEdDFzNNf=d]UO2
@@ -276,7 +324,7 @@ R4
 r1
 !s85 0
 31
-R5
+R13
 !s107 ../src/task2/ram_tb.sv|
 !s90 -reportprogress|300|../src/task2/ram_tb.sv|
 !i113 1
@@ -375,7 +423,7 @@ R5
 R6
 vtask1_top_tb
 R1
-R2
+R12
 !i10b 1
 !s100 UmIIL8^lID=o<H2aP[lD:3
 IPI60^LRX]^a>gKF=jfgHT3
@@ -400,13 +448,13 @@ vtask2_top
 R1
 R12
 !i10b 1
-!s100 PZI>jI1S<z>:Db2m=7<jA3
-IY2M721Vb[h8D7[:0g@A870
+!s100 bgejCBdPaL1aZZ>0O2aEf3
+Icm7BU;Ve_<E=d2W;4=bB`2
 R3
 !s105 task2_top_sv_unit
 S1
 R0
-w1762069282
+w1762076492
 8../src/task2/task2_top.sv
 F../src/task2/task2_top.sv
 L0 1

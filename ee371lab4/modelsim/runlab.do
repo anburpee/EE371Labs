@@ -24,17 +24,20 @@ vlog "../src/task2/seg7_two_outputs.sv"
 vlog "../src/task2/task2_top.sv"
 vlog "../src/task2/task2_top_tb.sv"
 
+vlog "../src/DE1_SoC.sv"
+vlog "../src/DE1_SoC_tb.sv"
+
 
 
 # Call vsim to invoke simulator
 #     Make sure the last item on the line is the name of the
 #     testbench module you want to execute.
-vsim -voptargs="+acc" -t 1ps -lib work bit_counter_tb -Lf altera_mf_ver
+vsim -voptargs="+acc" -t 1ps -lib work DE1_SoC_tb -Lf altera_mf_ver
 
 # Source the wave do file
 #     This should be the file that sets up the signal window for
 #     the module you are testing.
-do bit_counter_wave.do
+do DE1_SoC_wave.do
 
 # Set the window types
 view wave

@@ -15,7 +15,7 @@ add wave -noupdate /bit_counter_tb/dut/ctrl/incr_result
 add wave -noupdate -radix unsigned /bit_counter_tb/result
 add wave -noupdate /bit_counter_tb/done
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {3410 ps} 0}
+WaveRestoreCursors {{Cursor 1} {2696 ps} 0}
 quietly wave cursor active 1
 configure wave -namecolwidth 150
 configure wave -valuecolwidth 100
