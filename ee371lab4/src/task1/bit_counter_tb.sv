@@ -26,7 +26,7 @@ module bit_counter_tb ();
         s <= 1'b1;                                            @(posedge done);
                                                     repeat(2) @(posedge clk);
 
-        // back to s1
+        // back to s1 by unasserting start
         s <= 1'b0;                                  repeat(2) @(posedge clk);
 
         // different a_input
