@@ -1,6 +1,6 @@
-module binary_search_reg (clk, reset, initialize, incr_addr, decr_addr, a, m_gt_a, loc, found);
+module binary_search_reg (clk, initialize, incr_addr, decr_addr, a, m_gt_a, loc, found);
 
-    input logic clk, reset, initialize, incr_addr, decr_addr;
+    input logic clk, initialize, incr_addr, decr_addr;
     input logic [7:0] a;
     output logic m_gt_a, found;
     output logic [4:0] loc; // 5 bits for 32 addresses
