@@ -31,7 +31,7 @@ module binary_search_ctrl (clk, reset, start, found, m_gt_a, initialize,
 
     // output logic
     assign initialize = ((ps == s_idle) && (start == 1'b1));
-    assign incr_addr = ((ps == s_search) && (m_gt_a == 1'b0));
+    assign incr_addr = ((ps == s_search) && (m_gt_a == 1'b0) && (found != 1'b1));
     assign decr_addr = ((ps == s_search) && (m_gt_a == 1'b1)); 
     assign done = (ps == s_done);
 
