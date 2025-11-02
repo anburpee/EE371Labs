@@ -9,20 +9,29 @@ vlog "../src/task1/bit_counter_ctrl.sv"
 vlog "../src/task1/bit_counter_reg.sv"
 vlog "../src/task1/bit_counter_tb.sv"
 vlog "../src/task1/task1_top.sv"
-vlog "../src/task1/task1_top_tb.sv"
+vlog "../src/task1/anti_metastability.sv"
 vlog "../src/task1/seg7.sv"
+vlog "../src/task1/task1_top_tb.sv"
+
+vlog "../src/task2/ram_tb.sv"
+vlog "../src/task2/binary_search_ctrl.sv"
+vlog "../src/task2/binary_search_reg.sv"
+vlog "../src/task2/binary_search.sv"
+vlog "../src/task2/ram32x8.v"
+vlog "../src/task2/registered_ram32x8.sv"
+vlog "../src/task2/binary_search_tb.sv"
 
 
 
 # Call vsim to invoke simulator
 #     Make sure the last item on the line is the name of the
 #     testbench module you want to execute.
-vsim -voptargs="+acc" -t 1ps -lib work task1_top_tb
+vsim -voptargs="+acc" -t 1ps -lib work binary_search_tb -Lf altera_mf_ver
 
 # Source the wave do file
 #     This should be the file that sets up the signal window for
 #     the module you are testing.
-do task1_top_wave.do
+do binary_search_wave.do
 
 # Set the window types
 view wave
