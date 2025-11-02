@@ -3,7 +3,7 @@ module task2_top_tb();
     logic CLOCK_50;
     logic [9:0] SW;
     logic [3:0] KEY;
-    logic [6:0] HEX0;
+    logic [6:0] HEX0, HEX1;
     logic [9:0] LEDR;
 
     // instantiate DUT

@@ -33,7 +33,7 @@ module DE1_SoC_tb ();
                             // the RAM (first address to be read)
 
         SW[9] <= 1'b0; // switch to task1           
-        repeat(5) @(posedge CLOCK_50);
+        repeat(10) @(posedge CLOCK_50);
 
 
         $stop; //stop simultaion

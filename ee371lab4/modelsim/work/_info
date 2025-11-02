@@ -10,7 +10,7 @@ cModel Technology
 Z0 dC:/ee371labs/ee371/ee371lab4/modelsim
 vanti_metastability
 Z1 DXx6 sv_std 3 std 0 22 AD7iAPLo6nTIKk<N0eo=D3
-Z2 !s110 1762075676
+Z2 !s110 1762080646
 !i10b 1
 !s100 ;^d<;Na@[`YdhaP1BI[Ho3
 IAV]]3Lj=b0PUFW93QDWAZ2
@@ -26,7 +26,7 @@ Z4 OV;L;10.5b;63
 r1
 !s85 0
 31
-Z5 !s108 1762075676.000000
+Z5 !s108 1762080646.000000
 !s107 ../src/task1/anti_metastability.sv|
 !s90 -reportprogress|300|../src/task1/anti_metastability.sv|
 !i113 1
@@ -56,7 +56,7 @@ Z11 !s90 -reportprogress|300|../src/task2/binary_search.sv|
 R6
 vbinary_search
 R1
-Z12 !s110 1762075677
+R2
 !i10b 1
 !s100 G:k<H^T;_G^Bg0<?TGPbH3
 IKTOT`hVo7K>XdE5<YfcMm2
@@ -72,14 +72,14 @@ R4
 r1
 !s85 0
 31
-Z13 !s108 1762075677.000000
+R5
 R10
 R11
 !i113 1
 R6
 vbinary_search_ctrl
 R1
-R12
+R2
 !i10b 1
 !s100 XU<HWgh2>8O;?1D8Zn9l80
 Ic5cl=QjZY2UMTe8Pn^kK:1
@@ -95,14 +95,14 @@ R4
 r1
 !s85 0
 31
-R13
+R5
 !s107 ../src/task2/binary_search_ctrl.sv|
 !s90 -reportprogress|300|../src/task2/binary_search_ctrl.sv|
 !i113 1
 R6
 vbinary_search_reg
 R1
-R12
+R2
 !i10b 1
 !s100 _KW[IXDe8cSljSka81;Uj3
 IZC?F>ECgiblj>CNHbU9:z1
@@ -118,14 +118,14 @@ R4
 r1
 !s85 0
 31
-R13
+R5
 !s107 ../src/task2/binary_search_reg.sv|
 !s90 -reportprogress|300|../src/task2/binary_search_reg.sv|
 !i113 1
 R6
 vbinary_search_tb
 R1
-R12
+Z12 !s110 1762080647
 !i10b 1
 !s100 iRjh<2Z5c9J[aE4CSkohO2
 IQN8bd58h0R4kbPJb6KP;P1
@@ -133,7 +133,7 @@ R3
 !s105 binary_search_tb_sv_unit
 S1
 R0
-w1762069237
+w1762077183
 8../src/task2/binary_search_tb.sv
 F../src/task2/binary_search_tb.sv
 L0 2
@@ -141,14 +141,14 @@ R4
 r1
 !s85 0
 31
-R13
+Z13 !s108 1762080647.000000
 !s107 ../src/task2/binary_search_tb.sv|
 !s90 -reportprogress|300|../src/task2/binary_search_tb.sv|
 !i113 1
 R6
 vbit_counter
 R1
-R2
+!s110 1762080645
 !i10b 1
 !s100 ih8Y77YT_c]5S`ll0FAF_0
 IHJ;i0B=k6l`T`Kk3DMGX]1
@@ -164,7 +164,7 @@ R4
 r1
 !s85 0
 31
-R5
+Z14 !s108 1762080645.000000
 !s107 ../src/task1/bit_counter.sv|
 !s90 -reportprogress|300|../src/task1/bit_counter.sv|
 !i113 1
@@ -187,7 +187,7 @@ R4
 r1
 !s85 0
 31
-R5
+R14
 !s107 ../src/task1/bit_counter_ctrl.sv|
 !s90 -reportprogress|300|../src/task1/bit_counter_ctrl.sv|
 !i113 1
@@ -242,13 +242,13 @@ vDE1_SoC
 R1
 R12
 !i10b 1
-!s100 keC^9kKfnKkiBQkFDO_KC2
-Ie@0LgVWABkDP5PD`ICNTK0
+!s100 lHJL7WiQLHc__XdI6joZ72
+IZ4UjW`^L6i0W7QCN8@cP50
 R3
 !s105 DE1_SoC_sv_unit
 S1
 R0
-w1762074368
+w1762079040
 8../src/DE1_SoC.sv
 F../src/DE1_SoC.sv
 L0 1
@@ -266,13 +266,13 @@ vDE1_SoC_tb
 R1
 R12
 !i10b 1
-!s100 e_94llf6GO]4Mn^kl@Pmi2
-IFzKXSA>XPLW[N:ikB2QhZ3
+!s100 _lW1ccUPP=e<7JXN:Pn:f0
+IaZG1gWK>OWLnQcPlW903_2
 R3
 !s105 DE1_SoC_tb_sv_unit
 S1
 R0
-w1762075176
+w1762079223
 8../src/DE1_SoC_tb.sv
 F../src/DE1_SoC_tb.sv
 L0 2
@@ -308,7 +308,7 @@ R13
 R6
 vram_tb
 R1
-R12
+R2
 !i10b 1
 !s100 Hf4?a_?<MjAb?ajcXE5;V0
 ITZ8JIEbKEdDFzNNf=d]UO2
@@ -324,7 +324,7 @@ R4
 r1
 !s85 0
 31
-R13
+R5
 !s107 ../src/task2/ram_tb.sv|
 !s90 -reportprogress|300|../src/task2/ram_tb.sv|
 !i113 1
@@ -356,16 +356,16 @@ vseg7
 R1
 R2
 !i10b 1
-!s100 jj9HOZ_?ONU=EkYa?Y1[J2
-I3nH31LRVkiS>X2AJl_<_?3
+!s100 ]nSL^TNA=2aQ=cajFba:I1
+IkKONSIZzMBYXGKE9VHo=m2
 R3
 !s105 seg7_sv_unit
 S1
 R0
-w1761814529
+w1762079186
 8../src/task1/seg7.sv
 F../src/task1/seg7.sv
-Z14 L0 10
+Z15 L0 10
 R4
 r1
 !s85 0
@@ -388,7 +388,7 @@ R0
 w1762069781
 8../src/task2/seg7_two_outputs.sv
 F../src/task2/seg7_two_outputs.sv
-R14
+R15
 R4
 r1
 !s85 0
@@ -402,13 +402,13 @@ vtask1_top
 R1
 R2
 !i10b 1
-!s100 oLfa@UaPZXZY2^mddRjKb3
-I]:[dKKdI^R[9zB0:=2VJC1
+!s100 0L^XDW>iokWC5n`G8^H>C3
+IOam5aR[Y6ELGnFb1QVSoe1
 R3
 !s105 task1_top_sv_unit
 S1
 R0
-w1762057914
+w1762079722
 8../src/task1/task1_top.sv
 F../src/task1/task1_top.sv
 L0 3
@@ -423,7 +423,7 @@ R5
 R6
 vtask1_top_tb
 R1
-R12
+R2
 !i10b 1
 !s100 UmIIL8^lID=o<H2aP[lD:3
 IPI60^LRX]^a>gKF=jfgHT3
@@ -448,13 +448,13 @@ vtask2_top
 R1
 R12
 !i10b 1
-!s100 bgejCBdPaL1aZZ>0O2aEf3
-Icm7BU;Ve_<E=d2W;4=bB`2
+!s100 W3]FTj_B>0@QTzm;1G@T81
+I>gOF4Y0zF8z[<SIZ92iPc2
 R3
 !s105 task2_top_sv_unit
 S1
 R0
-w1762076492
+w1762080612
 8../src/task2/task2_top.sv
 F../src/task2/task2_top.sv
 L0 1

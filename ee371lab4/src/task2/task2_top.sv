@@ -1,8 +1,8 @@
-module task2_top (CLOCK_50, SW, KEY, HEX0, LEDR);
+module task2_top (CLOCK_50, SW, KEY, HEX0, HEX1, LEDR);
     input logic CLOCK_50;
     input logic [9:0] SW;
     input logic [3:0] KEY;
-    output logic [6:0] HEX0;
+    output logic [6:0] HEX0, HEX1;
     output logic [9:0] LEDR;
 
     logic clk;
@@ -34,7 +34,6 @@ module task2_top (CLOCK_50, SW, KEY, HEX0, LEDR);
     
     
     seg7_two_outputs hex_1_0 (.hex(loc), .found(found), .leds1(HEX1), .leds0(HEX0));
-
 
 
 endmodule

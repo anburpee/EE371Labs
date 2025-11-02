@@ -36,7 +36,7 @@ module task1_top (CLOCK_50, SW, KEY, HEX0, LEDR);
     bit_counter #(.N(8)) counter (.*);
 
 
-    seg7 hex0 (.hex(result), .leds(HEX0));
+    seg7 hex0 (.hex(result), .done(done), .leds(HEX0));
 
 
 endmodule // task1_top

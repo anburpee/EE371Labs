@@ -37,7 +37,7 @@ module DE1_SoC (CLOCK_50, SW, KEY, HEX0, HEX1, LEDR);
 
     logic [6:0] task1_hex0;
 
-    seg7 hex0 (.hex(result), .leds(task1_hex0));
+    seg7 hex0 (.hex(result), .done(task1_done), .leds(task1_hex0));
 
 
     // task2
@@ -61,8 +61,6 @@ module DE1_SoC (CLOCK_50, SW, KEY, HEX0, HEX1, LEDR);
 
     assign HEX1 = sw9 ? task2_hex1 : 7'b1111111;
     assign HEX0 = sw9 ? task2_hex0 : task1_hex0;
-
-
 
     
 endmodule // DE1_SoC
