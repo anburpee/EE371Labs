@@ -16,14 +16,33 @@ module binary_search_tb ();
 
     // test the design
     initial begin
+        // reset
+        reset <= 1'b1;                                               @(posedge clk);
+        // A value stored at a lower index than the middle
+        reset <= 1'b0;   start <= 1'b0;   a <= 8'd170;     repeat(3) @(posedge clk);
 
-        reset <= 1'b1;                                                 @(posedge clk);
-        reset <= 1'b0;   start <= 1'b0;   a <= 8'b10101010;     repeat(3) @(posedge clk);
+        start <= 1'b1;                                @(posedge done);
+                                            repeat(2) @(posedge clk);
 
-        start <= 1'b1;
-        //@(posedge done);
+        // reset
+        reset <= 1'b1;                      repeat(4) @(posedge clk);
 
-        repeat(35) @(posedge clk);
+        // value of A stored at middle index
+        reset <= 1'b0;  a <= 8'd173;                  @(posedge done);
+                                            repeat(2) @(posedge clk);
+
+        // reset
+        reset <= 1'b1;                      repeat(4) @(posedge clk);
+
+        // try a value of A that doesn't exist
+        reset <= 1'b0;  a <= 8'd10;       repeat (30) @(posedge clk);
+
+        // reset
+        reset <= 1'b1;                      repeat(4) @(posedge clk);
+
+        // try another value of A
+        reset <= 1'b0;  a <= 8'd228;                  @(posedge done);
+                                            repeat(2) @(posedge clk);
 
         $stop; // stop simulation
     end // initial

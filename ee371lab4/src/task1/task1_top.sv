@@ -7,9 +7,7 @@ module task1_top (CLOCK_50, SW, KEY, HEX0, LEDR);
     output logic [6:0] HEX0;
     output logic [9:0] LEDR;
 
-    parameter int N = 8;
-
-    logic [$clog2(N):0] result;
+    logic [3:0] result;
 
     logic clk;
     assign clk = CLOCK_50;
@@ -32,10 +30,10 @@ module task1_top (CLOCK_50, SW, KEY, HEX0, LEDR);
     assign s = ~key3;
     assign LEDR[9] = done;
 
-    logic [N-1:0] a_input;
+    logic [7:0] a_input;
     assign a_input = {sw7, sw6, sw5, sw4, sw3, sw2, sw1, sw0};
 
-    bit_counter #(.N(N)) counter (.*);
+    bit_counter #(.N(8)) counter (.*);
 
 
     seg7 hex0 (.hex(result), .leds(HEX0));
