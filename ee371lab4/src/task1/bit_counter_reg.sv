@@ -6,7 +6,7 @@ module bit_counter_reg #(parameter N=8) (clk, clear_result, load_a, right_shift_
     output logic a_eq_zero, a0;
     output logic [$clog2(N):0] result;
 
-    logic [N-1:0] a; 
+    logic [N-1:0] a;
 
     always_ff @(posedge clk) begin
         if (clear_result) 

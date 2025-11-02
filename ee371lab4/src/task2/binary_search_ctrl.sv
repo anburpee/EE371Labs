@@ -1,6 +1,6 @@
 module binary_search_ctrl (clk, reset, start, found, m_gt_a, idle, initialize,
                            incr_addr, decr_addr, done);
-    input logic clk, reset, start, found, m_gt_a;
+    input logic clk, reset, start, found, not_found, m_gt_a;
     output logic idle, initialize, incr_addr, decr_addr, done;
 
     enum {s_idle, s_wait, s_search, s_done} ps, ns;
@@ -34,6 +34,6 @@ module binary_search_ctrl (clk, reset, start, found, m_gt_a, idle, initialize,
     assign initialize = ((ps == s_idle) && (start == 1'b1) && (~reset));
     assign incr_addr = ((ps == s_search) && (m_gt_a == 1'b0) && (found != 1'b1));
     assign decr_addr = ((ps == s_search) && (m_gt_a == 1'b1)); 
-    assign done = (ps == s_done);
+    assign done = ((ps == s_done || not_found));
 
 endmodule // binary_search_ctrl

@@ -35,7 +35,7 @@ module bit_counter_ctrl (clk, reset, s, a_eq_zero, a0,
 
     // output logic
     assign clear_result = (ps == s1);
-    assign load_a = (((ps == s1) && (~s) ) || reset); // changed from ((ps == s1) && (~s))
+    assign load_a = ((ps == s1) && (s)); // changed from ((ps == s1) && (~s))
     assign incr_result = ((ps == s2) && (a0));
     assign right_shift_a = (ps == s2);
     assign done = (ps == s3);

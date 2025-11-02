@@ -2,7 +2,7 @@ module binary_search_reg (clk, idle, initialize, incr_addr, decr_addr, a, m_gt_a
 
     input logic clk, idle, initialize, incr_addr, decr_addr;
     input logic [7:0] a;
-    output logic m_gt_a, found;
+    output logic m_gt_a, found, not_found;
     output logic [4:0] loc; // 5 bits for 32 addresses
 
     logic [4:0] r_ptr, l_ptr;
@@ -33,6 +33,7 @@ module binary_search_reg (clk, idle, initialize, incr_addr, decr_addr, a, m_gt_a
 
     assign found = ((data_out == a) && ~idle);
     assign m_gt_a = (data_out > a);
+    assign not_found = ((r_ptr == l_ptr + 1) || (r_ptr == l_ptr)); 
 
 
 endmodule // binary_search_reg
