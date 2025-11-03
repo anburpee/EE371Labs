@@ -10,7 +10,7 @@ cModel Technology
 Z0 dC:/ee371labs/ee371/ee371lab4/modelsim
 vanti_metastability
 Z1 DXx6 sv_std 3 std 0 22 AD7iAPLo6nTIKk<N0eo=D3
-Z2 !s110 1762132432
+Z2 !s110 1762134654
 !i10b 1
 !s100 ;^d<;Na@[`YdhaP1BI[Ho3
 IAV]]3Lj=b0PUFW93QDWAZ2
@@ -26,7 +26,7 @@ Z4 OV;L;10.5b;63
 r1
 !s85 0
 31
-Z5 !s108 1762132432.000000
+Z5 !s108 1762134654.000000
 !s107 ../src/task1/anti_metastability.sv|
 !s90 -reportprogress|300|../src/task1/anti_metastability.sv|
 !i113 1
@@ -148,7 +148,7 @@ R5
 R6
 vbit_counter
 R1
-Z12 !s110 1762132431
+Z12 !s110 1762134653
 !i10b 1
 !s100 ih8Y77YT_c]5S`ll0FAF_0
 IHJ;i0B=k6l`T`Kk3DMGX]1
@@ -164,7 +164,7 @@ R4
 r1
 !s85 0
 31
-Z13 !s108 1762132431.000000
+Z13 !s108 1762134653.000000
 !s107 ../src/task1/bit_counter.sv|
 !s90 -reportprogress|300|../src/task1/bit_counter.sv|
 !i113 1
@@ -240,7 +240,7 @@ R13
 R6
 vDE1_SoC
 R1
-Z14 !s110 1762132433
+Z14 !s110 1762134655
 !i10b 1
 !s100 lHJL7WiQLHc__XdI6joZ72
 IZ4UjW`^L6i0W7QCN8@cP50
@@ -256,7 +256,7 @@ R4
 r1
 !s85 0
 31
-Z15 !s108 1762132433.000000
+Z15 !s108 1762134655.000000
 !s107 ../src/DE1_SoC.sv|
 !s90 -reportprogress|300|../src/DE1_SoC.sv|
 !i113 1
@@ -446,7 +446,7 @@ R5
 R6
 vtask2_top
 R1
-R2
+R14
 !i10b 1
 !s100 7Qb1H:]RVeKNbX;<m4YJe2
 I?MT<^0@T3gbOkEG3U=_?S1
@@ -462,7 +462,7 @@ R4
 r1
 !s85 0
 31
-R5
+R15
 !s107 ../src/task2/task2_top.sv|
 !s90 -reportprogress|300|../src/task2/task2_top.sv|
 !i113 1
@@ -471,13 +471,13 @@ vtask2_top_tb
 R1
 R14
 !i10b 1
-!s100 CF4ImlhnoK@A`O5bJg_aV1
-I7f`5HAAk@UaUM^P10PS=42
+!s100 ZLnYmbgnHBK6i>KL@NJ`:3
+IPSl8FFFD>1U@WPa[9Tafj0
 R3
 !s105 task2_top_tb_sv_unit
 S1
 R0
-w1762081109
+w1762133369
 8../src/task2/task2_top_tb.sv
 F../src/task2/task2_top_tb.sv
 L0 2

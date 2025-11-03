@@ -44,20 +44,21 @@ module task2_top_tb();
                                                 repeat(2) @(posedge CLOCK_50);
 
         // reset
-        KEY[0] <= 1'b0;                         repeat(4) @(posedge CLOCK_50);
+        KEY[0] <= 1'b0;                         repeat(3) @(posedge CLOCK_50);
 
         // value of A stored at middle index
         KEY[0] <= 1'b1;  SW[7:0] <= 8'd173;               @(posedge LEDR[9]);
                                                 repeat(2) @(posedge CLOCK_50);
 
         // reset
-        KEY[0] <= 1'b0;                         repeat(4) @(posedge CLOCK_50);
+        KEY[0] <= 1'b0;                         repeat(3) @(posedge CLOCK_50);
 
         // try a value of A that doesn't exist
-        KEY[0] <= 1'b1;  SW[7:0] <= 8'd10;    repeat (30) @(posedge CLOCK_50);
+        KEY[0] <= 1'b1;  SW[7:0] <= 8'd10;                @(posedge LEDR[9]);
+                                                repeat(2) @(posedge CLOCK_50);
 
         // reset
-        KEY[0] <= 1'b0;                         repeat(4) @(posedge CLOCK_50);
+        KEY[0] <= 1'b0;                         repeat(3) @(posedge CLOCK_50);
 
         // try another value of A
         KEY[0] <= 1'b1;  SW[7:0] <= 8'd228;               @(posedge LEDR[9]);
