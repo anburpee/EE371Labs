@@ -13,6 +13,7 @@ add wave -noupdate -radix unsigned /task2_top_tb/dut/search/datapath/incr_addr
 add wave -noupdate -radix unsigned /task2_top_tb/dut/search/datapath/decr_addr
 add wave -noupdate -radix unsigned /task2_top_tb/dut/search/datapath/m_gt_a
 add wave -noupdate -radix unsigned /task2_top_tb/dut/search/datapath/found
+add wave -noupdate /task2_top_tb/dut/search/not_found
 add wave -noupdate -radix unsigned {/task2_top_tb/LEDR[0]}
 add wave -noupdate -radix unsigned /task2_top_tb/dut/search/datapath/loc
 add wave -noupdate -radix unsigned /task2_top_tb/dut/search/datapath/r_ptr
@@ -24,7 +25,7 @@ add wave -noupdate /task2_top_tb/dut/hex_1_0/hex
 add wave -noupdate /task2_top_tb/dut/hex_1_0/leds1
 add wave -noupdate /task2_top_tb/dut/hex_1_0/leds0
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {3601 ps} 0}
+WaveRestoreCursors {{Cursor 1} {6293 ps} 0}
 quietly wave cursor active 1
 configure wave -namecolwidth 150
 configure wave -valuecolwidth 100
@@ -40,4 +41,4 @@ configure wave -griddelta 2
 configure wave -timeline 0
 configure wave -timelineunits ps
 update
-WaveRestoreZoom {1678 ps} {2788 ps}
+WaveRestoreZoom {5641 ps} {6327 ps}

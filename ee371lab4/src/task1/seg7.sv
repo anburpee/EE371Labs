@@ -7,6 +7,7 @@
  *   4   2
  *    -3-
  */
+ // enabled by 1 bit done signal, otherwise display off
 module seg7 (hex, done, leds);
 	input  logic [3:0] hex;
 	input logic done;

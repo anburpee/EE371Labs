@@ -7,6 +7,7 @@
  *   4   2
  *    -3-
  */
+ // enabled by 1 bit found signal, otherwise display off
 module seg7_two_outputs (hex, found, leds1, leds0);
 	input  logic [4:0] hex; 
 	input logic found;
