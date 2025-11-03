@@ -5,7 +5,7 @@ module binary_search (clk, reset, start, a, loc, done, found);
     output logic [4:0] loc;
     output logic done, found;
 
-    logic m_gt_a, idle, initialize, incr_addr, decr_addr;
+    logic m_gt_a, not_found, idle, search, initialize, incr_addr, decr_addr;
 
     binary_search_ctrl ctrl (.*);
     binary_search_reg datapath (.*);

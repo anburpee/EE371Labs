@@ -31,12 +31,12 @@ vlog "../src/DE1_SoC_tb.sv"
 # Call vsim to invoke simulator
 #     Make sure the last item on the line is the name of the
 #     testbench module you want to execute.
-vsim -voptargs="+acc" -t 1ps -lib work task1_top_tb -Lf altera_mf_ver
+vsim -voptargs="+acc" -t 1ps -lib work binary_search_tb -Lf altera_mf_ver
 
 # Source the wave do file
 #     This should be the file that sets up the signal window for
 #     the module you are testing.
-do task1_top_wave.do
+do binary_search_wave.do
 
 # Set the window types
 view wave

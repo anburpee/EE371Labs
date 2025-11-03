@@ -12,6 +12,7 @@ add wave -noupdate /binary_search_tb/dut/decr_addr
 add wave -noupdate /binary_search_tb/dut/ctrl/ps
 add wave -noupdate /binary_search_tb/done
 add wave -noupdate /binary_search_tb/found
+add wave -noupdate /binary_search_tb/dut/not_found
 add wave -noupdate -radix unsigned /binary_search_tb/loc
 add wave -noupdate -radix unsigned /binary_search_tb/dut/datapath/r_ptr
 add wave -noupdate -radix unsigned /binary_search_tb/dut/datapath/l_ptr
@@ -33,4 +34,4 @@ configure wave -griddelta 2
 configure wave -timeline 0
 configure wave -timelineunits ps
 update
-WaveRestoreZoom {5868 ps} {7744 ps}
+WaveRestoreZoom {5868 ps} {6984 ps}

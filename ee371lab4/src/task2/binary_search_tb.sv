@@ -35,7 +35,8 @@ module binary_search_tb ();
         reset <= 1'b1;                      repeat(4) @(posedge clk);
 
         // try a value of A that doesn't exist
-        reset <= 1'b0;  a <= 8'd10;       repeat (30) @(posedge clk);
+        reset <= 1'b0;  a <= 8'd10;                   @(posedge done);
+                                           repeat (2) @(posedge clk);
 
         // reset
         reset <= 1'b1;                      repeat(4) @(posedge clk);
