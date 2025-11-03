@@ -1,3 +1,4 @@
+// testbench for binary_search.sv
 `timescale 1 ps / 1 ps
 module binary_search_tb ();
     logic clk, reset, start;

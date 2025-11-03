@@ -1,3 +1,11 @@
+// top level module for task2 that performs the binary search functionality
+// LEDR[9] is driven high when computation is complete
+// LEDR[0] is driven if the 8 bit target value, specified by SW[7:0]
+// is found in the 32x8 RAM instantiated in the binary_search datapath
+// input KEY[3] is the start signal for the computation
+// input KEY[0] is the reset signal
+// if the target value is found, the RAM address at which it was found
+// is displayed on HEX1-HEX0
 module task2_top (CLOCK_50, SW, KEY, HEX0, HEX1, LEDR);
     input logic CLOCK_50;
     input logic [9:0] SW;

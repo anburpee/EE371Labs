@@ -1,5 +1,8 @@
-// top level for task 1
-// include seg7 module
+// top level module for task 1 that instantiate the bit counter
+// uses the seg7 module (given from previous lab) to display
+// the number of 1's in an 8-bit input number specified by SW[7:0]
+// LEDR[9] signals that the computation is done
+// HEX0 displays the number of 1's in the input
 module task1_top (CLOCK_50, SW, KEY, HEX0, LEDR);
     input logic CLOCK_50;
     input logic [9:0] SW;

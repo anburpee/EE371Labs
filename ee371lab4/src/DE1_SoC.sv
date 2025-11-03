@@ -1,3 +1,6 @@
+// top level module for lab 4 that instantiates both task1 and task2
+// SW[9] switches between task1 and task2: if SW[9] is high, task2 is
+// actively displayed, and if SW[9] is low, task1 is actively displayed
 module DE1_SoC (CLOCK_50, SW, KEY, HEX0, HEX1, LEDR);
     input logic CLOCK_50;
     input logic [9:0] SW;

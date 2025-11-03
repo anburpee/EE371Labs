@@ -1,7 +1,10 @@
 // control circuit for bit_counter.sv
-// inputs:
-// outputs:
-// modified logic for load_a (asserted once after s instead of
+// takes 1-bit inputs clk, reset, s(start) from bit_counter.sv, as well as 
+// 1-bit status signals a_eq_zero and a0 from bit_counter_reg.sv
+// outputs 1-bit controls signals clear_result, load_a, incr_result,
+// right_shift_a to register file
+// Outputs 1-bit done singal as overall output to bit_counter
+// modified logic for load_a from lab spec(asserted once after s instead of
 // continual assertion while s == 0)
 module bit_counter_ctrl (clk, reset, s, a_eq_zero, a0,
                          clear_result, load_a, incr_result, right_shift_a, done);
@@ -40,4 +43,4 @@ module bit_counter_ctrl (clk, reset, s, a_eq_zero, a0,
     assign right_shift_a = (ps == s2);
     assign done = (ps == s3);
 
-endmodule // bit counter_ctrl
+endmodule // bit_counter_ctrl

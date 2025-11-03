@@ -1,3 +1,4 @@
+// testbench for bit_counter.sv
 module bit_counter_tb ();
     logic clk, reset, s;
     logic [7:0] a_input;

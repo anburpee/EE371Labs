@@ -21,6 +21,13 @@ HEX0[3] <= HEX0.DB_MAX_OUTPUT_PORT_TYPE
 HEX0[4] <= HEX0.DB_MAX_OUTPUT_PORT_TYPE
 HEX0[5] <= HEX0.DB_MAX_OUTPUT_PORT_TYPE
 HEX0[6] <= HEX0.DB_MAX_OUTPUT_PORT_TYPE
+HEX1[0] <= HEX1.DB_MAX_OUTPUT_PORT_TYPE
+HEX1[1] <= HEX1.DB_MAX_OUTPUT_PORT_TYPE
+HEX1[2] <= HEX1.DB_MAX_OUTPUT_PORT_TYPE
+HEX1[3] <= HEX1.DB_MAX_OUTPUT_PORT_TYPE
+HEX1[4] <= HEX1.DB_MAX_OUTPUT_PORT_TYPE
+HEX1[5] <= HEX1.DB_MAX_OUTPUT_PORT_TYPE
+HEX1[6] <= HEX1.DB_MAX_OUTPUT_PORT_TYPE
 LEDR[0] <= LEDR.DB_MAX_OUTPUT_PORT_TYPE
 LEDR[1] <= <GND>
 LEDR[2] <= <GND>
@@ -30,7 +37,7 @@ LEDR[5] <= <GND>
 LEDR[6] <= <GND>
 LEDR[7] <= <GND>
 LEDR[8] <= <GND>
-LEDR[9] <= binary_search:search.done
+LEDR[9] <= LEDR.DB_MAX_OUTPUT_PORT_TYPE
 
 
 |DE1_SoC|anti_metastability:anti1
@@ -165,9 +172,9 @@ clk => ps[30].CLK
 clk => ps[31].CLK
 reset => ps.OUTPUTSELECT
 reset => ps.OUTPUTSELECT
+s => load_a.IN1
 s => Selector1.IN5
 s => Selector0.IN4
-s => load_a.IN1
 a_eq_zero => Selector0.IN5
 a_eq_zero => Selector1.IN1
 a0 => incr_result.IN1
@@ -236,13 +243,20 @@ hex[0] => Decoder0.IN3
 hex[1] => Decoder0.IN2
 hex[2] => Decoder0.IN1
 hex[3] => Decoder0.IN0
-leds[0] <= WideOr6.DB_MAX_OUTPUT_PORT_TYPE
-leds[1] <= WideOr5.DB_MAX_OUTPUT_PORT_TYPE
-leds[2] <= WideOr4.DB_MAX_OUTPUT_PORT_TYPE
-leds[3] <= WideOr3.DB_MAX_OUTPUT_PORT_TYPE
-leds[4] <= WideOr2.DB_MAX_OUTPUT_PORT_TYPE
-leds[5] <= WideOr1.DB_MAX_OUTPUT_PORT_TYPE
-leds[6] <= WideOr0.DB_MAX_OUTPUT_PORT_TYPE
+done => leds.OUTPUTSELECT
+done => leds.OUTPUTSELECT
+done => leds.OUTPUTSELECT
+done => leds.OUTPUTSELECT
+done => leds.OUTPUTSELECT
+done => leds.OUTPUTSELECT
+done => leds.OUTPUTSELECT
+leds[0] <= leds.DB_MAX_OUTPUT_PORT_TYPE
+leds[1] <= leds.DB_MAX_OUTPUT_PORT_TYPE
+leds[2] <= leds.DB_MAX_OUTPUT_PORT_TYPE
+leds[3] <= leds.DB_MAX_OUTPUT_PORT_TYPE
+leds[4] <= leds.DB_MAX_OUTPUT_PORT_TYPE
+leds[5] <= leds.DB_MAX_OUTPUT_PORT_TYPE
+leds[6] <= leds.DB_MAX_OUTPUT_PORT_TYPE
 
 
 |DE1_SoC|binary_search:search
@@ -302,14 +316,14 @@ clk => ps[30].CLK
 clk => ps[31].CLK
 reset => ps.OUTPUTSELECT
 reset => ps.OUTPUTSELECT
-reset => initialize.IN1
 start => initialize.IN1
 start => Selector1.IN5
-found => Selector0.IN5
-found => incr_addr.IN1
+found => incr_addr.IN0
+not_found => incr_addr.IN1
 m_gt_a => decr_addr.IN1
 m_gt_a => incr_addr.IN1
 idle <= Equal4.DB_MAX_OUTPUT_PORT_TYPE
+search <= Equal5.DB_MAX_OUTPUT_PORT_TYPE
 initialize <= initialize.DB_MAX_OUTPUT_PORT_TYPE
 incr_addr <= incr_addr.DB_MAX_OUTPUT_PORT_TYPE
 decr_addr <= decr_addr.DB_MAX_OUTPUT_PORT_TYPE
@@ -319,6 +333,7 @@ done <= Equal6.DB_MAX_OUTPUT_PORT_TYPE
 |DE1_SoC|binary_search:search|binary_search_reg:datapath
 clk => clk.IN1
 idle => found.IN1
+search => not_found.IN1
 initialize => l_ptr.OUTPUTSELECT
 initialize => l_ptr.OUTPUTSELECT
 initialize => l_ptr.OUTPUTSELECT
@@ -377,6 +392,7 @@ loc[2] <= loc[2].DB_MAX_OUTPUT_PORT_TYPE
 loc[3] <= loc[3].DB_MAX_OUTPUT_PORT_TYPE
 loc[4] <= loc[4].DB_MAX_OUTPUT_PORT_TYPE
 found <= found.DB_MAX_OUTPUT_PORT_TYPE
+not_found <= not_found.DB_MAX_OUTPUT_PORT_TYPE
 
 
 |DE1_SoC|binary_search:search|binary_search_reg:datapath|ram32x8:ram

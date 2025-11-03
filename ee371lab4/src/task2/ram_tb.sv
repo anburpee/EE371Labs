@@ -1,3 +1,4 @@
+// 32x8 RAM testbench to check that the timings match the lab spec
 `timescale 1 ps / 1 ps
 module ram_tb();
     logic [4:0] address;

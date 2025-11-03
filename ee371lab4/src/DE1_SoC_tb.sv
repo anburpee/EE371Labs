@@ -1,3 +1,4 @@
+// testbench for DE1_SoC.sv
 `timescale 1 ps / 1 ps
 module DE1_SoC_tb ();
     logic CLOCK_50;

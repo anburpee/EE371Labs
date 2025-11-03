@@ -1,3 +1,8 @@
+// Datapath for bit_counter.sv
+// Takes 1 bit clk and control signals clear_result, load_a, right_shift_a, incr_result
+// from bit_counter_ctrl.sv, as well as N-bit a_input from bit_counter.sv
+// Outputs 1-bit status signals a_eq_zero and a0 to bit_counter_ctrl.sv
+// Outputs log2(N)-bit result used as an overall output to bit_counter
 module bit_counter_reg #(parameter N=8) (clk, clear_result, load_a, right_shift_a,
                                          incr_result, a_input, a_eq_zero, a0, result);
 
