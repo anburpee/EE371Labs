@@ -93,7 +93,7 @@ module VGA_framebuffer(clk50, reset, x, y, pixel_color, pixel_write,
     // potentally also have students write reading/writing framebuffer
 
     always_ff @(posedge clk50) 
-    begin
+    begin  
         if (pixel_write) 
             framebuffer[write_address] <= pixel_color;
         if (hcount[0]) 
