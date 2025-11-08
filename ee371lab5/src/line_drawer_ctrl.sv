@@ -14,12 +14,12 @@ module line_drawer_ctrl (
     output logic load_err_y_x,
     output logic ystep_pos,
     output logic ystep_neg,
-    output logic write,
     output logic draw_yx,
     output logic draw_xy,
     output logic update_err,
     output logic update_err_y,
     output logic incr_x,
+    output logic write,
     output logic done
     );
 
@@ -68,7 +68,6 @@ module line_drawer_ctrl (
     assign load_err_y_x = (ps == s_load3);
     assign ystep_pos = ((ps == s_load3) && yo_lt_y1);
     assign ystep_neg = ((ps == s_load3) && (~yo_lt_y1));
-    assign write = (ps == s_draw);
     assign draw_yx = ((ps == s_draw) && is_steep)
     assign draw_xy = ((ps == s_draw) && (~is_steep));
     assign update_err = ((ps == s_draw) && (~is_steep));
@@ -76,6 +75,7 @@ module line_drawer_ctrl (
     assign incr_x = ((ps == s_err_known) && (~x_eq_x0));
 
     // system outputs
+    assign write = (ps == s_draw);
     assign done = (ps == s_done);
 
 
