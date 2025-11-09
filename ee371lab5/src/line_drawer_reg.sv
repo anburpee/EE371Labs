@@ -2,12 +2,12 @@ module line_drawer_reg (
     input logic clk,
     //input logic reset,
     //input logic start,
-    input logic [] x0,
-    input logic [] y0,
-    input logic [] x1,
-    input logic [] y1, 
-    input logic [] x_out,
-    input logic [] y_out,
+    input logic [10:0] x0,
+    input logic [10:0] y0,
+    input logic [10:0] x1,
+    input logic [10:0] y1, 
+    input logic [10:0] x_out,
+    input logic [10:0] y_out,
     input logic init_load,
     input logic swap_axes,
     input logic x_swap_y_swap,
@@ -53,7 +53,7 @@ module line_drawer_reg (
         end
         if (load_delta) begin
             deltax <= x1_t - x0_t;
-            deltay <= ((y1_t - y0_t) >= 0) ? (y1_t - y0_t) : -(y1_t - y0_t);
+            deltay <= (y1_t >= y0_t) ? (y1_t - y0_t) : (y0_t - y1_t); // abs(delta y) update ASMD to have this logic
         end
         if (load_err_y_x) begin
             err <= -(deltax >> 1);
@@ -87,10 +87,10 @@ module line_drawer_reg (
     end // always_ff
 
     // output logic
-    assign is_steep = ((y1 - y0) > (x1 - x0));
-    assign x0_gt_x1 = (x0 > x1);
-    assign y0_lt_y1 = (y0 < y1);
+    assign is_steep = ((y1 - y0) > (x1 - x0)); // use original input variables
+    assign x0_gt_x1 = (x0_t > x1_t);
+    assign y0_lt_y1 = (y0_t < y1_t);
     assign err_gte_zero = (err >= 0);
-    assign x_eq_x0 = (x == x0);
+    assign x_eq_x0 = (x == x0_t);
 
 endmodule // line_drawer_ctrl
