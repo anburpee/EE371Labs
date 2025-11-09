@@ -12,22 +12,84 @@
  * Outputs:
  *   x 		- x coordinate of the pixel to color
  *   y 		- y coordinate of the pixel to color
+ *   write  - enable the VGA framebuffer to write in a new value
  *   done	- flag that line has finished drawing
  *
  */
-module line_drawer(clk, reset, x0, y0, x1, y1, x, y, done);
+module line_drawer(clk, reset, x0, y0, x1, y1, x, y, write, done); // added write as output
 	input logic clk, reset;
 	input logic [10:0]	x0, y0, x1, y1;
-	output logic done;
+	output logic write, done; // added write
 	output logic [10:0]	x, y;
 	
-	/* You'll need to create some registers to keep track of things
-	 * such as error and direction.
-	 */
-	logic signed [11:0] error;  // example - feel free to change/delete
-	
-	always_ff @(posedge clk) begin
-		// YOUR CODE HERE
-	end  // always_ff
+    logic is_steep;
+    logic x0_gt_x1;
+    logic y0_lt_y1;
+    logic err_gte_zero;
+    logic x_eq_x0;
+    logic init_load;
+    logic swap_axes;
+    logic x_swap_y_swap;
+    logic load_delta;
+    logic load_err_y_x;
+    logic ystep_pos;
+    logic ystep_neg;
+    logic draw_yx;
+    logic draw_xy;
+    logic update_err;
+    logic update_err_y;
+    logic incr_x;
+
+
+	line_drawer_ctrl ctrl (
+		.clk,
+		.reset,
+		.is_steep,
+		.x0_gt_x1,
+		.y0_lt_y1,
+		.err_gte_zero,
+		.x_eq_x0,
+		.init_load,
+		.swap_axes,
+		.x_swap_y_swap,
+		.load_delta,
+		.load_err_y_x,
+		.ystep_pos,
+		.ystep_neg,
+		.draw_yx,
+		.draw_xy,
+		.update_err,
+		.update_err_y,
+		.incr_x,
+		.write, // NEED
+		.done
+	)
+
+	line_drawer_reg reg_file (
+		.clk,
+		.x0,
+		.y0,
+		.x1,
+		.y1, 
+		.init_load,
+		.swap_axes,
+		.x_swap_y_swap,
+		.load_delta,
+		.load_err_y_x,
+		.ystep_pos,
+		.ystep_neg,
+		.draw_yx,
+		.draw_xy,
+		.update_err,
+		.update_err_y,
+		.incr_x,
+		.is_steep,
+		.x0_gt_x1,
+		.y0_lt_y1,
+		.err_gte_zero,
+		.x_eq_x0,
+		.x_out(x),
+		.y_out(y),
+	)
 	
 endmodule  // line_drawer

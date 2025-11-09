@@ -1,7 +1,6 @@
 module line_drawer_ctrl (
     input logic clk,
     input logic reset,
-    input logic start,
     input logic is_steep,
     input logic x0_gt_x1,
     input logic y0_lt_y1,
@@ -24,7 +23,7 @@ module line_drawer_ctrl (
     );
 
     // states
-    typedef enum logic [3:0] {s_idle, s_check_steep, s_check_neg_slope,
+    typedef enum logic [3:0] {s_start, s_check_steep, s_check_neg_slope,
                               s_load2, s_load3, s_draw, s_err_known, s_done} states;
 
     states ps, ns;
@@ -33,7 +32,7 @@ module line_drawer_ctrl (
     always_comb begin
         ns = ps;
         case(ps)
-            s_idle:             ns = start ? s_check_steep : s_idle;
+            s_start:             ns = s_check_steep;
 
             s_check_steep:      ns = s_check_neg_slope;
 
@@ -47,7 +46,7 @@ module line_drawer_ctrl (
 
             s_err_known:        ns = x_eq_x0 ? s_done : s_draw;
 
-            s_done:             ns = start ? s_done : s_idle;
+            s_done:             ns = s_start;
 
         endcase
     end // always_comb
@@ -56,13 +55,13 @@ module line_drawer_ctrl (
     // staet update logic
     always_ff @(posedge clk) begin
         if (reset)
-            ps <= s_idle;
+            ps <= s_start;
         else
             ps <= ns;
     end; // always_ff
 
     // control signals
-    assign init_load = ((ps == s_idle) && start);
+    assign init_load = (ps == s_start);
     assign swap_axes = ((ps == s_check_steep) && is_steep);
     assign x_swap_y_swap = ((ps == s_check_neg_slope) && x0_gt_x1);
     assign load_delta = (ps == s_load2);

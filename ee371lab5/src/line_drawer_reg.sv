@@ -2,8 +2,6 @@
 
 module line_drawer_reg (
     input logic clk,
-    //input logic reset,
-    //input logic start,
     input logic [10:0] x0,
     input logic [10:0] y0,
     input logic [10:0] x1,
@@ -15,7 +13,6 @@ module line_drawer_reg (
     input logic load_err_y_x,
     input logic ystep_pos,
     input logic ystep_neg,
-    // input logic write,
     input logic draw_yx,
     input logic draw_xy,
     input logic update_err,
