@@ -31,6 +31,7 @@ module line_drawer_ctrl (
 
     // next state logic
     always_comb begin
+        ns = ps;
         case(ps)
             s_idle:             ns = start ? s_check_steep : s_idle;
 
@@ -44,7 +45,7 @@ module line_drawer_ctrl (
 
             s_draw:             ns = s_err_known;
 
-            s_err_known:        ns = x_eq_zero ? s_done : s_draw;
+            s_err_known:        ns = x_eq_x0 ? s_done : s_draw;
 
             s_done:             ns = start ? s_done : s_idle;
 
@@ -66,9 +67,9 @@ module line_drawer_ctrl (
     assign x_swap_y_swap = ((ps == s_check_neg_slope) && x0_gt_x1);
     assign load_delta = (ps == s_load2);
     assign load_err_y_x = (ps == s_load3);
-    assign ystep_pos = ((ps == s_load3) && yo_lt_y1);
-    assign ystep_neg = ((ps == s_load3) && (~yo_lt_y1));
-    assign draw_yx = ((ps == s_draw) && is_steep)
+    assign ystep_pos = ((ps == s_load3) && y0_lt_y1);
+    assign ystep_neg = ((ps == s_load3) && (~y0_lt_y1));
+    assign draw_yx = ((ps == s_draw) && is_steep);
     assign draw_xy = ((ps == s_draw) && (~is_steep));
     assign update_err = ((ps == s_draw) && (~is_steep));
     assign update_err_y = ((ps == s_err_known) && err_gte_zero);
