@@ -26,12 +26,11 @@ module line_drawer(clk, reset, x0, y0, x1, y1, x, y, write, done); // added writ
     logic x0_gt_x1;
     logic y0_lt_y1;
     logic err_gte_zero;
-    logic x_eq_x0;
+    logic x_eq_x1;
     logic init_load;
     logic swap_axes;
     logic x_swap_y_swap;
-    logic load_delta;
-    logic load_err_y_x;
+    logic load_delta_err_y_x;
     logic ystep_pos;
     logic ystep_neg;
     logic draw_yx;
@@ -48,12 +47,11 @@ module line_drawer(clk, reset, x0, y0, x1, y1, x, y, write, done); // added writ
 		.x0_gt_x1,
 		.y0_lt_y1,
 		.err_gte_zero,
-		.x_eq_x0,
+		.x_eq_x1,
 		.init_load,
 		.swap_axes,
 		.x_swap_y_swap,
-		.load_delta,
-		.load_err_y_x,
+		.load_delta_err_y_x,
 		.ystep_pos,
 		.ystep_neg,
 		.draw_yx,
@@ -63,7 +61,7 @@ module line_drawer(clk, reset, x0, y0, x1, y1, x, y, write, done); // added writ
 		.incr_x,
 		.write, // NEED
 		.done
-	)
+	);
 
 	line_drawer_reg reg_file (
 		.clk,
@@ -74,8 +72,7 @@ module line_drawer(clk, reset, x0, y0, x1, y1, x, y, write, done); // added writ
 		.init_load,
 		.swap_axes,
 		.x_swap_y_swap,
-		.load_delta,
-		.load_err_y_x,
+		.load_delta_err_y_x,
 		.ystep_pos,
 		.ystep_neg,
 		.draw_yx,
@@ -87,9 +84,9 @@ module line_drawer(clk, reset, x0, y0, x1, y1, x, y, write, done); // added writ
 		.x0_gt_x1,
 		.y0_lt_y1,
 		.err_gte_zero,
-		.x_eq_x0,
+		.x_eq_x1,
 		.x_out(x),
-		.y_out(y),
-	)
+		.y_out(y)
+	);
 	
 endmodule  // line_drawer

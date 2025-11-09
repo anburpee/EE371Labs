@@ -9,8 +9,7 @@ module line_drawer_reg (
     input logic init_load,
     input logic swap_axes,
     input logic x_swap_y_swap,
-    input logic load_delta,
-    input logic load_err_y_x,
+    input logic load_delta_err_y_x,
     input logic ystep_pos,
     input logic ystep_neg,
     input logic draw_yx,
@@ -22,9 +21,9 @@ module line_drawer_reg (
     output logic x0_gt_x1,
     output logic y0_lt_y1,
     output logic err_gte_zero,
-    output logic x_eq_x0,
+    output logic x_eq_x1,
     output logic [10:0] x_out,
-    output logic [10:0] y_out,
+    output logic [10:0] y_out
     );
 
     logic [10:0] x0_t, x1_t, y0_t, y1_t, deltax, deltay, x, y;
@@ -50,12 +49,10 @@ module line_drawer_reg (
             y0_t <= y1_t;
             y1_t <= y0_t;
         end
-        if (load_delta) begin
+        if (load_delta_err_y_x) begin
             deltax <= x1_t - x0_t;
             deltay <= (y1_t >= y0_t) ? (y1_t - y0_t) : (y0_t - y1_t); // abs(delta y)
-        end
-        if (load_err_y_x) begin
-            err <= -($signed(deltax) >>> 1); // cast to signed since deltax is unsigned
+            err <= -($signed(x1_t - x0_t) >>> 1); // cast to signed since deltax is unsigned
             x <= x0_t;
             y <= y0_t;
         end
@@ -86,10 +83,10 @@ module line_drawer_reg (
     end // always_ff
 
     // output logic
-    assign is_steep = ((y1 - y0) > (x1 - x0)); // use original input variables
+    assign is_steep = ((y1 > y0) ? ((x1 > x0) ? ((y1 - y0) > (x1 - x0)) : ((y1 - y0) > (x0 - x1))) : ((x1 > x0) ? ((y0 - y1) > (x1 - x0)) : ((y0 - y1) > (x0 - x1)))); // use original input variables
     assign x0_gt_x1 = (x0_t > x1_t);
     assign y0_lt_y1 = (y0_t < y1_t);
     assign err_gte_zero = (err >= 0);
-    assign x_eq_x0 = (x == x0_t);
+    assign x_eq_x1 = (x == x1_t);
 
-endmodule // line_drawer_ctrl
+endmodule // line_drawer_reg

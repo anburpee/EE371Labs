@@ -1,0 +1,11 @@
+
+State Machine - |line_drawer|line_drawer_ctrl:ctrl|ps
+Name ps.s_done ps.s_err_known ps.s_draw ps.s_load3 ps.s_load2 ps.s_check_neg_slope ps.s_check_steep ps.s_start 
+ps.s_start 0 0 0 0 0 0 0 0 
+ps.s_check_steep 0 0 0 0 0 0 1 1 
+ps.s_check_neg_slope 0 0 0 0 0 1 0 1 
+ps.s_load2 0 0 0 0 1 0 0 1 
+ps.s_load3 0 0 0 1 0 0 0 1 
+ps.s_draw 0 0 1 0 0 0 0 1 
+ps.s_err_known 0 1 0 0 0 0 0 1 
+ps.s_done 1 0 0 0 0 0 0 1 
