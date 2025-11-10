@@ -44,10 +44,16 @@ module DE1_SoC (HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, KEY, LEDR, SW, CLOCK_50,
 	assign LEDR[8:0] = SW[8:0];
 	
 	logic [10:0] x0, y0, x1, y1, x, y;
-	
+
+	// handle metastability for reset button
+	logic reset, key3;
+	anti_metastability anti (.clk(CLOCK_50), .in(KEY[3]), .out(key3));
+
+	assign reset = ~key3;
+
 	VGA_framebuffer fb (
 		.clk50			(CLOCK_50), 
-		.reset			(1'b0), 
+		.reset, 
 		.x, 
 		.y,
 		.pixel_color	(1'b1), 
@@ -61,14 +67,107 @@ module DE1_SoC (HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, KEY, LEDR, SW, CLOCK_50,
 		.VGA_BLANK_n	(VGA_BLANK_N), 
 		.VGA_SYNC_n		(VGA_SYNC_N));
 				
+	// enable signal for line drawer -- to slow down process enough to see the pixels being drawn
+	// logic enable;
+	// logic [9:0] en_count;
+	// always_ff @(posedge CLOCK_50) begin
+	// 	if (reset)
+	// 		en_count <= 0;
+	// 	else
+	// 		en_count <= en_count + 1;
+	// end // always_ff
+	// assign enable = (en_count == 1023);
+
+	logic [31:0] div_clks;
+	clock_divider (.clock(CLOCK_50), .reset, .divided_clocks(div_clks));
+	logic clk;
+	assign clk = div_clks[19];
+
 	logic write, done;
 
-	line_drawer lines (.clk(CLOCK_50), .reset(1'b0),.x0, .y0, .x1, .y1, .x, .y, .write, .done); // added write
+	line_drawer lines (.clk, .reset, .x0, .y0, .x1, .y1, .x, .y, .write, .done); // added write
 	
 	assign LEDR[9] = done;
-	assign x0 = 0;
-	assign y0 = 0;
-	assign x1 = 240;
-	assign y1 = 240;
+
+
+	// counter for updating input coordinates
+	logic [3:0] count;
+	always_ff @(posedge done) begin
+		if (reset) begin
+			count <= 0;
+			x0 <= 0;
+		    y0 <= 0;
+			x1 <= 159;
+			y1 <= 119;
+		end
+		else begin
+			count <= count + 1;
+			// diagonals -- not steep
+			if (count == 4'd0) begin	// left down
+				x0 <= 0;
+		    	y0 <= 0;
+				x1 <= 100;
+				y1 <= 50;
+			end
+			else if (count == 4'd1) begin // left up
+				x0 <= 100;
+		    	y0 <= 50;
+				x1 <= 200;
+				y1 <= 0;
+			end
+			else if (count == 4'd2) begin // right down
+				x0 <= 300;
+		    	y0 <= 0;
+				x1 <= 200;
+				y1 <= 50;
+			end
+			else if (count == 4'd3) begin // right up
+				x0 <= 400;
+		    	y0 <= 50;
+				x1 <= 300;
+				y1 <= 0;
+			end
+			// steep
+			else if (count == 4'd4) begin // left down
+				x0 <= 0;
+		    	y0 <= 50;
+				x1 <= 50;
+				y1 <= 200;
+			end
+			else if (count == 4'd5) begin // left up
+				x0 <= 50;
+		    	y0 <= 200;
+				x1 <= 100;
+				y1 <= 50;
+			end
+			else if (count == 4'd6) begin // right down
+				x0 <= 150;
+		    	y0 <= 50;
+				x1 <= 100;
+				y1 <= 200;
+			end
+			else if (count == 4'd7) begin // right up
+				x0 <= 200;
+		    	y0 <= 200;
+				x1 <= 150;
+				y1 <= 50;
+			end
+			// vertical
+			else if (count == 4'd8) begin // right up
+				x0 <= 250;
+		    	y0 <= 200;
+				x1 <= 250;
+				y1 <= 50;
+			end
+			// horizontal
+			else if (count == 4'd9) begin // right up
+				x0 <= 250;
+		    	y0 <= 200;
+				x1 <= 300;
+				y1 <= 200;
+			end
+		end
+	end // always_ff
+
 
 endmodule  // DE1_SoC

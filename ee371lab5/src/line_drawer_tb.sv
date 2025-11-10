@@ -1,5 +1,5 @@
 module line_drawer_tb ();
-    logic clk, reset;
+    logic clk, reset; // no enable
 	logic [10:0]	x0, y0, x1, y1;
 	logic write, done; // added write
 	logic [10:0]	x, y;
@@ -15,7 +15,7 @@ module line_drawer_tb ();
 
     // test the design
     initial begin
-        reset <= 1'b1;          @(posedge clk);
+        reset <= 1'b1;     @(posedge clk);
         reset <= 1'b0;         
 
         // not steep, left down
