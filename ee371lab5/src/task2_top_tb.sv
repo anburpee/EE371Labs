@@ -28,9 +28,22 @@ module task2_top_tb ();
         KEY[3] <= 1'b1;    
 
         // repeat(100) @(posedge CLOCK_50);
-       repeat(9) @(posedge LEDR[9]);
+        repeat(9) @(posedge LEDR[9]);
         @(posedge CLOCK_50);
         
+        KEY[3] <= 1'b0;     repeat(5) @(posedge CLOCK_50);
+        KEY[3] <= 1'b1;
+
+        repeat(3) @(posedge LEDR[9]);
+        @(posedge CLOCK_50);
+
+        KEY[3] <= 1'b0;     repeat(5) @(posedge CLOCK_50);
+        KEY[3] <= 1'b1;
+
+        repeat(3) @(posedge LEDR[9]);
+        @(posedge CLOCK_50);
+
+
         $stop;
     end // initial
 endmodule // task2_top_tb

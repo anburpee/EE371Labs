@@ -13,17 +13,19 @@ vlog "../src/task2_top_tb.sv"
 vlog "../src/anti_metastability.sv"
 vlog "../src/clock_divider.sv"
 vlog "../src/VGA_framebuffer.sv"
+vlog "../src/DE1_SoC.sv"
+vlog "../src/DE1_SoC_tb.sv"
 
 
 # Call vsim to invoke simulator
 #     Make sure the last item on the line is the name of the
 #     testbench module you want to execute.
-vsim -voptargs="+acc" -t 1ps -lib work task2_top_tb
+vsim -voptargs="+acc" -t 1ps -lib work DE1_SoC_tb
 
 # Source the wave do file
 #     This should be the file that sets up the signal window for
 #     the module you are testing.
-do task2_top_wave.do
+do DE1_SoC_wave.do
 
 # Set the window types
 view wave
