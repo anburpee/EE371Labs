@@ -18,7 +18,7 @@
  *   VGA_SYNC_N 	- Enable signal for the sync of the VGA connection
  *   VGA_VS 		- Vertical Sync of the VGA connection
  */
-module DE1_SoC (HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, KEY, LEDR, SW, CLOCK_50, 
+module task3_basic (HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, KEY, LEDR, SW, CLOCK_50, 
 	VGA_R, VGA_G, VGA_B, VGA_BLANK_N, VGA_CLK, VGA_HS, VGA_SYNC_N, VGA_VS);
 	
 	output logic [6:0] HEX0, HEX1, HEX2, HEX3, HEX4, HEX5;
@@ -105,7 +105,7 @@ module DE1_SoC (HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, KEY, LEDR, SW, CLOCK_50,
 	// assign line_drawer_clk = div_clks[19];
 	assign line_drawer_clk = CLOCK_50;
 
-	////////////////// not used/////////////
+	////////////////// not used ////////////
 	// create single pulse for when the clearing is done to use as the signal to make the 
 	// first coordinate assignment after reset (detects falling edge of clearing)
 	// logic clearing_prev, clear_done;
@@ -199,4 +199,4 @@ module DE1_SoC (HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, KEY, LEDR, SW, CLOCK_50,
 	end // always_ff
 
 
-endmodule  // DE1_SoC
+endmodule  // task3_basic

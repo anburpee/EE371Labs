@@ -13,8 +13,8 @@ vlog "../src/task2_top_tb.sv"
 vlog "../src/anti_metastability.sv"
 vlog "../src/clock_divider.sv"
 vlog "../src/VGA_framebuffer.sv"
-vlog "../src/DE1_SoC.sv"
-vlog "../src/DE1_SoC_tb.sv"
+vlog "../src/task3_basic.sv"
+vlog "../src/task3_basic_tb.sv"
 
 
 # Call vsim to invoke simulator

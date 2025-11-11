@@ -1,4 +1,4 @@
-module DE1_SoC_tb ();
+module task3_basic_tb ();
     logic [6:0] HEX0, HEX1, HEX2, HEX3, HEX4, HEX5;
 	logic [9:0] LEDR;
 	logic [3:0] KEY;
@@ -13,7 +13,7 @@ module DE1_SoC_tb ();
 	logic VGA_SYNC_N;
 	logic VGA_VS;
 
-    DE1_SoC dut (.*);
+    task3_basic dut (.*);
 
     // simulation clock
     parameter period = 100;
@@ -47,4 +47,4 @@ module DE1_SoC_tb ();
 
         $stop;
     end // initial
-endmodule // DE1_SoC_tb
+endmodule // task3_basic_tb
