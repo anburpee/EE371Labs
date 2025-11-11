@@ -42,22 +42,52 @@ module DE1_SoC (HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, KEY, LEDR, SW, CLOCK_50,
 	assign HEX4 = '1;
 	assign HEX5 = '1;
 	assign LEDR[8:0] = SW[8:0];
-	
-	logic [10:0] x0, y0, x1, y1, x, y;
 
 	// handle metastability for reset button
 	logic reset, key3;
 	anti_metastability anti (.clk(CLOCK_50), .in(KEY[3]), .out(key3));
-
 	assign reset = ~key3;
+
+	//////////////////////////////////////////////////////////////////////////////////
+	// logic to cycle through all coordinates of the display when reset is pressed
+	// using the clearing signal instead of just reset makes sure that even if 
+	// reset is deasserted before the screen is done clearing, the screen will still
+	// be wiped
+	logic [10:0] xcounter, ycounter;
+	logic clearing;
+	always_ff @(posedge CLOCK_50) begin
+		if (reset) begin
+			clearing <= 1'b1;
+			xcounter <= 0;
+			ycounter <= 0;
+		end
+		else if (clearing) begin
+			if (xcounter == 639) begin	// last column
+				xcounter <= 0;
+				if (ycounter == 479) begin // last column, last row
+					clearing <= 1'b0;
+				end 
+				else begin	// last column, not last row
+					ycounter <= ycounter + 1;
+				end
+			end
+			else begin	// not last column
+				xcounter <= xcounter + 1;
+			end
+		end
+	end // always_ff
+	/////////////////////////////////////////////////////////////////////////////////
+
+	logic [10:0] x0, y0, x1, y1, x, y;
+	logic write;
 
 	VGA_framebuffer fb (
 		.clk50			(CLOCK_50), 
-		.reset, 
-		.x, 
-		.y,
-		.pixel_color	(1'b1), 
-		.pixel_write	(write), // changed from 1'b1
+		.reset, 		
+		.x  			(clearing ? xcounter : x),
+		.y  			(clearing ? ycounter : y),
+		.pixel_color	(clearing ? 1'b0 : 1'b1),
+		.pixel_write	(clearing ? 1'b1 : write),
 		.VGA_R, 
 		.VGA_G, 
 		.VGA_B, 
@@ -67,102 +97,102 @@ module DE1_SoC (HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, KEY, LEDR, SW, CLOCK_50,
 		.VGA_BLANK_n	(VGA_BLANK_N), 
 		.VGA_SYNC_n		(VGA_SYNC_N));
 				
-	// enable signal for line drawer -- to slow down process enough to see the pixels being drawn
-	// logic enable;
-	// logic [9:0] en_count;
-	// always_ff @(posedge CLOCK_50) begin
-	// 	if (reset)
-	// 		en_count <= 0;
-	// 	else
-	// 		en_count <= en_count + 1;
-	// end // always_ff
-	// assign enable = (en_count == 1023);
 
+	// clock divider for line drawer
 	logic [31:0] div_clks;
-	clock_divider (.clock(CLOCK_50), .reset, .divided_clocks(div_clks));
-	logic clk;
-	assign clk = div_clks[19];
+	clock_divider clock_div (.clock(CLOCK_50), .reset(reset), .divided_clocks(div_clks));
+	logic line_drawer_clk;
+	assign line_drawer_clk = div_clks[19];
 
-	logic write, done;
+	// create single pulse for when the clearing is done to use as the signal to make the 
+	// first coordinate assignment after reset (detects falling edge of clearing)
+	logic clearing_prev, clear_done;
+	always_ff begin
+		clearing_prev <= clearing;
+	end // always_ff
+	assign clear_done = (~clearing && clearing_prev);
 
-	line_drawer lines (.clk, .reset, .x0, .y0, .x1, .y1, .x, .y, .write, .done); // added write
+
+	// set reset port to clear_done so that it's synchronized with the coordinate assignments
+	logic done;
+	line_drawer lines (.clk(line_drawer_clk), .reset(clear_done), .x0, .y0, .x1, .y1, .x, .y, .write, .done);
 	
 	assign LEDR[9] = done;
 
 
 	// counter for updating input coordinates
 	logic [3:0] count;
-	always_ff @(posedge done) begin
-		if (reset) begin
+	always_ff @(posedge CLOCK_50) begin
+		if (clear_done) begin
 			count <= 0;
 			x0 <= 0;
-		    y0 <= 0;
-			x1 <= 159;
-			y1 <= 119;
+			y0 <= 0;
+			x1 <= 100;
+			y1 <= 50;
 		end
-		else begin
+		else if (done) begin
 			count <= count + 1;
 			// diagonals -- not steep
 			if (count == 4'd0) begin	// left down
 				x0 <= 0;
-		    	y0 <= 0;
+				y0 <= 0;
 				x1 <= 100;
 				y1 <= 50;
 			end
 			else if (count == 4'd1) begin // left up
 				x0 <= 100;
-		    	y0 <= 50;
+				y0 <= 50;
 				x1 <= 200;
 				y1 <= 0;
 			end
 			else if (count == 4'd2) begin // right down
 				x0 <= 300;
-		    	y0 <= 0;
+				y0 <= 0;
 				x1 <= 200;
 				y1 <= 50;
 			end
 			else if (count == 4'd3) begin // right up
 				x0 <= 400;
-		    	y0 <= 50;
+				y0 <= 50;
 				x1 <= 300;
 				y1 <= 0;
 			end
 			// steep
 			else if (count == 4'd4) begin // left down
 				x0 <= 0;
-		    	y0 <= 50;
+				y0 <= 50;
 				x1 <= 50;
 				y1 <= 200;
 			end
 			else if (count == 4'd5) begin // left up
 				x0 <= 50;
-		    	y0 <= 200;
+				y0 <= 200;
 				x1 <= 100;
 				y1 <= 50;
 			end
 			else if (count == 4'd6) begin // right down
 				x0 <= 150;
-		    	y0 <= 50;
+				y0 <= 50;
 				x1 <= 100;
 				y1 <= 200;
 			end
 			else if (count == 4'd7) begin // right up
 				x0 <= 200;
-		    	y0 <= 200;
+				y0 <= 200;
 				x1 <= 150;
 				y1 <= 50;
 			end
 			// vertical
 			else if (count == 4'd8) begin // right up
 				x0 <= 250;
-		    	y0 <= 200;
+				y0 <= 200;
 				x1 <= 250;
 				y1 <= 50;
 			end
 			// horizontal
 			else if (count == 4'd9) begin // right up
 				x0 <= 250;
-		    	y0 <= 200;
+				y0 <= 200;
 				x1 <= 300;
 				y1 <= 200;
 			end

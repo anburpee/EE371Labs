@@ -2,6 +2,7 @@
 
 module line_drawer_reg (
     input logic clk,
+    input logic reset,
     input logic [10:0] x0,
     input logic [10:0] y0,
     input logic [10:0] x1,
@@ -23,11 +24,21 @@ module line_drawer_reg (
     );
 
     logic [10:0] x0_t, x1_t, y0_t, y1_t, deltax, deltay, x, y;
-    logic signed [1:0] xstep, ystep; // consider extending ystep to [11:0]
+    logic signed [1:0] xstep, ystep;
     logic signed [11:0] err;
 
     always_ff @(posedge clk) begin
-        if(init_load) begin
+        if (reset) begin
+            x0_t <= 0;
+            x1_t <= 0;
+            y0_t <= 0;
+            y1_t <= 0;
+            x <= 0;
+            y <= 0;
+            x_out <= 0;
+            y_out <= 0;
+        end
+        if (init_load) begin
             x0_t <= x0;
             x1_t <= x1;
             y0_t <= y0;

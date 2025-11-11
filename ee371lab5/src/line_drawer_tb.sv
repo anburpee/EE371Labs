@@ -43,6 +43,10 @@ module line_drawer_tb ();
         // steep, right up
         x0 <= 10'd2;    y0 <=  10'd4;   x1 <= 10'd0;    y1 <= 10'd0;    @(posedge done);
 
+        reset <= 1'b1;  @(posedge clk)
+        reset <= 1'b0;  @(posedge done);
+        @(posedge clk);
+
         $stop; // stop simulation
     end // initial
 

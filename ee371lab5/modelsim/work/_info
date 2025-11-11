@@ -8,32 +8,102 @@ z2
 !i10f 100
 cModel Technology
 Z0 dC:/ee371labs/ee371/ee371lab5/modelsim
-vline_drawer
+vanti_metastability
 Z1 DXx6 sv_std 3 std 0 22 AD7iAPLo6nTIKk<N0eo=D3
-Z2 !s110 1762769770
+Z2 !s110 1762842487
 !i10b 1
-!s100 8:IcG1aEUV?MBCZQJj1ZM0
-I?M67EN1XR5RP5TcHJlX]Z1
+!s100 ;^d<;Na@[`YdhaP1BI[Ho3
+I16M610nd=Y<z7oE4VdcHI3
 Z3 VDg1SIo80bB@j0V0VzS_@n1
-!s105 line_drawer_sv_unit
+!s105 anti_metastability_sv_unit
 S1
 R0
-w1762769768
-8../src/line_drawer.sv
-F../src/line_drawer.sv
-L0 19
+w1760059799
+8../src/anti_metastability.sv
+F../src/anti_metastability.sv
+L0 2
 Z4 OV;L;10.5b;63
 r1
 !s85 0
 31
-Z5 !s108 1762769770.000000
+Z5 !s108 1762842487.000000
+!s107 ../src/anti_metastability.sv|
+!s90 -reportprogress|300|../src/anti_metastability.sv|
+!i113 1
+Z6 tCvgOpt 0
+vclock_divider
+R1
+R2
+!i10b 1
+!s100 FIAn]X@JNWH@3[lAKMB0[2
+I6lN41@Wh>UKU;?KRJT<M82
+R3
+!s105 clock_divider_sv_unit
+S1
+R0
+w1752804036
+8../src/clock_divider.sv
+F../src/clock_divider.sv
+L0 2
+R4
+r1
+!s85 0
+31
+R5
+!s107 ../src/clock_divider.sv|
+!s90 -reportprogress|300|../src/clock_divider.sv|
+!i113 1
+R6
+vDE1_SoC_tb
+R1
+!s110 1762831608
+!i10b 1
+!s100 :f?aPW8VB[J2Sk`AN892I3
+I`fIf3n[33ZlJBz<2A^ON`0
+R3
+Z7 !s105 task2_top_tb_sv_unit
+S1
+R0
+w1762831506
+Z8 8../src/task2_top_tb.sv
+Z9 F../src/task2_top_tb.sv
+L0 1
+R4
+r1
+!s85 0
+31
+!s108 1762831608.000000
+Z10 !s107 ../src/task2_top_tb.sv|
+Z11 !s90 -reportprogress|300|../src/task2_top_tb.sv|
+!i113 1
+R6
+n@d@e1_@so@c_tb
+vline_drawer
+R1
+Z12 !s110 1762842486
+!i10b 1
+!s100 0o>dN?a@9fAX5MGgFFAeH2
+Ieo;PV0S^R;Zzdj>AD6C?I2
+R3
+!s105 line_drawer_sv_unit
+S1
+R0
+w1762825373
+8../src/line_drawer.sv
+F../src/line_drawer.sv
+L0 19
+R4
+r1
+!s85 0
+31
+Z13 !s108 1762842486.000000
 !s107 ../src/line_drawer.sv|
 !s90 -reportprogress|300|../src/line_drawer.sv|
 !i113 1
-Z6 tCvgOpt 0
+R6
 vline_drawer_ctrl
 R1
-Z7 !s110 1762769769
+R12
 !i10b 1
 !s100 1I5;>S]LK7[6ZPURKAUn=2
 I_ZLjPR^fd62UKOZJSng^C3
@@ -49,22 +119,22 @@ R4
 r1
 !s85 0
 31
-Z8 !s108 1762769769.000000
+R13
 !s107 ../src/line_drawer_ctrl.sv|
 !s90 -reportprogress|300|../src/line_drawer_ctrl.sv|
 !i113 1
 R6
 vline_drawer_reg
 R1
-R7
+R12
 !i10b 1
-!s100 Pkf<e2Liz]z2gb`4bMVaf0
-IDE7?mm=4D>85`I^ZZCDl>0
+!s100 gP03neiLGolXXiG=]P<2k1
+I5R5T5;:lH]I2V8E^4AM>D2
 R3
 !s105 line_drawer_reg_sv_unit
 S1
 R0
-w1762769408
+w1762828347
 8../src/line_drawer_reg.sv
 F../src/line_drawer_reg.sv
 L0 3
@@ -72,22 +142,22 @@ R4
 r1
 !s85 0
 31
-R8
+R13
 !s107 ../src/line_drawer_reg.sv|
 !s90 -reportprogress|300|../src/line_drawer_reg.sv|
 !i113 1
 R6
 vline_drawer_tb
 R1
-R2
+R12
 !i10b 1
-!s100 YM8G@:K[2@Pb05n6UO9ZS0
-In[aPCP5<z3DHzKREaIbK22
+!s100 2BJ[cTH_XK4i`0aMH7hHm0
+IR@FN0UX9RlT45?PXj>Sb?0
 R3
 !s105 line_drawer_tb_sv_unit
 S1
 R0
-w1762732790
+w1762831485
 8../src/line_drawer_tb.sv
 F../src/line_drawer_tb.sv
 L0 1
@@ -95,8 +165,78 @@ R4
 r1
 !s85 0
 31
-R5
+R13
 !s107 ../src/line_drawer_tb.sv|
 !s90 -reportprogress|300|../src/line_drawer_tb.sv|
 !i113 1
 R6
+vtask2_top
+R1
+R12
+!i10b 1
+!s100 O;570[ei9Bdj4a8bHmcR[1
+I`7ma=g=:0hi^mkllPJX162
+R3
+!s105 task2_top_sv_unit
+S1
+R0
+w1762842366
+8../src/task2_top.sv
+F../src/task2_top.sv
+L0 21
+R4
+r1
+!s85 0
+31
+R13
+!s107 ../src/task2_top.sv|
+!s90 -reportprogress|300|../src/task2_top.sv|
+!i113 1
+R6
+vtask2_top_tb
+R1
+R2
+!i10b 1
+!s100 3EHEJjz0XJh5@b`2BFMO82
+ISWB5cg=Ye4lTU>HF4=9;U1
+R3
+R7
+S1
+R0
+w1762839558
+R8
+R9
+L0 1
+R4
+r1
+!s85 0
+31
+R13
+R10
+R11
+!i113 1
+R6
+vVGA_framebuffer
+R1
+R2
+!i10b 1
+!s100 CocS=<?=M@3CI^_?A0CO33
+IQN>m3hKY3eW1cPKl4[BA80
+R3
+!s105 VGA_framebuffer_sv_unit
+S1
+R0
+w1762503649
+8../src/VGA_framebuffer.sv
+F../src/VGA_framebuffer.sv
+L0 32
+R4
+r1
+!s85 0
+31
+R5
+!s107 ../src/VGA_framebuffer.sv|
+!s90 -reportprogress|300|../src/VGA_framebuffer.sv|
+!i113 1
+R6
+n@v@g@a_framebuffer

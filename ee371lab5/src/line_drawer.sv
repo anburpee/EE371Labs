@@ -57,6 +57,7 @@ module line_drawer(clk, reset, x0, y0, x1, y1, x, y, write, done); // added writ
 
 	line_drawer_reg reg_file (
 		.clk,
+		.reset,
 		.x0,
 		.y0,
 		.x1,

@@ -1,5 +1,5 @@
 Analysis & Synthesis report for DE1_SoC
-Sun Nov 09 01:38:46 2025
+Mon Nov 10 18:51:16 2025
 Quartus Prime Version 17.0.0 Build 595 04/25/2017 SJ Lite Edition
 
 
@@ -46,7 +46,7 @@ agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +---------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Sun Nov 09 01:38:46 2025       ;
+; Analysis & Synthesis Status     ; Successful - Mon Nov 10 18:51:16 2025       ;
 ; Quartus Prime Version           ; 17.0.0 Build 595 04/25/2017 SJ Lite Edition ;
 ; Revision Name                   ; DE1_SoC                                     ;
 ; Top-level Entity Name           ; line_drawer                                 ;
@@ -186,14 +186,14 @@ agreement for further details.
 +---------------------------------------------+-----------+
 ; Resource                                    ; Usage     ;
 +---------------------------------------------+-----------+
-; Estimate of Logic utilization (ALMs needed) ; 202       ;
+; Estimate of Logic utilization (ALMs needed) ; 186       ;
 ;                                             ;           ;
-; Combinational ALUT usage for logic          ; 291       ;
-;     -- 7 input functions                    ; 0         ;
-;     -- 6 input functions                    ; 90        ;
-;     -- 5 input functions                    ; 18        ;
-;     -- 4 input functions                    ; 32        ;
-;     -- <=3 input functions                  ; 151       ;
+; Combinational ALUT usage for logic          ; 263       ;
+;     -- 7 input functions                    ; 1         ;
+;     -- 6 input functions                    ; 41        ;
+;     -- 5 input functions                    ; 24        ;
+;     -- 4 input functions                    ; 34        ;
+;     -- <=3 input functions                  ; 163       ;
 ;                                             ;           ;
 ; Dedicated logic registers                   ; 131       ;
 ;                                             ;           ;
@@ -203,8 +203,8 @@ agreement for further details.
 ;                                             ;           ;
 ; Maximum fan-out node                        ; clk~input ;
 ; Maximum fan-out                             ; 131       ;
-; Total fan-out                               ; 1767      ;
-; Average fan-out                             ; 3.14      ;
+; Total fan-out                               ; 1788      ;
+; Average fan-out                             ; 3.35      ;
 +---------------------------------------------+-----------+
 
 
@@ -213,28 +213,27 @@ agreement for further details.
 +-------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------------------------+------------------+--------------+
 ; Compilation Hierarchy Node    ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                   ; Entity Name      ; Library Name ;
 +-------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------------------------+------------------+--------------+
-; |line_drawer                  ; 291 (0)             ; 131 (0)                   ; 0                 ; 0          ; 70   ; 0            ; |line_drawer                          ; line_drawer      ; work         ;
-;    |line_drawer_ctrl:ctrl|    ; 17 (17)             ; 8 (8)                     ; 0                 ; 0          ; 0    ; 0            ; |line_drawer|line_drawer_ctrl:ctrl    ; line_drawer_ctrl ; work         ;
-;    |line_drawer_reg:reg_file| ; 274 (274)           ; 123 (123)                 ; 0                 ; 0          ; 0    ; 0            ; |line_drawer|line_drawer_reg:reg_file ; line_drawer_reg  ; work         ;
+; |line_drawer                  ; 263 (0)             ; 131 (0)                   ; 0                 ; 0          ; 70   ; 0            ; |line_drawer                          ; line_drawer      ; work         ;
+;    |line_drawer_ctrl:ctrl|    ; 12 (12)             ; 7 (7)                     ; 0                 ; 0          ; 0    ; 0            ; |line_drawer|line_drawer_ctrl:ctrl    ; line_drawer_ctrl ; work         ;
+;    |line_drawer_reg:reg_file| ; 251 (251)           ; 124 (124)                 ; 0                 ; 0          ; 0    ; 0            ; |line_drawer|line_drawer_reg:reg_file ; line_drawer_reg  ; work         ;
 +-------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------------------------+------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
 
 Encoding Type:  One-Hot
-+------------------------------------------------------------------------------------------------------------------------------------------------+
-; State Machine - |line_drawer|line_drawer_ctrl:ctrl|ps                                                                                          ;
-+----------------------+-----------+----------------+-----------+------------+------------+----------------------+------------------+------------+
-; Name                 ; ps.s_done ; ps.s_err_known ; ps.s_draw ; ps.s_load3 ; ps.s_load2 ; ps.s_check_neg_slope ; ps.s_check_steep ; ps.s_start ;
-+----------------------+-----------+----------------+-----------+------------+------------+----------------------+------------------+------------+
-; ps.s_start           ; 0         ; 0              ; 0         ; 0          ; 0          ; 0                    ; 0                ; 0          ;
-; ps.s_check_steep     ; 0         ; 0              ; 0         ; 0          ; 0          ; 0                    ; 1                ; 1          ;
-; ps.s_check_neg_slope ; 0         ; 0              ; 0         ; 0          ; 0          ; 1                    ; 0                ; 1          ;
-; ps.s_load2           ; 0         ; 0              ; 0         ; 0          ; 1          ; 0                    ; 0                ; 1          ;
-; ps.s_load3           ; 0         ; 0              ; 0         ; 1          ; 0          ; 0                    ; 0                ; 1          ;
-; ps.s_draw            ; 0         ; 0              ; 1         ; 0          ; 0          ; 0                    ; 0                ; 1          ;
-; ps.s_err_known       ; 0         ; 1              ; 0         ; 0          ; 0          ; 0                    ; 0                ; 1          ;
-; ps.s_done            ; 1         ; 0              ; 0         ; 0          ; 0          ; 0                    ; 0                ; 1          ;
-+----------------------+-----------+----------------+-----------+------------+------------+----------------------+------------------+------------+
++--------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |line_drawer|line_drawer_ctrl:ctrl|ps                                                                                ;
++----------------------+-----------+------------+------------------+------------+----------------------+------------------+------------+
+; Name                 ; ps.s_done ; ps.s_write ; ps.s_assign_outs ; ps.s_load2 ; ps.s_check_neg_slope ; ps.s_check_steep ; ps.s_start ;
++----------------------+-----------+------------+------------------+------------+----------------------+------------------+------------+
+; ps.s_start           ; 0         ; 0          ; 0                ; 0          ; 0                    ; 0                ; 0          ;
+; ps.s_check_steep     ; 0         ; 0          ; 0                ; 0          ; 0                    ; 1                ; 1          ;
+; ps.s_check_neg_slope ; 0         ; 0          ; 0                ; 0          ; 1                    ; 0                ; 1          ;
+; ps.s_load2           ; 0         ; 0          ; 0                ; 1          ; 0                    ; 0                ; 1          ;
+; ps.s_assign_outs     ; 0         ; 0          ; 1                ; 0          ; 0                    ; 0                ; 1          ;
+; ps.s_write           ; 0         ; 1          ; 0                ; 0          ; 0                    ; 0                ; 1          ;
+; ps.s_done            ; 1         ; 0          ; 0                ; 0          ; 0                    ; 0                ; 1          ;
++----------------------+-----------+------------+------------------+------------+----------------------+------------------+------------+
 
 
 +--------------------------------------------------------------------------------+
@@ -243,10 +242,10 @@ Encoding Type:  One-Hot
 ; Register name                         ; Reason for Removal                     ;
 +---------------------------------------+----------------------------------------+
 ; line_drawer_reg:reg_file|ystep[0]     ; Stuck at VCC due to stuck port data_in ;
+; line_drawer_reg:reg_file|xstep[0]     ; Stuck at VCC due to stuck port data_in ;
 ; line_drawer_ctrl:ctrl|ps~2            ; Lost fanout                            ;
 ; line_drawer_ctrl:ctrl|ps~3            ; Lost fanout                            ;
 ; line_drawer_ctrl:ctrl|ps~4            ; Lost fanout                            ;
-; line_drawer_ctrl:ctrl|ps~5            ; Lost fanout                            ;
 ; Total Number of Removed Registers = 5 ;                                        ;
 +---------------------------------------+----------------------------------------+
 
@@ -257,11 +256,11 @@ Encoding Type:  One-Hot
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
 ; Total registers                              ; 131   ;
-; Number of registers using Synchronous Clear  ; 0     ;
-; Number of registers using Synchronous Load   ; 66    ;
+; Number of registers using Synchronous Clear  ; 88    ;
+; Number of registers using Synchronous Load   ; 121   ;
 ; Number of registers using Asynchronous Clear ; 0     ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 119   ;
+; Number of registers using Clock Enable       ; 123   ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
@@ -271,12 +270,11 @@ Encoding Type:  One-Hot
 +--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------+
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                     ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------+
-; 3:1                ; 11 bits   ; 22 LEs        ; 0 LEs                ; 22 LEs                 ; Yes        ; |line_drawer|line_drawer_reg:reg_file|x[10]    ;
-; 3:1                ; 11 bits   ; 22 LEs        ; 0 LEs                ; 22 LEs                 ; Yes        ; |line_drawer|line_drawer_reg:reg_file|y[10]    ;
-; 3:1                ; 22 bits   ; 44 LEs        ; 0 LEs                ; 44 LEs                 ; Yes        ; |line_drawer|line_drawer_reg:reg_file|x_out[6] ;
-; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |line_drawer|line_drawer_reg:reg_file|ystep[1] ;
-; 4:1                ; 44 bits   ; 88 LEs        ; 88 LEs               ; 0 LEs                  ; Yes        ; |line_drawer|line_drawer_reg:reg_file|x1_t[1]  ;
-; 4:1                ; 12 bits   ; 24 LEs        ; 24 LEs               ; 0 LEs                  ; Yes        ; |line_drawer|line_drawer_reg:reg_file|err[2]   ;
+; 4:1                ; 12 bits   ; 24 LEs        ; 24 LEs               ; 0 LEs                  ; Yes        ; |line_drawer|line_drawer_reg:reg_file|err[11]  ;
+; 4:1                ; 44 bits   ; 88 LEs        ; 0 LEs                ; 88 LEs                 ; Yes        ; |line_drawer|line_drawer_reg:reg_file|x1_t[8]  ;
+; 4:1                ; 11 bits   ; 22 LEs        ; 0 LEs                ; 22 LEs                 ; Yes        ; |line_drawer|line_drawer_reg:reg_file|x[6]     ;
+; 4:1                ; 11 bits   ; 22 LEs        ; 0 LEs                ; 22 LEs                 ; Yes        ; |line_drawer|line_drawer_reg:reg_file|y[9]     ;
+; 4:1                ; 22 bits   ; 44 LEs        ; 0 LEs                ; 44 LEs                 ; Yes        ; |line_drawer|line_drawer_reg:reg_file|y_out[1] ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------+
 
 
@@ -286,25 +284,29 @@ Encoding Type:  One-Hot
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
 ; arriav_ff             ; 131                         ;
-;     ENA               ; 53                          ;
-;     ENA SLD           ; 66                          ;
-;     plain             ; 12                          ;
-; arriav_lcell_comb     ; 291                         ;
+;     ENA               ; 2                           ;
+;     ENA SCLR SLD      ; 88                          ;
+;     ENA SLD           ; 33                          ;
+;     plain             ; 8                           ;
+; arriav_lcell_comb     ; 263                         ;
 ;     arith             ; 45                          ;
-;         1 data inputs ; 23                          ;
-;         2 data inputs ; 22                          ;
-;     normal            ; 157                         ;
-;         2 data inputs ; 16                          ;
-;         3 data inputs ; 1                           ;
-;         4 data inputs ; 32                          ;
-;         5 data inputs ; 18                          ;
-;         6 data inputs ; 90                          ;
-;     shared            ; 89                          ;
-;         2 data inputs ; 89                          ;
+;         1 data inputs ; 2                           ;
+;         2 data inputs ; 32                          ;
+;         4 data inputs ; 11                          ;
+;     extend            ; 1                           ;
+;         7 data inputs ; 1                           ;
+;     normal            ; 117                         ;
+;         2 data inputs ; 15                          ;
+;         3 data inputs ; 14                          ;
+;         4 data inputs ; 23                          ;
+;         5 data inputs ; 24                          ;
+;         6 data inputs ; 41                          ;
+;     shared            ; 100                         ;
+;         2 data inputs ; 100                         ;
 ; boundary_port         ; 70                          ;
 ;                       ;                             ;
-; Max LUT depth         ; 7.20                        ;
-; Average LUT depth     ; 4.28                        ;
+; Max LUT depth         ; 6.20                        ;
+; Average LUT depth     ; 3.81                        ;
 +-----------------------+-----------------------------+
 
 
@@ -313,7 +315,7 @@ Encoding Type:  One-Hot
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:01     ;
+; Top            ; 00:00:00     ;
 +----------------+--------------+
 
 
@@ -323,10 +325,18 @@ Encoding Type:  One-Hot
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 17.0.0 Build 595 04/25/2017 SJ Lite Edition
-    Info: Processing started: Sun Nov 09 01:38:38 2025
+    Info: Processing started: Mon Nov 10 18:51:08 2025
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off DE1_SoC -c DE1_SoC
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 6 of the 6 processors detected
+Info (12021): Found 1 design units, including 1 entities, in source file /ee371labs/ee371/ee371lab5/src/task2_top.sv
+    Info (12023): Found entity 1: task2_top File: C:/ee371labs/ee371/ee371lab5/src/task2_top.sv Line: 21
+Info (12021): Found 1 design units, including 1 entities, in source file /ee371labs/ee371/ee371lab5/src/line_drawer_tb.sv
+    Info (12023): Found entity 1: line_drawer_tb File: C:/ee371labs/ee371/ee371lab5/src/line_drawer_tb.sv Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file /ee371labs/ee371/ee371lab5/src/clock_divider.sv
+    Info (12023): Found entity 1: clock_divider File: C:/ee371labs/ee371/ee371lab5/src/clock_divider.sv Line: 2
+Info (12021): Found 1 design units, including 1 entities, in source file /ee371labs/ee371/ee371lab5/src/anti_metastability.sv
+    Info (12023): Found entity 1: anti_metastability File: C:/ee371labs/ee371/ee371lab5/src/anti_metastability.sv Line: 2
 Info (12021): Found 1 design units, including 1 entities, in source file /ee371labs/ee371/ee371lab5/src/vga_framebuffer.sv
     Info (12023): Found entity 1: VGA_framebuffer File: C:/ee371labs/ee371/ee371lab5/src/VGA_framebuffer.sv Line: 32
 Info (12021): Found 1 design units, including 1 entities, in source file /ee371labs/ee371/ee371lab5/src/line_drawer_reg.sv
@@ -340,21 +350,20 @@ Info (12021): Found 1 design units, including 1 entities, in source file /ee371l
 Info (12021): Found 1 design units, including 1 entities, in source file /ee371labs/ee371/ee371lab5/src/de1_soc_golden_top.v
     Info (12023): Found entity 1: DE1_SOC_golden_top File: C:/ee371labs/ee371/ee371lab5/src/DE1_SOC_golden_top.v Line: 54
 Info (12127): Elaborating entity "line_drawer" for the top level hierarchy
-Info (12128): Elaborating entity "line_drawer_ctrl" for hierarchy "line_drawer_ctrl:ctrl" File: C:/ee371labs/ee371/ee371lab5/src/line_drawer.sv Line: 66
-Info (12128): Elaborating entity "line_drawer_reg" for hierarchy "line_drawer_reg:reg_file" File: C:/ee371labs/ee371/ee371lab5/src/line_drawer.sv Line: 93
-Warning (10230): Verilog HDL assignment warning at line_drawer_reg.sv(84): truncated value with size 32 to match size of target (11) File: C:/ee371labs/ee371/ee371lab5/src/line_drawer_reg.sv Line: 84
+Info (12128): Elaborating entity "line_drawer_ctrl" for hierarchy "line_drawer_ctrl:ctrl" File: C:/ee371labs/ee371/ee371lab5/src/line_drawer.sv Line: 56
+Info (12128): Elaborating entity "line_drawer_reg" for hierarchy "line_drawer_reg:reg_file" File: C:/ee371labs/ee371/ee371lab5/src/line_drawer.sv Line: 79
 Info (286030): Timing-Driven Synthesis is running
-Info (17049): 4 registers lost all their fanouts during netlist optimizations.
+Info (17049): 3 registers lost all their fanouts during netlist optimizations.
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 383 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 409 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 46 input pins
     Info (21059): Implemented 24 output pins
-    Info (21061): Implemented 313 logic cells
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 2 warnings
-    Info: Peak virtual memory: 4860 megabytes
-    Info: Processing ended: Sun Nov 09 01:38:46 2025
+    Info (21061): Implemented 339 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 1 warning
+    Info: Peak virtual memory: 4858 megabytes
+    Info: Processing ended: Mon Nov 10 18:51:16 2025
     Info: Elapsed time: 00:00:08
-    Info: Total CPU time (on all processors): 00:00:16
+    Info: Total CPU time (on all processors): 00:00:17
 
 

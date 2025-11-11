@@ -33,7 +33,7 @@ add wave -noupdate -radix decimal /line_drawer_tb/dut/reg_file/err
 add wave -noupdate -radix unsigned /line_drawer_tb/dut/reg_file/x_out
 add wave -noupdate -radix unsigned /line_drawer_tb/dut/reg_file/y_out
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {11865 ps} 0}
+WaveRestoreCursors {{Cursor 1} {12015 ps} 0}
 quietly wave cursor active 1
 configure wave -namecolwidth 150
 configure wave -valuecolwidth 100
@@ -49,4 +49,4 @@ configure wave -griddelta 2
 configure wave -timeline 0
 configure wave -timelineunits ps
 update
-WaveRestoreZoom {10460 ps} {11499 ps}
+WaveRestoreZoom {12563 ps} {13602 ps}
