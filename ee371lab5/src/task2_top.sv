@@ -1,5 +1,5 @@
-/* Top level module of the FPGA that takes the onboard resources 
- * as input and outputs the lines drawn from the VGA port.
+/* Top level module of the FPGA for task2 that takes the onboard resources as 
+ * input and outputs the lines drawn from the VGA port.
  *
  * Inputs:
  *   KEY 			- On board keys of the FPGA
@@ -42,8 +42,7 @@ module task2_top (HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, KEY, LEDR, SW, CLOCK_50,
 	assign HEX4 = '1;
 	assign HEX5 = '1;
 	assign LEDR[8:0] = SW[8:0];
-	
-	logic [10:0] x0, y0, x1, y1, x, y;
+
 
 	// handle metastability for reset button
 	logic reset, key3;
@@ -51,6 +50,7 @@ module task2_top (HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, KEY, LEDR, SW, CLOCK_50,
 
 	assign reset = ~key3;
 
+	logic [10:0] x0, y0, x1, y1, x, y;
 	logic write;
 
 	VGA_framebuffer fb (
@@ -68,32 +68,23 @@ module task2_top (HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, KEY, LEDR, SW, CLOCK_50,
 		.VGA_VS,
 		.VGA_BLANK_n	(VGA_BLANK_N), 
 		.VGA_SYNC_n		(VGA_SYNC_N));
-				
-	// enable signal for line drawer -- to slow down process enough to see the pixels being drawn
-	// logic enable;
-	// logic [9:0] en_count;
-	// always_ff @(posedge CLOCK_50) begin
-	// 	if (reset)
-	// 		en_count <= 0;
-	// 	else
-	// 		en_count <= en_count + 1;
-	// end // always_ff
-	// assign enable = (en_count == 1023);
 
+
+	// divided clock for line_drawer
 	logic [31:0] div_clks;
 	clock_divider clock_div (.clock(CLOCK_50), .reset, .divided_clocks(div_clks));
 	logic clk;
 	assign clk = div_clks[19]; // for board
 	// assign clk = CLOCK_50; // for simulation
 
+	// instantiate line_drawer
 	logic done;
-
 	line_drawer lines (.clk, .reset, .x0, .y0, .x1, .y1, .x, .y, .write, .done); // added write
 	
 	assign LEDR[9] = done;
 
 
-	// counter for updating input coordinates
+	// counter and logic for updating input coordinates
 	logic [3:0] count;
 	always_ff @(posedge clk) begin // for board
 		if (reset) begin

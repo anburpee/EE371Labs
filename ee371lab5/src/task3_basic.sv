@@ -1,5 +1,5 @@
-/* Top level module of the FPGA that takes the onboard resources 
- * as input and outputs the lines drawn from the VGA port.
+/* Top level module of the FPGA for the basic functionality of task3 (drawing 10 lines)
+ * that takes the onboard resources as input and outputs the lines drawn from the VGA port.
  *
  * Inputs:
  *   KEY 			- On board keys of the FPGA
@@ -49,10 +49,11 @@ module task3_basic (HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, KEY, LEDR, SW, CLOCK_50,
 	assign reset = ~key3;
 
 	//////////////////////////////////////////////////////////////////////////////////
-	// logic to cycle through all coordinates of the display when reset is pressed
-	// using the clearing signal instead of just reset makes sure that even if 
+	// Logic to cycle through all coordinates of the display when reset is pressed
+	// Using the clearing signal instead of just reset makes sure that even if 
 	// reset is deasserted before the screen is done clearing, the screen will still
-	// be wiped
+	// be wiped -- this snippet starts the coordinate iterating process once reset is
+	// released and continues until the last coordinate is reached
 	logic [10:0] xcounter, ycounter;
 	logic clearing;
 	always_ff @(posedge CLOCK_50) begin
@@ -95,7 +96,8 @@ module task3_basic (HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, KEY, LEDR, SW, CLOCK_50,
 		.VGA_HS, 
 		.VGA_VS,
 		.VGA_BLANK_n	(VGA_BLANK_N), 
-		.VGA_SYNC_n		(VGA_SYNC_N));
+		.VGA_SYNC_n		(VGA_SYNC_N)
+		);
 				
 
 	// clock divider for line drawer
@@ -106,13 +108,14 @@ module task3_basic (HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, KEY, LEDR, SW, CLOCK_50,
 	assign line_drawer_clk = CLOCK_50;
 
 
+	// instantiate line_drawer
 	logic done;
 	line_drawer lines (.clk(line_drawer_clk), .reset(reset || clearing), .x0, .y0, .x1, .y1, .x, .y, .write, .done);
 	
 	assign LEDR[9] = done;
 
 
-	// counter for updating input coordinates
+	// counter and logic for updating input coordinates
 	logic [3:0] count;
 	always_ff @(posedge line_drawer_clk) begin
 		if (reset || clearing) begin

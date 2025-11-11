@@ -1,3 +1,9 @@
+// Controller module for line_drawer 
+// 1 bit inputs clk, reset from line_drawer.sv 
+// 1 bit status signal inputs is_steep, err_gte_zero, x_eq_x1 from line_drawer_reg.sv
+// 1 bit control signal outputs init_load, swap_axes, second_load, draw_yx, draw_yx,
+// update_err, update_err_y, update_x, write sent to line_drawer_reg.sv
+// 1 bit system outputs write, done 
 module line_drawer_ctrl (
     input logic clk,
     input logic reset,
@@ -6,7 +12,6 @@ module line_drawer_ctrl (
     input logic x_eq_x1,
     output logic init_load,
     output logic swap_axes,
-    // output logic x_swap_y_swap,
     output logic second_load,
     output logic draw_yx,
     output logic draw_xy,
@@ -51,7 +56,6 @@ module line_drawer_ctrl (
             ps <= s_start;
         end
         else begin
-            // if (enable)
                 ps <= ns;
         end
     end // always_ff
@@ -59,7 +63,6 @@ module line_drawer_ctrl (
     // control signals
     assign init_load = (ps == s_start);
     assign swap_axes = ((ps == s_check_steep) && is_steep);
-    // assign x_swap_y_swap = ((ps == s_check_neg_slope) && x0_gt_x1);
     assign second_load = (ps == s_load2);
     assign draw_yx = ((ps == s_assign_outs) && is_steep);
     assign draw_xy = ((ps == s_assign_outs) && (~is_steep));
@@ -76,7 +79,7 @@ module line_drawer_ctrl (
 endmodule // line_drawer_ctrl
 
 
-
+////////////// unused: version with x_swap_y_swap //////////////
 // module line_drawer_ctrl (
 //     input logic clk,
 //     input logic reset,

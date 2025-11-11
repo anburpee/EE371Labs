@@ -1,3 +1,4 @@
+// testbench for line_drawer.sv
 module line_drawer_tb ();
     logic clk, reset; // no enable
 	logic [10:0]	x0, y0, x1, y1;

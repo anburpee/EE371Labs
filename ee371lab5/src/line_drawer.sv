@@ -12,7 +12,8 @@
  * Outputs:
  *   x 		- x coordinate of the pixel to color
  *   y 		- y coordinate of the pixel to color
- *   write  - enable the VGA framebuffer to write in a new value
+ *   write  - enables the VGA framebuffer in the top level module
+ 			  to write in a new value
  *   done	- flag that line has finished drawing
  *
  */
@@ -27,7 +28,6 @@ module line_drawer(clk, reset, x0, y0, x1, y1, x, y, write, done); // added writ
     logic x_eq_x1;
     logic init_load;
     logic swap_axes;
-    // logic x_swap_y_swap;
     logic second_load;
     logic draw_yx;
     logic draw_xy;
@@ -44,14 +44,13 @@ module line_drawer(clk, reset, x0, y0, x1, y1, x, y, write, done); // added writ
 		.x_eq_x1,
 		.init_load,
 		.swap_axes,
-		// .x_swap_y_swap,
 		.second_load,
 		.draw_yx,
 		.draw_xy,
 		.update_err,
 		.update_err_y,
 		.update_x,
-		.write, // NEED
+		.write, 
 		.done
 	);
 
@@ -64,7 +63,6 @@ module line_drawer(clk, reset, x0, y0, x1, y1, x, y, write, done); // added writ
 		.y1, 
 		.init_load,
 		.swap_axes,
-		// .x_swap_y_swap,
 		.second_load,
 		.draw_yx,
 		.draw_xy,
@@ -86,11 +84,7 @@ endmodule  // line_drawer
 
 
 
-
-
-
-
-
+////////////// unused: version with x_swap_y_swap //////////////
 /* Given two points on the screen this module draws a line between
  * those two points by coloring necessary pixels
  *

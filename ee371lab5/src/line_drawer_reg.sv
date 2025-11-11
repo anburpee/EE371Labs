@@ -1,4 +1,13 @@
-// screen resolution: 640 x 480
+// Datapath module for line_drawer
+// 1 bit inputs clk, reset from line_drawer.sv
+// 11 bit input coordinates x0, y0 and x1, y1 from line_drawer.sv, which
+// represent the beginning and ending coordinates of the line to be drawn
+// 1 bit input control signals init_load, swap_axes, second_load, draw_xy,
+// draw_yx, update_err, update_err_y, update_x from line_drawer_ctrl
+// 1 bit status signal outputs is_steep, err_gte_zero, and x_eq_x1 from,
+// sent to line_drawer_ctrl
+// 11 bit system outputs x_out, y_out representing the coordinate pair to
+// actually used to draw to
 
 module line_drawer_reg (
     input logic clk,
@@ -9,7 +18,6 @@ module line_drawer_reg (
     input logic [10:0] y1, 
     input logic init_load,
     input logic swap_axes,
-    // input logic x_swap_y_swap,
     input logic second_load,
     input logic draw_yx,
     input logic draw_xy,
@@ -28,7 +36,7 @@ module line_drawer_reg (
     logic signed [11:0] err;
 
     always_ff @(posedge clk) begin
-        if (reset) begin
+        if (reset) begin // don't need?
             x0_t <= 0;
             x1_t <= 0;
             y0_t <= 0;
@@ -99,8 +107,8 @@ endmodule // line_drawer_reg
 
 
 
-// // screen resolution: 640 x 480
 
+////////////// unused: version with x_swap_y_swap //////////////
 // module line_drawer_reg (
 //     input logic clk,
 //     input logic [10:0] x0,

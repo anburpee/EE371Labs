@@ -1,3 +1,4 @@
+// testbench for task2_top.sv
 module task2_top_tb ();
     logic [6:0] HEX0, HEX1, HEX2, HEX3, HEX4, HEX5;
 	logic [9:0] LEDR;
