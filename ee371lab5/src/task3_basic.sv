@@ -105,18 +105,7 @@ module task3_basic (HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, KEY, LEDR, SW, CLOCK_50,
 	// assign line_drawer_clk = div_clks[19];
 	assign line_drawer_clk = CLOCK_50;
 
-	////////////////// not used ////////////
-	// create single pulse for when the clearing is done to use as the signal to make the 
-	// first coordinate assignment after reset (detects falling edge of clearing)
-	// logic clearing_prev, clear_done;
-	// always_ff @(posedge CLOCK_50) begin
-	// 	clearing_prev <= clearing;
-	// end // always_ff
-	// assign clear_done = (~clearing && clearing_prev);
-	////////////////////////////////////////
 
-
-	// set reset port to clear_done so that it's synchronized with the coordinate assignments
 	logic done;
 	line_drawer lines (.clk(line_drawer_clk), .reset(reset || clearing), .x0, .y0, .x1, .y1, .x, .y, .write, .done);
 	
