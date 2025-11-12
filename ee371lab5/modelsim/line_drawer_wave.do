@@ -28,14 +28,15 @@ add wave -noupdate -radix unsigned /line_drawer_tb/dut/reg_file/deltax
 add wave -noupdate -radix unsigned /line_drawer_tb/dut/reg_file/deltay
 add wave -noupdate -label x(internal) -radix unsigned /line_drawer_tb/dut/reg_file/x
 add wave -noupdate -label y(internal) -radix unsigned /line_drawer_tb/dut/reg_file/y
+add wave -noupdate -radix decimal /line_drawer_tb/dut/reg_file/xstep
 add wave -noupdate -radix decimal /line_drawer_tb/dut/reg_file/ystep
 add wave -noupdate -radix decimal /line_drawer_tb/dut/reg_file/err
 add wave -noupdate -radix unsigned /line_drawer_tb/dut/reg_file/x_out
 add wave -noupdate -radix unsigned /line_drawer_tb/dut/reg_file/y_out
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {413 ps} 0}
+WaveRestoreCursors {{Cursor 1} {541 ps} 0}
 quietly wave cursor active 1
-configure wave -namecolwidth 150
+configure wave -namecolwidth 122
 configure wave -valuecolwidth 100
 configure wave -justifyvalue left
 configure wave -signalnamewidth 1
@@ -49,4 +50,4 @@ configure wave -griddelta 2
 configure wave -timeline 0
 configure wave -timelineunits ps
 update
-WaveRestoreZoom {11663 ps} {12702 ps}
+WaveRestoreZoom {0 ps} {1473 ps}

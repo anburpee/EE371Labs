@@ -44,6 +44,19 @@ module line_drawer_tb ();
         // steep, right up
         x0 <= 10'd2;    y0 <=  10'd4;   x1 <= 10'd0;    y1 <= 10'd0;    @(posedge done);
 
+        // vertical, up
+        x0 <= 10'd2;    y0 <=  10'd4;   x1 <= 10'd2;    y1 <= 10'd0;    @(posedge done);
+
+        // vertical, down
+        x0 <= 10'd2;    y0 <=  10'd0;   x1 <= 10'd2;    y1 <= 10'd4;    @(posedge done);
+
+        // horizontal, left to right
+        x0 <= 10'd0;    y0 <=  10'd2;   x1 <= 10'd3;    y1 <= 10'd2;    @(posedge done);
+
+        // horizontal, right to left
+        x0 <= 10'd3;    y0 <=  10'd2;   x1 <= 10'd0;    y1 <= 10'd2;    @(posedge done);
+
+
         reset <= 1'b1;  @(posedge clk)
         reset <= 1'b0;  @(posedge done);
         @(posedge clk);

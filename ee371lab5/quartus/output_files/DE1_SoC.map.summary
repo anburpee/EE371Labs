@@ -1,13 +1,13 @@
-Analysis & Synthesis Status : Successful - Mon Nov 10 18:51:16 2025
+Analysis & Synthesis Status : Successful - Tue Nov 11 17:40:36 2025
 Quartus Prime Version : 17.0.0 Build 595 04/25/2017 SJ Lite Edition
 Revision Name : DE1_SoC
-Top-level Entity Name : line_drawer
+Top-level Entity Name : task3_tung_tung_tung_sahur
 Family : Cyclone V
 Logic utilization (in ALMs) : N/A
-Total registers : 131
-Total pins : 70
+Total registers : 235
+Total pins : 96
 Total virtual pins : 0
-Total block memory bits : 0
+Total block memory bits : 307,200
 Total DSP Blocks : 0
 Total HSSI RX PCSs : 0
 Total HSSI PMA RX Deserializers : 0
