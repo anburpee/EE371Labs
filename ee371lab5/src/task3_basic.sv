@@ -104,8 +104,8 @@ module task3_basic (HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, KEY, LEDR, SW, CLOCK_50,
 	logic [31:0] div_clks;
 	clock_divider clock_div (.clock(CLOCK_50), .reset(reset), .divided_clocks(div_clks));
 	logic line_drawer_clk;
-	assign line_drawer_clk = div_clks[17];
-	// assign line_drawer_clk = CLOCK_50;
+	// assign line_drawer_clk = div_clks[17];
+	assign line_drawer_clk = CLOCK_50;
 
 
 	// instantiate line_drawer

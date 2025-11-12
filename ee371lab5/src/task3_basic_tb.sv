@@ -27,21 +27,17 @@ module task3_basic_tb ();
     initial begin
         KEY[3] <= 1'b0;     repeat(5) @(posedge CLOCK_50);
         KEY[3] <= 1'b1;    
-        // repeat(100) @(posedge CLOCK_50);
-        @(posedge dut.clear_done);
         repeat(9) @(posedge LEDR[9]);
         @(posedge CLOCK_50);
 
 
         KEY[3] <= 1'b0;     repeat(5) @(posedge CLOCK_50);
         KEY[3] <= 1'b1;
-        @(posedge dut.clear_done);
         repeat(3) @(posedge LEDR[9]);
         @(posedge CLOCK_50);
 
         KEY[3] <= 1'b0;     repeat(5) @(posedge CLOCK_50);
         KEY[3] <= 1'b1;
-        @(posedge dut.clear_done);
         repeat(3) @(posedge LEDR[9]);
         @(posedge CLOCK_50);
         
