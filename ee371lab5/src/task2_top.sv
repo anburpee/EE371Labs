@@ -74,7 +74,7 @@ module task2_top (HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, KEY, LEDR, SW, CLOCK_50,
 	logic [31:0] div_clks;
 	clock_divider clock_div (.clock(CLOCK_50), .reset, .divided_clocks(div_clks));
 	logic clk;
-	assign clk = div_clks[19]; // for board
+	assign clk = div_clks[17]; // for board
 	// assign clk = CLOCK_50; // for simulation
 
 	// instantiate line_drawer

@@ -10,7 +10,7 @@ cModel Technology
 Z0 dC:/ee371labs/ee371/ee371lab5/modelsim
 vanti_metastability
 Z1 DXx6 sv_std 3 std 0 22 AD7iAPLo6nTIKk<N0eo=D3
-Z2 !s110 1762852932
+Z2 !s110 1762900040
 !i10b 1
 !s100 ;^d<;Na@[`YdhaP1BI[Ho3
 I16M610nd=Y<z7oE4VdcHI3
@@ -26,7 +26,7 @@ Z4 OV;L;10.5b;63
 r1
 !s85 0
 31
-Z5 !s108 1762852932.000000
+Z5 !s108 1762900040.000000
 !s107 ../src/anti_metastability.sv|
 !s90 -reportprogress|300|../src/anti_metastability.sv|
 !i113 1
@@ -72,7 +72,7 @@ R4
 r1
 !s85 0
 31
-R5
+!s108 1762852932.000000
 !s107 ../src/DE1_SoC.sv|
 !s90 -reportprogress|300|../src/DE1_SoC.sv|
 !i113 1
@@ -104,69 +104,69 @@ R6
 n@d@e1_@so@c_tb
 vline_drawer
 R1
-R2
+Z9 !s110 1762900039
 !i10b 1
-!s100 0o>dN?a@9fAX5MGgFFAeH2
-Ieo;PV0S^R;Zzdj>AD6C?I2
+!s100 NNbO50dZXz20cfcM[O_R=3
+IJT>j8D4VXeKm_g?R0j47H0
 R3
 !s105 line_drawer_sv_unit
 S1
 R0
-w1762825373
+w1762897820
 8../src/line_drawer.sv
 F../src/line_drawer.sv
-L0 19
+L0 20
 R4
 r1
 !s85 0
 31
-R5
+Z10 !s108 1762900039.000000
 !s107 ../src/line_drawer.sv|
 !s90 -reportprogress|300|../src/line_drawer.sv|
 !i113 1
 R6
 vline_drawer_ctrl
 R1
-R2
+R9
 !i10b 1
-!s100 1I5;>S]LK7[6ZPURKAUn=2
-I_ZLjPR^fd62UKOZJSng^C3
+!s100 W8SZhOnFO?iY[8]_1MQl20
+I`Y>Mhn3i``YAb9aYO4nTC3
 R3
 !s105 line_drawer_ctrl_sv_unit
 S1
 R0
-w1762768507
+w1762899115
 8../src/line_drawer_ctrl.sv
 F../src/line_drawer_ctrl.sv
-L0 1
+L0 7
 R4
 r1
 !s85 0
 31
-R5
+R10
 !s107 ../src/line_drawer_ctrl.sv|
 !s90 -reportprogress|300|../src/line_drawer_ctrl.sv|
 !i113 1
 R6
 vline_drawer_reg
 R1
-R2
+R9
 !i10b 1
-!s100 gP03neiLGolXXiG=]P<2k1
-I5R5T5;:lH]I2V8E^4AM>D2
+!s100 N@F>5UB?_f2]Tja4i4M@k3
+I_P2Rd1HE[4jY8<WT4cjlK0
 R3
 !s105 line_drawer_reg_sv_unit
 S1
 R0
-w1762828347
+w1762898701
 8../src/line_drawer_reg.sv
 F../src/line_drawer_reg.sv
-L0 3
+L0 12
 R4
 r1
 !s85 0
 31
-R5
+R10
 !s107 ../src/line_drawer_reg.sv|
 !s90 -reportprogress|300|../src/line_drawer_reg.sv|
 !i113 1
@@ -175,16 +175,16 @@ vline_drawer_tb
 R1
 R2
 !i10b 1
-!s100 2BJ[cTH_XK4i`0aMH7hHm0
-IR@FN0UX9RlT45?PXj>Sb?0
+!s100 B5lm25llIeO0mmBDm]?<53
+I1C;Q2OS;C2`7gmnGYZ@`h3
 R3
 !s105 line_drawer_tb_sv_unit
 S1
 R0
-w1762831485
+w1762896331
 8../src/line_drawer_tb.sv
 F../src/line_drawer_tb.sv
-L0 1
+L0 2
 R4
 r1
 !s85 0
@@ -198,13 +198,13 @@ vtask2_top
 R1
 R2
 !i10b 1
-!s100 kJBlVzABKiJE=D>Wcj<dO3
-IhoFHhM`G^KWQ^IDm`L[B00
+!s100 dGRcE_J_H=jTzPd]7o?T:2
+IzIlQH`cW3`7cKKWn^9WZH1
 R3
 !s105 task2_top_sv_unit
 S1
 R0
-w1762844138
+w1762896156
 8../src/task2_top.sv
 F../src/task2_top.sv
 R8
@@ -221,16 +221,16 @@ vtask2_top_tb
 R1
 R2
 !i10b 1
-!s100 9@HS2cH>F;SOGc;S2>[YB0
-Im7PK5FA:RXg^EkA8FAL^b1
+!s100 Pe`MKz64gWLR0T46aIeMe0
+I576Bg<5cczA9[@N4i?0[@1
 R3
 !s105 task2_top_tb_sv_unit
 S1
 R0
-w1762852257
+w1762896185
 8../src/task2_top_tb.sv
 F../src/task2_top_tb.sv
-L0 1
+L0 2
 R4
 r1
 !s85 0
@@ -238,6 +238,52 @@ r1
 R5
 !s107 ../src/task2_top_tb.sv|
 !s90 -reportprogress|300|../src/task2_top_tb.sv|
+!i113 1
+R6
+vtask3_basic
+R1
+R2
+!i10b 1
+!s100 i]n_E7OiiN@Fdo0QZoNW`0
+IYZSY0E1CkWd4@NzgF`2UR2
+R3
+!s105 task3_basic_sv_unit
+S1
+R0
+w1762893806
+8../src/task3_basic.sv
+F../src/task3_basic.sv
+R8
+R4
+r1
+!s85 0
+31
+R5
+!s107 ../src/task3_basic.sv|
+!s90 -reportprogress|300|../src/task3_basic.sv|
+!i113 1
+R6
+vtask3_basic_tb
+R1
+R2
+!i10b 1
+!s100 XU<9<V?EGNm[WTK`a4mTl2
+IlCnM]dc7U0:2@g:E=C0ge0
+R3
+!s105 task3_basic_tb_sv_unit
+S1
+R0
+w1762894451
+8../src/task3_basic_tb.sv
+F../src/task3_basic_tb.sv
+L0 2
+R4
+r1
+!s85 0
+31
+R5
+!s107 ../src/task3_basic_tb.sv|
+!s90 -reportprogress|300|../src/task3_basic_tb.sv|
 !i113 1
 R6
 vVGA_framebuffer

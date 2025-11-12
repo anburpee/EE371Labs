@@ -36,16 +36,16 @@ module line_drawer_reg (
     logic signed [11:0] err;
 
     always_ff @(posedge clk) begin
-        if (reset) begin // don't need?
-            x0_t <= 0;
-            x1_t <= 0;
-            y0_t <= 0;
-            y1_t <= 0;
-            x <= 0;
-            y <= 0;
-            x_out <= 0;
-            y_out <= 0;
-        end
+        // if (reset) begin // don't need?
+        //     x0_t <= 0;
+        //     x1_t <= 0;
+        //     y0_t <= 0;
+        //     y1_t <= 0;
+        //     x <= 0;
+        //     y <= 0;
+        //     x_out <= 0;
+        //     y_out <= 0;
+        // end
         if (init_load) begin
             x0_t <= x0;
             x1_t <= x1;
@@ -58,12 +58,6 @@ module line_drawer_reg (
             y0_t <= x0_t;
             y1_t <= x1_t;
         end
-        // if (x_swap_y_swap) begin
-        //     x0_t <= x1_t;
-        //     x1_t <= x0_t;
-        //     y0_t <= y1_t;
-        //     y1_t <= y0_t;
-        // end
         if (second_load) begin
             deltax <= (x1_t >= x0_t) ? (x1_t - x0_t) : (x0_t - x1_t); // abs(delta x)
             // deltax <= (x1_t - x0_t) 
@@ -74,7 +68,6 @@ module line_drawer_reg (
             y <= y0_t;
             ystep <= (y0_t < y1_t) ? 2'sb01 : 2'sb11;
             xstep <= (x0_t < x1_t) ? 2'sb01 : 2'sb11;
-
         end
         if (draw_yx) begin
             x_out <= y;

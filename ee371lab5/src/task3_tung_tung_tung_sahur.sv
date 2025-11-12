@@ -51,7 +51,7 @@ module task3_tung_tung_tung_sahur (HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, KEY, LEDR
 	//////////////////////////////////////////////////////////////////////////////////
 	// Logic to cycle through all coordinates of the display when reset is pressed
 	// Using the clearing signal instead of just reset makes sure that even if 
-	// reset is deasserted before the screen is done clearing, the screen will still
+	// reset is unasserted before the screen is done clearing, the screen will still
 	// be wiped -- this snippet starts the coordinate iterating process once reset is
 	// released and continues until the last coordinate is reached
 	logic [10:0] xcounter, ycounter;

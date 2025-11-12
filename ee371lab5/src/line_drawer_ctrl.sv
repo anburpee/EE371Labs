@@ -23,7 +23,7 @@ module line_drawer_ctrl (
     );
 
     // states
-    typedef enum logic [2:0] {s_start, s_check_steep, s_check_neg_slope,
+    typedef enum logic [2:0] {s_start, s_check_steep,
                               s_load2, s_assign_outs, s_write, s_done} states;
 
     states ps, ns;
@@ -34,9 +34,7 @@ module line_drawer_ctrl (
         case(ps)
             s_start:            ns = s_check_steep;
 
-            s_check_steep:      ns = s_check_neg_slope;
-
-            s_check_neg_slope:  ns = s_load2;
+            s_check_steep:      ns = s_load2;
 
             s_load2:            ns = s_assign_outs;
 
