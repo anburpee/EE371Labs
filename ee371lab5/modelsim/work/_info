@@ -10,7 +10,7 @@ cModel Technology
 Z0 dC:/ee371labs/ee371/ee371lab5/modelsim
 vanti_metastability
 Z1 DXx6 sv_std 3 std 0 22 AD7iAPLo6nTIKk<N0eo=D3
-Z2 !s110 1762912135
+Z2 !s110 1762913391
 !i10b 1
 !s100 ;^d<;Na@[`YdhaP1BI[Ho3
 I16M610nd=Y<z7oE4VdcHI3
@@ -26,14 +26,14 @@ Z4 OV;L;10.5b;63
 r1
 !s85 0
 31
-Z5 !s108 1762912135.000000
+Z5 !s108 1762913391.000000
 !s107 ../src/anti_metastability.sv|
 !s90 -reportprogress|300|../src/anti_metastability.sv|
 !i113 1
 Z6 tCvgOpt 0
 vclock_divider
 R1
-Z7 !s110 1762912136
+R2
 !i10b 1
 !s100 FIAn]X@JNWH@3[lAKMB0[2
 I6lN41@Wh>UKU;?KRJT<M82
@@ -49,14 +49,14 @@ R4
 r1
 !s85 0
 31
-Z8 !s108 1762912136.000000
+R5
 !s107 ../src/clock_divider.sv|
 !s90 -reportprogress|300|../src/clock_divider.sv|
 !i113 1
 R6
 vDE1_SoC
 R1
-Z9 !s110 1762852933
+Z7 !s110 1762852933
 !i10b 1
 !s100 XIS`AJKcF:WAOKULd0M?^1
 Ih73Sccg>`?hYh`QBXY8_E0
@@ -67,7 +67,7 @@ R0
 w1762852897
 8../src/DE1_SoC.sv
 F../src/DE1_SoC.sv
-Z10 L0 21
+Z8 L0 21
 R4
 r1
 !s85 0
@@ -80,7 +80,7 @@ R6
 n@d@e1_@so@c
 vDE1_SoC_tb
 R1
-R9
+R7
 !i10b 1
 !s100 m@lAjL=RGUlzgA2]i3j`E2
 Id<KYl5<67GkeP`LNZbWmH3
@@ -207,7 +207,7 @@ R0
 w1762900303
 8../src/task2_top.sv
 F../src/task2_top.sv
-R10
+R8
 R4
 r1
 !s85 0
@@ -242,7 +242,7 @@ R5
 R6
 vtask3_basic
 R1
-R7
+R2
 !i10b 1
 !s100 GP97lgnoLS?J[>`U^4?zY2
 IDGzT5gzmEhLe90o2B_I8T2
@@ -253,19 +253,19 @@ R0
 w1762907589
 8../src/task3_basic.sv
 F../src/task3_basic.sv
-R10
+R8
 R4
 r1
 !s85 0
 31
-R8
+R5
 !s107 ../src/task3_basic.sv|
 !s90 -reportprogress|300|../src/task3_basic.sv|
 !i113 1
 R6
 vtask3_basic_tb
 R1
-R7
+R2
 !i10b 1
 !s100 XU<9<V?EGNm[WTK`a4mTl2
 IlCnM]dc7U0:2@g:E=C0ge0
@@ -281,14 +281,14 @@ R4
 r1
 !s85 0
 31
-R8
+R5
 !s107 ../src/task3_basic_tb.sv|
 !s90 -reportprogress|300|../src/task3_basic_tb.sv|
 !i113 1
 R6
 vVGA_framebuffer
 R1
-R7
+R2
 !i10b 1
 !s100 CocS=<?=M@3CI^_?A0CO33
 IQN>m3hKY3eW1cPKl4[BA80
@@ -304,7 +304,7 @@ R4
 r1
 !s85 0
 31
-R8
+R5
 !s107 ../src/VGA_framebuffer.sv|
 !s90 -reportprogress|300|../src/VGA_framebuffer.sv|
 !i113 1
