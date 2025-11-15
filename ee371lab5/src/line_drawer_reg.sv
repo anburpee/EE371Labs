@@ -36,7 +36,7 @@ module line_drawer_reg (
     logic signed [11:0] err;
 
     always_ff @(posedge clk) begin
-        // if (reset) begin // don't need?
+        // if (reset) begin // don't need
         //     x0_t <= 0;
         //     x1_t <= 0;
         //     y0_t <= 0;
