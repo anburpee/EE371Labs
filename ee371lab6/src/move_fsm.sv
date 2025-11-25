@@ -18,7 +18,7 @@ module move_fsm (clk, reset, sel_sw, key, red_dout_a, red_addr_a, red_din_a,
     output logic black_wren_a;
 
     // empty sentinel
-    localparam logic [6:0] EMPTY_SENTINEL = 7'b1111111;
+    logic [6:0] EMPTY_SENTINEL = 7'b1111111;
 
     // scanning counter to scan red and black RAM into local arrays
     logic [3:0] scan_counter;

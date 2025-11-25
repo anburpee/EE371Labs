@@ -17,41 +17,41 @@ module vga_update(clk, x, y, selected_tile, r, g, b,
     input logic [6:0] ram_dout_black; // read data from black RAM
 
     //------------------- board placement ----------------------------
-    localparam int TILE = 60;
-    localparam int BOARD_LEFT = 80; // 80 pixel left offset
-    localparam int BOARD_TOP = 0;
-    localparam int BOARD_W = TILE * 8;
-    localparam int BOARD_H = TILE * 8;
+    int TILE = 60;
+    int BOARD_LEFT = 80; // 80 pixel left offset
+    int BOARD_TOP = 0;
+    int BOARD_W = TILE * 8;
+    int BOARD_H = TILE * 8;
 
     // RGB colors for board tiles and tokens (this is from ChatGPT)
 
     // color palette (8-bit per channel)
-    localparam logic [7:0] COLOR_WHITE_R = 8'd245;
-    localparam logic [7:0] COLOR_WHITE_G = 8'd245;
-    localparam logic [7:0] COLOR_WHITE_B = 8'd240;
+    logic [7:0] COLOR_WHITE_R = 8'd245;
+    logic [7:0] COLOR_WHITE_G = 8'd245;
+    logic [7:0] COLOR_WHITE_B = 8'd240;
 
     // soft brown for playable squares
-    localparam logic [7:0] COLOR_BROWN_R = 8'd139;
-    localparam logic [7:0] COLOR_BROWN_G = 8'd69;
-    localparam logic [7:0] COLOR_BROWN_B = 8'd19;
+    logic [7:0] COLOR_BROWN_R = 8'd139;
+    logic [7:0] COLOR_BROWN_G = 8'd69;
+    logic [7:0] COLOR_BROWN_B = 8'd19;
 
     // token colors
-    localparam logic [7:0] COLOR_RED_R   = 8'd220;
-    localparam logic [7:0] COLOR_RED_G   = 8'd20;
-    localparam logic [7:0] COLOR_RED_B   = 8'd60;
+    logic [7:0] COLOR_RED_R   = 8'd220;
+    logic [7:0] COLOR_RED_G   = 8'd20;
+    logic [7:0] COLOR_RED_B   = 8'd60;
 
-    localparam logic [7:0] COLOR_BLACK_R = 8'd20;
-    localparam logic [7:0] COLOR_BLACK_G = 8'd20;
-    localparam logic [7:0] COLOR_BLACK_B = 8'd20;
+    logic [7:0] COLOR_BLACK_R = 8'd20;
+    logic [7:0] COLOR_BLACK_G = 8'd20;
+    logic [7:0] COLOR_BLACK_B = 8'd20;
 
     // highlight color (selected tile border)
-    localparam logic [7:0] COLOR_HL_R = 8'd255;
-    localparam logic [7:0] COLOR_HL_G = 8'd255;
-    localparam logic [7:0] COLOR_HL_B = 8'd0;
+    logic [7:0] COLOR_HL_R = 8'd255;
+    logic [7:0] COLOR_HL_G = 8'd255;
+    logic [7:0] COLOR_HL_B = 8'd0;
 
     // sentinel: essentially an empty spot of the board
     // that we use as a reference point for the rest of the board
-    localparam logic [6:0] EMPTY_SENTINEL = 7'b1111111;
+    logic [6:0] EMPTY_SENTINEL = 7'b1111111;
 
     // tile positions on coordinate plane
     logic inside_board; // is the switch combo inside the board?
@@ -133,7 +133,7 @@ module vga_update(clk, x, y, selected_tile, r, g, b,
     end
 
     // drawing pixel: draw base tile color, and if token present, draw circle
-    localparam int RAD = 21;
+    int RAD = 21;
     logic signed [9:0] dx, dy;
     logic circle_mask;
 
