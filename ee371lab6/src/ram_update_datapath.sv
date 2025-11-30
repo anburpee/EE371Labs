@@ -1,0 +1,26 @@
+module ram_update_datapath (input logic clk,
+                            input logic reset, 
+                            input logic [3:0] key,
+                            input logic [5:0] sw,
+                            input logic load_iter,
+                            input logic initialize,
+                            input logic read,
+                            input logic incr_count,
+                            input logic reset_count,
+                            input logic load_adj, 
+                            input logic load_skip,
+                            input logic mult_true,
+                            input logic done
+                            output logic count_eq_11,
+                            output logic valid_xy,
+                            output logic legal_dir,
+                            output logic edge_blocked0,
+                            output logic own_adj,
+                            output logic opp_adj,
+                            output logic edge_blocked1,
+                            output logic two_over,
+                            output logic cont_turn,
+                            output logic mult_iter,
+                        )
+
+endmodule // ram_update_datapath
