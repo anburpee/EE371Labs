@@ -63,6 +63,10 @@ module ram_update_datapath (input logic clk,
                 x_curr <= sw[5:3];
                 y_curr <= sw[2:0];
             cont_turn <= 1'b0;
+            two_over0 <= 1'b0;
+            two_over1 <= 1'b0;
+            two_over2 <= 1'b0;
+            two_over3 <= 1'b0;
         end
         if (read) begin
             red_addr <= count;
