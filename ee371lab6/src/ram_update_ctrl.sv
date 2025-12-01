@@ -17,6 +17,8 @@ module ram_update_ctrl (input logic clk,
                         output logic load_iter,
                         output logic initialize,
                         output logic read,
+                        output logic check0,
+                        output logic check_done,
                         output logic incr_count,
                         output logic reset_count,
                         output logic invalid_xy,
@@ -71,6 +73,8 @@ module ram_update_ctrl (input logic clk,
     assign load_iter = s_reset;
     assign initialize = s_idle && key;
     assign read = s_check || s_check_done;
+    assign check0 = s_known0;
+    assign check_done = s_known1;
     assign incr_count = (s_known0 && ~count_eq_11) || (s_known1 && ~count_eq_11);
     assign reset_count = s_update;
     assign invalid_xy = s_update && ~valid_xy;
