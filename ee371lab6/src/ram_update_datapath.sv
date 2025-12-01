@@ -28,6 +28,7 @@ module ram_update_datapath (input logic clk,
                         );
 
     logic reds_turn;
+    logic [3:0] token_addr; // addr of the token to be moved on current player's turn
     logic [1:0] direction;
     logic [2:0] x_curr, y_curr;
     logic [2:0] x_new, y_new;
@@ -36,13 +37,13 @@ module ram_update_datapath (input logic clk,
     logic opp_adj0, opp_adj1, opp_adj2, opp_adj3;
     logic two_over0, two_over1, two_over2, two_over3;
     logic [3:0] count;
-    logic [3:0] red_addr, blk_addr;
+    logic [3:0] red_addr, blk_addr; // red into rams
     logic [4:0] red_count, blk_count;
 
     // instantiate RAMS that store location of each token
-    black_ram16x7 blk_ram (.address(address_blk), .clock(clk), .data(data_blk), .wren(wren_blk), .q(q_blk));
+    black_ram16x7 blk_ram (.address(blk_addr), .clock(clk), .data(data_blk), .wren(wren_blk), .q(q_blk));
 
-    red_ram16x7 red_ram (.address(address_red), .clock(clk), .data(data_red), .wren(wren_red), .q(q_red));
+    red_ram16x7 red_ram (.address(red_addr), .clock(clk), .data(data_red), .wren(wren_red), .q(q_red));
 
 
     // ctrl logic
@@ -81,7 +82,7 @@ module ram_update_datapath (input logic clk,
             end
             case (direction)
                 2'b00: x_cond0 = x_curr + 1;    y_cond0 = y_curr + 1;   x_cond1 = x_curr + 2;    y_cond1 = y_curr + 2;
-                1'b01: x_cond0 = x_curr - 1;    y_cond0 = y_curr + 1;   x_cond1 = x_curr - 2;    y_cond1 = y_curr + 2;
+                2'b01: x_cond0 = x_curr - 1;    y_cond0 = y_curr + 1;   x_cond1 = x_curr - 2;    y_cond1 = y_curr + 2;
                 2'b10: x_cond0 = x_curr + 1;    y_cond0 = y_curr - 1;   x_cond1 = x_curr + 2;    y_cond1 = y_curr - 2;
                 2'b11: x_cond0 = x_curr - 1;    y_cond0 = y_curr - 1;   x_cond1 = x_curr - 2;    y_cond1 = y_curr - 2;
             endcase
@@ -135,12 +136,12 @@ module ram_update_datapath (input logic clk,
             case (reds_turn)
                 1'b0: king_new = (y_new == 3'd7); 
                       wren_blk <= 1'b1;  
-                      address_blk <= token_addr;
+                      blk_addr <= token_addr;
                       data_blk <= {king_new, x_new, y_new};
 
                 1'b1: king_new = (y_new == 3'd0);
-                      wren_red <- 1'b1;
-                      address_red <= token_addr;
+                      wren_red <= 1'b1;
+                      red_addr <= token_addr;
                       data_red <= {king_new, x_new, y_new};
             endcase
             king <= king_new;
@@ -156,16 +157,16 @@ module ram_update_datapath (input logic clk,
             endcase
             case (reds_turn)
                 1'b0: king_new = (y_new == 3'd7);
-                      address_blk <= token_addr;
+                      blk_addr <= token_addr;
                       data_blk <= {king_new, x_new, y_new};
-                      address_red <= opp_addr;
+                      red_addr <= opp_addr;
                       data_red <= {6{1'b0}, 1'b1}; // erase opponent's token
                       red_count <= red_count - 1;
 
                 1'b1: king_new = (y_new == 3'd0);
-                      address_red <= token_addr;
+                      red_addr <= token_addr;
                       data_red <= {king_new, x_new, y_new};
-                      address_blk <= opp_addr;
+                      blk_addr <= opp_addr;
                       data_blk <= {6{1'b0}, 1'b1}; // erase opponent's token
                       blk_count <= blk_count - 1;
             endcase

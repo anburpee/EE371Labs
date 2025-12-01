@@ -42,9 +42,9 @@ module ram_update_ctrl (input logic clk,
 
             s_idle: ns = key ? s_check0 : s_idle;
 
-            s_check0: ns = s_known;
+            s_check0: ns = s_known0;
 
-            s_known: ns = count_eq_11 ? s_update : s_check;
+            s_known0: ns = count_eq_11 ? s_update : s_check0;
 
             s_update: ns = (valid_xy && legal_dir && ~edge_blocked0 && ~own_adj) ? 
                            (opp_adj ? ((~edge_blocked1 && ~two_over) ? s_check_done : s_idle) : (mult_iter ? s_idle : check_done)) : 
@@ -71,7 +71,7 @@ module ram_update_ctrl (input logic clk,
     // output logic
     assign load_iter = s_reset;
     assign initialize = s_idle && key;
-    assign read = s_check || s_check_done;
+    assign read = s_check0 || s_check_done;
     assign check0 = s_known0;
     assign check_done = s_known1;
     assign incr_count = (s_known0 && ~count_eq_11) || (s_known1 && ~count_eq_11);

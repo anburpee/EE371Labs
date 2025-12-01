@@ -4,7 +4,7 @@ module ram_update (input logic clk,
                    input logic reset,
                    input logic [3:0] keys,
                    input logic [5:0] sw,
-                   output logic iter_done, // use as a start signal for checking the rams for detecting the end of the game
+                   output logic iter_done // use as a start signal for checking the rams for detecting the end of the game
                    );
     
     logic initialize, read, check0, check_done, incr_count, reset_count, load_adj, load_skip, mult_true, done; // control signals
