@@ -47,7 +47,7 @@ module ram_update_ctrl (input logic clk,
             s_known0: ns = count_eq_11 ? s_update : s_check0;
 
             s_update: ns = (valid_xy && legal_dir && ~edge_blocked0 && ~own_adj) ? 
-                           (opp_adj ? ((~edge_blocked1 && ~two_over) ? s_check_done : s_idle) : (mult_iter ? s_idle : check_done)) : 
+                           (opp_adj ? ((~edge_blocked1 && ~two_over) ? s_check_done : s_idle) : (mult_iter ? s_idle : s_check_done)) : 
                            s_idle;
 
             s_check_done: ns = s_known1;
@@ -80,10 +80,10 @@ module ram_update_ctrl (input logic clk,
     assign illegal_dir = s_update && ~legal_dir;
     assign board_in_way = s_update && (edge_blocked0 || (opp_adj && edge_blocked1));
     assign token_in_way = s_update && (own_adj || (opp_adj && ~edge_blocked1 && two_over));
-    assign load_adj = s_update && valid_xy && legal_dir && ~edge_blocked0 && ~own_adj && ~opp_adj & ~mult_iter;
+    assign load_adj = s_update && valid_xy && legal_dir && ~edge_blocked0 && ~own_adj && ~opp_adj && ~mult_iter;
     assign load_skip = s_update && valid_xy && legal_dir && ~edge_blocked0 && ~own_adj && opp_adj && ~edge_blocked1 && two_over;
     assign mult_true = s_known1 && cont_turn;
-    assign done = s_known1 && ~cont_turn && cont_eq_11;
+    assign done = s_known1 && ~cont_turn && count_eq_11;
 
 
 endmodule // ram_update_ctrl

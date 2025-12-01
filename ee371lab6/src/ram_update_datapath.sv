@@ -184,6 +184,7 @@ module ram_update_datapath (input logic clk,
     end
 
     // status signals
+    assign count_eq_11 = (count == 4'd11);
     assign legal_dir = king ? 1'b1 : (reds_turn ? ((difrection / 2) ? 1'b1 : 1'b0) : ((direction / 2) ? 1'b0 : 1'b1));
     assign edge_blocked0 = ((direction  / 2) && (y_curr == 0)) || (~(direction / 2) && (y_curr == 7)) || 
                            ((direction  % 2) && (x_curr == 0)) || (~(direction % 2) && (x_curr == 7));
