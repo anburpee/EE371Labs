@@ -50,6 +50,8 @@ module ram_update_datapath (input logic clk,
     always_ff @(posedge clk) begin
         if (reset) begin
             reds_turn <= 1'b0;
+            red_count <= 4'd12;
+            blk_count <= 4'd12;
         end
         if (load_iter) begin
             mult_iter <= 1'b0;
@@ -57,8 +59,6 @@ module ram_update_datapath (input logic clk,
         if (initialize) begin
             direction <= key[0] ? 2'b00 : (key[1] ? 2'b01 : (key[2] ? 2'b10 : 2'b11));
             count <= 1'b0;
-            red_count <= 4'd12;
-            blk_count <= 4'd12;
             if (mult_iter == 1'b0)
                 x_curr <= sw[5:3];
                 y_curr <= sw[2:0];
