@@ -24,8 +24,8 @@ module ram_update_datapath (input logic clk,
                             output logic edge_blocked1,
                             output logic two_over,
                             output logic cont_turn,
-                            output logic mult_iter,
-                        )
+                            output logic mult_iter
+                        );
 
     logic reds_turn;
     logic [1:0] direction;
@@ -54,7 +54,7 @@ module ram_update_datapath (input logic clk,
             mult_iter <= 1'b0;
         end
         if (initialize) begin
-            direction <= key[0] ? 2'b00 : (key[1] ? 2'b01 : (key2 ? 2'b10 : 2'b11));
+            direction <= key[0] ? 2'b00 : (key[1] ? 2'b01 : (key[2] ? 2'b10 : 2'b11));
             count <= 1'b0;
             if (mult_iter == 1'b0)
                 x_curr <= sw[5:3];

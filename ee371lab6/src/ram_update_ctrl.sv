@@ -3,7 +3,6 @@
 module ram_update_ctrl (input logic clk,
                         input logic reset, 
                         input logic [3:0] key,
-                        // input logic [5:0] sw,
                         input logic count_eq_11,
                         input logic valid_xy,
                         input logic legal_dir,
@@ -29,7 +28,7 @@ module ram_update_ctrl (input logic clk,
                         output logic load_skip,
                         output logic mult_true,
                         output logic done
-                        )
+                        );
 
     // states
     typedef enum [4:0] {s_reset, s_idle, s_check0, s_known0, s_update, s_check_done, s_known1, s_wait0, s_wait1} states;
