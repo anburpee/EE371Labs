@@ -14,7 +14,7 @@ module ram_update_datapath (input logic clk,
                             input logic load_adj, 
                             input logic load_skip,
                             input logic mult_true,
-                            input logic done
+                            input logic done,
                             output logic count_eq_11,
                             output logic valid_xy,
                             output logic legal_dir,
@@ -184,12 +184,14 @@ module ram_update_datapath (input logic clk,
     end
 
     // status signals
-    assign count_eq_11 = (count == 4'd11);
-    assign legal_dir = king ? 1'b1 : (reds_turn ? ((difrection / 2) ? 1'b1 : 1'b0) : ((direction / 2) ? 1'b0 : 1'b1));
-    assign edge_blocked0 = ((direction  / 2) && (y_curr == 0)) || (~(direction / 2) && (y_curr == 7)) || 
-                           ((direction  % 2) && (x_curr == 0)) || (~(direction % 2) && (x_curr == 7));
-    assign edge_blocked1 = ((direction  / 2) && (y_curr == 1)) || (~(direction / 2) && (y_curr == 6)) || 
-                           ((direction  % 2) && (x_curr == 1)) || (~(direction % 2) && (x_curr == 6));
+    assign count_eq_11 = (count == 4'd11);    
+    // direction[1] == TRUE   means direction is upward
+    // direction[1] == False   means direction is downward
+    assign legal_dir = king ? 1'b1 : (reds_turn ? ((direction[1]) ? 1'b1 : 1'b0) : ((direction[1]) ? 1'b0 : 1'b1));
+    assign edge_blocked0 = ((direction[1]) && (y_curr == 0)) || (~(direction[1]) && (y_curr == 7)) || 
+                           ((direction[0]) && (x_curr == 0)) || (~(direction[0]) && (x_curr == 7));
+    assign edge_blocked1 = ((direction[1]) && (y_curr == 1)) || (~(direction[1]) && (y_curr == 6)) || 
+                           ((direction[0]) && (x_curr == 1)) || (~(direction[0]) && (x_curr == 6));
     // king piece -> check all directions
     // otherwise:
     // red's turn -> check upward directions
