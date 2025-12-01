@@ -34,6 +34,7 @@ module DE1_SoC (HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, KEY, LEDR, SW,
 
 	// 1. on KEY press, check the selected location (SW 5:0)
 	// is the spot valid? 
+	
 
 	// 2. is the KEY press a valid direction for that token?
 	// either the next diag spot is empty OR (it has opponent color AND next-next diag is empty)

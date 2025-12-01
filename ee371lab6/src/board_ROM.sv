@@ -1,3 +1,5 @@
+// TO DELETE?
+
 // ROM defines 8x8 checkers board with brown and white alternating tiles
 // brown tiles can have tokens on them, white tiles stay empty always
 // TILE SIZE = 60 PIXELS

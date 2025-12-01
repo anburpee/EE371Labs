@@ -1,3 +1,5 @@
+// TO MODIFY / DELETE??
+
 // move logic with switches
 module move_fsm (clk, reset, sel_sw, key, red_dout_a, red_addr_a, red_din_a,
                     red_wren_a, black_dout_a, black_addr_a, black_din_a, black_wren_a);

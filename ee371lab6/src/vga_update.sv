@@ -1,3 +1,5 @@
+// TO DELETE?
+
 // draws checkers board and its pieces (referenced from token_RAMs)
 // tile size = 60, left offset is 80
 

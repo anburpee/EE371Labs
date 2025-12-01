@@ -1,3 +1,5 @@
+// TO DELETE?
+
 // instantiate this module twice, once for red tokens and once for black
 // dual-port 16x7 RAM to store positions (and KING bit) of all 12 tokens per color
 // 4 empty addr spaces as buffer

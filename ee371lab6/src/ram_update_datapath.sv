@@ -37,7 +37,7 @@ module ram_update_datapath (input logic clk,
     logic two_over0, two_over1, two_over2, two_over3;
     logic [3:0] count;
     logic [3:0] red_addr, blk_addr;
-
+    logic [4:0] red_count, blk_count;
 
     // instantiate RAMS that store location of each token
     black_ram16x7 blk_ram (.address(address_blk), .clock(clk), .data(data_blk), .wren(wren_blk), .q(q_blk));
@@ -56,6 +56,8 @@ module ram_update_datapath (input logic clk,
         if (initialize) begin
             direction <= key[0] ? 2'b00 : (key[1] ? 2'b01 : (key[2] ? 2'b10 : 2'b11));
             count <= 1'b0;
+            red_count <= 4'd12;
+            blk_count <= 4'd12;
             if (mult_iter == 1'b0)
                 x_curr <= sw[5:3];
                 y_curr <= sw[2:0];
@@ -158,12 +160,14 @@ module ram_update_datapath (input logic clk,
                       data_blk <= {king_new, x_new, y_new};
                       address_red <= opp_addr;
                       data_red <= {6{1'b0}, 1'b1}; // erase opponent's token
+                      red_count <= red_count - 1;
 
                 1'b1: king_new = (y_new == 3'd0);
                       address_red <= token_addr;
                       data_red <= {king_new, x_new, y_new};
                       address_blk <= opp_addr;
                       data_blk <= {6{1'b0}, 1'b1}; // erase opponent's token
+                      blk_count <= blk_count - 1;
             endcase
             king <= king_new;
             x_curr <= x_new;
