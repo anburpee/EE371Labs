@@ -14,7 +14,6 @@ module ram_update (input logic clk,
     ram_update_ctrl ram_ctrl (.*);
 
     ram_update_datapath ram_datapath (.*);
-
     // output logic
     assign iter_done = done || mult_true;
 endmodule

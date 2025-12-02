@@ -40,8 +40,7 @@ module DE1_SoC (HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, KEY, LEDR, SW,
 	// either the next diag spot is empty OR (it has opponent color AND next-next diag is empty)
 
 	// 3. updating RAMs (after key press)
-	black_ram16x7 black_ram_inst (.address(), .clock(CLOCK_50), .data(), .wren(), .q());
-	red_ram16x7 red_ram_inst (.address(), .clock(CLOCK_50), .data(), .wren(), .q());	
+	
 	
 	// 4. updating VGA display after updating RAMs
 

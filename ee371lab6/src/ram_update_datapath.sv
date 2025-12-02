@@ -47,7 +47,6 @@ module ram_update_datapath (input logic clk,
 
     // instantiate RAMS that store location of each token
     black_ram16x7 blk_ram (.address(blk_addr), .clock(clk), .data(data_blk), .wren(wren_blk), .q(q_blk));
-
     red_ram16x7 red_ram (.address(red_addr), .clock(clk), .data(data_red), .wren(wren_red), .q(q_red));
 
 

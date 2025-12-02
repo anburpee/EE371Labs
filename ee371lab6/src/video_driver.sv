@@ -37,7 +37,7 @@ module video_driver
 	logic [9:0] xd;
 	logic [8:0] yd;
 
-	// ------------------------------------- FOR SIM ---------------------------------------------
+	// ------------------------------ FOR SIM VS HARDWARE ------------------------------------
 	
 	// For operation on the hardware, use an onboard PLL (a clock generator).
 	CLOCK25_PLL c25_gen (.refclk(CLOCK_50), .rst(reset), .outclk_0(CLOCK_25), .locked);	
@@ -47,7 +47,7 @@ module video_driver
 	//always @(posedge CLOCK_50)
 	//	CLOCK_25 <= ~CLOCK_25;
 
-	// --------------------------------------------------------------------------------------------
+	// ----------------------------------------------------------------------------------------
 	
 	always @(posedge CLOCK_25) begin
 		if(reset) begin
