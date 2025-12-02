@@ -117,21 +117,21 @@ module ram_update_datapath (input logic clk,
             x_opp = reds_turn ? q_blk[5:3] : q_red [5:3];
             y_opp = reds_turn ? q_blk[2:0] : q_red [2:0];
 
-            if (x_opp == x_curr + 1 && y_opp == y_curr + 1) 
+            if ((x_opp == x_curr + 1) && (y_opp == y_curr + 1)) 
                 opp_adj0 <= 1'b1;
-            if (x_own == x_curr + 2 && y_own == y_curr + 2 || x_opp == x_curr - 2 && y_opp == y_curr + 2) 
+            if (((x_own == x_curr + 2) && (y_own == y_curr + 2)) || ((x_opp == x_curr - 2) && (y_opp == y_curr + 2)))
                 two_over0 <= 1'b1;
-            if (x_opp == x_curr - 1 && y_own == y_curr + 1) 
+            if ((x_opp == x_curr - 1) && (y_own == y_curr + 1)) 
                 opp_adj1 <= 1'b1;
-            if (x_own == x_curr - 2 && y_own == y_curr + 2 || x_opp == x_curr - 2 && y_opp == y_curr + 2) 
+            if (((x_own == x_curr - 2) && (y_own == y_curr + 2)) || ((x_opp == x_curr - 2) && (y_opp == y_curr + 2)))
                 two_over1 <= 1'b1;
-            if (x_opp == x_curr + 1 && y_own == y_curr + 1) 
+            if ((x_opp == x_curr + 1) && (y_own == y_curr - 1)) 
                 opp_adj2 <= 1'b1;
-            if (x_own == x_curr + 2 && y_own == y_curr - 2 || x_opp == x_curr + 2 && y_opp == y_curr - 2) 
+            if (((x_own == x_curr + 2) && (y_own == y_curr - 2)) || ((x_opp == x_curr + 2) && (y_opp == y_curr - 2)))
                 two_over2 <= 1'b1;
-            if (x_opp == x_curr + 1 && y_own == y_curr + 1) 
+            if ((x_opp == x_curr - 1) && (y_own == y_curr - 1)) 
                 opp_adj3 <= 1'b1;
-            if (x_own == x_curr - 2 && y_own == y_curr - 2 || x_opp == x_curr - 2 && y_opp == y_curr - 2) 
+            if (((x_own == x_curr - 2) && (y_own == y_curr - 2)) || ((x_opp == x_curr - 2) && (y_opp == y_curr - 2)))
                 two_over3 <= 1'b1;
         end
         if (incr_count) begin
