@@ -11,8 +11,8 @@ module ram_update_tb ();
     // simulation clock
     parameter period = 100;
     initial begin
-        CLOCK_50 <= 0;
-        forever #(period/2) CLOCK_50 <= ~CLOCK_50;
+        clk <= 0;
+        forever #(period/2) clk <= ~clk;
     end
 
     // test the design
@@ -22,7 +22,7 @@ module ram_update_tb ();
         keys[1] <= 1'b0;
         keys[2] <= 1'b0;
         keys[3] <= 1'b0;
-        @(posedge CLOCK_50);
+        @(posedge clk);
         reset <= 1'b0;
         
         // ----- red's turn -----
@@ -30,51 +30,84 @@ module ram_update_tb ();
         // check invalid spot (where token is not present) -- check that NOT valid_xy
         sw[2:0] <= 3'b111;
         sw[5:3] <= 3'b100;
-        repeat(5) @(posedge CLOCK_50);
+        repeat(5) @(posedge clk);
 
         // check all four diagonals if empty all around
         sw[2:0] <= 3'b111;
         sw[5:3] <= 3'b101;
-        repeat(2) @(posedge CLOCK_50);
-        keys[1] <= 1'b1; // up left (should move)
-        repeat(2) @(posedge CLOCK_50);
-        keys[1] <= 1'b0;
+        repeat(2) @(posedge clk);
+        keys[3] <= 1'b1; // up left (should move)
+        repeat(2) @(posedge clk);
+        keys[3] <= 1'b0;
 
         // ----- blk's turn -----
-        sw[2:0] <= 3'b111;
-        sw[5:3] <= 3'b101;
-        repeat(2) @(posedge CLOCK_50);
-        keys[1] <= 1'b1; // up left (should NOT move because blk can't go up unless KING)
-        repeat(2) @(posedge CLOCK_50);
+        sw[2:0] <= 3'b110;
+        sw[5:3] <= 3'b100;
+        repeat(2) @(posedge clk);
+        keys[1] <= 1'b1; // down left (should NOT move because there's a red token here)
+        repeat(2) @(posedge clk);
         keys[1] <= 1'b0;
 
         sw[2:0] <= 3'b110;
         sw[5:3] <= 3'b010;
-        repeat(2) @(posedge CLOCK_50);
+        repeat(2) @(posedge clk);
         keys[0] <= 1'b1; // down right (should move)
-        repeat(2) @(posedge CLOCK_50);
+        repeat(2) @(posedge clk);
         keys[0] <= 1'b0;
 
         // ----- red's turn -----
         sw[2:0] <= 3'b110;
         sw[5:3] <= 3'b100;
-        repeat(2) @(posedge CLOCK_50);
+        repeat(2) @(posedge clk);
         keys[2] <= 1'b1; // up right (should NOT move bc prev. blk move blocks this)
-        repeat(2) @(posedge CLOCK_50);
+        repeat(2) @(posedge clk);
         keys[2] <= 1'b0;
 
         sw[2:0] <= 3'b110;
         sw[5:3] <= 3'b100;
-        repeat(2) @(posedge CLOCK_50);
+        repeat(2) @(posedge clk);
+        keys[0] <= 1'b1; // down right (should NOT move bc not a KING token)
+        repeat(2) @(posedge clk);
+        keys[0] <= 1'b0;
+
+        sw[2:0] <= 3'b110;
+        sw[5:3] <= 3'b100;
+        repeat(2) @(posedge clk);
         keys[3] <= 1'b1; // up left (should move)
-        repeat(2) @(posedge CLOCK_50);
+        repeat(2) @(posedge clk);
         keys[3] <= 1'b0;
 
+        // ----- blk's turn -----
+        sw[2:0] <= 3'b111;
+        sw[5:3] <= 3'b011;
+        repeat(2) @(posedge clk);
+        keys[0] <= 1'b1; // down right (should NOT move bc edge piece)
+        repeat(2) @(posedge clk);
+        keys[0] <= 1'b0;
 
+        sw[2:0] <= 3'b100;
+        sw[5:3] <= 3'b010;
+        repeat(2) @(posedge clk);
+        keys[0] <= 1'b1; // down right (should move by TWO -- capture logic)
+        // also red token at (5,3) should be deleted now (red_count = 11)
+        repeat(2) @(posedge clk);
+        keys[0] <= 1'b0;
 
-        // check one diagonal if opposite token (jump & capture)
+        // can make another move
 
-        // check one diagonal if at edge
+        sw[2:0] <= 3'b110;
+        sw[5:3] <= 3'b100;
+        repeat(2) @(posedge clk);
+        keys[1] <= 1'b1; // down left (should NOT move bc blocked by red)
+        repeat(2) @(posedge clk);
+        keys[1] <= 1'b0;
+
+        sw[2:0] <= 3'b110;
+        sw[5:3] <= 3'b100;
+        repeat(2) @(posedge clk);
+        keys[0] <= 1'b1; // down right (should move)
+        repeat(2) @(posedge clk);
+        keys[0] <= 1'b0;
 
         $stop;
     end // initial
