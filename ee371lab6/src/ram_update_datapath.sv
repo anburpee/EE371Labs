@@ -22,7 +22,7 @@ module ram_update_datapath (input logic clk,
                             output logic own_adj,
                             output logic opp_adj,
                             output logic edge_blocked1,
-                            output logic two_over,
+                            output logic two_over,  // checks if there is a token two spaces over in the specified direction
                             output logic cont_turn,
                             output logic mult_iter
                         );
@@ -64,6 +64,12 @@ module ram_update_datapath (input logic clk,
         if (initialize) begin
             direction <= key[0] ? 2'b00 : (key[1] ? 2'b01 : (key[2] ? 2'b10 : 2'b11));
             count <= 1'b0;
+            valid_xy <= 1'b0;
+            own_adj <= 1'b0;
+            opp_adj <= 1'b0;
+            token_addr <= 1'b0;
+            two_over <= 1'b0;
+            king <= 1'b0;
             if (mult_iter == 1'b0) begin
                 x_curr <= sw[5:3];
                 y_curr <= sw[2:0];
@@ -107,7 +113,7 @@ module ram_update_datapath (input logic clk,
                 opp_adj <= 1'b1;
                 opp_addr <= count;
             end
-            if (x_own == x_cond1 && y_own == y_cond1 || x_opp == x_cond1 && y_opp == y_cond1) begin
+            if (((x_own == x_cond1) && (y_own == y_cond1)) || ((x_opp == x_cond1) && (y_opp == y_cond1))) begin
                 two_over <= 1'b1;
             end
         end
