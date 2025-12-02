@@ -28,8 +28,13 @@ module ram_update_datapath (input logic clk,
                         );
 
     logic reds_turn;
+    logic wren_red, wren_blk;
+    logic q_red, q_blk;
+    logic [3:0] data_red, data_blk;
     logic [3:0] token_addr; // addr of the token to be moved on current player's turn
+    logic [3:0] opp_addr;
     logic [1:0] direction;
+    logic king, king_new;
     logic [2:0] x_curr, y_curr;
     logic [2:0] x_new, y_new;
     logic [2:0] x_own, y_own, x_opp, y_opp;
@@ -59,14 +64,19 @@ module ram_update_datapath (input logic clk,
         if (initialize) begin
             direction <= key[0] ? 2'b00 : (key[1] ? 2'b01 : (key[2] ? 2'b10 : 2'b11));
             count <= 1'b0;
-            if (mult_iter == 1'b0)
+            if (mult_iter == 1'b0) begin
                 x_curr <= sw[5:3];
                 y_curr <= sw[2:0];
-            cont_turn <= 1'b0;
-            two_over0 <= 1'b0;
-            two_over1 <= 1'b0;
-            two_over2 <= 1'b0;
-            two_over3 <= 1'b0;
+                cont_turn <= 1'b0;
+                two_over0 <= 1'b0;
+                two_over1 <= 1'b0;
+                two_over2 <= 1'b0;
+                two_over3 <= 1'b0;
+                opp_adj0 <= 1'b0;
+                opp_adj1 <= 1'b0;
+                opp_adj2 <= 1'b0;
+                opp_adj3 <= 1'b0;
+            end
         end
         if (read) begin
             red_addr <= count;
@@ -82,7 +92,7 @@ module ram_update_datapath (input logic clk,
             if ((x_own == x_curr) && (y_own == y_curr)) begin
                 valid_xy <= 1'b1;
                 token_addr <= count;
-                king <= reds_turn ? q_red[7] : q_blk[7];
+                king <= reds_turn ? q_red[6] : q_blk[6];
             end
             case (direction)
                 2'b00: x_cond0 = x_curr + 1;    y_cond0 = y_curr + 1;   x_cond1 = x_curr + 2;    y_cond1 = y_curr + 2;
