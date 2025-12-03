@@ -34,11 +34,8 @@ module ram_update_datapath (input logic clk,
     logic [3:0] token_addr; // addr of the token to be moved on current player's turn
     logic [3:0] opp_addr;
     logic [1:0] direction;
-    logic king, king_new;
+    logic king;
     logic [2:0] x_curr, y_curr;
-    logic [2:0] x_new, y_new;
-    logic [2:0] x_own, y_own, x_opp, y_opp;
-    logic [2:0] x_cond0, y_cond0, x_cond1, y_cond1;
     logic opp_adj0, opp_adj1, opp_adj2, opp_adj3;
     logic two_over0, two_over1, two_over2, two_over3;
     logic [3:0] count;
@@ -72,7 +69,6 @@ module ram_update_datapath (input logic clk,
             if (mult_iter == 1'b0) begin
                 x_curr <= sw[5:3];
                 y_curr <= sw[2:0];
-                cont_turn <= 1'b0;
                 two_over0 <= 1'b0;
                 two_over1 <= 1'b0;
                 two_over2 <= 1'b0;
@@ -90,6 +86,8 @@ module ram_update_datapath (input logic clk,
             wren_red <= 1'b0;
         end
         if (check0) begin
+            logic [2:0] x_own, y_own, x_opp, y_opp;
+            logic [2:0] x_cond0, y_cond0, x_cond1, y_cond1;
             x_own = reds_turn ? q_red[5:3] : q_blk [5:3];
             y_own = reds_turn ? q_red[2:0] : q_blk [2:0];
             x_opp = reds_turn ? q_blk[5:3] : q_red [5:3];
@@ -125,6 +123,7 @@ module ram_update_datapath (input logic clk,
             end
         end
         if (check_done) begin
+            logic [2:0] x_own, y_own, x_opp, y_opp;
             x_own = reds_turn ? q_red[5:3] : q_blk [5:3];
             y_own = reds_turn ? q_red[2:0] : q_blk [2:0];
             x_opp = reds_turn ? q_blk[5:3] : q_red [5:3];
@@ -154,6 +153,8 @@ module ram_update_datapath (input logic clk,
             count <= 3'd0;
         end
         if (load_adj) begin
+            logic [2:0] x_new, y_new;
+            logic king_new;
             case(direction)
                 2'b00: begin
                     x_new = x_curr + 1;   y_new = y_curr + 1;
@@ -186,6 +187,8 @@ module ram_update_datapath (input logic clk,
             king <= king_new;
         end
         if (load_skip) begin
+            logic [2:0] x_new, y_new;
+            logic king_new;
             wren_blk <= 1'b1;
             wren_red <= 1'b1;
             case(direction)
@@ -246,7 +249,7 @@ module ram_update_datapath (input logic clk,
     // otherwise:
     // red's turn -> check upward directions
     // black's turn -> check downward directions
-    assign cont_turn = king_new ? 
+    assign cont_turn = king ? 
                        ((opp_adj0 && ~two_over0) || (opp_adj1 && ~two_over1) || (opp_adj2 && ~two_over2) || (opp_adj3 && ~two_over3)) :
                        (reds_turn ? ((opp_adj2 && ~two_over2) || (opp_adj3 && ~two_over3)) : ((opp_adj0 && ~two_over0) || (opp_adj1 && ~two_over1)));
 

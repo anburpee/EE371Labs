@@ -82,8 +82,8 @@ module ram_update_ctrl (input logic clk,
     assign token_in_way = s_update && (own_adj || (opp_adj && ~edge_blocked1 && two_over));
     assign load_adj = s_update && valid_xy && legal_dir && ~edge_blocked0 && ~own_adj && ~opp_adj && ~mult_iter;
     assign load_skip = s_update && valid_xy && legal_dir && ~edge_blocked0 && ~own_adj && opp_adj && ~edge_blocked1 && two_over;
-    assign mult_true = s_known1 && cont_turn;
-    assign done = s_known1 && ~cont_turn && count_eq_11;
+    assign mult_true = s_wait0 && ~key;
+    assign done = s_wait1 && ~key;
 
 
 endmodule // ram_update_ctrl
