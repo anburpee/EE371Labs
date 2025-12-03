@@ -1,5 +1,6 @@
 // control module for ram_update
 // recieves status signals and sends control signals to ram_update_datapath.sv
+`timescale 1 ps / 1 ps
 module ram_update_ctrl (input logic clk,
                         input logic reset, 
                         input logic [3:0] key,

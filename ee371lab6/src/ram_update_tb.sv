@@ -1,3 +1,4 @@
+`timescale 1 ps / 1 ps
 module ram_update_tb ();
 
     logic clk;

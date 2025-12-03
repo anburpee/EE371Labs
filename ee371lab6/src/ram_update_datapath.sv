@@ -1,5 +1,6 @@
 // datapath for ram_update module
 // sends status signals to and recieves control signals from ram_update_ctrl.sv
+`timescale 1 ps / 1 ps
 module ram_update_datapath (input logic clk,
                             input logic reset, 
                             input logic [3:0] key,
@@ -29,7 +30,7 @@ module ram_update_datapath (input logic clk,
 
     logic reds_turn;
     logic wren_red, wren_blk;
-    logic q_red, q_blk;
+    logic [6:0] q_red, q_blk;
     logic [6:0] data_red, data_blk;
     logic [3:0] token_addr; // addr of the token to be moved on current player's turn
     logic [3:0] opp_addr;

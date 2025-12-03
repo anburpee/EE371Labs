@@ -1,6 +1,7 @@
 // module for updating rams that store the token locations
 // submodules ram_update_ctrl, ram_update_datapath
 // CONNECT VALID_MOVE TO AN LED
+`timescale 1 ps / 1 ps
 module ram_update (input logic clk, 
                    input logic reset,
                    input logic [3:0] keys,
