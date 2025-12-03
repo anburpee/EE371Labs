@@ -8,3 +8,4 @@ module display_update (input logic clk,
                        output logic g,
                        output logic b
                        );
+endmodule

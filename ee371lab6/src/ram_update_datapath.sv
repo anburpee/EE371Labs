@@ -30,7 +30,7 @@ module ram_update_datapath (input logic clk,
     logic reds_turn;
     logic wren_red, wren_blk;
     logic q_red, q_blk;
-    logic [3:0] data_red, data_blk;
+    logic [6:0] data_red, data_blk;
     logic [3:0] token_addr; // addr of the token to be moved on current player's turn
     logic [3:0] opp_addr;
     logic [1:0] direction;
@@ -100,10 +100,18 @@ module ram_update_datapath (input logic clk,
                 king <= reds_turn ? q_red[6] : q_blk[6];
             end
             case (direction)
-                2'b00: x_cond0 = x_curr + 1;    y_cond0 = y_curr + 1;   x_cond1 = x_curr + 2;    y_cond1 = y_curr + 2;
-                2'b01: x_cond0 = x_curr - 1;    y_cond0 = y_curr + 1;   x_cond1 = x_curr - 2;    y_cond1 = y_curr + 2;
-                2'b10: x_cond0 = x_curr + 1;    y_cond0 = y_curr - 1;   x_cond1 = x_curr + 2;    y_cond1 = y_curr - 2;
-                2'b11: x_cond0 = x_curr - 1;    y_cond0 = y_curr - 1;   x_cond1 = x_curr - 2;    y_cond1 = y_curr - 2;
+                2'b00: begin
+                    x_cond0 = x_curr + 1;    y_cond0 = y_curr + 1;   x_cond1 = x_curr + 2;    y_cond1 = y_curr + 2;
+                end
+                2'b01: begin
+                    x_cond0 = x_curr - 1;    y_cond0 = y_curr + 1;   x_cond1 = x_curr - 2;    y_cond1 = y_curr + 2;
+                end
+                2'b10: begin
+                    x_cond0 = x_curr + 1;    y_cond0 = y_curr - 1;   x_cond1 = x_curr + 2;    y_cond1 = y_curr - 2;
+                end
+                2'b11: begin
+                    x_cond0 = x_curr - 1;    y_cond0 = y_curr - 1;   x_cond1 = x_curr - 2;    y_cond1 = y_curr - 2;
+                end
             endcase
             if (x_own == x_cond0 && y_own == y_cond0) begin
                 own_adj <= 1'b1;
@@ -147,21 +155,33 @@ module ram_update_datapath (input logic clk,
         end
         if (load_adj) begin
             case(direction)
-                2'b00: x_new = x_curr + 1;   y_new = y_curr + 1;
-                2'b01: x_new = x_curr - 1;   y_new = y_curr + 1;
-                2'b10: x_new = x_curr + 1;   y_new = y_curr - 1;
-                2'b11: x_new = x_curr - 1;   y_new = y_curr - 1;
+                2'b00: begin
+                    x_new = x_curr + 1;   y_new = y_curr + 1;
+                end
+                2'b01: begin
+                    x_new = x_curr - 1;   y_new = y_curr + 1;
+                end
+                2'b10: begin
+                    x_new = x_curr + 1;   y_new = y_curr - 1;
+                end
+                2'b11: begin
+                    x_new = x_curr - 1;   y_new = y_curr - 1;
+                end
             endcase
             case (reds_turn)
-                1'b0: king_new = (y_new == 3'd7); 
-                      wren_blk <= 1'b1;  
-                      blk_addr <= token_addr;
-                      data_blk <= {king_new, x_new, y_new};
+                1'b0: begin
+                    king_new = (y_new == 3'd7); 
+                    wren_blk <= 1'b1;  
+                    blk_addr <= token_addr;
+                    data_blk <= {king_new, x_new, y_new};
+                end
 
-                1'b1: king_new = (y_new == 3'd0);
-                      wren_red <= 1'b1;
-                      red_addr <= token_addr;
-                      data_red <= {king_new, x_new, y_new};
+                1'b1: begin
+                    king_new = (y_new == 3'd0);
+                    wren_red <= 1'b1;
+                    red_addr <= token_addr;
+                    data_red <= {king_new, x_new, y_new};
+                end
             endcase
             king <= king_new;
         end
@@ -169,25 +189,37 @@ module ram_update_datapath (input logic clk,
             wren_blk <= 1'b1;
             wren_red <= 1'b1;
             case(direction)
-                2'b00: x_new = x_curr + 2;   y_new = y_curr + 2;
-                2'b01: x_new = x_curr - 2;   y_new = y_curr + 2;
-                2'b10: x_new = x_curr + 2;   y_new = y_curr - 2;
-                2'b11: x_new = x_curr - 2;   y_new = y_curr - 2;
+                2'b00: begin
+                    x_new = x_curr + 2;   y_new = y_curr + 2;
+                end
+                2'b01: begin
+                    x_new = x_curr - 2;   y_new = y_curr + 2;
+                end
+                2'b10: begin
+                    x_new = x_curr + 2;   y_new = y_curr - 2;
+                end
+                2'b11: begin
+                    x_new = x_curr - 2;   y_new = y_curr - 2;
+                end
             endcase
             case (reds_turn)
-                1'b0: king_new = (y_new == 3'd7);
-                      blk_addr <= token_addr;
-                      data_blk <= {king_new, x_new, y_new};
-                      red_addr <= opp_addr;
-                      data_red <= {6{1'b0}, 1'b1}; // erase opponent's token
-                      red_count <= red_count - 1;
+                1'b0: begin
+                    king_new = (y_new == 3'd7);
+                    blk_addr <= token_addr;
+                    data_blk <= {king_new, x_new, y_new};
+                    red_addr <= opp_addr;
+                    data_red <= {{6{1'b0}}, 1'b1}; // erase opponent's token
+                    red_count <= red_count - 1;
+                end
 
-                1'b1: king_new = (y_new == 3'd0);
-                      red_addr <= token_addr;
-                      data_red <= {king_new, x_new, y_new};
-                      blk_addr <= opp_addr;
-                      data_blk <= {6{1'b0}, 1'b1}; // erase opponent's token
-                      blk_count <= blk_count - 1;
+                1'b1: begin
+                    king_new = (y_new == 3'd0);
+                    red_addr <= token_addr;
+                    data_red <= {king_new, x_new, y_new};
+                    blk_addr <= opp_addr;
+                    data_blk <= {{6{1'b0}}, 1'b1}; // erase opponent's token
+                    blk_count <= blk_count - 1;
+                end
             endcase
             king <= king_new;
             x_curr <= x_new;
@@ -195,7 +227,6 @@ module ram_update_datapath (input logic clk,
         end
         if (mult_true) begin
             mult_iter <= 1'b1;
-
         end
         if (done) begin
             reds_turn <= ~reds_turn;
