@@ -37,6 +37,8 @@ module ram_update_tb ();
         key[1] <= 1'b0;
         repeat(55) @(posedge clk);
 
+        // could test left down for blocked
+
         sw[5:3] <= 3'b111;
         sw[2:0] <= 3'b010;
         key[1] <= 1'b1; // down left (should move)
@@ -48,7 +50,7 @@ module ram_update_tb ();
 
         sw[5:3] <= 3'b100;
         sw[2:0] <= 3'b101;
-        key[3] <= 1'b1; // up right (should move)
+        key[3] <= 1'b1; // up left (should move)
         repeat(3) @(posedge clk);
         key[3] <= 1'b0;
         repeat(55) @(posedge clk);
@@ -115,6 +117,49 @@ module ram_update_tb ();
         key[1] <= 1'b0;
         repeat(55) @(posedge clk);
 
+        sw[5:3] <= 3'b001;
+        sw[2:0] <= 3'b010;
+        key[1] <= 1'b1; // down left (should move)
+        repeat(3) @(posedge clk);
+        key[1] <= 1'b0;
+        repeat(55) @(posedge clk);
+
+        // ----- red's turn -----
+
+        sw[5:3] <= 3'b000;
+        sw[2:0] <= 3'b011;
+        key[0] <= 1'b1; // down right (should NOT move -- wrong color token)
+        repeat(3) @(posedge clk);
+        key[0] <= 1'b0;
+        repeat(55) @(posedge clk);
+
+        sw[5:3] <= 3'b000;
+        sw[2:0] <= 3'b101;
+        key[2] <= 1'b1; // up right (should move)
+        repeat(3) @(posedge clk);
+        key[2] <= 1'b0;
+        repeat(55) @(posedge clk);
+
+        // ----- blk's turn -----
+
+        sw[5:3] <= 3'b011;
+        sw[2:0] <= 3'b010;
+        key[1] <= 1'b1; // down left (should move)
+        repeat(3) @(posedge clk);
+        key[1] <= 1'b0;
+        repeat(55) @(posedge clk);
+
+        // ----- red's turn -----
+
+        sw[5:3] <= 3'b001;
+        sw[2:0] <= 3'b110;
+        key[3] <= 1'b1; // up left (should move)
+        repeat(3) @(posedge clk);
+        key[3] <= 1'b0;
+        repeat(55) @(posedge clk);
+
+        // ----- blk's turn -----
+
         sw[5:3] <= 3'b101;
         sw[2:0] <= 3'b010;
         key[1] <= 1'b1; // down left (should move -- MULT_ITER IS HIGH so capture logic)
@@ -127,20 +172,84 @@ module ram_update_tb ();
 
         sw[5:3] <= 3'b011;
         sw[2:0] <= 3'b100;
-        key[1] <= 1'b1; // down left (should NOT move bc blocked by red)
+        key[1] <= 1'b1; // down left (should move -- MULT_ITER IS HIGH so capture logic)
         repeat(3) @(posedge clk);
         key[1] <= 1'b0;
         repeat(55) @(posedge clk);
 
-        sw[5:3] <= 3'b110;
-        sw[2:0] <= 3'b100;
+        // can't make another move
+
+        // ----- red's turn -----
+
+        sw[5:3] <= 3'b011;
+        sw[2:0] <= 3'b110;
+        key[3] <= 1'b1; // up left (should move)
+        repeat(3) @(posedge clk);
+        key[3] <= 1'b0;
+        repeat(55) @(posedge clk);
+
+        // ----- blk's turn -----
+
+        sw[5:3] <= 3'b010;
+        sw[2:0] <= 3'b011;
         key[0] <= 1'b1; // down right (should move)
         repeat(3) @(posedge clk);
         key[0] <= 1'b0;
         repeat(55) @(posedge clk);
-        // $display("red's turn should be LOW: %d\n", ram_update_datapath.reds_turn);
-        // $display("mult_iter should be LOW: %d\n", mult_iter);
-        // $display("valid_xy should be HIGH: %d\n", ram_update_ctrl.valid_xy);
+
+        // ----- red's turn -----
+
+        sw[5:3] <= 3'b010;
+        sw[2:0] <= 3'b111;
+        key[2] <= 1'b1; // up right (should move)
+        repeat(3) @(posedge clk);
+        key[2] <= 1'b0;
+        repeat(55) @(posedge clk);
+
+        // ----- blk's turn -----
+
+        sw[5:3] <= 3'b001;
+        sw[2:0] <= 3'b110;
+        key[0] <= 1'b1; // down right (should move -- BECOMES KING)
+        repeat(3) @(posedge clk);
+        key[0] <= 1'b0;
+        repeat(55) @(posedge clk);
+
+        // ----- red's turn -----
+
+        sw[5:3] <= 3'b101;
+        sw[2:0] <= 3'b101;
+        key[3] <= 1'b1; // up left (should NOT move -- blocked by red)
+        repeat(3) @(posedge clk);
+        key[3] <= 1'b0;
+        repeat(55) @(posedge clk);
+
+        // ----- blk's turn -----
+
+        sw[5:3] <= 3'b010;
+        sw[2:0] <= 3'b111;
+        key[2] <= 1'b1; // up right (should move -- CAPTURE)
+        repeat(3) @(posedge clk);
+        key[2] <= 1'b0;
+        repeat(55) @(posedge clk);
+
+        // can go again
+
+        sw[5:3] <= 3'b100;
+        sw[2:0] <= 3'b101;
+        key[2] <= 1'b1; // up right (should move -- CAPTURE)
+        repeat(3) @(posedge clk);
+        key[2] <= 1'b0;
+        repeat(55) @(posedge clk);
+
+        // can go again
+
+        sw[5:3] <= 3'b110;
+        sw[2:0] <= 3'b011;
+        key[1] <= 1'b1; // down left (should move)
+        repeat(3) @(posedge clk);
+        key[1] <= 1'b0;
+        repeat(55) @(posedge clk);
 
         $stop;
     end // initial
