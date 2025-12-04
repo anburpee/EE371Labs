@@ -26,12 +26,15 @@ module display_update (input logic clk,
     logic red_king, black_king;
     logic [5:0] x_counter, y_counter; // to count up to 60 (side lenth of each square on the board)
 
+    always_ff @(posedge clk) begin
+        if (x_vga < 80 || x > 559) begin
+            r <= 0;
+            g <= 0;
+            b <= 0;
+        end
+    end
     
-    // step 1: get checkers board display working without any tokens
-    
-
-
-
+    //  WHEN YOU READ FROM THE 64X3 RAMS, MAKE SURE TO SET WREN = 0
 
 
 endmodule
