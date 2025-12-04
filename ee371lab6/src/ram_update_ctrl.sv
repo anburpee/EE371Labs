@@ -1,6 +1,6 @@
 // control module for ram_update
 // recieves status signals and sends control signals to ram_update_datapath.sv
-`timescale 1 ps / 1 ps
+// `timescale 1 ps / 1 ps
 
 
 // control module for ram_update
