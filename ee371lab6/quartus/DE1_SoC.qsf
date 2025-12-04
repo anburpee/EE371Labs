@@ -671,3 +671,5 @@ set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 
 set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
 set_global_assignment -name QIP_FILE black_ram16x7.qip
 set_global_assignment -name MIF_FILE black_ram.mif
+set_global_assignment -name MIF_FILE spot_encodings.mif
+set_global_assignment -name QIP_FILE spot_encodings64x3.qip
