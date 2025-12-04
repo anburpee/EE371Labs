@@ -27,8 +27,14 @@ module ram_update_datapath (
     output logic two_over,
     output logic cont_turn,
     output logic mult_iter,
-    output logic [5:0] encodings_addr1, /////////////////////////v2
-    output logic [5:0] encodings_addr2  /////////////////////////v2
+    ////////////////v2//////////////////
+    output logic [5:0] encodings_addr1,
+    output logic [5:0] encodings_addr2,
+    output logic [1:0] encoding_data1,
+    output logic [1:0] encoding_data2,
+    output logic encodings_wren1,
+    output logic encodings_wren2
+    ////////////////v2//////////////////
 );
 
     logic reds_turn;

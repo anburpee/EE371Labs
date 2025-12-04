@@ -31,18 +31,19 @@ module DE1_SoC (HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, KEY, LEDR, SW,
 		g <= x[7:0];
 		b <= y[7:0];
 	end
-
-	// 1. on KEY press, check the selected location (SW 5:0)
-	// is the spot valid? 
 	
 
-	// 2. is the KEY press a valid direction for that token?
-	// either the next diag spot is empty OR (it has opponent color AND next-next diag is empty)
-
-	// 3. updating RAMs (after key press)
-	
-	
-	// 4. updating VGA display after updating RAMs
+	spot_encodings64x3 spot_encodings (
+		.address_a,
+		.address_b,
+		.clock,
+		.data_a,
+		.data_b,
+		.wren_a,
+		.wren_b,
+		.q_a,
+		.q_b
+	);
 
 	assign HEX0 = '1;
 	assign HEX1 = '1;
