@@ -10,7 +10,7 @@ cModel Technology
 Z0 dC:/Users/brind/Brinda_Files/University/Junior/EE371/ee371/ee371lab6/modelsim
 valtera_up_avalon_video_vga_timing
 Z1 DXx6 sv_std 3 std 0 22 AD7iAPLo6nTIKk<N0eo=D3
-Z2 !s110 1764812132
+Z2 !s110 1764817490
 !i10b 1
 !s100 i=hXeIB@am1XBVbZV^m:71
 I4lz[aCLMg`oXHVC0l2kIB1
@@ -26,13 +26,13 @@ Z5 OV;L;10.5b;63
 r1
 !s85 0
 31
-Z6 !s108 1764812132.000000
+Z6 !s108 1764817490.000000
 !s107 ../src/altera_up_avalon_video_vga_timing.sv|
 !s90 -reportprogress|300|../src/altera_up_avalon_video_vga_timing.sv|
 !i113 1
 Z7 tCvgOpt 0
 vblack_ram16x7
-R2
+Z8 !s110 1764817491
 !i10b 1
 !s100 =l92hM9[hLlnTkeegcG?g3
 I1omM;;3K5h1_jb8cU3@gK0
@@ -41,12 +41,12 @@ R0
 R4
 8../quartus/black_ram16x7.v
 F../quartus/black_ram16x7.v
-Z8 L0 40
+Z9 L0 40
 R5
 r1
 !s85 0
 31
-R6
+Z10 !s108 1764817491.000000
 !s107 ../quartus/black_ram16x7.v|
 !s90 -reportprogress|300|../quartus/black_ram16x7.v|
 !i113 1
@@ -106,20 +106,20 @@ R2
 !s100 W2YL:?>Ebg`h_In=d<e[B1
 I@dRIhG075>QnBUOVZOiHV3
 R3
-Z9 !s105 DE1_SoC_sv_unit
+Z11 !s105 DE1_SoC_sv_unit
 S1
 R0
-Z10 w1764801198
-Z11 8../src/DE1_SoC.sv
-Z12 F../src/DE1_SoC.sv
+Z12 w1764801198
+Z13 8../src/DE1_SoC.sv
+Z14 F../src/DE1_SoC.sv
 L0 1
 R5
 r1
 !s85 0
 31
 R6
-Z13 !s107 ../src/DE1_SoC.sv|
-Z14 !s90 -reportprogress|300|../src/DE1_SoC.sv|
+Z15 !s107 ../src/DE1_SoC.sv|
+Z16 !s90 -reportprogress|300|../src/DE1_SoC.sv|
 !i113 1
 R7
 n@d@e1_@so@c
@@ -130,26 +130,26 @@ R2
 !s100 U3GVE52cYfUG5^OVeC^mM2
 I:h0AE[dB4AYmSShX3;IFi2
 R3
-R9
+R11
 S1
 R0
-R10
-R11
 R12
+R13
+R14
 L0 59
 R5
 r1
 !s85 0
 31
 R6
-R13
-R14
+R15
+R16
 !i113 1
 R7
 n@d@e1_@so@c_testbench
 vdisplay_update
 R1
-R2
+R8
 !i10b 1
 !s100 Gc2c@;DQ4l[dZB`;M=bZV3
 IVUj8Ol=ICY=jBWT4]V88U1
@@ -157,7 +157,7 @@ R3
 !s105 display_update_sv_unit
 S1
 R0
-R10
+R12
 8../src/display_update.sv
 F../src/display_update.sv
 L0 6
@@ -165,14 +165,14 @@ R5
 r1
 !s85 0
 31
-R6
+R10
 !s107 ../src/display_update.sv|
 !s90 -reportprogress|300|../src/display_update.sv|
 !i113 1
 R7
 vram_update
 R1
-R2
+R8
 !i10b 1
 !s100 J;lQZ_C=7o0PSQJi6gF722
 Ial9JE7?naneSd87XTl9e72
@@ -188,37 +188,37 @@ R5
 r1
 !s85 0
 31
-R6
+R10
 !s107 ../src/ram_update.sv|
 !s90 -reportprogress|300|../src/ram_update.sv|
 !i113 1
 R7
 vram_update_ctrl
 R1
-R2
+R8
 !i10b 1
-!s100 Ud7mHY8c`KoDZS=f7L3Hg3
-IzfSFoAkL1<IU94XOkh9FX2
+!s100 QRd>PhFNX1E5A;VlcUa?S2
+IhjBbl3KQ5AoAHd8M0;ac@1
 R3
 !s105 ram_update_ctrl_sv_unit
 S1
 R0
-w1764809034
+w1764817486
 8../src/ram_update_ctrl.sv
 F../src/ram_update_ctrl.sv
-L0 3
+L0 9
 R5
 r1
 !s85 0
 31
-R6
+R10
 !s107 ../src/ram_update_ctrl.sv|
 !s90 -reportprogress|300|../src/ram_update_ctrl.sv|
 !i113 1
 R7
 vram_update_datapath
 R1
-R2
+R8
 !i10b 1
 !s100 bgf[i1mgTLJnz6FnFeO1F3
 I50hJ`Y^`4ImZ33TDZ<Az70
@@ -234,22 +234,22 @@ R5
 r1
 !s85 0
 31
-R6
+R10
 !s107 ../src/ram_update_datapath.sv|
 !s90 -reportprogress|300|../src/ram_update_datapath.sv|
 !i113 1
 R7
 vram_update_tb
 R1
-R2
+R8
 !i10b 1
-!s100 _=ha0o>7OCohZN>RSlW?S3
-IL3S`Z9hBY_`48EC^<`?UN2
+!s100 i=Q2R;RleG0=gRYl3nCD[2
+I[Qf]oDRB:_Al@X:7?FHQK0
 R3
 !s105 ram_update_tb_sv_unit
 S1
 R0
-w1764812125
+w1764816718
 8../src/ram_update_tb.sv
 F../src/ram_update_tb.sv
 L0 2
@@ -257,13 +257,13 @@ R5
 r1
 !s85 0
 31
-R6
+R10
 !s107 ../src/ram_update_tb.sv|
 !s90 -reportprogress|300|../src/ram_update_tb.sv|
 !i113 1
 R7
 vred_ram16x7
-R2
+!s110 1764817492
 !i10b 1
 !s100 ?^=`T21doahjiMI]TK`CR1
 IhP?d]SWPVVz9I^PLG24]K3
@@ -272,12 +272,12 @@ R0
 R4
 8../quartus/red_ram16x7.v
 F../quartus/red_ram16x7.v
-R8
+R9
 R5
 r1
 !s85 0
 31
-R6
+R10
 !s107 ../quartus/red_ram16x7.v|
 !s90 -reportprogress|300|../quartus/red_ram16x7.v|
 !i113 1

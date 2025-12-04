@@ -30,116 +30,114 @@ module ram_update_tb ();
         // ----- blk's turn -----
 
         // check invalid spot (where token is not present) -- check that NOT valid_xy
-        sw[2:0] <= 3'b111;
-        sw[5:3] <= 3'b010;
-        repeat(15) @(posedge clk);
-        key[1] <= 1'b1;
-
-        // ----- red's turn -----
-
-        // check invalid spot (where token is not present) -- check that NOT valid_xy
-        sw[2:0] <= 3'b111;
-        sw[5:3] <= 3'b100;
-        repeat(15) @(posedge clk);
-        // $display("red's turn should be HIGH: %d\n", ram_update_datapath.reds_turn);
-        // $display("valid_xy should be LOW: %d\n", ram_update_ctrl.valid_xy);
-
-        // check all four diagonals if empty all around
-        sw[2:0] <= 3'b111;
-        sw[5:3] <= 3'b101;
+        sw[5:3] <= 3'b110;
+        sw[2:0] <= 3'b010;
+        key[1] <= 1'b1; // no token exists here -- NOT valid
         repeat(3) @(posedge clk);
-        key[3] <= 1'b1; // up left (should move)
-        repeat(15) @(posedge clk);
-        key[3] <= 1'b0;
-        // $display("red's turn should be HIGH: %d\n", ram_update_datapath.reds_turn);
-        // $display("valid_xy should be HIGH: %d\n", ram_update_ctrl.valid_xy);
-
-        // ----- blk's turn -----
-        sw[2:0] <= 3'b110;
-        sw[5:3] <= 3'b100;
-        repeat(3) @(posedge clk);
-        key[1] <= 1'b1; // down left (should NOT move because there's a red token here)
-        repeat(15) @(posedge clk);
         key[1] <= 1'b0;
-        // $display("red's turn should be LOW: %d\n", ram_update_datapath.reds_turn);
-        // $display("valid_xy should be LOW: %d\n", ram_update_ctrl.valid_xy);
+        repeat(55) @(posedge clk);
 
-        sw[2:0] <= 3'b110;
-        sw[5:3] <= 3'b010;
+        sw[5:3] <= 3'b111;
+        sw[2:0] <= 3'b010;
+        key[1] <= 1'b1; // down left (should move)
         repeat(3) @(posedge clk);
-        key[0] <= 1'b1; // down right (should move)
-        repeat(15) @(posedge clk);
-        key[0] <= 1'b0;
-        // $display("red's turn should be LOW: %d\n", ram_update_datapath.reds_turn);
-        // $display("valid_xy should be HIGH: %d\n", ram_update_ctrl.valid_xy);
+        key[1] <= 1'b0;
+        repeat(55) @(posedge clk);
 
         // ----- red's turn -----
-        sw[2:0] <= 3'b110;
-        sw[5:3] <= 3'b100;
-        repeat(3) @(posedge clk);
-        key[2] <= 1'b1; // up right (should NOT move bc prev. blk move blocks this)
-        repeat(15) @(posedge clk);
-        key[2] <= 1'b0;
-        // $display("red's turn should be HIGH: %d\n", ram_update_datapath.reds_turn);
-        // $display("valid_xy should be LOW: %d\n", ram_update_ctrl.valid_xy);
 
-        sw[2:0] <= 3'b110;
         sw[5:3] <= 3'b100;
+        sw[2:0] <= 3'b101;
+        key[3] <= 1'b1; // up right (should move)
         repeat(3) @(posedge clk);
-        key[0] <= 1'b1; // down right (should NOT move bc not a KING token)
-        repeat(15) @(posedge clk);
-        key[0] <= 1'b0;
-        // $display("red's turn should be HIGH: %d\n", ram_update_datapath.reds_turn);
-        // $display("valid_xy should be LOW: %d\n", ram_update_ctrl.valid_xy);
-
-        sw[2:0] <= 3'b110;
-        sw[5:3] <= 3'b100;
-        repeat(3) @(posedge clk);
-        key[3] <= 1'b1; // up left (should move)
-        repeat(15) @(posedge clk);
         key[3] <= 1'b0;
-        // $display("red's turn should be HIGH: %d\n", ram_update_datapath.reds_turn);
-        // $display("valid_xy should be HIGH: %d\n", ram_update_ctrl.valid_xy);
+        repeat(55) @(posedge clk);
 
         // ----- blk's turn -----
-        sw[2:0] <= 3'b111;
-        sw[5:3] <= 3'b011;
-        repeat(3) @(posedge clk);
-        key[0] <= 1'b1; // down right (should NOT move bc edge piece)
-        repeat(15) @(posedge clk);
-        key[0] <= 1'b0;
-        // $display("red's turn should be LOW: %d\n", ram_update_datapath.reds_turn);
-        // $display("valid_xy should be LOW: %d\n", ram_update_ctrl.valid_xy);
 
-        sw[2:0] <= 3'b100;
-        sw[5:3] <= 3'b010;
+        sw[5:3] <= 3'b111;
+        sw[2:0] <= 3'b010;
+        key[1] <= 1'b1; // down left (should NOT move -- NO TOKEN HERE ANYMORE)
         repeat(3) @(posedge clk);
-        key[0] <= 1'b1; // down right (should move by TWO -- capture logic)
-        // also red token at (5,3) should be deleted now (red_count = 11)
-        repeat(15) @(posedge clk);
+        key[1] <= 1'b0;
+        repeat(55) @(posedge clk);
+
+        sw[5:3] <= 3'b110;
+        sw[2:0] <= 3'b011;
+        key[2] <= 1'b1; // up right (should NOT move -- invalid direction)
+        repeat(3) @(posedge clk);
+        key[2] <= 1'b0;
+        repeat(55) @(posedge clk);
+
+        sw[5:3] <= 3'b110;
+        sw[2:0] <= 3'b011;
+        key[0] <= 1'b1; // down right (should move)
+        repeat(3) @(posedge clk);
         key[0] <= 1'b0;
-        // $display("red's turn should be LOW: %d\n", ram_update_datapath.reds_turn);
-        // // $display("mult_iter should be LOW: %d\n", mult_iter);
-        // $display("valid_xy should be HIGH: %d\n", ram_update_ctrl.valid_xy);
+        repeat(55) @(posedge clk);
+
+        // ----- red's turn -----
+
+        sw[5:3] <= 3'b110;
+        sw[2:0] <= 3'b101;
+        key[2] <= 1'b1; // up right (should NOT move -- blocked by blk)
+        repeat(3) @(posedge clk);
+        key[2] <= 1'b0;
+        repeat(55) @(posedge clk);
+
+        sw[5:3] <= 3'b011;
+        sw[2:0] <= 3'b100;
+        key[2] <= 1'b1; // up right (should move)
+        repeat(3) @(posedge clk);
+        key[2] <= 1'b0;
+        repeat(55) @(posedge clk);
+
+        // ----- blk's turn -----
+
+        sw[5:3] <= 3'b111;
+        sw[2:0] <= 3'b100;
+        key[3] <= 1'b1; // up left (should NOT move -- not KING token)
+        repeat(3) @(posedge clk);
+        key[3] <= 1'b0;
+        repeat(55) @(posedge clk);
+
+        sw[5:3] <= 3'b111;
+        sw[2:0] <= 3'b100;
+        key[0] <= 1'b1; // down right (should NOT move -- edge of board)
+        repeat(3) @(posedge clk);
+        key[0] <= 1'b0;
+        repeat(55) @(posedge clk);
+
+        sw[5:3] <= 3'b111;
+        sw[2:0] <= 3'b100;
+        key[1] <= 1'b1; // down left (should NOT move -- blocked by red)
+        repeat(3) @(posedge clk);
+        key[1] <= 1'b0;
+        repeat(55) @(posedge clk);
+
+        sw[5:3] <= 3'b101;
+        sw[2:0] <= 3'b010;
+        key[1] <= 1'b1; // down left (should move -- MULT_ITER IS HIGH so capture logic)
+        // also red token at (4,3) should be deleted now bc captured
+        repeat(3) @(posedge clk);
+        key[1] <= 1'b0;
+        repeat(55) @(posedge clk);
 
         // can make another move
 
-        sw[2:0] <= 3'b110;
-        sw[5:3] <= 3'b100;
-        repeat(3) @(posedge clk);
+        sw[5:3] <= 3'b011;
+        sw[2:0] <= 3'b100;
         key[1] <= 1'b1; // down left (should NOT move bc blocked by red)
-        repeat(15) @(posedge clk);
-        key[1] <= 1'b0;
-        // $display("red's turn should be LOW: %d\n", ram_update_datapath.reds_turn);
-        // // $display("mult_iter should be HIGH: %d\n", mult_iter);
-        // $display("valid_xy should be LOW: %d\n", ram_update_ctrl.valid_xy);
-
-        sw[2:0] <= 3'b110;
-        sw[5:3] <= 3'b100;
         repeat(3) @(posedge clk);
+        key[1] <= 1'b0;
+        repeat(55) @(posedge clk);
+
+        sw[5:3] <= 3'b110;
+        sw[2:0] <= 3'b100;
         key[0] <= 1'b1; // down right (should move)
-        repeat(15) @(posedge clk);
+        repeat(3) @(posedge clk);
         key[0] <= 1'b0;
+        repeat(55) @(posedge clk);
         // $display("red's turn should be LOW: %d\n", ram_update_datapath.reds_turn);
         // $display("mult_iter should be LOW: %d\n", mult_iter);
         // $display("valid_xy should be HIGH: %d\n", ram_update_ctrl.valid_xy);
