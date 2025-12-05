@@ -42,7 +42,8 @@ module ram_update_datapath (input logic clk,
                             output logic [2:0] encodings_data1_odd,
                             output logic [2:0] encodings_data2_odd,
                             output logic encodings_wren1_odd,
-                            output logic encodings_wren2_odd
+                            output logic encodings_wren2_odd,
+                            output logic game_over
                             ////////////////v3//////////////////
                             );
 
@@ -364,6 +365,6 @@ module ram_update_datapath (input logic clk,
                        ((opp_adj0 && ~two_over0) || (opp_adj1 && ~two_over1) || (opp_adj2 && ~two_over2) || (opp_adj3 && ~two_over3)) :
                        (reds_turn ? ((opp_adj2 && ~two_over2) || (opp_adj3 && ~two_over3)) : ((opp_adj0 && ~two_over0) || (opp_adj1 && ~two_over1)))) :
                        1'b0; // no chance of continuing turn unless you've already skipped over an opponent
-
+    assign game_over = (red_count == 0) || (blk_count == 0);
 
 endmodule // ram_update_datapath

@@ -24,7 +24,8 @@ module ram_update (input logic clk,
                     output logic [2:0] encodings_data1_odd,
                     output logic [2:0] encodings_data2_odd,
                     output logic encodings_wren1_odd,
-                    output logic encodings_wren2_odd
+                    output logic encodings_wren2_odd,
+                    output logic game_logic
                     ////////////////v3//////////////////
                    );
     
