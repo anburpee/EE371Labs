@@ -85,17 +85,17 @@ module ram_update_datapath (input logic clk,
             token_addr <= 1'b0;
             two_over <= 1'b0;
             king <= 1'b0;
+            two_over0 <= 1'b0;
+            two_over1 <= 1'b0;
+            two_over2 <= 1'b0;
+            two_over3 <= 1'b0;
+            opp_adj0 <= 1'b0;
+            opp_adj1 <= 1'b0;
+            opp_adj2 <= 1'b0;
+            opp_adj3 <= 1'b0;
             if (mult_iter == 1'b0) begin
                 x_curr <= sw[5:3]; // only update when mult_iter == 0 b/c x_curr is set the new value at load_skip (when there's a possibility of another turn)
                 y_curr <= sw[2:0]; // only update when mult_iter == 0 b/c y_curr is set the new value at load_skip
-                two_over0 <= 1'b0; // take out of conditional?
-                two_over1 <= 1'b0;
-                two_over2 <= 1'b0;
-                two_over3 <= 1'b0;
-                opp_adj0 <= 1'b0;
-                opp_adj1 <= 1'b0;
-                opp_adj2 <= 1'b0;
-                opp_adj3 <= 1'b0;
             end
         end
         if (read) begin
@@ -287,7 +287,7 @@ module ram_update_datapath (input logic clk,
                     blk_addr <= token_addr;
                     data_blk <= {king_new, x_new, y_new};
                     red_addr <= opp_addr;
-                    data_red <= {{6{1'b0}}, 1'b1}; // erase opponent's token
+                    data_red <= 7'b0000000; // erase opponent's token
                     red_count <= red_count - 1;
                 end
 
@@ -296,7 +296,7 @@ module ram_update_datapath (input logic clk,
                     red_addr <= token_addr;
                     data_red <= {king_new, x_new, y_new};
                     blk_addr <= opp_addr;
-                    data_blk <= {{6{1'b0}}, 1'b1}; // erase opponent's token
+                    data_blk <= 7'b0000000; // erase opponent's token
                     blk_count <= blk_count - 1;
                 end
             endcase

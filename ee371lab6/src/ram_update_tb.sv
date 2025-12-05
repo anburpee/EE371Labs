@@ -170,9 +170,10 @@ module ram_update_tb ();
         // also red token at (4,3) should be deleted now bc captured
         repeat(3) @(posedge clk);
         key[1] <= 1'b0;
-        repeat(100) @(posedge clk); //////////////////////////////////CONT_TURN DOESN'T UPDATE IN TIME
+        repeat(100) @(posedge clk); 
 
         // can make another move
+        // timestamp 175150 ps
 
         sw[5:3] <= 3'b011;
         sw[2:0] <= 3'b100;
