@@ -6,7 +6,6 @@ module ram_update (input logic clk,
                    input logic reset,
                    input logic [3:0] key,
                    input logic [5:0] sw,
-                   output logic iter_done, // don't need?
                    output logic invalid_move,
                    output logic reds_turn,
                    output logic game_over,
@@ -37,7 +36,7 @@ module ram_update (input logic clk,
     ram_update_ctrl ram_ctrl (.*);
 
     ram_update_datapath ram_datapath (.*);
+
     // output logic
-    assign iter_done = done || mult_true;
     assign invalid_move = invalid_xy || illegal_dir || board_in_way || token_in_way;
 endmodule

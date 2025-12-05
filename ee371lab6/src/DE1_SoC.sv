@@ -33,23 +33,35 @@ module DE1_SoC (HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, KEY, LEDR, SW,
 	end
 
 
+	// logic signals for ram_update
+	logic clk, reset, // inputs
+	logic [3:0] key;
+    logic [5:0] sw;
+	logic invalid_move, reds_turn, game_over; // outputs, could potentially delete iter_done
+	assign key = KEY;
+	assign sw = SW[5:0];
+
 	////////////////v3//////////////////
 	// even_iter & having 2 RAMs is to make sure RAMs are not written to by ram_update and read from display_update at the same time @ load_skip
-	// logic even_iter, // toggles every iteration
+	logic even_iter, // toggles every iteration
 	// should instead be write_in_progress that goes high @ load_skip, load_adj, and check_done
-	// logic [5:0] encodings_addr1_even, 
-	// logic [5:0] encodings_addr2_even, 
-	// logic [2:0] encodings_data1_even,
-	// logic [2:0] encodings_data2_even,
-	// logic encodings_wren1_even,
-	// logic encodings_wren2_even,
-	// logic [5:0] encodings_addr1_odd, 
-	// logic [5:0] encodings_addr2_odd, 
-	// logic [2:0] encodings_data1_odd,
-	// logic [2:0] encodings_data2_odd,
-	// logic encodings_wren1_odd,
-	// logic encodings_wren2_odd
+	logic [5:0] encodings_addr1_even, 
+	logic [5:0] encodings_addr2_even, 
+	logic [2:0] encodings_data1_even,
+	logic [2:0] encodings_data2_even,
+	logic encodings_wren1_even,
+	logic encodings_wren2_even,
+	logic [5:0] encodings_addr1_odd, 
+	logic [5:0] encodings_addr2_odd, 
+	logic [2:0] encodings_data1_odd,
+	logic [2:0] encodings_data2_odd,
+	logic encodings_wren1_odd,
+	logic encodings_wren2_odd
 	////////////////v3//////////////////
+
+	ram_update_v3 game_logic_module (.*)
+
+	assign LEDR[9] = invalid_move
 
 	// only need to MUX the sencond address/wren since we're only reading from port 2
 	spot_encodings64x3 spot_encodings_even (

@@ -5,7 +5,6 @@ module ram_update_tb ();
 	logic reset;
 	logic [3:0] key;
 	logic [5:0] sw;
-	logic iter_done;
     logic invalid_move;
     logic reds_turn;
     logic game_over;
