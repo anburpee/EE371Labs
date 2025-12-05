@@ -27,7 +27,7 @@ module display_update (input logic clk,
     logic [5:0] x_counter, y_counter; // to count up to 60 (side lenth of each square on the board)
 
     always_ff @(posedge clk) begin
-        if (x_vga < 80 || x > 559) begin
+        if (x_vga < 80 || x_vga > 559) begin
             r <= 0;
             g <= 0;
             b <= 0;

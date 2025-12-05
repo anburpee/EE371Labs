@@ -33,29 +33,29 @@ module DE1_SoC (HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, KEY, LEDR, SW,
 	end
 
 
-	spot_encodings64x3 spot_encodings1 (
-		.address_a,
-		.address_b,
-		.clock,
-		.data_a,
-		.data_b,
-		.wren_a,
-		.wren_b,
-		.q_a,
-		.q_b
-	);
+	// spot_encodings64x3 spot_encodings1 (
+	// 	.address_a,
+	// 	.address_b,
+	// 	.clock,
+	// 	.data_a,
+	// 	.data_b,
+	// 	.wren_a,
+	// 	.wren_b,
+	// 	.q_a,
+	// 	.q_b
+	// );
 
-	spot_encodings64x3 spot_encodings2 (
-		.address_a,
-		.address_b,
-		.clock,
-		.data_a,
-		.data_b,
-		.wren_a,
-		.wren_b,
-		.q_a,
-		.q_b
-	);
+	// spot_encodings64x3 spot_encodings2 (
+	// 	.address_a,
+	// 	.address_b,
+	// 	.clock,
+	// 	.data_a,
+	// 	.data_b,
+	// 	.wren_a,
+	// 	.wren_b,
+	// 	.q_a,
+	// 	.q_b
+	// );
 
 	assign HEX0 = '1;
 	assign HEX1 = '1;
