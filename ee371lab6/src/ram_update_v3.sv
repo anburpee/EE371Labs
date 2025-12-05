@@ -9,6 +9,7 @@ module ram_update (input logic clk,
                    output logic iter_done, // don't need?
                    output logic invalid_move,
                    output logic reds_turn,
+                   output logic game_over,
                     ////////////////v3//////////////////
                     // even_iter & having 2 RAMs is to make sure RAMs are not written to by ram_update and read from display_update at the same time @ load_skip
                     output logic even_iter, // toggles every iteration
@@ -24,8 +25,7 @@ module ram_update (input logic clk,
                     output logic [2:0] encodings_data1_odd,
                     output logic [2:0] encodings_data2_odd,
                     output logic encodings_wren1_odd,
-                    output logic encodings_wren2_odd,
-                    output logic game_logic
+                    output logic encodings_wren2_odd
                     ////////////////v3//////////////////
                    );
     
