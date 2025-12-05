@@ -10,7 +10,7 @@ cModel Technology
 dC:/Users/brind/Brinda_Files/University/Junior/EE371/ee371/ee371lab6/modelsim
 valtera_up_avalon_video_vga_timing
 Z0 DXx6 sv_std 3 std 0 22 AD7iAPLo6nTIKk<N0eo=D3
-Z1 !s110 1764937577
+Z1 !s110 1764942992
 !i10b 1
 !s100 i=hXeIB@am1XBVbZV^m:71
 I4lz[aCLMg`oXHVC0l2kIB1
@@ -26,13 +26,13 @@ Z5 OV;L;10.5b;63
 r1
 !s85 0
 31
-Z6 !s108 1764937577.000000
+Z6 !s108 1764942992.000000
 !s107 ../src/altera_up_avalon_video_vga_timing.sv|
 !s90 -reportprogress|300|../src/altera_up_avalon_video_vga_timing.sv|
 !i113 1
 Z7 tCvgOpt 0
 vblack_ram16x7
-Z8 !s110 1764937578
+Z8 !s110 1764942993
 !i10b 1
 !s100 DbOi61SISYdc@jzW8Wg`O2
 Ij5Ie?dE]Hil4^[VZ;TLaW1
@@ -46,14 +46,14 @@ R5
 r1
 !s85 0
 31
-Z11 !s108 1764937578.000000
+Z11 !s108 1764942993.000000
 !s107 ../quartus/black_ram16x7.v|
 !s90 -reportprogress|300|../quartus/black_ram16x7.v|
 !i113 1
 R7
 vCLOCK25_PLL
 R0
-R8
+R1
 !i10b 1
 !s100 cBE;Z]bnlF5oeDbQ;^?]23
 ImCf[iR?U<5dmP[j`lPoc13
@@ -220,13 +220,13 @@ vram_update_datapath
 R0
 R8
 !i10b 1
-!s100 I@L]Gc;S5hm:bTQ6dV5X@0
-IPPkEbj_5RLVWAeGeTUaLm3
+!s100 HYhB41Ofce8Y>D0cE:Ydd2
+Ib_9h0z@Z>?O=Hdz[h>:Vi0
 R2
 !s105 ram_update_datapath_sv_unit
 S1
 R3
-w1764937227
+w1764942974
 8../src/ram_update_datapath.sv
 F../src/ram_update_datapath.sv
 L0 328
@@ -243,13 +243,13 @@ vram_update_tb
 R0
 R8
 !i10b 1
-!s100 `T^X:0ZB9NZ9FY:5bV;0Y0
-IGk@hMjAL[[kCXn17?74`I3
+!s100 99aUocLiQHPj@XN8QURgS2
+IBgmB>VXajNj@Bo<jlU=Kf2
 R2
 !s105 ram_update_tb_sv_unit
 S1
 R3
-w1764935076
+w1764942546
 8../src/ram_update_tb.sv
 F../src/ram_update_tb.sv
 L0 2
@@ -263,7 +263,7 @@ R11
 !i113 1
 R7
 vred_ram16x7
-!s110 1764937579
+R8
 !i10b 1
 !s100 E@KNIiRY@R=o?_e9c8^@^0
 Ii9mG;XGlAo7_?Y1_4LF7D0
@@ -277,14 +277,14 @@ R5
 r1
 !s85 0
 31
-!s108 1764937579.000000
+R11
 !s107 ../quartus/red_ram16x7.v|
 !s90 -reportprogress|300|../quartus/red_ram16x7.v|
 !i113 1
 R7
 vvideo_driver
 R0
-R8
+R1
 !i10b 1
 !s100 O6@gXYLgZJUjPzMcRT;kF0
 ILMLT[dDUJ=0nh;lLHhEiG0
@@ -300,7 +300,7 @@ R5
 r1
 !s85 0
 31
-R11
+R6
 !s107 ../src/video_driver.sv|
 !s90 -reportprogress|300|../src/video_driver.sv|
 !i113 1

@@ -182,9 +182,9 @@ module ram_update_tb ();
         key[1] <= 1'b0;
         repeat(100) @(posedge clk);
 
-        // can't make another move  /////////////////   BUT MULT_ITER GOES HIGH AGAIN AT 185050 PS B/C I DON'T HAVE EDGE CHECK
+        // can't make another move  
 
-        // timestamp
+        // timestamp 185450 ps
         // ----- red's turn -----
 
         sw[5:3] <= 3'b011;
@@ -203,6 +203,7 @@ module ram_update_tb ();
         key[0] <= 1'b0;
         repeat(100) @(posedge clk);
 
+        // timestamp 206050 ps
         // ----- red's turn -----
 
         sw[5:3] <= 3'b010;
@@ -221,11 +222,65 @@ module ram_update_tb ();
         key[0] <= 1'b0;
         repeat(100) @(posedge clk);
 
+        // timestamp 226650 ps
         // ----- red's turn -----
 
         sw[5:3] <= 3'b101;
+        sw[2:0] <= 3'b110;
+        key[3] <= 1'b1; // up left (should move)
+        repeat(3) @(posedge clk);
+        key[3] <= 1'b0;
+        repeat(100) @(posedge clk);
+
+        // timestamp: 236950 ps
+        // ----- blk's turn -----
+
+        sw[5:3] <= 3'b010; // edge blocked
+        sw[2:0] <= 3'b111;
+        key[1] <= 1'b1; // down left (should NOT move -- bottom wall)
+        repeat(3) @(posedge clk);
+        key[1] <= 1'b0;
+        repeat(100) @(posedge clk);
+
+        sw[5:3] <= 3'b010; // two_over
+        sw[2:0] <= 3'b111;
+        key[2] <= 1'b1; // up right (should NOT move -- token in landing spot)
+        repeat(3) @(posedge clk);
+        key[2] <= 1'b0;
+        repeat(100) @(posedge clk);
+
+        sw[5:3] <= 3'b010;
+        sw[2:0] <= 3'b111;
+        key[3] <= 1'b1; // up left (should move)
+        repeat(3) @(posedge clk);
+        key[3] <= 1'b0;
+        repeat(100) @(posedge clk);
+
+        // timestamp 267850 ps
+        // ----- red's turn -----
+
+        sw[5:3] <= 3'b100; 
         sw[2:0] <= 3'b101;
-        key[3] <= 1'b1; // up left (should NOT move -- blocked by red)
+        key[3] <= 1'b1; // up left (should move --  capture)
+        repeat(3) @(posedge clk);
+        key[3] <= 1'b0;
+        repeat(100) @(posedge clk);
+
+        // ----- blk's turn -----
+
+        sw[5:3] <= 3'b001;
+        sw[2:0] <= 3'b110;
+        key[0] <= 1'b1; // down right (should move)
+        repeat(3) @(posedge clk);
+        key[0] <= 1'b0;
+        repeat(100) @(posedge clk);
+
+        // timestamp 288450 ps
+        // ----- red's turn -----
+
+        sw[5:3] <= 3'b110;
+        sw[2:0] <= 3'b111;
+        key[3] <= 1'b1; // up left (should move)
         repeat(3) @(posedge clk);
         key[3] <= 1'b0;
         repeat(100) @(posedge clk);
@@ -239,22 +294,13 @@ module ram_update_tb ();
         key[2] <= 1'b0;
         repeat(100) @(posedge clk);
 
-        // can go again
+        // another turn
 
-        sw[5:3] <= 3'b100;
-        sw[2:0] <= 3'b101;
-        key[2] <= 1'b1; // up right (should move -- CAPTURE)
+        sw[5:3] <= 3'b111; // x_curr and y_curr already stored so key inputs shouldn't matter here
+        sw[2:0] <= 3'b111;
+        key[0] <= 1'b1; // down right (should move -- CAPTURE)
         repeat(3) @(posedge clk);
-        key[2] <= 1'b0;
-        repeat(100) @(posedge clk);
-
-        // can go again
-
-        sw[5:3] <= 3'b110;
-        sw[2:0] <= 3'b011;
-        key[1] <= 1'b1; // down left (should move)
-        repeat(3) @(posedge clk);
-        key[1] <= 1'b0;
+        key[0] <= 1'b0;
         repeat(100) @(posedge clk);
 
         $stop;

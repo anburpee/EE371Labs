@@ -20,6 +20,7 @@ add wave -noupdate /ram_update_tb/iter_done
 add wave -noupdate /ram_update_tb/invalid_move
 add wave -noupdate /ram_update_tb/dut/ram_ctrl/count_eq_11
 add wave -noupdate /ram_update_tb/dut/ram_datapath/check0
+add wave -noupdate /ram_update_tb/dut/ram_datapath/king
 add wave -noupdate /ram_update_tb/dut/ram_datapath/x_curr
 add wave -noupdate /ram_update_tb/dut/ram_datapath/y_curr
 add wave -noupdate /ram_update_tb/dut/ram_ctrl/valid_xy
@@ -57,7 +58,7 @@ add wave -noupdate /ram_update_tb/dut/ram_datapath/blk_count
 add wave -noupdate /ram_update_tb/dut/ram_ctrl/mult_true
 add wave -noupdate /ram_update_tb/dut/ram_ctrl/done
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {172540 ps} 0}
+WaveRestoreCursors {{Cursor 1} {319212 ps} 0}
 quietly wave cursor active 1
 configure wave -namecolwidth 140
 configure wave -valuecolwidth 100
@@ -73,4 +74,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ps
 update
-WaveRestoreZoom {172248 ps} {175685 ps}
+WaveRestoreZoom {316085 ps} {319522 ps}

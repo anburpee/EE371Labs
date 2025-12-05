@@ -508,14 +508,14 @@ module ram_update_datapath (input logic clk,
             endcase
             case (reds_turn)
                 1'b0: begin
-                    king_new = (y_new == 3'd7); 
+                    king_new = king ? 1'b1 : (y_new == 3'd7); 
                     wren_blk <= 1'b1;  
                     blk_addr <= token_addr;
                     data_blk <= {king_new, x_new, y_new};
                 end
 
                 1'b1: begin
-                    king_new = (y_new == 3'd0);
+                    king_new = king ? 1'b1 : (y_new == 3'd0);
                     wren_red <= 1'b1;
                     red_addr <= token_addr;
                     data_red <= {king_new, x_new, y_new};
@@ -544,7 +544,7 @@ module ram_update_datapath (input logic clk,
             endcase
             case (reds_turn)
                 1'b0: begin
-                    king_new = (y_new == 3'd7);
+                    king_new = king ? 1'b1 : (y_new == 3'd7);
                     blk_addr <= token_addr;
                     data_blk <= {king_new, x_new, y_new};
                     red_addr <= opp_addr;
@@ -553,7 +553,7 @@ module ram_update_datapath (input logic clk,
                 end
 
                 1'b1: begin
-                    king_new = (y_new == 3'd0);
+                    king_new = king ? 1'b1 : (y_new == 3'd0);
                     red_addr <= token_addr;
                     data_red <= {king_new, x_new, y_new};
                     blk_addr <= opp_addr;
