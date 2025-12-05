@@ -30,7 +30,18 @@ module ram_update_datapath (input logic clk,
 
     logic reds_turn;
     logic wren_red, wren_blk;
-    logic [6:0] q_red, q_blk;
+
+    // ------------------------------------------------------------------------------------------
+    // TODO:
+    // this never actually gets updated as far as i can tell (i haven't looked incredibly hard but)
+    // q is probably output of d-ff with data_red/data_blk going in. but i don't see this logic
+    // but we set data_red / data_blk to stuff
+    // but that doesn't change q_red / q_blk
+    // but we use q_red/q_blk for opponent and king logic
+    logic [6:0] q_red, q_blk; 
+    // ------------------------------------------------------------------------------------------
+
+
     logic [6:0] data_red, data_blk;
     logic [3:0] token_addr; // addr of the token to be moved on current player's turn
     logic [3:0] opp_addr;
@@ -93,7 +104,7 @@ module ram_update_datapath (input logic clk,
             y_own = reds_turn ? q_red[2:0] : q_blk [2:0];
             x_opp = reds_turn ? q_blk[5:3] : q_red [5:3];
             y_opp = reds_turn ? q_blk[2:0] : q_red [2:0];
-            if ((x_own == x_curr) && (y_own == y_curr)) begin
+            if ((x_own == x_curr) && (y_own == y_curr) && !({x_own, y_own} == 7'b0000001)) begin
                 valid_xy <= 1'b1;
                 token_addr <= count;
                 king <= reds_turn ? q_red[6] : q_blk[6];
