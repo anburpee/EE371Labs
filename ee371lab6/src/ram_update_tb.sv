@@ -64,7 +64,7 @@ module ram_update_tb ();
         key[1] <= 1'b0;
         repeat(100) @(posedge clk);
 
-        sw[5:3] <= 3'b110;
+        sw[5:3] <= 3'b110; // illegal_dir
         sw[2:0] <= 3'b011;
         key[2] <= 1'b1; // up right (should NOT move -- invalid direction)
         repeat(3) @(posedge clk);
@@ -80,39 +80,40 @@ module ram_update_tb ();
 
         // ----- red's turn -----
 
-        sw[5:3] <= 3'b110;
+        sw[5:3] <= 3'b110; // opp_adj
         sw[2:0] <= 3'b101;
         key[2] <= 1'b1; // up right (should NOT move -- blocked by blk)
         repeat(3) @(posedge clk);
         key[2] <= 1'b0;
         repeat(100) @(posedge clk);
 
-        sw[5:3] <= 3'b011;
+        sw[5:3] <= 3'b011; // 
         sw[2:0] <= 3'b100;
         key[2] <= 1'b1; // up right (should move)
         repeat(3) @(posedge clk);
         key[2] <= 1'b0;
-        repeat(100) @(posedge clk);
+        repeat(100) @(posedge clk); 
 
+        // timestamp 82450
         // ----- blk's turn -----
 
-        sw[5:3] <= 3'b111;
+        sw[5:3] <= 3'b111; // illegal_dir
         sw[2:0] <= 3'b100;
         key[3] <= 1'b1; // up left (should NOT move -- not KING token)
         repeat(3) @(posedge clk);
         key[3] <= 1'b0;
         repeat(100) @(posedge clk);
 
-        sw[5:3] <= 3'b111;
+        sw[5:3] <= 3'b111; // edge_blocked0
         sw[2:0] <= 3'b100;
         key[0] <= 1'b1; // down right (should NOT move -- edge of board)
         repeat(3) @(posedge clk);
         key[0] <= 1'b0;
         repeat(100) @(posedge clk);
 
-        sw[5:3] <= 3'b111;
+        sw[5:3] <= 3'b111; // opp_adj
         sw[2:0] <= 3'b100;
-        key[1] <= 1'b1; // down left (should NOT move -- blocked by red)
+        key[1] <= 1'b1; // down left (should NOT move -- blocked by red) ///////////BUT IT LOADED SKIP
         repeat(3) @(posedge clk);
         key[1] <= 1'b0;
         repeat(100) @(posedge clk);

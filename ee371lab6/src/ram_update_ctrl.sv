@@ -255,7 +255,7 @@ module ram_update_ctrl (input logic clk,
                           ~mult_iter;                      // FIX
     assign load_skip    = (ps == s_update) && valid_xy && legal_dir &&
                           ~edge_blocked0 && ~own_adj && opp_adj &&
-                          ~edge_blocked1 && two_over;      // FIX
+                          ~edge_blocked1 && ~two_over;      // FIX
     assign mult_true    = (ps == s_wait0) && (~|key);      // FIX
     assign done         = (ps == s_wait1) && (~|key);      // FIX
 
