@@ -220,13 +220,13 @@ module ram_update_ctrl (input logic clk,
 
             s_unknown11: ns = s_known1;
 
-            s_known1: ns = coucount_eq_11 ? s_unknown2 : s_check_done;
+            s_known1: ns = count_eq_11 ? s_unknown2 : s_check_done;
             // s_known1: ns = count_eq_11 ? (cont_turn ? s_wait0 : s_wait1) : s_check_done; 
             // s_known1: ns = cont_turn ?  s_wait0 : (count_eq_11 ? s_wait1 : s_check_done);
 
-            s_unknown2: s_known2;
+            s_unknown2: ns = s_known2;
 
-            s_known2: cont_turn ? s_wait1 : s_wait1;
+            s_known2: ns = cont_turn ? s_wait0 : s_wait1;
 
             s_wait0: ns = (|key) ? s_wait0 : s_idle;      // FIX: key → |key
 

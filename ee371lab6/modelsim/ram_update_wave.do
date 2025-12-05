@@ -57,7 +57,7 @@ add wave -noupdate /ram_update_tb/dut/ram_datapath/blk_count
 add wave -noupdate /ram_update_tb/dut/ram_ctrl/mult_true
 add wave -noupdate /ram_update_tb/dut/ram_ctrl/done
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {170471 ps} 0}
+WaveRestoreCursors {{Cursor 1} {172540 ps} 0}
 quietly wave cursor active 1
 configure wave -namecolwidth 140
 configure wave -valuecolwidth 100
@@ -73,4 +73,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ps
 update
-WaveRestoreZoom {168920 ps} {172357 ps}
+WaveRestoreZoom {172248 ps} {175685 ps}

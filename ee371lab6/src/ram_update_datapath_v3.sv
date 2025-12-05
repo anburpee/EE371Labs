@@ -111,7 +111,8 @@ module ram_update_datapath (input logic clk,
             y_own = reds_turn ? q_red[2:0] : q_blk [2:0];
             x_opp = reds_turn ? q_blk[5:3] : q_red [5:3];
             y_opp = reds_turn ? q_blk[2:0] : q_red [2:0];
-            if ((x_own == x_curr) && (y_own == y_curr) && !({x_own, y_own} == 7'b0000001)) begin
+            // 7'b0000000 is an invalid location for a token to be in (top left corner, light square)
+            if ((x_own == x_curr) && (y_own == y_curr) && !({x_own, y_own} == 7'b0000000)) begin
                 valid_xy <= 1'b1;
                 token_addr <= count;
                 king <= reds_turn ? q_red[6] : q_blk[6];
