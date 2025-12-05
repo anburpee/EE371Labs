@@ -41,9 +41,9 @@ module ram_update_datapath (input logic clk,
                             output logic [2:0] encodings_data1_odd,
                             output logic [2:0] encodings_data2_odd,
                             output logic encodings_wren1_odd,
-                            output logic encodings_wren2_odd,
+                            output logic encodings_wren2_odd
                             ////////////////v3//////////////////
-                        );
+                            );
 
     logic reds_turn;
     logic wren_red, wren_blk;
@@ -111,7 +111,7 @@ module ram_update_datapath (input logic clk,
             y_own = reds_turn ? q_red[2:0] : q_blk [2:0];
             x_opp = reds_turn ? q_blk[5:3] : q_red [5:3];
             y_opp = reds_turn ? q_blk[2:0] : q_red [2:0];
-            if ((x_own == x_curr) && (y_own == y_curr)) begin
+            if ((x_own == x_curr) && (y_own == y_curr) && !({x_own, y_own} == 7'b0000001)) begin
                 valid_xy <= 1'b1;
                 token_addr <= count;
                 king <= reds_turn ? q_red[6] : q_blk[6];
@@ -179,20 +179,20 @@ module ram_update_datapath (input logic clk,
             // output logic [2:0] encodings_data2_odd,
             // output logic encodings_wren1_odd,
             // output logic encodings_wren2_odd,
-            encodings_wren1_even <= 1'b1;
-            encodings_wren2_even <= 1'b1;
-            encodings_wren1_odd <= 1'b1;
-            encodings_wren2_odd <= 1'b1;
             case (even_iter) // do all 12 iterations(b/c we don't know everything that changed -- yes, we know to draw a new spot at x_curr, y_curr but we don't have the coordinates of tokens jumped over to write in 0s to) 
                 //------------ this is after the previous spot is erased in load_skip/load_adj
+                // wren should be turned off after this current state ????
                 1'b0: begin // update odd iteration RAM
+                    // encodings_wren1_odd <= 1'b1; //  CONTROL ALL WREN LOGIC FROM DE1_SOC BASED ON EVEN_ITER -- should be fine since even if q_red and q_blk are updated, these registers don't update until the next check_done
+                    // encodings_wren2_odd <= 1'b1;
                     encodings_addr1_odd <= 8*(q_red[5:3]) + q_red[2:0]; // red
-                    // if invalid location, then piece is "erased"/ out of the game so load 0 (dark square)
-                    encodings_data1_odd <= (q_red == 7'b0000001) ? 3'b000 : (king ? 3'b100 : 3'b010);
+                    encodings_data1_odd <= (q_red == 7'b0000001) ? 3'b000 : (king ? 3'b100 : 3'b010); // if invalid location, then piece is "erased"/ out of the game so load 0 (dark square)
                     encodings_addr2_odd <= 8*(q_blk[5:3]) + q_blk[2:0]; // black
                     encodings_data2_odd <= (q_blk == 7'b0000001) ? 3'b000 : (king ? 3'b011 : 3'b001);
                 end
                 1'b1: begin // update even iteration RAM
+                    // encodings_wren1_even <= 1'b1;
+                    // encodings_wren2_even <= 1'b1;
                     encodings_addr1_even <= 8*(q_red[5:3]) + q_red[2:0]; // red
                     encodings_data1_even <= (q_red == 7'b0000001) ? 3'b000 : (king ? 3'b100 : 3'b010);
                     encodings_addr2_even <= 8*(q_blk[5:3]) + q_blk[2:0]; // black
@@ -249,12 +249,12 @@ module ram_update_datapath (input logic clk,
                 1'b0: begin // update odd iteration RAM -- only need to change location of 1 token, so only write to 1 port
                     // since we're only writing from 1 port, we don't need to consider overlap (with read) here if all of the reading is done 
                     // from the second port
-                    encodings_wren1_odd <= 1'b1;
+                    // encodings_wren1_odd <= 1'b1;
                     encodings_addr1_odd <= 8*(x_curr) + y_curr;
                     encodings_data1_odd <= 3'b000; // dark square encoding
                 end
                 1'b1: begin // update even iteration RAM
-                    encodings_wren1_even <= 1'b1;
+                    // encodings_wren1_even <= 1'b1;
                     encodings_addr1_even <= 8*(x_curr) + y_curr;
                     encodings_data1_even <= 3'b000; // dark square encoding
                 end

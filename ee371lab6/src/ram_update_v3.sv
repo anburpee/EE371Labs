@@ -7,7 +7,24 @@ module ram_update (input logic clk,
                    input logic [3:0] key,
                    input logic [5:0] sw,
                    output logic iter_done, // don't need?
-                   output logic invalid_move
+                   output logic invalid_move,
+                    ////////////////v3//////////////////
+                    // even_iter & having 2 RAMs is to make sure RAMs are not written to by ram_update and read from display_update at the same time @ load_skip
+                    output logic even_iter, // toggles every iteration
+                    // should instead be write_in_progress that goes high @ load_skip, load_adj, and check_done
+                    output logic [5:0] encodings_addr1_even, 
+                    output logic [5:0] encodings_addr2_even, 
+                    output logic [2:0] encodings_data1_even,
+                    output logic [2:0] encodings_data2_even,
+                    output logic encodings_wren1_even,
+                    output logic encodings_wren2_even,
+                    output logic [5:0] encodings_addr1_odd, 
+                    output logic [5:0] encodings_addr2_odd, 
+                    output logic [2:0] encodings_data1_odd,
+                    output logic [2:0] encodings_data2_odd,
+                    output logic encodings_wren1_odd,
+                    output logic encodings_wren2_odd
+                    ////////////////v3//////////////////
                    );
     
     logic load_iter, initialize, read, check0, check_done, incr_count, reset_count, load_adj, load_skip, mult_true, done; // control signals
