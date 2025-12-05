@@ -94,7 +94,7 @@ module ram_update_tb ();
         key[2] <= 1'b0;
         repeat(100) @(posedge clk); 
 
-        // timestamp 82450
+        // timestamp 82450 ps
         // ----- blk's turn -----
 
         sw[5:3] <= 3'b111; // illegal_dir
@@ -113,7 +113,7 @@ module ram_update_tb ();
 
         sw[5:3] <= 3'b111; // opp_adj
         sw[2:0] <= 3'b100;
-        key[1] <= 1'b1; // down left (should NOT move -- blocked by red) ///////////BUT IT LOADED SKIP
+        key[1] <= 1'b1; // down left (should NOT move -- blocked by red) 
         repeat(3) @(posedge clk);
         key[1] <= 1'b0;
         repeat(100) @(posedge clk);
@@ -125,22 +125,24 @@ module ram_update_tb ();
         key[1] <= 1'b0;
         repeat(100) @(posedge clk);
 
+        // timestamp 123650 ps
         // ----- red's turn -----
 
-        sw[5:3] <= 3'b000;
+        sw[5:3] <= 3'b000; // invalid_xy
         sw[2:0] <= 3'b011;
         key[0] <= 1'b1; // down right (should NOT move -- wrong color token)
         repeat(3) @(posedge clk);
         key[0] <= 1'b0;
         repeat(100) @(posedge clk);
 
-        sw[5:3] <= 3'b000;
+        sw[5:3] <= 3'b000; 
         sw[2:0] <= 3'b101;
         key[2] <= 1'b1; // up right (should move)
         repeat(3) @(posedge clk);
         key[2] <= 1'b0;
         repeat(100) @(posedge clk);
 
+        // timestamp 144250 ps
         // ----- blk's turn -----
 
         sw[5:3] <= 3'b011;
@@ -159,6 +161,7 @@ module ram_update_tb ();
         key[3] <= 1'b0;
         repeat(100) @(posedge clk);
 
+        // timestamp 164850 ps
         // ----- blk's turn -----
 
         sw[5:3] <= 3'b101;
@@ -167,7 +170,7 @@ module ram_update_tb ();
         // also red token at (4,3) should be deleted now bc captured
         repeat(3) @(posedge clk);
         key[1] <= 1'b0;
-        repeat(100) @(posedge clk);
+        repeat(100) @(posedge clk); //////////////////////////////////CONT_TURN DOESN'T UPDATE IN TIME
 
         // can make another move
 
@@ -180,6 +183,7 @@ module ram_update_tb ();
 
         // can't make another move
 
+        // timestamp
         // ----- red's turn -----
 
         sw[5:3] <= 3'b011;

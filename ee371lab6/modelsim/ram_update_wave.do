@@ -10,6 +10,7 @@ add wave -noupdate /ram_update_tb/dut/ram_datapath/blk_addr
 add wave -noupdate /ram_update_tb/dut/ram_datapath/q_red
 add wave -noupdate /ram_update_tb/dut/ram_datapath/q_blk
 add wave -noupdate /ram_update_tb/dut/ram_datapath/token_addr
+add wave -noupdate /ram_update_tb/dut/ram_datapath/opp_addr
 add wave -noupdate /ram_update_tb/dut/ram_datapath/wren_red
 add wave -noupdate /ram_update_tb/dut/ram_datapath/wren_blk
 add wave -noupdate /ram_update_tb/dut/ram_datapath/data_red
@@ -56,7 +57,7 @@ add wave -noupdate /ram_update_tb/dut/ram_datapath/blk_count
 add wave -noupdate /ram_update_tb/dut/ram_ctrl/mult_true
 add wave -noupdate /ram_update_tb/dut/ram_ctrl/done
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {21998 ps} 0}
+WaveRestoreCursors {{Cursor 1} {170471 ps} 0}
 quietly wave cursor active 1
 configure wave -namecolwidth 140
 configure wave -valuecolwidth 100
@@ -72,4 +73,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ps
 update
-WaveRestoreZoom {21662 ps} {31878 ps}
+WaveRestoreZoom {168920 ps} {172357 ps}
