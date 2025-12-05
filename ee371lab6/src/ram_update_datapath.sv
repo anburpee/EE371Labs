@@ -366,6 +366,7 @@ module ram_update_datapath (input logic clk,
     logic [3:0] count;
     logic [3:0] red_addr, blk_addr; // red into rams
     logic [4:0] red_count, blk_count;
+    logic skipped; // to keep track of whether the player skipped over opponent (to have a chance at another turn) /////////////////////////////////////////////////
 
     // instantiate RAMS that store location of each token
     black_ram16x7 blk_ram (.address(blk_addr), .clock(clk), .data(data_blk), .wren(wren_blk), .q(q_blk));
@@ -391,6 +392,7 @@ module ram_update_datapath (input logic clk,
             token_addr <= 1'b0;
             two_over <= 1'b0;
             king <= 1'b0;
+            skipped <= 1'b0; ///////////////////////////////////////////////////////////////////////////////////////////////new
             if (mult_iter == 1'b0) begin
                 x_curr <= sw[5:3];
                 y_curr <= sw[2:0];
@@ -552,6 +554,7 @@ module ram_update_datapath (input logic clk,
             king <= king_new;
             x_curr <= x_new;
             y_curr <= y_new;
+            skipped <= 1'b1;    ///////////////////////////////////////////////////////////////////////////////////////////new
         end
         if (mult_true) begin
             mult_iter <= 1'b1;
@@ -574,9 +577,11 @@ module ram_update_datapath (input logic clk,
     // otherwise:
     // red's turn -> check upward directions
     // black's turn -> check downward directions
-    assign cont_turn = king ? 
+    assign cont_turn = skipped ? ////////////////////////////////////////////////////////////////////////////////////////////////new
+                       (king ? 
                        ((opp_adj0 && ~two_over0) || (opp_adj1 && ~two_over1) || (opp_adj2 && ~two_over2) || (opp_adj3 && ~two_over3)) :
-                       (reds_turn ? ((opp_adj2 && ~two_over2) || (opp_adj3 && ~two_over3)) : ((opp_adj0 && ~two_over0) || (opp_adj1 && ~two_over1)));
+                       (reds_turn ? ((opp_adj2 && ~two_over2) || (opp_adj3 && ~two_over3)) : ((opp_adj0 && ~two_over0) || (opp_adj1 && ~two_over1)))) :
+                       1'b0; // no chance of continuing turn unless you've already skipped over an opponent
 
 
 endmodule // ram_update_datapath

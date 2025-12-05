@@ -28,6 +28,14 @@ add wave -noupdate /ram_update_tb/dut/ram_ctrl/own_adj
 add wave -noupdate /ram_update_tb/dut/ram_ctrl/opp_adj
 add wave -noupdate /ram_update_tb/dut/ram_ctrl/edge_blocked1
 add wave -noupdate /ram_update_tb/dut/ram_ctrl/two_over
+add wave -noupdate /ram_update_tb/dut/ram_datapath/opp_adj0
+add wave -noupdate /ram_update_tb/dut/ram_datapath/opp_adj1
+add wave -noupdate /ram_update_tb/dut/ram_datapath/opp_adj2
+add wave -noupdate /ram_update_tb/dut/ram_datapath/opp_adj3
+add wave -noupdate /ram_update_tb/dut/ram_datapath/two_over0
+add wave -noupdate /ram_update_tb/dut/ram_datapath/two_over1
+add wave -noupdate /ram_update_tb/dut/ram_datapath/two_over2
+add wave -noupdate /ram_update_tb/dut/ram_datapath/two_over3
 add wave -noupdate /ram_update_tb/dut/ram_ctrl/cont_turn
 add wave -noupdate /ram_update_tb/dut/ram_ctrl/mult_iter
 add wave -noupdate /ram_update_tb/dut/ram_ctrl/load_iter
@@ -48,7 +56,7 @@ add wave -noupdate /ram_update_tb/dut/ram_datapath/blk_count
 add wave -noupdate /ram_update_tb/dut/ram_ctrl/mult_true
 add wave -noupdate /ram_update_tb/dut/ram_ctrl/done
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {20287 ps} 0}
+WaveRestoreCursors {{Cursor 1} {21998 ps} 0}
 quietly wave cursor active 1
 configure wave -namecolwidth 140
 configure wave -valuecolwidth 100
@@ -64,4 +72,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ps
 update
-WaveRestoreZoom {0 ps} {11224 ps}
+WaveRestoreZoom {21662 ps} {31878 ps}

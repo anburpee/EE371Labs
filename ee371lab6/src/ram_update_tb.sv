@@ -57,7 +57,7 @@ module ram_update_tb ();
 
         // ----- blk's turn -----
 
-        sw[5:3] <= 3'b111;
+        sw[5:3] <= 3'b111; // invalid_xy
         sw[2:0] <= 3'b010;
         key[1] <= 1'b1; // down left (should NOT move -- NO TOKEN HERE ANYMORE)
         repeat(3) @(posedge clk);
