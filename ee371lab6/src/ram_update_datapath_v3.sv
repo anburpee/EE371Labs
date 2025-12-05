@@ -59,6 +59,8 @@ module ram_update_datapath (input logic clk,
     logic [3:0] count;
     logic [3:0] red_addr, blk_addr; // red into rams
     logic [4:0] red_count, blk_count;
+    logic skipped; // to keep track of whether the player skipped over opponent (to have a chance at another turn)
+
 
     // instantiate RAMS that store location of each token
     black_ram16x7 blk_ram (.address(blk_addr), .clock(clk), .data(data_blk), .wren(wren_blk), .q(q_blk));
@@ -85,6 +87,7 @@ module ram_update_datapath (input logic clk,
             token_addr <= 1'b0;
             two_over <= 1'b0;
             king <= 1'b0;
+            skipped <= 1'b0;
             two_over0 <= 1'b0;
             two_over1 <= 1'b0;
             two_over2 <= 1'b0;
@@ -112,6 +115,7 @@ module ram_update_datapath (input logic clk,
             x_opp = reds_turn ? q_blk[5:3] : q_red [5:3];
             y_opp = reds_turn ? q_blk[2:0] : q_red [2:0];
             // 7'b0000000 is an invalid location for a token to be in (top left corner, light square)
+            // but it's where "erased" tokens are stored, so it's possible for q_red/q_blk to be 7'b0000000
             if ((x_own == x_curr) && (y_own == y_curr) && !({x_own, y_own} == 7'b0000000)) begin
                 valid_xy <= 1'b1;
                 token_addr <= count;
@@ -151,22 +155,31 @@ module ram_update_datapath (input logic clk,
             x_opp = reds_turn ? q_blk[5:3] : q_red[5:3];
             y_opp = reds_turn ? q_blk[2:0] : q_red[2:0];
 
-            if ((x_opp == x_curr + 1) && (y_opp == y_curr + 1)) 
-                opp_adj0 <= 1'b1;
-            if (((x_own == x_curr + 2) && (y_own == y_curr + 2)) || ((x_opp == x_curr - 2) && (y_opp == y_curr + 2)))
-                two_over0 <= 1'b1;
-            if ((x_opp == x_curr - 1) && (y_opp == y_curr + 1)) 
-                opp_adj1 <= 1'b1;
-            if (((x_own == x_curr - 2) && (y_own == y_curr + 2)) || ((x_opp == x_curr - 2) && (y_opp == y_curr + 2)))
-                two_over1 <= 1'b1;
-            if ((x_opp == x_curr + 1) && (y_opp == y_curr - 1)) 
-                opp_adj2 <= 1'b1;
-            if (((x_own == x_curr + 2) && (y_own == y_curr - 2)) || ((x_opp == x_curr + 2) && (y_opp == y_curr - 2)))
-                two_over2 <= 1'b1;
-            if ((x_opp == x_curr - 1) && (y_opp == y_curr - 1)) 
-                opp_adj3 <= 1'b1;
-            if (((x_own == x_curr - 2) && (y_own == y_curr - 2)) || ((x_opp == x_curr - 2) && (y_opp == y_curr - 2)))
-                two_over3 <= 1'b1;
+            if (x_curr < 6 && y_curr < 6) begin // check player woudln't run into board edge
+                if ((x_opp == x_curr + 1) && (y_opp == y_curr + 1)) 
+                    opp_adj0 <= 1'b1;
+                if (((x_own == x_curr + 2) && (y_own == y_curr + 2)) || ((x_opp == x_curr - 2) && (y_opp == y_curr + 2)))
+                    two_over0 <= 1'b1;
+            end
+            if (x_curr > 1 && y_curr < 6) begin // check player woudln't run into board edge
+                if ((x_opp == x_curr - 1) && (y_opp == y_curr + 1)) 
+                    opp_adj1 <= 1'b1;
+                if (((x_own == x_curr - 2) && (y_own == y_curr + 2)) || ((x_opp == x_curr - 2) && (y_opp == y_curr + 2)))
+                    two_over1 <= 1'b1;
+            end
+            if (x_curr < 6 && y_curr > 1) begin // check player woudln't run into board edge
+                if ((x_opp == x_curr + 1) && (y_opp == y_curr - 1)) 
+                    opp_adj2 <= 1'b1;
+                if (((x_own == x_curr + 2) && (y_own == y_curr - 2)) || ((x_opp == x_curr + 2) && (y_opp == y_curr - 2)))
+                    two_over2 <= 1'b1;
+            end
+            if (x_curr > 1 && y_curr > 1) begin // check player woudln't run into board edge
+                if ((x_opp == x_curr - 1) && (y_opp == y_curr - 1)) 
+                    opp_adj3 <= 1'b1;
+                if (((x_own == x_curr - 2) && (y_own == y_curr - 2)) || ((x_opp == x_curr - 2) && (y_opp == y_curr - 2)))
+                    two_over3 <= 1'b1;
+            end
+        end
             ////////////////////v3 -- update spot_encodings64x3 RAMs////////////////////////
             // output logic [5:0] encodings_addr1_even, 
             // output logic [5:0] encodings_addr2_even, 
@@ -303,6 +316,7 @@ module ram_update_datapath (input logic clk,
             king <= king_new;
             x_curr <= x_new;
             y_curr <= y_new;
+            skipped <= 1'b1;
             ////////////////////v3 -- update spot_encodings64x3 RAMs////////////////////////
             ////////////////////erase moving token from current spot (to later redraw it in the new spot)///////////////////////
             //////////////////// if we don't erase here, we would have to do 3 simultaneous writes at check_done:
@@ -336,6 +350,8 @@ module ram_update_datapath (input logic clk,
     assign count_eq_11 = (count == 4'd11);    
     // direction[1] == TRUE   means direction is upward
     // direction[1] == False   means direction is downward
+    // direction[0] == TRUE   means direction is left
+    // direction[0] == False   means direction is right
     assign legal_dir = king ? 1'b1 : (reds_turn ? ((direction[1]) ? 1'b1 : 1'b0) : ((direction[1]) ? 1'b0 : 1'b1));
     assign edge_blocked0 = ((direction[1]) && (y_curr == 0)) || (~(direction[1]) && (y_curr == 7)) || 
                            ((direction[0]) && (x_curr == 0)) || (~(direction[0]) && (x_curr == 7));
@@ -345,9 +361,11 @@ module ram_update_datapath (input logic clk,
     // otherwise:
     // red's turn -> check upward directions
     // black's turn -> check downward directions
-    assign cont_turn = king ? 
+    assign cont_turn = skipped ? ////////////////////////////////////////////////////////////////////////////////////////////////new
+                       (king ? 
                        ((opp_adj0 && ~two_over0) || (opp_adj1 && ~two_over1) || (opp_adj2 && ~two_over2) || (opp_adj3 && ~two_over3)) :
-                       (reds_turn ? ((opp_adj2 && ~two_over2) || (opp_adj3 && ~two_over3)) : ((opp_adj0 && ~two_over0) || (opp_adj1 && ~two_over1)));
+                       (reds_turn ? ((opp_adj2 && ~two_over2) || (opp_adj3 && ~two_over3)) : ((opp_adj0 && ~two_over0) || (opp_adj1 && ~two_over1)))) :
+                       1'b0; // no chance of continuing turn unless you've already skipped over an opponent
 
 
 endmodule // ram_update_datapath

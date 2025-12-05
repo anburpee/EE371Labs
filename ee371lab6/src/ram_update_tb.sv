@@ -182,7 +182,7 @@ module ram_update_tb ();
         key[1] <= 1'b0;
         repeat(100) @(posedge clk);
 
-        // can't make another move
+        // can't make another move  /////////////////   BUT MULT_ITER GOES HIGH AGAIN AT 185050 PS B/C I DON'T HAVE EDGE CHECK
 
         // timestamp
         // ----- red's turn -----
