@@ -7,6 +7,7 @@ module ram_update_tb ();
 	logic [5:0] sw;
 	logic iter_done;
     logic invalid_move;
+    logic reds_turn;
 
     ram_update dut (.*);
 

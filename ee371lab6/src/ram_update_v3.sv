@@ -8,6 +8,7 @@ module ram_update (input logic clk,
                    input logic [5:0] sw,
                    output logic iter_done, // don't need?
                    output logic invalid_move,
+                   output logic reds_turn,
                     ////////////////v3//////////////////
                     // even_iter & having 2 RAMs is to make sure RAMs are not written to by ram_update and read from display_update at the same time @ load_skip
                     output logic even_iter, // toggles every iteration

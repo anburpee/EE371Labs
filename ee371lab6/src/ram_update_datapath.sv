@@ -349,10 +349,10 @@ module ram_update_datapath (input logic clk,
                             output logic edge_blocked1,
                             output logic two_over,  // checks if there is a token two spaces over in the specified direction
                             output logic cont_turn,
-                            output logic mult_iter
+                            output logic mult_iter,
+                            output logic reds_turn
                         );
 
-    logic reds_turn;
     logic wren_red, wren_blk;
     logic [6:0] q_red, q_blk;
     logic [6:0] data_red, data_blk;
@@ -402,8 +402,8 @@ module ram_update_datapath (input logic clk,
             opp_adj2 <= 1'b0;
             opp_adj3 <= 1'b0;
             if (mult_iter == 1'b0) begin
-                x_curr <= sw[5:3];
-                y_curr <= sw[2:0];
+                x_curr <= sw[5:3]; // only update when mult_iter == 0 b/c x_curr is set the new value at load_skip (when there's a possibility of another turn)
+                y_curr <= sw[2:0]; // only update when mult_iter == 0 b/c y_curr is set the new value at load_skip
             end
         end
         if (read) begin
@@ -451,12 +451,14 @@ module ram_update_datapath (input logic clk,
                 two_over <= 1'b1;
             end
         end
-        if (check_done) begin
+        if (check_done) begin   // new values from load_adj/load_skip are now in blk_ram, red_ram
             logic [2:0] x_own, y_own, x_opp, y_opp;
-            x_own = reds_turn ? q_red[5:3] : q_blk [5:3];
-            y_own = reds_turn ? q_red[2:0] : q_blk [2:0];
-            x_opp = reds_turn ? q_blk[5:3] : q_red [5:3];
-            y_opp = reds_turn ? q_blk[2:0] : q_red [2:0];
+            // fine even if q_red, q_blk stores an invalid location(after being skipped over & "erased") because
+            // opp_adjX will always be false
+            x_own = reds_turn ? q_red[5:3] : q_blk[5:3];
+            y_own = reds_turn ? q_red[2:0] : q_blk[2:0];
+            x_opp = reds_turn ? q_blk[5:3] : q_red[5:3];
+            y_opp = reds_turn ? q_blk[2:0] : q_red[2:0];
 
             if (x_curr < 6 && y_curr < 6) begin // check player woudln't run into board edge
                 if ((x_opp == x_curr + 1) && (y_opp == y_curr + 1)) 
@@ -577,9 +579,9 @@ module ram_update_datapath (input logic clk,
     // status signals
     assign count_eq_11 = (count == 4'd11);    
     // direction[1] == TRUE   means direction is upward
-    // direction[1] == False   means direction is downward
+    // direction[1] == FALSE   means direction is downward
     // direction[0] == TRUE   means direction is left
-    // direction[0] == False   means direction is right
+    // direction[0] == FALSE   means direction is right
     assign legal_dir = king ? 1'b1 : (reds_turn ? ((direction[1]) ? 1'b1 : 1'b0) : ((direction[1]) ? 1'b0 : 1'b1));
     assign edge_blocked0 = ((direction[1]) && (y_curr == 0)) || (~(direction[1]) && (y_curr == 7)) || 
                            ((direction[0]) && (x_curr == 0)) || (~(direction[0]) && (x_curr == 7));

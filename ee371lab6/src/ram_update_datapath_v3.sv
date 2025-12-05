@@ -26,6 +26,7 @@ module ram_update_datapath (input logic clk,
                             output logic two_over,  // checks if there is a token two spaces over in the specified direction
                             output logic cont_turn,
                             output logic mult_iter,
+                            output logic reds_turn,
                             ////////////////v3//////////////////
                             // even_iter & having 2 RAMs is to make sure RAMs are not written to by ram_update and read from display_update at the same time @ load_skip
                             output logic even_iter, // toggles every iteration
@@ -45,7 +46,6 @@ module ram_update_datapath (input logic clk,
                             ////////////////v3//////////////////
                             );
 
-    logic reds_turn;
     logic wren_red, wren_blk;
     logic [6:0] q_red, q_blk;
     logic [6:0] data_red, data_blk;
@@ -60,7 +60,6 @@ module ram_update_datapath (input logic clk,
     logic [3:0] red_addr, blk_addr; // red into rams
     logic [4:0] red_count, blk_count;
     logic skipped; // to keep track of whether the player skipped over opponent (to have a chance at another turn)
-
 
     // instantiate RAMS that store location of each token
     black_ram16x7 blk_ram (.address(blk_addr), .clock(clk), .data(data_blk), .wren(wren_blk), .q(q_blk));
@@ -149,7 +148,7 @@ module ram_update_datapath (input logic clk,
         if (check_done) begin   // new values from load_adj/load_skip are now in blk_ram, red_ram
             logic [2:0] x_own, y_own, x_opp, y_opp;
             // fine even if q_red, q_blk stores an invalid location(after being skipped over & "erased") because
-            // opp_adjx will always be false
+            // opp_adjX will always be false
             x_own = reds_turn ? q_red[5:3] : q_blk[5:3];
             y_own = reds_turn ? q_red[2:0] : q_blk[2:0];
             x_opp = reds_turn ? q_blk[5:3] : q_red[5:3];
@@ -179,42 +178,41 @@ module ram_update_datapath (input logic clk,
                 if (((x_own == x_curr - 2) && (y_own == y_curr - 2)) || ((x_opp == x_curr - 2) && (y_opp == y_curr - 2)))
                     two_over3 <= 1'b1;
             end
+            ////////////////////v3 -- update spot_encodings64x3 RAMs////////////////////////
+            // output logic [5:0] encodings_addr1_even, 
+            // output logic [5:0] encodings_addr2_even, 
+            // output logic [2:0] encodings_data1_even,
+            // output logic [2:0] encodings_data2_even,
+            // output logic encodings_wren1_even,
+            // output logic encodings_wren2_even,
+            // output logic [5:0] encodings_addr1_odd, 
+            // output logic [5:0] encodings_addr2_odd, 
+            // output logic [2:0] encodings_data1_odd,
+            // output logic [2:0] encodings_data2_odd,
+            // output logic encodings_wren1_odd,
+            // output logic encodings_wren2_odd,
+            case (even_iter) // do all 12 iterations(b/c we don't know everything that changed -- yes, we know to draw a new spot at x_curr, y_curr but we don't have the coordinates of tokens jumped over to write in 0s to) 
+                //------------ this is after the previous spot is erased in load_skip/load_adj
+                // wren should be turned off after this current state ????
+                1'b0: begin // update odd iteration RAM
+                    // encodings_wren1_odd <= 1'b1; //  CONTROL ALL WREN LOGIC FROM DE1_SOC BASED ON EVEN_ITER -- should be fine since even if q_red and q_blk are updated, these registers don't update until the next check_done
+                    // encodings_wren2_odd <= 1'b1;
+                    encodings_addr1_odd <= 8*(q_red[5:3]) + q_red[2:0]; // red
+                    encodings_data1_odd <= (q_red == 7'b0000001) ? 3'b000 : (king ? 3'b100 : 3'b010); // if invalid location, then piece is "erased"/ out of the game so load 0 (dark square)
+                    encodings_addr2_odd <= 8*(q_blk[5:3]) + q_blk[2:0]; // black
+                    encodings_data2_odd <= (q_blk == 7'b0000001) ? 3'b000 : (king ? 3'b011 : 3'b001);
+                end
+                1'b1: begin // update even iteration RAM
+                    // encodings_wren1_even <= 1'b1;
+                    // encodings_wren2_even <= 1'b1;
+                    encodings_addr1_even <= 8*(q_red[5:3]) + q_red[2:0]; // red
+                    encodings_data1_even <= (q_red == 7'b0000001) ? 3'b000 : (king ? 3'b100 : 3'b010);
+                    encodings_addr2_even <= 8*(q_blk[5:3]) + q_blk[2:0]; // black
+                    encodings_data2_even <= (q_blk == 7'b0000001) ? 3'b000 : (king ? 3'b011 : 3'b001);
+                end
+            endcase
+            //////////////////////////////////////////// set wren to 0? or unnessasary since the data & addrs are not changing
         end
-        ////////////////////v3 -- update spot_encodings64x3 RAMs////////////////////////
-        // output logic [5:0] encodings_addr1_even, 
-        // output logic [5:0] encodings_addr2_even, 
-        // output logic [2:0] encodings_data1_even,
-        // output logic [2:0] encodings_data2_even,
-        // output logic encodings_wren1_even,
-        // output logic encodings_wren2_even,
-        // output logic [5:0] encodings_addr1_odd, 
-        // output logic [5:0] encodings_addr2_odd, 
-        // output logic [2:0] encodings_data1_odd,
-        // output logic [2:0] encodings_data2_odd,
-        // output logic encodings_wren1_odd,
-        // output logic encodings_wren2_odd,
-        case (even_iter) // do all 12 iterations(b/c we don't know everything that changed -- yes, we know to draw a new spot at x_curr, y_curr but we don't have the coordinates of tokens jumped over to write in 0s to) 
-            //------------ this is after the previous spot is erased in load_skip/load_adj
-            // wren should be turned off after this current state ????
-            1'b0: begin // update odd iteration RAM
-                // encodings_wren1_odd <= 1'b1; //  CONTROL ALL WREN LOGIC FROM DE1_SOC BASED ON EVEN_ITER -- should be fine since even if q_red and q_blk are updated, these registers don't update until the next check_done
-                // encodings_wren2_odd <= 1'b1;
-                encodings_addr1_odd <= 8*(q_red[5:3]) + q_red[2:0]; // red
-                encodings_data1_odd <= (q_red == 7'b0000001) ? 3'b000 : (king ? 3'b100 : 3'b010); // if invalid location, then piece is "erased"/ out of the game so load 0 (dark square)
-                encodings_addr2_odd <= 8*(q_blk[5:3]) + q_blk[2:0]; // black
-                encodings_data2_odd <= (q_blk == 7'b0000001) ? 3'b000 : (king ? 3'b011 : 3'b001);
-            end
-            1'b1: begin // update even iteration RAM
-                // encodings_wren1_even <= 1'b1;
-                // encodings_wren2_even <= 1'b1;
-                encodings_addr1_even <= 8*(q_red[5:3]) + q_red[2:0]; // red
-                encodings_data1_even <= (q_red == 7'b0000001) ? 3'b000 : (king ? 3'b100 : 3'b010);
-                encodings_addr2_even <= 8*(q_blk[5:3]) + q_blk[2:0]; // black
-                encodings_data2_even <= (q_blk == 7'b0000001) ? 3'b000 : (king ? 3'b011 : 3'b001);
-            end
-        endcase
-        //////////////////////////////////////////// set wren to 0? or unnessasary since the data & addrs are not changing
-        
         if (incr_count) begin
             count <= count + 1;
         end
@@ -349,9 +347,9 @@ module ram_update_datapath (input logic clk,
     // status signals
     assign count_eq_11 = (count == 4'd11);    
     // direction[1] == TRUE   means direction is upward
-    // direction[1] == False   means direction is downward
+    // direction[1] == FALSE   means direction is downward
     // direction[0] == TRUE   means direction is left
-    // direction[0] == False   means direction is right
+    // direction[0] == FALSE   means direction is right
     assign legal_dir = king ? 1'b1 : (reds_turn ? ((direction[1]) ? 1'b1 : 1'b0) : ((direction[1]) ? 1'b0 : 1'b1));
     assign edge_blocked0 = ((direction[1]) && (y_curr == 0)) || (~(direction[1]) && (y_curr == 7)) || 
                            ((direction[0]) && (x_curr == 0)) || (~(direction[0]) && (x_curr == 7));
@@ -361,7 +359,7 @@ module ram_update_datapath (input logic clk,
     // otherwise:
     // red's turn -> check upward directions
     // black's turn -> check downward directions
-    assign cont_turn = skipped ? ////////////////////////////////////////////////////////////////////////////////////////////////new
+    assign cont_turn = skipped ? 
                        (king ? 
                        ((opp_adj0 && ~two_over0) || (opp_adj1 && ~two_over1) || (opp_adj2 && ~two_over2) || (opp_adj3 && ~two_over3)) :
                        (reds_turn ? ((opp_adj2 && ~two_over2) || (opp_adj3 && ~two_over3)) : ((opp_adj0 && ~two_over0) || (opp_adj1 && ~two_over1)))) :

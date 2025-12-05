@@ -194,12 +194,13 @@ module ram_update_ctrl (input logic clk,
     states ps, ns;
 
     // next state logic
+    // "|key" means any key is pressed
     always_comb begin
         ns = ps;
         case(ps)
             s_reset: ns = s_idle;
 
-            s_idle: ns = (|key) ? s_check0 : s_idle;      // FIX: key → |key
+            s_idle: ns = (|key) ? s_check0 : s_idle;    
 
             s_check0: ns = s_unknown00;
 
@@ -226,9 +227,9 @@ module ram_update_ctrl (input logic clk,
 
             s_known2: ns = cont_turn ? s_wait0 : s_wait1;
 
-            s_wait0: ns = (|key) ? s_wait0 : s_idle;      // FIX: key → |key
+            s_wait0: ns = (|key) ? s_wait0 : s_idle;    
 
-            s_wait1: ns = (|key) ? s_wait1 : s_reset;     // FIX: key → |key
+            s_wait1: ns = (|key) ? s_wait1 : s_reset;     
         endcase
     end
 
@@ -240,29 +241,22 @@ module ram_update_ctrl (input logic clk,
             ps <= ns;
     end
 
-    // output logic (FIXED: compare ps to states, and use |key)
-    assign load_iter    = (ps == s_reset);                // FIX
-    assign initialize   = (ps == s_idle) && (|key);       // FIX
-    assign read         = (ps == s_check0) || (ps == s_check_done);   // FIX
-    assign check0       = (ps == s_known0);               // FIX
-    assign check_done   = (ps == s_known1);               // FIX
-    assign incr_count   = ((ps == s_known0) && ~count_eq_11) || 
-                          ((ps == s_known1) && ~count_eq_11);         // FIX
-    assign reset_count  = (ps == s_update);               // FIX
-    assign invalid_xy   = (ps == s_update) && ~valid_xy;  // FIX
-    assign illegal_dir  = (ps == s_update) && ~legal_dir; // FIX
-    assign board_in_way = (ps == s_update) && (edge_blocked0 || 
-                         (opp_adj && edge_blocked1));     // FIX
-    assign token_in_way = (ps == s_update) && (own_adj || 
-                         (opp_adj && ~edge_blocked1 && two_over)); // FIX
-    assign load_adj     = (ps == s_update) && valid_xy && legal_dir &&
-                          ~edge_blocked0 && ~own_adj && ~opp_adj &&
-                          ~mult_iter;                      // FIX
-    assign load_skip    = (ps == s_update) && valid_xy && legal_dir &&
-                          ~edge_blocked0 && ~own_adj && opp_adj &&
-                          ~edge_blocked1 && ~two_over;      // FIX
-    assign mult_true    = (ps == s_wait0) && (~|key);      // FIX
-    assign done         = (ps == s_wait1) && (~|key);      // FIX
+    // output logic
+    assign load_iter    = (ps == s_reset);               
+    assign initialize   = (ps == s_idle) && (|key);    
+    assign read         = (ps == s_check0) || (ps == s_check_done);   
+    assign check0       = (ps == s_known0);               
+    assign check_done   = (ps == s_known1);              
+    assign incr_count   = ((ps == s_known0) && ~count_eq_11) || ((ps == s_known1) && ~count_eq_11);        
+    assign reset_count  = (ps == s_update);              
+    assign invalid_xy   = (ps == s_update) && ~valid_xy;  
+    assign illegal_dir  = (ps == s_update) && ~legal_dir; 
+    assign board_in_way = (ps == s_update) && (edge_blocked0 || (opp_adj && edge_blocked1));    
+    assign token_in_way = (ps == s_update) && (own_adj || (opp_adj && ~edge_blocked1 && two_over)); 
+    assign load_adj     = (ps == s_update) && valid_xy && legal_dir && ~edge_blocked0 && ~own_adj && ~opp_adj && ~mult_iter;                  
+    assign load_skip    = (ps == s_update) && valid_xy && legal_dir && ~edge_blocked0 && ~own_adj && opp_adj && ~edge_blocked1 && ~two_over; 
+    assign mult_true    = (ps == s_wait0) && (~|key); 
+    assign done         = (ps == s_wait1) && (~|key); 
 
 endmodule // ram_update_ctrl
 
