@@ -8,7 +8,8 @@ module ram_update (input logic clk,
                    input logic [5:0] sw,
                    output logic iter_done, // don't need?
                    output logic invalid_move,
-                   output logic reds_turn
+                   output logic reds_turn,
+                   output logic game_over
                    );
     
     logic load_iter, initialize, read, check0, check_done, incr_count, reset_count, load_adj, load_skip, mult_true, done; // control signals

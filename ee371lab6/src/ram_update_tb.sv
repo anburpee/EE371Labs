@@ -8,6 +8,7 @@ module ram_update_tb ();
 	logic iter_done;
     logic invalid_move;
     logic reds_turn;
+    logic game_over;
 
     ram_update dut (.*);
 
@@ -303,6 +304,170 @@ module ram_update_tb ();
         repeat(3) @(posedge clk);
         key[0] <= 1'b0;
         repeat(100) @(posedge clk);
+
+        // ----- red's turn -----
+
+        sw[5:3] <= 3'b010;
+        sw[2:0] <= 3'b011;
+        key[2] <= 1'b1; // up right (should move)
+        repeat(3) @(posedge clk);
+        key[2] <= 1'b0;
+        repeat(100) @(posedge clk);
+
+        // ----- blk's turn -----
+
+        sw[5:3] <= 3'b100;
+        sw[2:0] <= 3'b001;
+        key[1] <= 1'b1; // down right (should move -- CAPTURE)
+        repeat(3) @(posedge clk);
+        key[1] <= 1'b0;
+        repeat(100) @(posedge clk);
+
+        // ----- red's turn -----
+
+        sw[5:3] <= 3'b001;
+        sw[2:0] <= 3'b100;
+        key[2] <= 1'b1; // up right (should move -- CAPTURE)
+        repeat(3) @(posedge clk);
+        key[2] <= 1'b0;
+        repeat(100) @(posedge clk);
+
+        // ----- blk's turn -----
+
+        sw[5:3] <= 3'b111;
+        sw[2:0] <= 3'b100;
+        key[1] <= 1'b1; // down left (should move -- CAPTURE)
+        repeat(3) @(posedge clk);
+        key[1] <= 1'b0;
+        repeat(100) @(posedge clk);
+
+        // ----- red's turn -----
+
+        sw[5:3] <= 3'b010;
+        sw[2:0] <= 3'b101;
+        key[3] <= 1'b1; // up left (should move)
+        repeat(3) @(posedge clk);
+        key[3] <= 1'b0;
+        repeat(100) @(posedge clk);
+
+         // ----- blk's turn -----
+
+        sw[5:3] <= 3'b010;
+        sw[2:0] <= 3'b001;
+        key[0] <= 1'b1; // down right (should move -- CAPTURE)
+        repeat(3) @(posedge clk);
+        key[0] <= 1'b0;
+        repeat(100) @(posedge clk);
+
+        // ----- red's turn -----
+
+        sw[5:3] <= 3'b000;
+        sw[2:0] <= 3'b111;
+        key[2] <= 1'b1; // up right (should move)
+        repeat(3) @(posedge clk);
+        key[2] <= 1'b0;
+        repeat(100) @(posedge clk);
+
+        // ----- blk's turn -----
+
+        sw[5:3] <= 3'b000;
+        sw[2:0] <= 3'b011;
+        key[0] <= 1'b1; // down right (should move -- CAPTURE)
+        repeat(3) @(posedge clk);
+        key[0] <= 1'b0;
+        repeat(100) @(posedge clk);
+
+        // can move again
+
+        sw[5:3] <= 3'b010;
+        sw[2:0] <= 3'b101;
+        key[1] <= 1'b1; // down left (should move -- CAPTURE). ALSO BECOMES KING
+        repeat(3) @(posedge clk);
+        key[1] <= 1'b0;
+        repeat(100) @(posedge clk);
+
+        // ----- red's turn -----
+
+        sw[5:3] <= 3'b100;
+        sw[2:0] <= 3'b111;
+        key[3] <= 1'b1; // up left (should move)
+        repeat(3) @(posedge clk);
+        key[3] <= 1'b0;
+        repeat(100) @(posedge clk);
+
+        // ----- blk's turn -----
+
+        sw[5:3] <= 3'b101;
+        sw[2:0] <= 3'b110;
+        key[1] <= 1'b1; // down left (should move -- BECOMES KING)
+        repeat(3) @(posedge clk);
+        key[1] <= 1'b0;
+        repeat(100) @(posedge clk);
+
+        // ----- red's turn -----
+
+        sw[5:3] <= 3'b000;
+        sw[2:0] <= 3'b101;
+        key[2] <= 1'b1; // up right (should move)
+        repeat(3) @(posedge clk);
+        key[2] <= 1'b0;
+        repeat(100) @(posedge clk);
+
+        // ----- blk's turn -----
+
+        sw[5:3] <= 3'b100;
+        sw[2:0] <= 3'b111;
+        key[3] <= 1'b1; // up left (should move -- CAPTURE)
+        repeat(3) @(posedge clk);
+        key[3] <= 1'b0;
+        repeat(100) @(posedge clk);
+
+        // can go again
+
+        sw[5:3] <= 3'b010;
+        sw[2:0] <= 3'b101;
+        key[3] <= 1'b1; // up right (should move -- CAPTURE)
+        repeat(3) @(posedge clk);
+        key[3] <= 1'b0;
+        repeat(100) @(posedge clk);
+
+        // ----- red's turn -----
+
+        sw[5:3] <= 3'b111;
+        sw[2:0] <= 3'b110;
+        key[3] <= 1'b1; // up left (should move)
+        repeat(3) @(posedge clk);
+        key[3] <= 1'b0;
+        repeat(100) @(posedge clk);
+
+        // ----- blk's turn -----
+
+        sw[5:3] <= 3'b110;
+        sw[2:0] <= 3'b001;
+        key[1] <= 1'b1; // down left (should move)
+        repeat(3) @(posedge clk);
+        key[1] <= 1'b0;
+        repeat(100) @(posedge clk);
+
+        // ----- red's turn -----
+
+        sw[5:3] <= 3'b110;
+        sw[2:0] <= 3'b101;
+        key[3] <= 1'b1; // up left (should move)
+        repeat(3) @(posedge clk);
+        key[3] <= 1'b0;
+        repeat(100) @(posedge clk);
+
+        // ----- blk's turn -----
+
+        sw[5:3] <= 3'b100;
+        sw[2:0] <= 3'b011;
+        key[0] <= 1'b1; // down right (should move -- CAPTURE)
+        repeat(3) @(posedge clk);
+        key[0] <= 1'b0;
+        repeat(100) @(posedge clk);
+
+        // WIN LOGIC SHOULD NOW BE HAPPENING
 
         $stop;
     end // initial
