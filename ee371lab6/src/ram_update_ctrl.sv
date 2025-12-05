@@ -188,7 +188,8 @@ module ram_update_ctrl (input logic clk,
                         );
 
     // states
-    typedef enum logic [4:0] {s_reset, s_idle, s_check0, s_known0, s_update, s_check_done, s_known1, s_wait0, s_wait1} states;
+    typedef enum logic [4:0] {s_reset, s_idle, s_check0, s_unknown00, s_unknown01, s_known0, s_update, 
+                              s_check_done, s_unknown10, s_unknown11, s_known1, s_wait0, s_wait1} states;
     states ps, ns;
 
     // next state logic
@@ -199,16 +200,24 @@ module ram_update_ctrl (input logic clk,
 
             s_idle: ns = (|key) ? s_check0 : s_idle;      // FIX: key → |key
 
-            s_check0: ns = s_known0;
+            s_check0: ns = s_unknown00;
+
+            s_unknown00: ns = s_unknown01;
+
+            s_unknown01: ns = s_known0;
 
             s_known0: ns = count_eq_11 ? s_update : s_check0;
 
             s_update: ns = (valid_xy && legal_dir && ~edge_blocked0 && ~own_adj) ? 
-                           (opp_adj ? ((~edge_blocked1 && ~two_over) ? s_check_done : s_idle)
-                                    : (mult_iter ? s_idle : s_check_done)) : 
+                           (opp_adj ? ((~edge_blocked1 && ~two_over) ? s_check_done : s_idle) :
+                           (mult_iter ? s_idle : s_check_done)) : 
                            s_idle;
 
-            s_check_done: ns = s_known1;
+            s_check_done: ns = s_unknown10;
+
+            s_unknown10: ns = s_unknown11;
+
+            s_unknown11: ns = s_known1;
 
             s_known1: ns = cont_turn ?  s_wait0 : (count_eq_11 ? s_wait1 : s_check_done);
 

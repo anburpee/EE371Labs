@@ -51,34 +51,34 @@ module DE1_SoC (HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, KEY, LEDR, SW,
 	// logic encodings_wren2_odd
 	////////////////v3//////////////////
 
-		// only need to MUX the sencod address/wren since we're only reading from port 2
-	spot_encodings64x3 spot_encodings_even (
-		.address_a(encodings_addr1_even),
-		.address_b(encodings_addr2_even),
-		.clock,
-		.data_a(encodings_data1_even),
-		.data_b(encodings_data2_even),
-		.wren_a(1'b1),	// never needs to be 0 since we never read from port1
-		.wren_b(even_iter ? 1'b1 : 1'b0), // on even iterations, wren for spot_encodings_even is always high
-		// .wren_a(1'b1),
-		// .wren_b(even_iter ? encogings_wren1_even : 1'b0),
-		.q_a(q_even),	// connects to display_update
-		.q_b(q_unused_even)
-	);
+	// 	// only need to MUX the sencod address/wren since we're only reading from port 2
+	// spot_encodings64x3 spot_encodings_even (
+	// 	.address_a(encodings_addr1_even),
+	// 	.address_b(encodings_addr2_even),
+	// 	.clock,
+	// 	.data_a(encodings_data1_even),
+	// 	.data_b(encodings_data2_even),
+	// 	.wren_a(1'b1),	// never needs to be 0 since we never read from port1
+	// 	.wren_b(even_iter ? 1'b1 : 1'b0), // on even iterations, wren for spot_encodings_even is always high
+	// 	// .wren_a(1'b1),
+	// 	// .wren_b(even_iter ? encogings_wren1_even : 1'b0),
+	// 	.q_a(q_even),	// connects to display_update
+	// 	.q_b(q_unused_even)
+	// );
 
-	spot_encodings64x3 spot_encodings_odd (
-		.address_a(encodings_addr1_odd),
-		.address_b(encodings_addr2_odd),
-		.clock,
-		.data_a(encodings_data1_odd),
-		.data_b(encodings_data2_odd),
-		.wren_a(1'b1),	// never needs to be 0 since we never read from port1
-		.wren_b(even_iter ? 1'b0 : 1'b1), // on odd iterations, wren for spot_encodings_odd is always high
-		// .wren_a(1'b1),
-		// .wren_b(even_iter ? 1'b0 : encodings_wren2_odd),
-		.q_a(q_odd),	// connects to display_update
-		.q_b(q_unused_odd)
-	);
+	// spot_encodings64x3 spot_encodings_odd (
+	// 	.address_a(encodings_addr1_odd),
+	// 	.address_b(encodings_addr2_odd),
+	// 	.clock,
+	// 	.data_a(encodings_data1_odd),
+	// 	.data_b(encodings_data2_odd),
+	// 	.wren_a(1'b1),	// never needs to be 0 since we never read from port1
+	// 	.wren_b(even_iter ? 1'b0 : 1'b1), // on odd iterations, wren for spot_encodings_odd is always high
+	// 	// .wren_a(1'b1),
+	// 	// .wren_b(even_iter ? 1'b0 : encodings_wren2_odd),
+	// 	.q_a(q_odd),	// connects to display_update
+	// 	.q_b(q_unused_odd)
+	// );
 
 	assign HEX0 = '1;
 	assign HEX1 = '1;

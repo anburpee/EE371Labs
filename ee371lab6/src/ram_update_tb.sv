@@ -35,7 +35,7 @@ module ram_update_tb ();
         key[1] <= 1'b1; // no token exists here -- NOT valid
         repeat(3) @(posedge clk);
         key[1] <= 1'b0;
-        repeat(55) @(posedge clk);
+        repeat(100) @(posedge clk);
 
         // could test left down for blocked
 
@@ -44,7 +44,7 @@ module ram_update_tb ();
         key[1] <= 1'b1; // down left (should move)
         repeat(3) @(posedge clk);
         key[1] <= 1'b0;
-        repeat(55) @(posedge clk);
+        repeat(100) @(posedge clk);
 
         // ----- red's turn -----
 
@@ -53,7 +53,7 @@ module ram_update_tb ();
         key[3] <= 1'b1; // up left (should move)
         repeat(3) @(posedge clk);
         key[3] <= 1'b0;
-        repeat(55) @(posedge clk);
+        repeat(100) @(posedge clk);
 
         // ----- blk's turn -----
 
@@ -62,21 +62,21 @@ module ram_update_tb ();
         key[1] <= 1'b1; // down left (should NOT move -- NO TOKEN HERE ANYMORE)
         repeat(3) @(posedge clk);
         key[1] <= 1'b0;
-        repeat(55) @(posedge clk);
+        repeat(100) @(posedge clk);
 
         sw[5:3] <= 3'b110;
         sw[2:0] <= 3'b011;
         key[2] <= 1'b1; // up right (should NOT move -- invalid direction)
         repeat(3) @(posedge clk);
         key[2] <= 1'b0;
-        repeat(55) @(posedge clk);
+        repeat(100) @(posedge clk);
 
         sw[5:3] <= 3'b110;
         sw[2:0] <= 3'b011;
         key[0] <= 1'b1; // down right (should move)
         repeat(3) @(posedge clk);
         key[0] <= 1'b0;
-        repeat(55) @(posedge clk);
+        repeat(100) @(posedge clk);
 
         // ----- red's turn -----
 
@@ -85,14 +85,14 @@ module ram_update_tb ();
         key[2] <= 1'b1; // up right (should NOT move -- blocked by blk)
         repeat(3) @(posedge clk);
         key[2] <= 1'b0;
-        repeat(55) @(posedge clk);
+        repeat(100) @(posedge clk);
 
         sw[5:3] <= 3'b011;
         sw[2:0] <= 3'b100;
         key[2] <= 1'b1; // up right (should move)
         repeat(3) @(posedge clk);
         key[2] <= 1'b0;
-        repeat(55) @(posedge clk);
+        repeat(100) @(posedge clk);
 
         // ----- blk's turn -----
 
@@ -101,28 +101,28 @@ module ram_update_tb ();
         key[3] <= 1'b1; // up left (should NOT move -- not KING token)
         repeat(3) @(posedge clk);
         key[3] <= 1'b0;
-        repeat(55) @(posedge clk);
+        repeat(100) @(posedge clk);
 
         sw[5:3] <= 3'b111;
         sw[2:0] <= 3'b100;
         key[0] <= 1'b1; // down right (should NOT move -- edge of board)
         repeat(3) @(posedge clk);
         key[0] <= 1'b0;
-        repeat(55) @(posedge clk);
+        repeat(100) @(posedge clk);
 
         sw[5:3] <= 3'b111;
         sw[2:0] <= 3'b100;
         key[1] <= 1'b1; // down left (should NOT move -- blocked by red)
         repeat(3) @(posedge clk);
         key[1] <= 1'b0;
-        repeat(55) @(posedge clk);
+        repeat(100) @(posedge clk);
 
         sw[5:3] <= 3'b001;
         sw[2:0] <= 3'b010;
         key[1] <= 1'b1; // down left (should move)
         repeat(3) @(posedge clk);
         key[1] <= 1'b0;
-        repeat(55) @(posedge clk);
+        repeat(100) @(posedge clk);
 
         // ----- red's turn -----
 
@@ -131,14 +131,14 @@ module ram_update_tb ();
         key[0] <= 1'b1; // down right (should NOT move -- wrong color token)
         repeat(3) @(posedge clk);
         key[0] <= 1'b0;
-        repeat(55) @(posedge clk);
+        repeat(100) @(posedge clk);
 
         sw[5:3] <= 3'b000;
         sw[2:0] <= 3'b101;
         key[2] <= 1'b1; // up right (should move)
         repeat(3) @(posedge clk);
         key[2] <= 1'b0;
-        repeat(55) @(posedge clk);
+        repeat(100) @(posedge clk);
 
         // ----- blk's turn -----
 
@@ -147,7 +147,7 @@ module ram_update_tb ();
         key[1] <= 1'b1; // down left (should move)
         repeat(3) @(posedge clk);
         key[1] <= 1'b0;
-        repeat(55) @(posedge clk);
+        repeat(100) @(posedge clk);
 
         // ----- red's turn -----
 
@@ -156,7 +156,7 @@ module ram_update_tb ();
         key[3] <= 1'b1; // up left (should move)
         repeat(3) @(posedge clk);
         key[3] <= 1'b0;
-        repeat(55) @(posedge clk);
+        repeat(100) @(posedge clk);
 
         // ----- blk's turn -----
 
@@ -166,7 +166,7 @@ module ram_update_tb ();
         // also red token at (4,3) should be deleted now bc captured
         repeat(3) @(posedge clk);
         key[1] <= 1'b0;
-        repeat(55) @(posedge clk);
+        repeat(100) @(posedge clk);
 
         // can make another move
 
@@ -175,7 +175,7 @@ module ram_update_tb ();
         key[1] <= 1'b1; // down left (should move -- MULT_ITER IS HIGH so capture logic)
         repeat(3) @(posedge clk);
         key[1] <= 1'b0;
-        repeat(55) @(posedge clk);
+        repeat(100) @(posedge clk);
 
         // can't make another move
 
@@ -186,7 +186,7 @@ module ram_update_tb ();
         key[3] <= 1'b1; // up left (should move)
         repeat(3) @(posedge clk);
         key[3] <= 1'b0;
-        repeat(55) @(posedge clk);
+        repeat(100) @(posedge clk);
 
         // ----- blk's turn -----
 
@@ -195,7 +195,7 @@ module ram_update_tb ();
         key[0] <= 1'b1; // down right (should move)
         repeat(3) @(posedge clk);
         key[0] <= 1'b0;
-        repeat(55) @(posedge clk);
+        repeat(100) @(posedge clk);
 
         // ----- red's turn -----
 
@@ -204,7 +204,7 @@ module ram_update_tb ();
         key[2] <= 1'b1; // up right (should move)
         repeat(3) @(posedge clk);
         key[2] <= 1'b0;
-        repeat(55) @(posedge clk);
+        repeat(100) @(posedge clk);
 
         // ----- blk's turn -----
 
@@ -213,7 +213,7 @@ module ram_update_tb ();
         key[0] <= 1'b1; // down right (should move -- BECOMES KING)
         repeat(3) @(posedge clk);
         key[0] <= 1'b0;
-        repeat(55) @(posedge clk);
+        repeat(100) @(posedge clk);
 
         // ----- red's turn -----
 
@@ -222,7 +222,7 @@ module ram_update_tb ();
         key[3] <= 1'b1; // up left (should NOT move -- blocked by red)
         repeat(3) @(posedge clk);
         key[3] <= 1'b0;
-        repeat(55) @(posedge clk);
+        repeat(100) @(posedge clk);
 
         // ----- blk's turn -----
 
@@ -231,7 +231,7 @@ module ram_update_tb ();
         key[2] <= 1'b1; // up right (should move -- CAPTURE)
         repeat(3) @(posedge clk);
         key[2] <= 1'b0;
-        repeat(55) @(posedge clk);
+        repeat(100) @(posedge clk);
 
         // can go again
 
@@ -240,7 +240,7 @@ module ram_update_tb ();
         key[2] <= 1'b1; // up right (should move -- CAPTURE)
         repeat(3) @(posedge clk);
         key[2] <= 1'b0;
-        repeat(55) @(posedge clk);
+        repeat(100) @(posedge clk);
 
         // can go again
 
@@ -249,7 +249,7 @@ module ram_update_tb ();
         key[1] <= 1'b1; // down left (should move)
         repeat(3) @(posedge clk);
         key[1] <= 1'b0;
-        repeat(55) @(posedge clk);
+        repeat(100) @(posedge clk);
 
         $stop;
     end // initial
