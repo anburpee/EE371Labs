@@ -2,7 +2,7 @@
 // submodules ram_update_ctrl, ram_update_datapath
 // CONNECT VALID_MOVE TO AN LED
 `timescale 1 ps / 1 ps
-module ram_update (input logic clk, 
+module ram_update_v3 (input logic clk, 
                    input logic reset,
                    input logic [3:0] key,
                    input logic [5:0] sw,
@@ -12,19 +12,18 @@ module ram_update (input logic clk,
                     ////////////////v3//////////////////
                     // even_iter & having 2 RAMs is to make sure RAMs are not written to by ram_update and read from display_update at the same time @ load_skip
                     output logic even_iter, // toggles every iteration
-                    // should instead be write_in_progress that goes high @ load_skip, load_adj, and check_done
                     output logic [5:0] encodings_addr1_even, 
                     output logic [5:0] encodings_addr2_even, 
                     output logic [2:0] encodings_data1_even,
                     output logic [2:0] encodings_data2_even,
-                    output logic encodings_wren1_even,
-                    output logic encodings_wren2_even,
+                    // output logic encodings_wren1_even,
+                    // output logic encodings_wren2_even,
                     output logic [5:0] encodings_addr1_odd, 
                     output logic [5:0] encodings_addr2_odd, 
                     output logic [2:0] encodings_data1_odd,
                     output logic [2:0] encodings_data2_odd,
-                    output logic encodings_wren1_odd,
-                    output logic encodings_wren2_odd
+                    // output logic encodings_wren1_odd,
+                    // output logic encodings_wren2_odd
                     ////////////////v3//////////////////
                    );
     
@@ -39,4 +38,4 @@ module ram_update (input logic clk,
 
     // output logic
     assign invalid_move = invalid_xy || illegal_dir || board_in_way || token_in_way;
-endmodule
+endmodule // ram_update_v3

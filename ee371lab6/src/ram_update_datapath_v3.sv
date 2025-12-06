@@ -1,7 +1,7 @@
 // datapath for ram_update module
 // sends status signals to and recieves control signals from ram_update_ctrl.sv
 `timescale 1 ps / 1 ps
-module ram_update_datapath (input logic clk,
+module ram_update_datapath_v3 (input logic clk,
                             input logic reset, 
                             input logic [3:0] key,
                             input logic [5:0] sw,
@@ -31,7 +31,6 @@ module ram_update_datapath (input logic clk,
                             ////////////////v3//////////////////
                             // even_iter & having 2 RAMs is to make sure RAMs are not written to by ram_update and read from display_update at the same time @ load_skip
                             output logic even_iter, // toggles every iteration
-                            // should instead be write_in_progress that goes high @ load_skip, load_adj, and check_done
                             output logic [5:0] encodings_addr1_even, 
                             output logic [5:0] encodings_addr2_even, 
                             output logic [2:0] encodings_data1_even,
@@ -355,4 +354,4 @@ module ram_update_datapath (input logic clk,
                        1'b0; // no chance of continuing turn unless you've already skipped over an opponent
     assign game_over = (red_count == 0) || (blk_count == 0);
 
-endmodule // ram_update_datapath
+endmodule // ram_update_datapath_v3

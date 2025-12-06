@@ -669,6 +669,5 @@ set_global_assignment -name EDA_OUTPUT_DATA_FORMAT "SYSTEMVERILOG HDL" -section_
 set_global_assignment -name VERILOG_FILE ../src/DE1_SOC_golden_top.v
 set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
 set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
-set_global_assignment -name MIF_FILE spot_encodings.mif
-set_global_assignment -name QIP_FILE spot_encodings64x3.qip
 set_global_assignment -name QIP_FILE black_ram16x7.qip
+set_global_assignment -name QIP_FILE spot_encodings64x3.qip

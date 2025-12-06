@@ -1,7 +1,7 @@
 // control module for ram_update
 // recieves status signals and sends control signals to ram_update_datapath.sv
 `timescale 1 ps / 1 ps
-module ram_update_ctrl (input logic clk,
+module ram_update_ctrl_v3 (input logic clk,
                         input logic reset, 
                         input logic [3:0] key,
                         input logic count_eq_11,
@@ -102,4 +102,4 @@ module ram_update_ctrl (input logic clk,
     assign mult_true    = (ps == s_wait0) && (~|key); 
     assign done         = (ps == s_wait1) && (~|key); 
 
-endmodule // ram_update_ctrl
+endmodule // ram_update_ctrl_v3
