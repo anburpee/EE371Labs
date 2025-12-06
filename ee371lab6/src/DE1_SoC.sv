@@ -124,31 +124,3 @@ module DE1_SoC (HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, KEY, LEDR, SW,
 
 	
 endmodule  // DE1_SoC
-
-
-`timescale 1 ps / 1 ps
-module DE1_SoC_testbench ();
-	logic [6:0] HEX0, HEX1, HEX2, HEX3, HEX4, HEX5;
-	logic [9:0] LEDR, SW;
-	logic [3:0] KEY;
-	logic CLOCK_50;
-	logic [7:0] VGA_R, VGA_G, VGA_B;
-	logic VGA_BLANK_N, VGA_CLK, VGA_HS, VGA_SYNC_N, VGA_VS;
-	
-	// instantiate module
-	DE1_SoC dut (.*);
-	
-	// create simulated clock
-	parameter T = 20;
-	initial begin
-		CLOCK_50 <= 0;
-		forever #(T/2) CLOCK_50 <= ~CLOCK_50;
-	end  // clock initial
-	
-	// simulated inputs
-	initial begin
-		
-		$stop();
-	end  // inputs initial
-	
-endmodule  // DE1_SoC_testbench

@@ -21,7 +21,7 @@ module ram_update_v3 (input logic clk,
                     output logic [5:0] encodings_addr1_odd, 
                     output logic [5:0] encodings_addr2_odd, 
                     output logic [2:0] encodings_data1_odd,
-                    output logic [2:0] encodings_data2_odd,
+                    output logic [2:0] encodings_data2_odd
                     // output logic encodings_wren1_odd,
                     // output logic encodings_wren2_odd
                     ////////////////v3//////////////////
@@ -32,9 +32,9 @@ module ram_update_v3 (input logic clk,
     logic count_eq_11, cont_turn, mult_iter; // status signals
     logic valid_xy, legal_dir, edge_blocked0, own_adj, opp_adj, edge_blocked1, two_over; // checks (status)
 
-    ram_update_ctrl ram_ctrl (.*);
+    ram_update_ctrl_v3 ram_ctrl (.*);
 
-    ram_update_datapath ram_datapath (.*);
+    ram_update_datapath_v3 ram_datapath (.*);
 
     // output logic
     assign invalid_move = invalid_xy || illegal_dir || board_in_way || token_in_way;

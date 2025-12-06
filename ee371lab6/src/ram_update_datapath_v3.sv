@@ -40,7 +40,7 @@ module ram_update_datapath_v3 (input logic clk,
                             output logic [5:0] encodings_addr1_odd, 
                             output logic [5:0] encodings_addr2_odd, 
                             output logic [2:0] encodings_data1_odd,
-                            output logic [2:0] encodings_data2_odd,
+                            output logic [2:0] encodings_data2_odd
                             // output logic encodings_wren1_odd,
                             // output logic encodings_wren2_odd
                             ////////////////v3//////////////////
@@ -325,6 +325,7 @@ module ram_update_datapath_v3 (input logic clk,
         end
         if (mult_true) begin
             mult_iter <= 1'b1;
+            even_iter <= ~even_iter; ///////////////////////////////v3
         end
         if (done) begin
             reds_turn <= ~reds_turn;

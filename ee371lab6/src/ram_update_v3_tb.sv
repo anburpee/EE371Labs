@@ -1,5 +1,5 @@
 `timescale 1 ps / 1 ps
-module ram_update_tb ();
+module ram_update_v3_tb ();
 
     logic clk;
 	logic reset;
@@ -9,7 +9,7 @@ module ram_update_tb ();
     logic reds_turn;
     logic game_over;
     ////////////////v3//////////////////
-    logic even_iter, // toggles every iteration
+    logic even_iter; // toggles every iteration
     logic [5:0] encodings_addr1_even;
     logic [5:0] encodings_addr2_even;
     logic [2:0] encodings_data1_even;
