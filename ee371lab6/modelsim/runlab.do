@@ -16,18 +16,20 @@ vlog "../src/ram_update_ctrl_v3.sv"
 vlog "../src/ram_update_datapath_v3.sv"
 vlog "../quartus/black_ram16x7.v"
 vlog "../quartus/red_ram16x7.v"
+vlog "../src/DE1_SoC_tb.sv"
+vlog "../quartus/spot_encodings64x3.v"
 
 
 # Call vsim to invoke simulator
 #     Make sure the last item on the line is the name of the
 #     testbench module you want to execute.
-vsim -voptargs="+acc" -t 1ps -lib work ram_update_v3_tb -Lf altera_mf_ver
+vsim -voptargs="+acc" -t 1ps -lib work DE1_SoC_tb -Lf altera_mf_ver
 # used to be "-Lf altera_lnsim_ver" but this was throwing errors with altsyncram
 
 # Source the wave do file
 #     This should be the file that sets up the signal window for
 #     the module you are testing.
-do ram_update_v3_wave.do
+do DE1_SoC_wave.do
 
 # Set the window types
 view wave

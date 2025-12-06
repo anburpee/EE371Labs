@@ -61,15 +61,16 @@ module DE1_SoC (HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, KEY, LEDR, SW,
 	// instantiate ram_update
 	ram_update_v3 game_logic_module (.*);
 
-	assign LEDR[9] = ~reds_turn;
-	assign LEDR[0] = reds_turn;
-	assign LEDR[7:2] = game_over;
-	assign HEX0 = invalid_move;
-	assign HEX1 = invalid_move;
-	assign HEX2 = invalid_move;
-	assign HEX3 = invalid_move;
-	assign HEX4 = invalid_move;
-	assign HEX5 = invalid_move;
+	assign LEDR[9] = game_over ? 1'b0 : ~reds_turn;
+	assign LEDR[0] = game_over ? 1'b0 : reds_turn;
+	assign LEDR[7:2] = {6{game_over}};
+	// flash all HEX displays at invalid_move
+	assign HEX0 = {7{invalid_move}};
+	assign HEX1 = {7{invalid_move}};
+	assign HEX2 = {7{invalid_move}};
+	assign HEX3 = {7{invalid_move}};
+	assign HEX4 = {7{invalid_move}};
+	assign HEX5 = {7{invalid_move}};
 
 
 	logic [5:0] read_addr; // 0 ~ 63
