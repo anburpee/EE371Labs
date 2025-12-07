@@ -29,7 +29,7 @@ module display_update (input logic clk,
     assign x_board = (x_vga - 80) / 60;
     assign y_board = y_vga / 60;
 
-    assign read_addr = 8 * x_board + y_board;
+    assign read_addr = 8 * y_board + x_board;
 
     // color assignments
     always_comb begin
