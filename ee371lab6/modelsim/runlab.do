@@ -10,6 +10,7 @@ vlog "../src/CLOCK25_PLL.v"
 vlog "../src/video_driver.sv"
 vlog "../src/DE1_SoC.sv"
 vlog "../src/display_update.sv"
+vlog "../src/display_update_tb.sv"
 vlog "../src/ram_update_v3.sv"
 vlog "../src/ram_update_v3_tb.sv"
 vlog "../src/ram_update_ctrl_v3.sv"
@@ -18,6 +19,7 @@ vlog "../quartus/black_ram16x7.v"
 vlog "../quartus/red_ram16x7.v"
 vlog "../src/DE1_SoC_tb.sv"
 vlog "../quartus/spot_encodings64x3.v"
+
 
 
 # Call vsim to invoke simulator

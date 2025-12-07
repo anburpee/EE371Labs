@@ -24,14 +24,28 @@ module display_update_tb ();
     // test the design
     int i, j;
     initial begin
-        reset <= 1'b1;  @(posedge clk);
-        reset <= 1'b0;  @(posedge clk);
+        reset <= 1'b1;  repeat(3) @(posedge clk);
+        reset <= 1'b0;            @(posedge clk);
 
-        for (i = 0; i < 480; i++) begin
-            y_vga <= 8'(i); 
-            for (j = 0; j < 640; j++) begin
-                x_vga <= 9'(i);
-                repeat(2) @(posedge clk);
+        // first row
+        for (j = 0; j < 640; j++) begin
+            y_vga <= 0; 
+            x_vga <= 10'(j);
+            encoding <= 3'($urandom_range(0,5));
+            @(posedge clk);
+            @(posedge clk);
+            $display("x = %d    y = %d    encoding = %d     R = %d     G = %d     B = %d", x_vga, y_vga, encoding, r, g, b);
+        end
+
+        // rgb values should change every cycle here
+        for (i = 0; i < 480; i += 60) begin
+            y_vga <= 9'(i); 
+            for (j = 0; j < 640; j += 60) begin
+                x_vga <= 10'(j);
+                encoding <= 3'($urandom_range(0,5));
+                @(posedge clk);
+                @(posedge clk);
+                $display("x = %d    y = %d    encoding = %d     R = %d     G = %d     B = %d", x_vga, y_vga, encoding, r, g, b);
             end
         end
 
