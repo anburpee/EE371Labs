@@ -4,9 +4,9 @@ vlib work
 # Compile Verilog
 #     All Verilog files that are part of this design should have
 #     their own "vlog" line below.
-vlog "../src/altera_up_avalon_video_vga_timing.sv"
-vlog "../vga_driver/CLOCK25_PLL/CLOCK25_PLL_0002.sv"
-vlog "../vga_driver/CLOCK25_PLL.sv"
+vlog "../src/altera_up_avalon_video_vga_timing.v"
+vlog "../src/CLOCK25_PLL/CLOCK25_PLL_0002.v"
+vlog "../src/CLOCK25_PLL.v"
 vlog "../src/video_driver.sv"
 vlog "../src/DE1_SoC.sv"
 vlog "../src/display_update.sv"
@@ -24,6 +24,7 @@ vlog "../quartus/spot_encodings64x3.v"
 #     Make sure the last item on the line is the name of the
 #     testbench module you want to execute.
 vsim -voptargs="+acc" -t 1ps -lib work DE1_SoC_tb -Lf altera_mf_ver
+# vsim -voptargs="+acc" -t 1ps -lib work DE1_SoC_tb -Lf altera_lnsim_ver
 # used to be "-Lf altera_lnsim_ver" but this was throwing errors with altsyncram
 
 # Source the wave do file

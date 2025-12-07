@@ -20,10 +20,10 @@ module DE1_SoC_tb ();
 	// simulated inputs
 	initial begin
 		SW[9] <= 1'b1;
-        KEY[0] <= 1'b0;
-        KEY[1] <= 1'b0;
-        KEY[2] <= 1'b0;
-        KEY[3] <= 1'b0;
+        KEY[0] <= 1'b1;
+        KEY[1] <= 1'b1;
+        KEY[2] <= 1'b1;
+        KEY[3] <= 1'b1;
         @(posedge CLOCK_50);
         SW[9] <= 1'b0;
 
@@ -32,66 +32,66 @@ module DE1_SoC_tb ();
         // check invalid spot (where token is not present) -- check that NOT valid_xy
         SW[5:3] <= 3'b110;
         SW[2:0] <= 3'b010;
-        KEY[1] <= 1'b1; // no token exists here -- NOT valid
+        KEY[1] <= 1'b0; // no token exists here -- NOT valid
         repeat(3) @(posedge CLOCK_50);
-        KEY[1] <= 1'b0;
+        KEY[1] <= 1'b1;
         repeat(100) @(posedge CLOCK_50);
 
         // could test left down for blocked
 
         SW[5:3] <= 3'b111;
         SW[2:0] <= 3'b010;
-        KEY[1] <= 1'b1; // down left (should move)
+        KEY[1] <= 1'b0; // down left (should move)
         repeat(3) @(posedge CLOCK_50);
-        KEY[1] <= 1'b0;
+        KEY[1] <= 1'b1;
         repeat(100) @(posedge CLOCK_50);
 
         // ----- red's turn -----
 
         SW[5:3] <= 3'b100;
         SW[2:0] <= 3'b101;
-        KEY[3] <= 1'b1; // up left (should move)
+        KEY[3] <= 1'b0; // up left (should move)
         repeat(3) @(posedge CLOCK_50);
-        KEY[3] <= 1'b0;
+        KEY[3] <= 1'b1;
         repeat(100) @(posedge CLOCK_50);
 
         // ----- blk's turn -----
 
         SW[5:3] <= 3'b111; // invalid_xy
         SW[2:0] <= 3'b010;
-        KEY[1] <= 1'b1; // down left (should NOT move -- NO TOKEN HERE ANYMORE)
+        KEY[1] <= 1'b0; // down left (should NOT move -- NO TOKEN HERE ANYMORE)
         repeat(3) @(posedge CLOCK_50);
-        KEY[1] <= 1'b0;
+        KEY[1] <= 1'b1;
         repeat(100) @(posedge CLOCK_50);
 
         SW[5:3] <= 3'b110; // illegal_dir
         SW[2:0] <= 3'b011;
-        KEY[2] <= 1'b1; // up right (should NOT move -- invalid direction)
+        KEY[2] <= 1'b0; // up right (should NOT move -- invalid direction)
         repeat(3) @(posedge CLOCK_50);
-        KEY[2] <= 1'b0;
+        KEY[2] <= 1'b1;
         repeat(100) @(posedge CLOCK_50);
 
         SW[5:3] <= 3'b110;
         SW[2:0] <= 3'b011;
-        KEY[0] <= 1'b1; // down right (should move)
+        KEY[0] <= 1'b0; // down right (should move)
         repeat(3) @(posedge CLOCK_50);
-        KEY[0] <= 1'b0;
+        KEY[0] <= 1'b1;
         repeat(100) @(posedge CLOCK_50);
 
         // ----- red's turn -----
 
         SW[5:3] <= 3'b110; // opp_adj
         SW[2:0] <= 3'b101;
-        KEY[2] <= 1'b1; // up right (should NOT move -- blocked by blk)
+        KEY[2] <= 1'b0; // up right (should NOT move -- blocked by blk)
         repeat(3) @(posedge CLOCK_50);
-        KEY[2] <= 1'b0;
+        KEY[2] <= 1'b1;
         repeat(100) @(posedge CLOCK_50);
 
         SW[5:3] <= 3'b011; // 
         SW[2:0] <= 3'b100;
-        KEY[2] <= 1'b1; // up right (should move)
+        KEY[2] <= 1'b0; // up right (should move)
         repeat(3) @(posedge CLOCK_50);
-        KEY[2] <= 1'b0;
+        KEY[2] <= 1'b1;
         repeat(100) @(posedge CLOCK_50); 
 
         // timestamp 82450 ps
@@ -99,30 +99,30 @@ module DE1_SoC_tb ();
 
         SW[5:3] <= 3'b111; // illegal_dir
         SW[2:0] <= 3'b100;
-        KEY[3] <= 1'b1; // up left (should NOT move -- not KING token)
+        KEY[3] <= 1'b0; // up left (should NOT move -- not KING token)
         repeat(3) @(posedge CLOCK_50);
-        KEY[3] <= 1'b0;
+        KEY[3] <= 1'b1;
         repeat(100) @(posedge CLOCK_50);
 
         SW[5:3] <= 3'b111; // edge_blocked0
         SW[2:0] <= 3'b100;
-        KEY[0] <= 1'b1; // down right (should NOT move -- edge of board)
+        KEY[0] <= 1'b0; // down right (should NOT move -- edge of board)
         repeat(3) @(posedge CLOCK_50);
-        KEY[0] <= 1'b0;
+        KEY[0] <= 1'b1;
         repeat(100) @(posedge CLOCK_50);
 
         SW[5:3] <= 3'b111; // opp_adj
         SW[2:0] <= 3'b100;
-        KEY[1] <= 1'b1; // down left (should NOT move -- blocked by red) 
+        KEY[1] <= 1'b0; // down left (should NOT move -- blocked by red) 
         repeat(3) @(posedge CLOCK_50);
-        KEY[1] <= 1'b0;
+        KEY[1] <= 1'b1;
         repeat(100) @(posedge CLOCK_50);
 
         SW[5:3] <= 3'b001;
         SW[2:0] <= 3'b010;
-        KEY[1] <= 1'b1; // down left (should move)
+        KEY[1] <= 1'b0; // down left (should move)
         repeat(3) @(posedge CLOCK_50);
-        KEY[1] <= 1'b0;
+        KEY[1] <= 1'b1;
         repeat(100) @(posedge CLOCK_50);
 
         // timestamp 123650 ps
@@ -130,16 +130,16 @@ module DE1_SoC_tb ();
 
         SW[5:3] <= 3'b000; // invalid_xy
         SW[2:0] <= 3'b011;
-        KEY[0] <= 1'b1; // down right (should NOT move -- wrong color token)
+        KEY[0] <= 1'b0; // down right (should NOT move -- wrong color token)
         repeat(3) @(posedge CLOCK_50);
-        KEY[0] <= 1'b0;
+        KEY[0] <= 1'b1;
         repeat(100) @(posedge CLOCK_50);
 
         SW[5:3] <= 3'b000; 
         SW[2:0] <= 3'b101;
-        KEY[2] <= 1'b1; // up right (should move)
+        KEY[2] <= 1'b0; // up right (should move)
         repeat(3) @(posedge CLOCK_50);
-        KEY[2] <= 1'b0;
+        KEY[2] <= 1'b1;
         repeat(100) @(posedge CLOCK_50);
 
         // timestamp 144250 ps
@@ -147,18 +147,18 @@ module DE1_SoC_tb ();
 
         SW[5:3] <= 3'b011;
         SW[2:0] <= 3'b010;
-        KEY[1] <= 1'b1; // down left (should move)
+        KEY[1] <= 1'b0; // down left (should move)
         repeat(3) @(posedge CLOCK_50);
-        KEY[1] <= 1'b0;
+        KEY[1] <= 1'b1;
         repeat(100) @(posedge CLOCK_50);
 
         // ----- red's turn -----
 
         SW[5:3] <= 3'b001;
         SW[2:0] <= 3'b110;
-        KEY[3] <= 1'b1; // up left (should move)
+        KEY[3] <= 1'b0; // up left (should move)
         repeat(3) @(posedge CLOCK_50);
-        KEY[3] <= 1'b0;
+        KEY[3] <= 1'b1;
         repeat(100) @(posedge CLOCK_50);
 
         // timestamp 164850 ps
@@ -166,10 +166,10 @@ module DE1_SoC_tb ();
 
         SW[5:3] <= 3'b101;
         SW[2:0] <= 3'b010;
-        KEY[1] <= 1'b1; // down left (should move -- MULT_ITER IS HIGH so capture logic)
+        KEY[1] <= 1'b0; // down left (should move -- MULT_ITER IS HIGH so capture logic)
         // also red token at (4,3) should be deleted now bc captured
         repeat(3) @(posedge CLOCK_50);
-        KEY[1] <= 1'b0;
+        KEY[1] <= 1'b1;
         repeat(100) @(posedge CLOCK_50); 
 
         // can make another move
@@ -177,9 +177,9 @@ module DE1_SoC_tb ();
 
         SW[5:3] <= 3'b011;
         SW[2:0] <= 3'b100;
-        KEY[1] <= 1'b1; // down left (should move -- MULT_ITER IS HIGH so capture logic)
+        KEY[1] <= 1'b0; // down left (should move -- MULT_ITER IS HIGH so capture logic)
         repeat(3) @(posedge CLOCK_50);
-        KEY[1] <= 1'b0;
+        KEY[1] <= 1'b1;
         repeat(100) @(posedge CLOCK_50);
 
         // can't make another move  
@@ -189,18 +189,18 @@ module DE1_SoC_tb ();
 
         SW[5:3] <= 3'b011;
         SW[2:0] <= 3'b110;
-        KEY[3] <= 1'b1; // up left (should move)
+        KEY[3] <= 1'b0; // up left (should move)
         repeat(3) @(posedge CLOCK_50);
-        KEY[3] <= 1'b0;
+        KEY[3] <= 1'b1;
         repeat(100) @(posedge CLOCK_50);
 
         // ----- blk's turn -----
 
         SW[5:3] <= 3'b010;
         SW[2:0] <= 3'b011;
-        KEY[0] <= 1'b1; // down right (should move)
+        KEY[0] <= 1'b0; // down right (should move)
         repeat(3) @(posedge CLOCK_50);
-        KEY[0] <= 1'b0;
+        KEY[0] <= 1'b1;
         repeat(100) @(posedge CLOCK_50);
 
         // timestamp 206050 ps
@@ -208,18 +208,18 @@ module DE1_SoC_tb ();
 
         SW[5:3] <= 3'b010;
         SW[2:0] <= 3'b111;
-        KEY[2] <= 1'b1; // up right (should move)
+        KEY[2] <= 1'b0; // up right (should move)
         repeat(3) @(posedge CLOCK_50);
-        KEY[2] <= 1'b0;
+        KEY[2] <= 1'b1;
         repeat(100) @(posedge CLOCK_50);
 
         // ----- blk's turn -----
 
         SW[5:3] <= 3'b001;
         SW[2:0] <= 3'b110;
-        KEY[0] <= 1'b1; // down right (should move -- BECOMES KING)
+        KEY[0] <= 1'b0; // down right (should move -- BECOMES KING)
         repeat(3) @(posedge CLOCK_50);
-        KEY[0] <= 1'b0;
+        KEY[0] <= 1'b1;
         repeat(100) @(posedge CLOCK_50);
 
         // timestamp 226650 ps
@@ -227,9 +227,9 @@ module DE1_SoC_tb ();
 
         SW[5:3] <= 3'b101;
         SW[2:0] <= 3'b110;
-        KEY[3] <= 1'b1; // up left (should move)
+        KEY[3] <= 1'b0; // up left (should move)
         repeat(3) @(posedge CLOCK_50);
-        KEY[3] <= 1'b0;
+        KEY[3] <= 1'b1;
         repeat(100) @(posedge CLOCK_50);
 
         // timestamp: 236950 ps
@@ -237,23 +237,23 @@ module DE1_SoC_tb ();
 
         SW[5:3] <= 3'b010; // edge blocked
         SW[2:0] <= 3'b111;
-        KEY[1] <= 1'b1; // down left (should NOT move -- bottom wall)
+        KEY[1] <= 1'b0; // down left (should NOT move -- bottom wall)
         repeat(3) @(posedge CLOCK_50);
-        KEY[1] <= 1'b0;
+        KEY[1] <= 1'b1;
         repeat(100) @(posedge CLOCK_50);
 
         SW[5:3] <= 3'b010; // two_over
         SW[2:0] <= 3'b111;
-        KEY[2] <= 1'b1; // up right (should NOT move -- token in landing spot)
+        KEY[2] <= 1'b0; // up right (should NOT move -- token in landing spot)
         repeat(3) @(posedge CLOCK_50);
-        KEY[2] <= 1'b0;
+        KEY[2] <= 1'b1;
         repeat(100) @(posedge CLOCK_50);
 
         SW[5:3] <= 3'b010;
         SW[2:0] <= 3'b111;
-        KEY[3] <= 1'b1; // up left (should move)
+        KEY[3] <= 1'b0; // up left (should move)
         repeat(3) @(posedge CLOCK_50);
-        KEY[3] <= 1'b0;
+        KEY[3] <= 1'b1;
         repeat(100) @(posedge CLOCK_50);
 
         // timestamp 267850 ps
@@ -261,18 +261,18 @@ module DE1_SoC_tb ();
 
         SW[5:3] <= 3'b100; 
         SW[2:0] <= 3'b101;
-        KEY[3] <= 1'b1; // up left (should move --  capture)
+        KEY[3] <= 1'b0; // up left (should move --  capture)
         repeat(3) @(posedge CLOCK_50);
-        KEY[3] <= 1'b0;
+        KEY[3] <= 1'b1;
         repeat(100) @(posedge CLOCK_50);
 
         // ----- blk's turn -----
 
         SW[5:3] <= 3'b001;
         SW[2:0] <= 3'b110;
-        KEY[0] <= 1'b1; // down right (should move)
+        KEY[0] <= 1'b0; // down right (should move)
         repeat(3) @(posedge CLOCK_50);
-        KEY[0] <= 1'b0;
+        KEY[0] <= 1'b1;
         repeat(100) @(posedge CLOCK_50);
 
         // timestamp 288450 ps
@@ -280,189 +280,189 @@ module DE1_SoC_tb ();
 
         SW[5:3] <= 3'b110;
         SW[2:0] <= 3'b111;
-        KEY[3] <= 1'b1; // up left (should move)
+        KEY[3] <= 1'b0; // up left (should move)
         repeat(3) @(posedge CLOCK_50);
-        KEY[3] <= 1'b0;
+        KEY[3] <= 1'b1;
         repeat(100) @(posedge CLOCK_50);
 
         // ----- blk's turn -----
 
         SW[5:3] <= 3'b010;
         SW[2:0] <= 3'b111;
-        KEY[2] <= 1'b1; // up right (should move -- CAPTURE)
+        KEY[2] <= 1'b0; // up right (should move -- CAPTURE)
         repeat(3) @(posedge CLOCK_50);
-        KEY[2] <= 1'b0;
+        KEY[2] <= 1'b1;
         repeat(100) @(posedge CLOCK_50);
 
         // another turn
 
         SW[5:3] <= 3'b111; // x_curr and y_curr already stored so KEY inputs shouldn't matter here
         SW[2:0] <= 3'b111;
-        KEY[0] <= 1'b1; // down right (should move -- CAPTURE)
+        KEY[0] <= 1'b0; // down right (should move -- CAPTURE)
         repeat(3) @(posedge CLOCK_50);
-        KEY[0] <= 1'b0;
+        KEY[0] <= 1'b1;
         repeat(100) @(posedge CLOCK_50);
 
         // ----- red's turn -----
 
         SW[5:3] <= 3'b010;
         SW[2:0] <= 3'b011;
-        KEY[2] <= 1'b1; // up right (should move)
+        KEY[2] <= 1'b0; // up right (should move)
         repeat(3) @(posedge CLOCK_50);
-        KEY[2] <= 1'b0;
+        KEY[2] <= 1'b1;
         repeat(100) @(posedge CLOCK_50);
 
         // ----- blk's turn -----
 
         SW[5:3] <= 3'b100;
         SW[2:0] <= 3'b001;
-        KEY[1] <= 1'b1; // down right (should move -- CAPTURE)
+        KEY[1] <= 1'b0; // down right (should move -- CAPTURE)
         repeat(3) @(posedge CLOCK_50);
-        KEY[1] <= 1'b0;
+        KEY[1] <= 1'b1;
         repeat(100) @(posedge CLOCK_50);
 
         // ----- red's turn -----
 
         SW[5:3] <= 3'b001;
         SW[2:0] <= 3'b100;
-        KEY[2] <= 1'b1; // up right (should move -- CAPTURE)
+        KEY[2] <= 1'b0; // up right (should move -- CAPTURE)
         repeat(3) @(posedge CLOCK_50);
-        KEY[2] <= 1'b0;
+        KEY[2] <= 1'b1;
         repeat(100) @(posedge CLOCK_50);
 
         // ----- blk's turn -----
 
         SW[5:3] <= 3'b111;
         SW[2:0] <= 3'b100;
-        KEY[1] <= 1'b1; // down left (should move -- CAPTURE)
+        KEY[1] <= 1'b0; // down left (should move -- CAPTURE)
         repeat(3) @(posedge CLOCK_50);
-        KEY[1] <= 1'b0;
+        KEY[1] <= 1'b1;
         repeat(100) @(posedge CLOCK_50);
 
         // ----- red's turn -----
 
         SW[5:3] <= 3'b010;
         SW[2:0] <= 3'b101;
-        KEY[3] <= 1'b1; // up left (should move)
+        KEY[3] <= 1'b0; // up left (should move)
         repeat(3) @(posedge CLOCK_50);
-        KEY[3] <= 1'b0;
+        KEY[3] <= 1'b1;
         repeat(100) @(posedge CLOCK_50);
 
          // ----- blk's turn -----
 
         SW[5:3] <= 3'b010;
         SW[2:0] <= 3'b001;
-        KEY[0] <= 1'b1; // down right (should move -- CAPTURE)
+        KEY[0] <= 1'b0; // down right (should move -- CAPTURE)
         repeat(3) @(posedge CLOCK_50);
-        KEY[0] <= 1'b0;
+        KEY[0] <= 1'b1;
         repeat(100) @(posedge CLOCK_50);
 
         // ----- red's turn -----
 
         SW[5:3] <= 3'b000;
         SW[2:0] <= 3'b111;
-        KEY[2] <= 1'b1; // up right (should move)
+        KEY[2] <= 1'b0; // up right (should move)
         repeat(3) @(posedge CLOCK_50);
-        KEY[2] <= 1'b0;
+        KEY[2] <= 1'b1;
         repeat(100) @(posedge CLOCK_50);
 
         // ----- blk's turn -----
 
         SW[5:3] <= 3'b000;
         SW[2:0] <= 3'b011;
-        KEY[0] <= 1'b1; // down right (should move -- CAPTURE)
+        KEY[0] <= 1'b0; // down right (should move -- CAPTURE)
         repeat(3) @(posedge CLOCK_50);
-        KEY[0] <= 1'b0;
+        KEY[0] <= 1'b1;
         repeat(100) @(posedge CLOCK_50);
 
         // can move again
 
         SW[5:3] <= 3'b010;
         SW[2:0] <= 3'b101;
-        KEY[1] <= 1'b1; // down left (should move -- CAPTURE). ALSO BECOMES KING
+        KEY[1] <= 1'b0; // down left (should move -- CAPTURE). ALSO BECOMES KING
         repeat(3) @(posedge CLOCK_50);
-        KEY[1] <= 1'b0;
+        KEY[1] <= 1'b1;
         repeat(100) @(posedge CLOCK_50);
 
         // ----- red's turn -----
 
         SW[5:3] <= 3'b100;
         SW[2:0] <= 3'b111;
-        KEY[3] <= 1'b1; // up left (should move)
+        KEY[3] <= 1'b0; // up left (should move)
         repeat(3) @(posedge CLOCK_50);
-        KEY[3] <= 1'b0;
+        KEY[3] <= 1'b1;
         repeat(100) @(posedge CLOCK_50);
 
         // ----- blk's turn -----
 
         SW[5:3] <= 3'b101;
         SW[2:0] <= 3'b110;
-        KEY[1] <= 1'b1; // down left (should move -- BECOMES KING)
+        KEY[1] <= 1'b0; // down left (should move -- BECOMES KING)
         repeat(3) @(posedge CLOCK_50);
-        KEY[1] <= 1'b0;
+        KEY[1] <= 1'b1;
         repeat(100) @(posedge CLOCK_50);
 
         // ----- red's turn -----
 
         SW[5:3] <= 3'b000;
         SW[2:0] <= 3'b101;
-        KEY[2] <= 1'b1; // up right (should move)
+        KEY[2] <= 1'b0; // up right (should move)
         repeat(3) @(posedge CLOCK_50);
-        KEY[2] <= 1'b0;
+        KEY[2] <= 1'b1;
         repeat(100) @(posedge CLOCK_50);
 
         // ----- blk's turn -----
 
         SW[5:3] <= 3'b100;
         SW[2:0] <= 3'b111;
-        KEY[3] <= 1'b1; // up left (should move -- CAPTURE)
+        KEY[3] <= 1'b0; // up left (should move -- CAPTURE)
         repeat(3) @(posedge CLOCK_50);
-        KEY[3] <= 1'b0;
+        KEY[3] <= 1'b1;
         repeat(100) @(posedge CLOCK_50);
 
         // can go again
 
         SW[5:3] <= 3'b010;
         SW[2:0] <= 3'b101;
-        KEY[3] <= 1'b1; // up right (should move -- CAPTURE)
+        KEY[3] <= 1'b0; // up right (should move -- CAPTURE)
         repeat(3) @(posedge CLOCK_50);
-        KEY[3] <= 1'b0;
+        KEY[3] <= 1'b1;
         repeat(100) @(posedge CLOCK_50);
 
         // ----- red's turn -----
 
         SW[5:3] <= 3'b111;
         SW[2:0] <= 3'b110;
-        KEY[3] <= 1'b1; // up left (should move)
+        KEY[3] <= 1'b0; // up left (should move)
         repeat(3) @(posedge CLOCK_50);
-        KEY[3] <= 1'b0;
+        KEY[3] <= 1'b1;
         repeat(100) @(posedge CLOCK_50);
 
         // ----- blk's turn -----
 
         SW[5:3] <= 3'b110;
         SW[2:0] <= 3'b001;
-        KEY[1] <= 1'b1; // down left (should move)
+        KEY[1] <= 1'b0; // down left (should move)
         repeat(3) @(posedge CLOCK_50);
-        KEY[1] <= 1'b0;
+        KEY[1] <= 1'b1;
         repeat(100) @(posedge CLOCK_50);
 
         // ----- red's turn -----
 
         SW[5:3] <= 3'b110;
         SW[2:0] <= 3'b101;
-        KEY[3] <= 1'b1; // up left (should move)
+        KEY[3] <= 1'b0; // up left (should move)
         repeat(3) @(posedge CLOCK_50);
-        KEY[3] <= 1'b0;
+        KEY[3] <= 1'b1;
         repeat(100) @(posedge CLOCK_50);
 
         // ----- blk's turn -----
 
         SW[5:3] <= 3'b100;
         SW[2:0] <= 3'b011;
-        KEY[0] <= 1'b1; // down right (should move -- CAPTURE)
+        KEY[0] <= 1'b0; // down right (should move -- CAPTURE)
         repeat(3) @(posedge CLOCK_50);
-        KEY[0] <= 1'b0;
+        KEY[0] <= 1'b1;
         repeat(100) @(posedge CLOCK_50);
 
         // WIN LOGIC SHOULD NOW BE HAPPENING
