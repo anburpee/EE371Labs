@@ -21,10 +21,10 @@ module DE1_SoC (HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, KEY, LEDR, SW,
 	logic [7:0] r, g, b;
 	
 	// INSTANTIATING VIDEO_DRIVER -- MODIFY THE PORTS BELOW TO THE RGB OF THE BOARD
-	video_driver #(.WIDTH(640), .HEIGHT(480)) // setting width to 640 and height to 480 means the output x,y changes every clock cycle
-		v1 (.CLOCK_50, .reset, .x, .y, .r, .g, .b,
-			 .VGA_R, .VGA_G, .VGA_B, .VGA_BLANK_N,
-			 .VGA_CLK, .VGA_HS, .VGA_SYNC_N, .VGA_VS);
+	// video_driver #(.WIDTH(640), .HEIGHT(480)) // setting width to 640 and height to 480 means the output x,y changes every clock cycle
+	// 	v1 (.CLOCK_50, .reset, .x, .y, .r, .g, .b,
+	// 		 .VGA_R, .VGA_G, .VGA_B, .VGA_BLANK_N,
+	// 		 .VGA_CLK, .VGA_HS, .VGA_SYNC_N, .VGA_VS);
 	
 
 
@@ -35,7 +35,7 @@ module DE1_SoC (HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, KEY, LEDR, SW,
 	logic invalid_move, reds_turn, game_over; // outputs
 	assign clk = CLOCK_50;
 	assign reset = SW[9];
-	assign key = KEY;
+	assign key = ~KEY;
 	assign sw = SW[5:0];
 
 
@@ -74,7 +74,7 @@ module DE1_SoC (HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, KEY, LEDR, SW,
 
 
 	logic [5:0] read_addr; // 0 ~ 63
-	logic [2:0] q_even, q_odd, unused_even, unused_odd;
+	logic [2:0] q_even, q_odd, q_unused_even, q_unused_odd;
 	// RAMs storing the encodings for the type of spot each square is on the board
 	// only need to MUX the sencond address/wren since we're only reading from port 2
 	spot_encodings64x3 spot_encodings_even (
@@ -106,20 +106,23 @@ module DE1_SoC (HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, KEY, LEDR, SW,
 	);
 
 	
-	// instantiate display_update
-	display_update rgb_vals (
-		// inputs
-		.clk,
-		.reset, 
-		.x_vga(x), 
-		.y_vga(y), 
-		.encoding(even_iter ? q_odd : q_even),
-		// outputs  
-		.read_addr,
-        .r,
-        .g,
-        .b
-    );
+	// delete when done testing:
+	assign read_addr = 6'd0;
+
+	// // instantiate display_update
+	// display_update rgb_vals (
+	// 	// inputs
+	// 	.clk,
+	// 	.reset, 
+	// 	.x_vga(x), 
+	// 	.y_vga(y), 
+	// 	.encoding(even_iter ? q_odd : q_even),
+	// 	// outputs  
+	// 	.read_addr,
+    //     .r,
+    //     .g,
+    //     .b
+    // );
 
 
 
