@@ -186,17 +186,17 @@ module ram_update_datapath_v3 (input logic clk,
                     // encodings_wren1_odd <= 1'b1; //  CONTROL ALL WREN LOGIC FROM DE1_SOC BASED ON EVEN_ITER -- should be fine since even if q_red and q_blk are updated, these registers don't update until the next check_done
                     // encodings_wren2_odd <= 1'b1;
                     encodings_addr1_odd <= 8*(q_red[2:0]) + q_red[5:3]; // red
-                    encodings_data1_odd <= (q_red == 7'b0000000) ? 3'b000 : (king ? 3'b100 : 3'b010); // if invalid location, then piece is "erased"/ out of the game so load 0 (dark square)
+                    encodings_data1_odd <= (q_red == 7'b0000000) ? 3'b000 : (q_red[6] ? 3'b100 : 3'b010); // if invalid location, then piece is "erased"/ out of the game so load 0 (dark square)
                     encodings_addr2_odd <= 8*(q_blk[2:0]) + q_blk[5:3]; // black
-                    encodings_data2_odd <= (q_blk == 7'b0000000) ? 3'b000 : (king ? 3'b101 : 3'b011);
+                    encodings_data2_odd <= (q_blk == 7'b0000000) ? 3'b000 : (q_blk[6] ? 3'b101 : 3'b011);
                 end
                 1'b1: begin // update even iteration RAM
                     // encodings_wren1_even <= 1'b1;
                     // encodings_wren2_even <= 1'b1;
                     encodings_addr1_even <= 8*(q_red[2:0]) + q_red[5:3]; // red
-                    encodings_data1_even <= (q_red == 7'b0000000) ? 3'b000 : (king ? 3'b100 : 3'b010);
+                    encodings_data1_even <= (q_red == 7'b0000000) ? 3'b000 : (q_red[6] ? 3'b100 : 3'b010);
                     encodings_addr2_even <= 8*(q_blk[2:0]) + q_blk[5:3]; // black
-                    encodings_data2_even <= (q_blk == 7'b0000000) ? 3'b000 : (king ? 3'b101 : 3'b011);
+                    encodings_data2_even <= (q_blk == 7'b0000000) ? 3'b000 : (q_blk[6] ? 3'b101 : 3'b011);
                 end
             endcase
             //////////////////////////////////////////// set wren to 0? or unnessasary since the data & addrs are not changing
