@@ -35,13 +35,28 @@ module DE1_SoC (HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, KEY, LEDR, SW,
 	logic [3:0] key;
     logic [5:0] sw;
 	logic invalid_move, reds_turn, game_over; // outputs
+	logic key0, key1, key2, key3;
+	logic sw0, sw1, sw2, sw3, sw4, sw5, sw9;
 	assign clk = CLOCK_50;
-	assign reset = SW[9];
-	assign key = ~KEY; // KEYs are active low
-	assign sw = SW[5:0];
+
+	// handle metastability
+	anti_metastability anti0 (.clk, .in(KEY[0]), .out(key0));
+	anti_metastability anti1 (.clk, .in(KEY[1]), .out(key1));
+	anti_metastability anti2 (.clk, .in(KEY[2]), .out(key2));
+	anti_metastability anti3 (.clk, .in(KEY[3]), .out(key3));
+	anti_metastability anti4 (.clk, .in(SW[0]), .out(sw0));
+	anti_metastability anti5 (.clk, .in(SW[1]), .out(sw1));
+	anti_metastability anti6 (.clk, .in(SW[2]), .out(sw2));
+	anti_metastability anti7 (.clk, .in(SW[3]), .out(sw3));
+	anti_metastability anti8 (.clk, .in(SW[4]), .out(sw4));
+	anti_metastability anti9 (.clk, .in(SW[5]), .out(sw5));
+	anti_metastability anti10 (.clk, .in(SW[9]), .out(sw9));
+
+	assign reset = sw9;
+	assign key = ~{key3, key2, key1, key0}; // KEYs are active low
+	assign sw = {sw5, sw4, sw3, sw2, sw1, sw0};
 
 
-	////////////////v3//////////////////
 	// even_iter & having 2 RAMs is to make sure RAMs are not written to by ram_update and read from display_update at the same time @ load_skip
 	logic even_iter; // toggles every iteration
 	// should instead be write_in_progress that goes high @ load_skip, load_adj, and check_done
@@ -49,15 +64,10 @@ module DE1_SoC (HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, KEY, LEDR, SW,
 	logic [5:0] encodings_addr2_even;
 	logic [2:0] encodings_data1_even;
 	logic [2:0] encodings_data2_even;
-	// logic encodings_wren1_even;
-	// logic encodings_wren2_even;
 	logic [5:0] encodings_addr1_odd;
 	logic [5:0] encodings_addr2_odd;
 	logic [2:0] encodings_data1_odd;
 	logic [2:0] encodings_data2_odd;
-	// logic encodings_wren1_odd;
-	// logic encodings_wren2_odd;
-	////////////////v3//////////////////
 
 
 	// instantiate ram_update module
@@ -110,8 +120,6 @@ module DE1_SoC (HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, KEY, LEDR, SW,
 		.data_b(encodings_data2_even),
 		.wren_a(1'b1),	// never needs to be 0 since we never read from port1
 		.wren_b(even_iter ? 1'b1 : 1'b0), // on even iterations, wren for spot_encodings_even is always high
-		// .wren_a(1'b1),
-		// .wren_b(even_iter ? encogings_wren1_even : 1'b0),
 		.q_a(q_unused_even),	// connects to display_update
 		.q_b(q_even)
 	);
@@ -124,8 +132,6 @@ module DE1_SoC (HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, KEY, LEDR, SW,
 		.data_b(encodings_data2_odd),
 		.wren_a(1'b1),	// never needs to be 0 since we never read from port1
 		.wren_b(even_iter ? 1'b0 : 1'b1), // on odd iterations, wren for spot_encodings_odd is always high
-		// .wren_a(1'b1),
-		// .wren_b(even_iter ? 1'b0 : encodings_wren2_odd),
 		.q_a(q_unused_odd),	// connects to display_update
 		.q_b(q_odd)
 	);

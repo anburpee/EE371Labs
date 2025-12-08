@@ -16,15 +16,10 @@ module ram_update_v3 (input logic clk,
                     output logic [5:0] encodings_addr2_even, 
                     output logic [2:0] encodings_data1_even,
                     output logic [2:0] encodings_data2_even,
-                    // output logic encodings_wren1_even,
-                    // output logic encodings_wren2_even,
                     output logic [5:0] encodings_addr1_odd, 
                     output logic [5:0] encodings_addr2_odd, 
                     output logic [2:0] encodings_data1_odd,
                     output logic [2:0] encodings_data2_odd
-                    // output logic encodings_wren1_odd,
-                    // output logic encodings_wren2_odd
-                    ////////////////v3//////////////////
                    );
     
     logic load_iter, initialize, read, check0, check_done, incr_count, reset_count, load_adj, load_skip, mult_true, done; // control signals
