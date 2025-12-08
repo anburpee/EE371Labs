@@ -60,6 +60,7 @@ module ram_update_datapath_v3 (input logic clk,
     logic [3:0] red_addr, blk_addr; // red into rams
     logic [4:0] red_count, blk_count;
     logic skipped; // to keep track of whether the player skipped over opponent (to have a chance at another turn)
+    logic [2:0] x_opp_erase, y_opp_erase; //////// (x,y) location of skipped-over token that needs to be erased from board
 
     // instantiate RAMS that store location of each token
     black_ram16x7 blk_ram (.address(blk_addr), .clock(clk), .data(data_blk), .wren(wren_blk), .q(q_blk));
@@ -185,17 +186,17 @@ module ram_update_datapath_v3 (input logic clk,
                 1'b0: begin // update odd iteration RAM
                     // encodings_wren1_odd <= 1'b1; //  CONTROL ALL WREN LOGIC FROM DE1_SOC BASED ON EVEN_ITER -- should be fine since even if q_red and q_blk are updated, these registers don't update until the next check_done
                     // encodings_wren2_odd <= 1'b1;
-                    encodings_addr1_odd <= 8*(q_red[2:0]) + q_red[5:3]; // red
-                    encodings_data1_odd <= (q_red == 7'b0000000) ? 3'b000 : (q_red[6] ? 3'b100 : 3'b010); // if invalid location, then piece is "erased"/ out of the game so load 0 (dark square)
-                    encodings_addr2_odd <= 8*(q_blk[2:0]) + q_blk[5:3]; // black
+                    encodings_addr1_odd <= (q_red == 7'b0000000) ? 8*(y_opp_erase) + x_opp_erase : 8*(q_red[2:0]) + q_red[5:3]; // red
+                    encodings_data1_odd <= (q_red == 7'b0000000) ? 3'b000 : (q_red[6] ? 3'b100 : 3'b010); // if invalid location(0,0), then piece is "erased"/ out of the game so load 001 (light square) at (0,0)
+                    encodings_addr2_odd <= (q_blk == 7'b0000000) ? 8*(y_opp_erase) + x_opp_erase : 8*(q_blk[2:0]) + q_blk[5:3]; // black
                     encodings_data2_odd <= (q_blk == 7'b0000000) ? 3'b000 : (q_blk[6] ? 3'b101 : 3'b011);
                 end
                 1'b1: begin // update even iteration RAM
                     // encodings_wren1_even <= 1'b1;
                     // encodings_wren2_even <= 1'b1;
-                    encodings_addr1_even <= 8*(q_red[2:0]) + q_red[5:3]; // red
+                    encodings_addr1_even <= (q_red == 7'b0000000) ? 8*(y_opp_erase) + x_opp_erase : 8*(q_red[2:0]) + q_red[5:3]; // red
                     encodings_data1_even <= (q_red == 7'b0000000) ? 3'b000 : (q_red[6] ? 3'b100 : 3'b010);
-                    encodings_addr2_even <= 8*(q_blk[2:0]) + q_blk[5:3]; // black
+                    encodings_addr2_even <= (q_blk == 7'b0000000) ? 8*(y_opp_erase) + x_opp_erase : 8*(q_blk[2:0]) + q_blk[5:3]; // black
                     encodings_data2_even <= (q_blk == 7'b0000000) ? 3'b000 : (q_blk[6] ? 3'b101 : 3'b011);
                 end
             endcase
@@ -277,15 +278,19 @@ module ram_update_datapath_v3 (input logic clk,
             case(direction)
                 2'b00: begin
                     x_new = x_curr + 2;   y_new = y_curr + 2;
+                    x_opp_erase <= x_curr + 1;   y_opp_erase <= y_curr + 1;
                 end
                 2'b01: begin
                     x_new = x_curr - 2;   y_new = y_curr + 2;
+                    x_opp_erase <= x_curr - 1;   y_opp_erase <= y_curr + 1;
                 end
                 2'b10: begin
                     x_new = x_curr + 2;   y_new = y_curr - 2;
+                    x_opp_erase <= x_curr + 1;   y_opp_erase <= y_curr - 1;
                 end
                 2'b11: begin
                     x_new = x_curr - 2;   y_new = y_curr - 2;
+                    x_opp_erase <= x_curr - 1;   y_opp_erase <= y_curr - 1;
                 end
             endcase
             case (reds_turn)
@@ -303,7 +308,7 @@ module ram_update_datapath_v3 (input logic clk,
                     red_addr <= token_addr;
                     data_red <= {king_new, x_new, y_new};
                     blk_addr <= opp_addr;
-                    data_blk <= 7'b0000000; // erase opponent's token
+                    data_blk <= 7'b0000000; // "erase" opponent's token -- move it to an invalid location (0,0)
                     blk_count <= blk_count - 1;
                 end
             endcase
