@@ -245,20 +245,28 @@ module ram_update_datapath_v3 (input logic clk,
             ////////////////////erase moving token from current spot (to later redraw it in the new spot)///////////////////////
             ////////////////////if we don't erase here, we would have to do 3 simultaneous writes at check_done:
             ////////////////////1)the erasing of the old location, 2)erasing of token jumped over, 3)the storage of the token in the new spot --impossible
-            case (even_iter)
-                1'b0: begin // update odd iteration RAM -- only need to change location of 1 token, so only write to 1 port
-                    // since we're only writing from 1 port, we don't need to consider overlap (with read) here if all of the reading is done 
-                    // from the second port
-                    // encodings_wren1_odd <= 1'b1;
-                    encodings_addr1_odd <= 8*(y_curr) + x_curr;
-                    encodings_data1_odd <= 3'b000; // dark square encoding
-                end
-                1'b1: begin // update even iteration RAM
-                    // encodings_wren1_even <= 1'b1;
-                    encodings_addr1_even <= 8*(y_curr) + x_curr;
-                    encodings_data1_even <= 3'b000; // dark square encoding
-                end
-            endcase
+           
+            // new version:
+            encodings_addr1_odd <= 8*(y_curr) + x_curr;
+            encodings_data1_odd <= 3'b000; // dark square encoding
+            encodings_addr1_even <= 8*(y_curr) + x_curr;
+            encodings_data1_even <= 3'b000; // dark square encoding
+
+            // old version:
+            // case (even_iter)
+            //     1'b0: begin // update odd iteration RAM -- only need to change location of 1 token, so only write to 1 port
+            //         // since we're only writing from 1 port, we don't need to consider overlap (with read) here if all of the reading is done 
+            //         // from the second port
+            //         // encodings_wren1_odd <= 1'b1;
+            //         encodings_addr1_odd <= 8*(y_curr) + x_curr;
+            //         encodings_data1_odd <= 3'b000; // dark square encoding
+            //     end
+            //     1'b1: begin // update even iteration RAM
+            //         // encodings_wren1_even <= 1'b1;
+            //         encodings_addr1_even <= 8*(y_curr) + x_curr;
+            //         encodings_data1_even <= 3'b000; // dark square encoding
+            //     end
+            // endcase
             ////////////////////////////////////////////
         end
         if (load_skip) begin
@@ -307,20 +315,28 @@ module ram_update_datapath_v3 (input logic clk,
             ////////////////////erase moving token from current spot (to later redraw it in the new spot)///////////////////////
             //////////////////// if we don't erase here, we would have to do 3 simultaneous writes at check_done:
             //////////////////// the erasing of the old location, erasing of token jumped over, and the storage of the toke in the new spot
-            case (even_iter)
-                1'b0: begin // update odd iteration RAM -- only need to change location of 1 token, so only write to 1 port
-                    // since we're only writing from 1 port, we don't need to consider overlap (with read) here if all of the reading is done 
-                    // from the second port
-                    // encodings_wren1_odd <= 1'b1;
-                    encodings_addr1_odd <= 8*(y_curr) + x_curr;
-                    encodings_data1_odd <= 3'b000; // dark square encoding
-                end
-                1'b1: begin // update even iteration RAM
-                    // encodings_wren1_even <= 1'b1;
-                    encodings_addr1_even <= 8*(y_curr) + x_curr;
-                    encodings_data1_even <= 3'b000; // dark square encoding
-                end
-            endcase
+            
+            // new version:
+            encodings_addr1_odd <= 8*(y_curr) + x_curr;
+            encodings_data1_odd <= 3'b000; // dark square encoding
+            encodings_addr1_even <= 8*(y_curr) + x_curr;
+            encodings_data1_even <= 3'b000; // dark square encoding
+            
+            // old verison:
+            // case (even_iter)
+            //     1'b0: begin // update odd iteration RAM -- only need to change location of 1 token, so only write to 1 port
+            //         // since we're only writing from 1 port, we don't need to consider overlap (with read) here if all of the reading is done 
+            //         // from the second port
+            //         // encodings_wren1_odd <= 1'b1;
+            //         encodings_addr1_odd <= 8*(y_curr) + x_curr;
+            //         encodings_data1_odd <= 3'b000; // dark square encoding
+            //     end
+            //     1'b1: begin // update even iteration RAM
+            //         // encodings_wren1_even <= 1'b1;
+            //         encodings_addr1_even <= 8*(y_curr) + x_curr;
+            //         encodings_data1_even <= 3'b000; // dark square encoding
+            //     end
+            // endcase
             ////////////////////////////////////////////
         end
         if (mult_true) begin
