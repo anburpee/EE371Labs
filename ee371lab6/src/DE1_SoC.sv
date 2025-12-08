@@ -15,16 +15,18 @@ module DE1_SoC (HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, KEY, LEDR, SW,
 	output VGA_SYNC_N;
 	output VGA_VS;
 
+	localparam int FLASH_CYCLES = 63; // set to 2**n - 1
+
 	logic reset;
 	logic [9:0] x;
 	logic [8:0] y;
 	logic [7:0] r, g, b;
 	
 	// INSTANTIATING VIDEO_DRIVER -- MODIFY THE PORTS BELOW TO THE RGB OF THE BOARD
-	// video_driver #(.WIDTH(640), .HEIGHT(480)) // setting width to 640 and height to 480 means the output x,y changes every clock cycle
-	// 	v1 (.CLOCK_50, .reset, .x, .y, .r, .g, .b,
-	// 		 .VGA_R, .VGA_G, .VGA_B, .VGA_BLANK_N,
-	// 		 .VGA_CLK, .VGA_HS, .VGA_SYNC_N, .VGA_VS);
+	video_driver #(.WIDTH(640), .HEIGHT(480)) // setting width to 640 and height to 480 means the output x,y changes every clock cycle
+		v1 (.CLOCK_50, .reset, .x, .y, .r, .g, .b,
+			 .VGA_R, .VGA_G, .VGA_B, .VGA_BLANK_N,
+			 .VGA_CLK, .VGA_HS, .VGA_SYNC_N, .VGA_VS);
 	
 
 
@@ -35,7 +37,7 @@ module DE1_SoC (HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, KEY, LEDR, SW,
 	logic invalid_move, reds_turn, game_over; // outputs
 	assign clk = CLOCK_50;
 	assign reset = SW[9];
-	assign key = ~KEY;
+	assign key = ~KEY; // KEYs are active low
 	assign sw = SW[5:0];
 
 
@@ -58,24 +60,47 @@ module DE1_SoC (HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, KEY, LEDR, SW,
 	////////////////v3//////////////////
 
 
-	// instantiate ram_update
+	// instantiate ram_update module
 	ram_update_v3 game_logic_module (.*);
 
 	assign LEDR[9] = game_over ? 1'b0 : ~reds_turn;
 	assign LEDR[0] = game_over ? 1'b0 : reds_turn;
 	assign LEDR[7:2] = {6{game_over}};
-	// flash all HEX displays at invalid_move
-	assign HEX0 = {7{invalid_move}};
-	assign HEX1 = {7{invalid_move}};
-	assign HEX2 = {7{invalid_move}};
-	assign HEX3 = {7{invalid_move}};
-	assign HEX4 = {7{invalid_move}};
-	assign HEX5 = {7{invalid_move}};
+
+	// flash all HEX displays at an invalid move
+	logic [$clog2(FLASH_CYCLES)-1:0] flash_count; // down counter
+	logic flashing;
+	always_ff @(posedge clk) begin
+		if (reset) begin
+			flash_count <= 0;
+			flashing <= 1'b0;
+		end
+		else begin
+			if (invalid_move) begin
+				flash_count <= FLASH_CYCLES;
+				flashing <= 1'b1;
+			end 
+			else if (flash_count != 0) begin
+				flash_count <= flash_count - 1;
+
+				if (flash_count == 1) begin
+					flashing <= 1'b0;
+				end
+			end
+		end
+	end // always_ff
+
+	assign HEX0 = {7{flashing ? 1'b0 : 1'b1}};	// HEX displays are active low
+	assign HEX1 = {7{flashing ? 1'b0 : 1'b1}};
+	assign HEX2 = {7{flashing ? 1'b0 : 1'b1}};
+	assign HEX3 = {7{flashing ? 1'b0 : 1'b1}};
+	assign HEX4 = {7{flashing ? 1'b0 : 1'b1}};
+	assign HEX5 = {7{flashing ? 1'b0 : 1'b1}};
 
 
+	// instantiate 64x3 RAMs storing the encodings for the type of spot each square is on the board
 	logic [5:0] read_addr; // 0 ~ 63
 	logic [2:0] q_even, q_odd, q_unused_even, q_unused_odd;
-	// RAMs storing the encodings for the type of spot each square is on the board
 	// only need to MUX the sencond address/wren since we're only reading from port 2
 	spot_encodings64x3 spot_encodings_even (
 		.address_a(encodings_addr1_even),
@@ -106,23 +131,23 @@ module DE1_SoC (HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, KEY, LEDR, SW,
 	);
 
 	
-	// delete when done testing:
-	assign read_addr = 6'd0;
+	// delete/comment out when done testing:
+	// assign read_addr = 6'd0;
 
-	// // instantiate display_update
-	// display_update rgb_vals (
-	// 	// inputs
-	// 	.clk,
-	// 	.reset, 
-	// 	.x_vga(x), 
-	// 	.y_vga(y), 
-	// 	.encoding(even_iter ? q_odd : q_even),
-	// 	// outputs  
-	// 	.read_addr,
-    //     .r,
-    //     .g,
-    //     .b
-    // );
+	// instantiate display_update
+	display_update rgb_vals (
+		// inputs
+		.clk,
+		.reset, 
+		.x_vga(x), 
+		.y_vga(y), 
+		.encoding(even_iter ? q_odd : q_even),
+		// outputs  
+		.read_addr,
+        .r,
+        .g,
+        .b
+    );
 
 
 
