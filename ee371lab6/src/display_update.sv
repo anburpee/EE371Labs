@@ -91,9 +91,16 @@ module display_update (input logic clk,
             b <= 0;
         end
         else begin
-            r <= r_next;
-            g <= g_next;
-            b <= b_next;
+            if (x_vga >= 80 && x_vga < 140 && y_vga < 60) begin
+                r <= 8'd196;
+                g <= 8'd164;
+                b <= 8'd132;
+            end
+            else begin
+                r <= r_next;
+                g <= g_next;
+                b <= b_next;
+            end
         end
     end // always_ff
 
