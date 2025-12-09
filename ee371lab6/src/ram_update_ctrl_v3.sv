@@ -1,35 +1,48 @@
-// control module for ram_update
-// recieves status signals and sends control signals to ram_update_datapath.sv
+// Control module for ram_update
+// Recieves status signals and sends control signals to ram_update_datapath.sv
+// Inputs:
+//      clk, reset -- 1 bit, from ram_update (overall module)
+//      key -- 4 bits, from ram_update
+//      1-bit status signals from ram_update_datapath:
+//          count_eq_11, valid_xy, legal_dir, edge_blocked0, own_adj opp_adj, edge_blocked1,
+//          two_over, cont_turn, mult_iter (not all these signals are outputted by ram_update;
+//          most are for debugging in modelsim)
+// Outputs: 
+//      1-bit outputs invalid_xy, illegal_dir, board_in_way, token_in_way
+//      1-bit control signals to ram_update_datapath:
+//          load_iter, initialize, read, check0, check_done, incr_count, reset_count,
+//          load_adj, load_skip, mult_true, done
 `timescale 1 ps / 1 ps
-module ram_update_ctrl_v3 (input logic clk,
-                        input logic reset, 
-                        input logic [3:0] key,
-                        input logic count_eq_11,
-                        input logic valid_xy,
-                        input logic legal_dir,
-                        input logic edge_blocked0,
-                        input logic own_adj,
-                        input logic opp_adj,
-                        input logic edge_blocked1,
-                        input logic two_over,
-                        input logic cont_turn,
-                        input logic mult_iter,
-                        output logic load_iter,
-                        output logic initialize,
-                        output logic read,
-                        output logic check0,
-                        output logic check_done,
-                        output logic incr_count,
-                        output logic reset_count,
-                        output logic invalid_xy,
-                        output logic illegal_dir,
-                        output logic board_in_way,
-                        output logic token_in_way,
-                        output logic load_adj, 
-                        output logic load_skip,
-                        output logic mult_true,
-                        output logic done
-                        );
+module ram_update_ctrl_v3 (
+    input logic clk,
+    input logic reset, 
+    input logic [3:0] key,
+    input logic count_eq_11,
+    input logic valid_xy,
+    input logic legal_dir,
+    input logic edge_blocked0,
+    input logic own_adj,
+    input logic opp_adj,
+    input logic edge_blocked1,
+    input logic two_over,
+    input logic cont_turn,
+    input logic mult_iter,
+    output logic load_iter,
+    output logic initialize,
+    output logic read,
+    output logic check0,
+    output logic check_done,
+    output logic incr_count,
+    output logic reset_count,
+    output logic invalid_xy,
+    output logic illegal_dir,
+    output logic board_in_way,
+    output logic token_in_way,
+    output logic load_adj, 
+    output logic load_skip,
+    output logic mult_true,
+    output logic done
+    );
 
     // states
     // s_known2 is to wait until the opp_adjX and two_overX signals update

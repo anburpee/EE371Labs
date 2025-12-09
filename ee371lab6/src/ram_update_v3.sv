@@ -1,6 +1,15 @@
-// module for updating rams that store the token locations
-// submodules ram_update_ctrl, ram_update_datapath
-// CONNECT VALID_MOVE TO AN LED
+// Module for in charge of game logic for checkers  and updating rams that store the token locations & encodings
+// Submodules ram_update_ctrl, ram_update_datapath
+// Inputs:
+//      1-bit clk, reset from DE1_SoC
+//      4-bit key from DE1_SoC
+//      6-bit sw from DE1_SoC
+// Outputs:
+//      1-bit invalid_move, reds_turn, game_over, even_iter signals to DE1_SoC
+//      6-bit encodings_addr1_even, encodings_addr2_even, encodings_addr1_odd, encodings_addr2_odd,
+//      connected to the odd/even 64x3 RAMs in DE1_SoC respectively
+//      3-bit encodings_data1_even, encodings_data2_even, encodings_data1_odd, encodings_data2_odd,
+//      connected to the odd/even 64x3 RAMs in DE1_SoC respectively
 `timescale 1 ps / 1 ps
 module ram_update_v3 (input logic clk, 
                    input logic reset,
@@ -10,8 +19,7 @@ module ram_update_v3 (input logic clk,
                    output logic reds_turn,
                    output logic game_over,
                     ////////////////v3//////////////////
-                    // even_iter & having 2 RAMs is to make sure RAMs are not written to by ram_update and read from display_update at the same time @ load_skip
-                    output logic even_iter, // toggles every iteration
+                    output logic even_iter,
                     output logic [5:0] encodings_addr1_even, 
                     output logic [5:0] encodings_addr2_even, 
                     output logic [2:0] encodings_data1_even,

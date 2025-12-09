@@ -1,8 +1,15 @@
-// determines input RGB values for video_driver.sv based on the (x, y) coordinates that video_driver.sv outputs
-// start with basic functionality of displaying the current player locations
-// if there's extra time, add in selection highlights around the square that is selected by the switches
-// must output the correct rgb values within 2 cycles after the target x, y is outputted from video_driver.
-// 480 x 480 board displayed in the center of the 480 x 640 pixel VGA display
+// Determines input RGB values for video_driver.sv based on the (x, y) coordinates that video_driver.sv outputs
+// Outputs the correct rgb values within 2 cycles after the target x, y is outputted from video_driver.
+// Draws 480 x 480 board displayed in the center of the 480 x 640 pixel VGA display
+// Inputs:
+// clk, reset -- 1 bit each, from DE1_SoC
+// x_vga, y_vga -- x(10-bit) and y(9-bit) values of the VGA pixel being written to, outputted by video_driver
+// read_addr -- 6-bit read address that connects to the two spot_encodings RAMs to access the encoding of the tile that the 
+//              VGA is currently writing to
+// encoding -- 3-bit the tile encoding from the spot_encoding RAM to base the output RGB vlaues off of. 
+//             connected to the outputs of the spot_encodings RAMs
+// Outputs:
+// r, g, b -- 8-bit RGB values that are used as inputs to video_driver
 module display_update (input logic clk,
                        input logic reset, // don't need?
                        input logic [9:0] x_vga,
@@ -15,12 +22,9 @@ module display_update (input logic clk,
                        output logic [7:0] b
                        );
 
-    // determine:
-    // light square vs dark square (even vs odd, % 2 then scale)
-    // if there's a piece in that square and whether its red or black -- and if it's a king
-    logic [7:0] r_next, g_next, b_next;
-    logic [7:0] circle_r, circle_g, circle_b; // rgb values for inside circle
-    logic [7:0] surr_r, surr_g, surr_b; // rgb values for outside the circle (surrounding)
+    logic [7:0] r_next, g_next, b_next; // combinationally determined next RGB values to be outputted
+    logic [7:0] circle_r, circle_g, circle_b; // RGB values for inside circle
+    logic [7:0] surr_r, surr_g, surr_b; // RGB values for outside the circle (surrounding)
 
     // use later after testing with just colored squares
     logic [5:0] x_relative, y_relative; // up to 60,  keeps track of which relative location you are within a square
@@ -29,7 +33,7 @@ module display_update (input logic clk,
     logic circle_loc; // true if inside circle portion within a token square
     // filled in circle formula: (x - h)^2 + (y - k)^2 <= r^2
     // since each square is 60x60 pixels, center = (h, k) = (30,30)
-    // let radius = 24
+    // let radius = 24 (diameter 48 out of 60x60 square tile)
     assign circle_loc = ((x_relative - 30) * (x_relative - 30) + (y_relative - 30) * (y_relative - 30) <= (24 * 24));
 
     logic [2:0] x_board, y_board; // current (x, y) of board based on x_vga, y_vga (x and y ranging from 0-7)
@@ -166,5 +170,4 @@ module display_update (input logic clk,
         end
     end // always_ff
 
-
-endmodule
+endmodule // display_update

@@ -1,3 +1,7 @@
+// Top level module for lab 6: checkers
+// Implements checkers on the DE1_SoC using a VGA
+// Instantiates video_driver, ram_update, display_update, and spot_encoding RAMs
+// Takes all switches and keys through double FF synchronizers
 module DE1_SoC (HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, KEY, LEDR, SW,
 					 CLOCK_50, VGA_R, VGA_G, VGA_B, VGA_BLANK_N, VGA_CLK, VGA_HS, VGA_SYNC_N, VGA_VS);
 	output logic [6:0] HEX0, HEX1, HEX2, HEX3, HEX4, HEX5;
@@ -15,7 +19,7 @@ module DE1_SoC (HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, KEY, LEDR, SW,
 	output VGA_SYNC_N;
 	output VGA_VS;
 
-	localparam int FLASH_CYCLES = 63; // set to 2**n - 1
+	localparam int FLASH_CYCLES = 127; // set to 2**n - 1
 
 	logic reset;
 	logic [9:0] x;
@@ -154,8 +158,5 @@ module DE1_SoC (HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, KEY, LEDR, SW,
         .g,
         .b
     );
-
-
-
 	
 endmodule  // DE1_SoC

@@ -16,7 +16,6 @@ add wave -noupdate /ram_update_tb/dut/ram_datapath/wren_blk
 add wave -noupdate /ram_update_tb/dut/ram_datapath/data_red
 add wave -noupdate /ram_update_tb/dut/ram_datapath/data_blk
 add wave -noupdate /ram_update_tb/dut/ram_datapath/reds_turn
-add wave -noupdate /ram_update_tb/iter_done
 add wave -noupdate /ram_update_tb/invalid_move
 add wave -noupdate /ram_update_tb/dut/ram_ctrl/count_eq_11
 add wave -noupdate /ram_update_tb/dut/ram_datapath/check0
@@ -57,8 +56,9 @@ add wave -noupdate /ram_update_tb/dut/ram_datapath/red_count
 add wave -noupdate /ram_update_tb/dut/ram_datapath/blk_count
 add wave -noupdate /ram_update_tb/dut/ram_ctrl/mult_true
 add wave -noupdate /ram_update_tb/dut/ram_ctrl/done
+add wave -noupdate /ram_update_tb/dut/ram_datapath/game_over
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {168 ps} 0}
+WaveRestoreCursors {{Cursor 1} {487391 ps} 0}
 quietly wave cursor active 1
 configure wave -namecolwidth 140
 configure wave -valuecolwidth 100
@@ -74,4 +74,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ps
 update
-WaveRestoreZoom {315069 ps} {319575 ps}
+WaveRestoreZoom {487627 ps} {505651 ps}

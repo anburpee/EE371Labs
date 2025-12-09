@@ -1,45 +1,61 @@
-// datapath for ram_update module
-// sends status signals to and recieves control signals from ram_update_ctrl.sv
+// Datapath for ram_update module
+// Sends status signals to and recieves control signals from ram_update_ctrl.sv
+// Inputs: 
+//      1-bit clk, reset -- from ram_update (overal module)
+//      4-bit key -- from ram_update
+//      6-bit sw -- from ram_update
+//      1-bit control signals from ram_update_ctrl:
+//          load_iter, initialize, read, check0, check_done, incr_count, reset_count,
+//          load_adj, load_skip, mult_true, done
+// Outputs:
+//      1-bit game_over, even_iter to ram_update
+//      6-bit encodings_addr1_even, encodings_addr2_even, encodings_addr1_odd, encodings_addr2_odd to ram_update
+//      3-bit encodings_data1_even, encodings_data2_even, encodings_data1_odd, encodings_data2_odd to ram_update
+//      1-bit status signals to ram_update_ctrl:
+//          count_eq_11, valid_xy, legal_dir, edge_blocked0, own_adj opp_adj, edge_blocked1,
+//          two_over, cont_turn, mult_iter
 `timescale 1 ps / 1 ps
-module ram_update_datapath_v3 (input logic clk,
-                            input logic reset, 
-                            input logic [3:0] key,
-                            input logic [5:0] sw,
-                            input logic load_iter,
-                            input logic initialize,
-                            input logic read,
-                            input logic check0,
-                            input logic check_done,
-                            input logic incr_count,
-                            input logic reset_count,
-                            input logic load_adj, 
-                            input logic load_skip,
-                            input logic mult_true,
-                            input logic done,
-                            output logic count_eq_11,
-                            output logic valid_xy,
-                            output logic legal_dir,
-                            output logic edge_blocked0,
-                            output logic own_adj,
-                            output logic opp_adj,
-                            output logic edge_blocked1,
-                            output logic two_over,  // checks if there is a token two spaces over in the specified direction
-                            output logic cont_turn,
-                            output logic mult_iter,
-                            output logic reds_turn,
-                            output logic game_over,
-                            ////////////////v3//////////////////
-                            // even_iter & having 2 RAMs is to make sure RAMs are not written to by ram_update and read from display_update at the same time @ load_skip
-                            output logic even_iter, // toggles every iteration
-                            output logic [5:0] encodings_addr1_even, 
-                            output logic [5:0] encodings_addr2_even, 
-                            output logic [2:0] encodings_data1_even,
-                            output logic [2:0] encodings_data2_even,
-                            output logic [5:0] encodings_addr1_odd, 
-                            output logic [5:0] encodings_addr2_odd, 
-                            output logic [2:0] encodings_data1_odd,
-                            output logic [2:0] encodings_data2_odd
-                            );
+module ram_update_datapath_v3 (
+    input logic clk,
+    input logic reset, 
+    input logic [3:0] key,
+    input logic [5:0] sw,
+    input logic load_iter,
+    input logic initialize,
+    input logic read,
+    input logic check0,
+    input logic check_done,
+    input logic incr_count,
+    input logic reset_count,
+    input logic load_adj, 
+    input logic load_skip,
+    input logic mult_true,
+    input logic done,
+    output logic count_eq_11,
+    output logic valid_xy,
+    output logic legal_dir,
+    output logic edge_blocked0,
+    output logic own_adj,
+    output logic opp_adj,
+    output logic edge_blocked1,
+    output logic two_over,  // checks if there is a token two spaces over in the specified direction
+    output logic cont_turn,
+    output logic mult_iter,
+    output logic reds_turn,
+    output logic game_over,
+    ////////////////v3//////////////////
+    // even_iter & having 2 RAMs is to make sure RAMs are not written to by ram_update and read from display_update 
+    // at the same time at load_skip
+    output logic even_iter, // toggles every iteration
+    output logic [5:0] encodings_addr1_even, 
+    output logic [5:0] encodings_addr2_even, 
+    output logic [2:0] encodings_data1_even,
+    output logic [2:0] encodings_data2_even,
+    output logic [5:0] encodings_addr1_odd, 
+    output logic [5:0] encodings_addr2_odd, 
+    output logic [2:0] encodings_data1_odd,
+    output logic [2:0] encodings_data2_odd
+    );
 
     logic wren_red, wren_blk;
     logic [6:0] q_red, q_blk;
@@ -52,10 +68,11 @@ module ram_update_datapath_v3 (input logic clk,
     logic opp_adj0, opp_adj1, opp_adj2, opp_adj3;
     logic two_over0, two_over1, two_over2, two_over3;
     logic [3:0] count;
-    logic [3:0] red_addr, blk_addr; // red into rams
+    logic [3:0] red_addr, blk_addr; 
     logic [4:0] red_count, blk_count;
     logic skipped; // to keep track of whether the player skipped over opponent (to have a chance at another turn)
-    logic [2:0] x_opp_erase, y_opp_erase; // (x,y) location of skipped-over token that needs to be erased from board -- need these signals b/c otherwise (x,y) are set to 0 in red_ram, blk_ram
+    logic [2:0] x_opp_erase, y_opp_erase; // (x,y) location of skipped-over token that needs to be erased from board 
+                                          // need these signals b/c otherwise (x,y) are set to 0 in red_ram, blk_ram
 
     // instantiate RAMS that store location of each token
     black_ram16x7 blk_ram (.address(blk_addr), .clock(clk), .data(data_blk), .wren(wren_blk), .q(q_blk));
@@ -96,11 +113,12 @@ module ram_update_datapath_v3 (input logic clk,
                 y_curr <= sw[2:0]; // only update when mult_iter == 0 b/c y_curr is set the new value at load_skip
             end
         end
-        if (read) begin
+        if (read) begin // read from red & black RAMs
             red_addr <= count;
             blk_addr <= count;
             wren_blk <= 1'b0;
             wren_red <= 1'b0;
+            // erase skipped-over token from board after load_skip
             // technically only need to assign these once but makes sense to do this here based on state sequence
             encodings_addr1_odd <= 8*(y_opp_erase) + x_opp_erase;
             encodings_data1_odd <= 3'b000;
@@ -145,7 +163,7 @@ module ram_update_datapath_v3 (input logic clk,
             if (((x_own == x_cond1) && (y_own == y_cond1)) || ((x_opp == x_cond1) && (y_opp == y_cond1))) begin
                 two_over <= 1'b1;
             end
-        end
+        end // check0
         if (check_done) begin   // new values from load_adj/load_skip are now in blk_ram, red_ram
             logic [2:0] x_own, y_own, x_opp, y_opp;
             // fine even if q_red, q_blk stores an invalid location(after being skipped over & "erased") because
@@ -181,12 +199,11 @@ module ram_update_datapath_v3 (input logic clk,
             end
             ////////////////////v3 -- update spot_encodings64x3 RAMs////////////////////////
             case (even_iter) // do all 12 iterations(b/c we don't know everything that changed -- yes, we know to draw a new spot at x_curr, y_curr but we don't have the coordinates of tokens jumped over to write in 0s to) 
-                //------------ this is after the previous spot is erased in load_skip/load_adj
-                // wren should be turned off after this current state jQuery37106889094368691377_1765193871109jQuery37107731289251481588_1765196652707
+                //this is after the previous spot is "erased" in load_skip/load_adj (set to invalid location 7'b0000000)
                 1'b0: begin // update odd iteration RAM
-                     //  CONTROL ALL WREN LOGIC FROM DE1_SOC BASED ON EVEN_ITER -- should be fine since even if q_red and q_blk are updated, these registers don't update until the next check_done
+                     //  CONTROL ALL WREN LOGIC FROM DE1_SOC BASED ON EVEN_ITER
                     encodings_addr1_odd <= 8*(q_red[2:0]) + q_red[5:3]; // red
-                    encodings_data1_odd <= (q_red == 7'b0000000) ? 3'b001 : (q_red[6] ? 3'b100 : 3'b010); // if invalid location(0,0), then piece is "erased"/ out of the game so load 001 (light square) at (0,0)
+                    encodings_data1_odd <= (q_red == 7'b0000000) ? 3'b001 : (q_red[6] ? 3'b100 : 3'b010); // if invalid location(0,0), then piece is out of the game so load 001 (light square) there
                     encodings_addr2_odd <= 8*(q_blk[2:0]) + q_blk[5:3]; // black
                     encodings_data2_odd <= (q_blk == 7'b0000000) ? 3'b001 : (q_blk[6] ? 3'b101 : 3'b011);
                 end
@@ -197,8 +214,7 @@ module ram_update_datapath_v3 (input logic clk,
                     encodings_data2_even <= (q_blk == 7'b0000000) ? 3'b001 : (q_blk[6] ? 3'b101 : 3'b011);
                 end
             endcase
-            //////////////////////////////////////////// set wren to 0? or unnessasary since the data & addrs are not changing
-        end
+        end // check_done
         if (incr_count) begin
             count <= count + 1;
         end
@@ -240,15 +256,14 @@ module ram_update_datapath_v3 (input logic clk,
             king <= king_new;
             // don't need to assign x_curr, y_curr --- is loaded in initialize
             ////////////////////v3 -- update spot_encodings64x3 RAMs////////////////////////
-            ////////////////////erase moving token from current spot (to later redraw it in the new spot)///////////////////////
-            ////////////////////if we don't erase here, we would have to do 3 simultaneous writes at check_done:
-            ////////////////////1)the erasing of the old location, 2)erasing of token jumped over, 3)the storage of the token in the new spot --impossible
-            // new version:
+            //erase moving token from current spot (to later redraw it in the new spot)///////////////////////
+            //if we don't erase here, we would have to do 3 simultaneous writes at check_done:
+            //1)the erasing of the old location, 2)erasing of token jumped over, 3)the storage of the token in the new spot --impossible
             encodings_addr1_odd <= 8*(y_curr) + x_curr;
             encodings_data1_odd <= 3'b000; // dark square encoding
             encodings_addr1_even <= 8*(y_curr) + x_curr;
             encodings_data1_even <= 3'b000; // dark square encoding
-        end
+        end // load_adj
         if (load_skip) begin
             logic [2:0] x_new, y_new;
             logic king_new;
@@ -291,11 +306,10 @@ module ram_update_datapath_v3 (input logic clk,
                     blk_count <= blk_count - 1;
                 end
             endcase
-                        ////////////////////v3 -- update spot_encodings64x3 RAMs////////////////////////
-            ////////////////////erase moving token from current spot (to later redraw it in the new spot)///////////////////////
-            //////////////////// if we don't erase here, we would have to do 3 simultaneous writes at check_done:
-            //////////////////// the erasing of the old location, erasing of token jumped over, and the storage of the toke in the new spot
-            // new version:
+            ////////////////////v3 -- update spot_encodings64x3 RAMs////////////////////////
+            //erase moving token from current spot (to later redraw it in the new spot)///////////////////////
+            // if we don't erase here, we would have to do 3 simultaneous writes at check_done:
+            // the erasing of the old location, erasing of token jumped over, and the storage of the toke in the new spot
             encodings_addr1_odd <= 8*(y_curr) + x_curr;
             encodings_data1_odd <= 3'b000; // dark square encoding
             encodings_addr1_even <= 8*(y_curr) + x_curr;
@@ -305,7 +319,7 @@ module ram_update_datapath_v3 (input logic clk,
             x_curr <= x_new;
             y_curr <= y_new;
             skipped <= 1'b1;
-        end
+        end // load_adj
         if (mult_true) begin
             mult_iter <= 1'b1;
             even_iter <= ~even_iter; ///////////////////////////////v3
@@ -314,7 +328,8 @@ module ram_update_datapath_v3 (input logic clk,
             reds_turn <= ~reds_turn;
             even_iter <= ~even_iter; ///////////////////////////////v3
         end
-    end
+    end // always_ff
+
 
     // status signals
     assign count_eq_11 = (count == 4'd11);    
@@ -341,6 +356,7 @@ module ram_update_datapath_v3 (input logic clk,
 endmodule // ram_update_datapath_v3
 
 
+// PAST VERSIONS
 // // datapath for ram_update module
 // // sends status signals to and recieves control signals from ram_update_ctrl.sv
 // `timescale 1 ps / 1 ps
