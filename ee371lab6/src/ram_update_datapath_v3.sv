@@ -108,6 +108,8 @@ module ram_update_datapath_v3 (
             opp_adj1 <= 1'b0;
             opp_adj2 <= 1'b0;
             opp_adj3 <= 1'b0;
+            x_opp_erase <= 3'b000;
+            y_opp_erase <= 3'b000;
             if (mult_iter == 1'b0) begin
                 x_curr <= sw[5:3]; // only update when mult_iter == 0 b/c x_curr is set the new value at load_skip (when there's a possibility of another turn)
                 y_curr <= sw[2:0]; // only update when mult_iter == 0 b/c y_curr is set the new value at load_skip
@@ -120,10 +122,12 @@ module ram_update_datapath_v3 (
             wren_red <= 1'b0;
             // erase skipped-over token from board after load_skip
             // technically only need to assign these once but makes sense to do this here based on state sequence
+            // if x_opp_erase and y_opp_erase are set to (0,0) that means load_skip was never asserted, so write 
+            // the encoding 3'b001 (light square) to coordinates(0,0) on the board (address 0)
             encodings_addr1_odd <= 8*(y_opp_erase) + x_opp_erase;
-            encodings_data1_odd <= 3'b000;
+            encodings_data1_odd <= ((x_opp_erase == 3'b000) && (y_opp_erase == 3'b000)) ? 3'b001 : 3'b000;
             encodings_addr1_even <= 8*(y_opp_erase) + x_opp_erase;
-            encodings_data1_even <= 3'b000;
+            encodings_data1_even <= ((x_opp_erase == 3'b000) && (y_opp_erase == 3'b000)) ? 3'b001 : 3'b000;
         end
         if (check0) begin
             logic [2:0] x_own, y_own, x_opp, y_opp;
