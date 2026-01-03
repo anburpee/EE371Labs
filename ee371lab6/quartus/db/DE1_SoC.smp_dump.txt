@@ -1,0 +1,17 @@
+
+State Machine - |DE1_SoC|ram_update_v3:game_logic_module|ram_update_ctrl_v3:ram_ctrl|ps
+Name ps.s_wait1 ps.s_wait0 ps.s_known2 ps.s_known1 ps.s_unknown11 ps.s_unknown10 ps.s_check_done ps.s_update ps.s_known0 ps.s_unknown01 ps.s_unknown00 ps.s_check0 ps.s_idle ps.s_reset 
+ps.s_reset 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+ps.s_idle 0 0 0 0 0 0 0 0 0 0 0 0 1 1 
+ps.s_check0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 
+ps.s_unknown00 0 0 0 0 0 0 0 0 0 0 1 0 0 1 
+ps.s_unknown01 0 0 0 0 0 0 0 0 0 1 0 0 0 1 
+ps.s_known0 0 0 0 0 0 0 0 0 1 0 0 0 0 1 
+ps.s_update 0 0 0 0 0 0 0 1 0 0 0 0 0 1 
+ps.s_check_done 0 0 0 0 0 0 1 0 0 0 0 0 0 1 
+ps.s_unknown10 0 0 0 0 0 1 0 0 0 0 0 0 0 1 
+ps.s_unknown11 0 0 0 0 1 0 0 0 0 0 0 0 0 1 
+ps.s_known1 0 0 0 1 0 0 0 0 0 0 0 0 0 1 
+ps.s_known2 0 0 1 0 0 0 0 0 0 0 0 0 0 1 
+ps.s_wait0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 
+ps.s_wait1 1 0 0 0 0 0 0 0 0 0 0 0 0 1 

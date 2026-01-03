@@ -1,0 +1,4 @@
+Warning (10268): Verilog HDL information at ram_update_datapath_v3.sv(83): always construct contains both blocking and non-blocking assignments File: C:/ee371labs/ee371/ee371lab6/src/ram_update_datapath_v3.sv Line: 83
+Warning (10268): Verilog HDL information at ram_update_datapath.sv(378): always construct contains both blocking and non-blocking assignments File: C:/ee371labs/ee371/ee371lab6/src/ram_update_datapath.sv Line: 378
+Info (10281): Verilog HDL Declaration information at DE1_SoC.sv(9): object "KEY" differs only in case from object "key" in the same scope File: C:/ee371labs/ee371/ee371lab6/src/DE1_SoC.sv Line: 9
+Info (10281): Verilog HDL Declaration information at DE1_SoC.sv(10): object "SW" differs only in case from object "sw" in the same scope File: C:/ee371labs/ee371/ee371lab6/src/DE1_SoC.sv Line: 10
